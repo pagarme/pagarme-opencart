@@ -1,0 +1,170 @@
+/*
+** ESTILIZAÇÃO DO MÓDULO PAGSEGURO CHECKOUT TRANSPARENTE
+** SANTIVE.COM - rodrigo@santive.com / marcos@santive.com
+*/
+
+/**/
+@import url('//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css');
+
+#aguardando{
+    display: none;
+}
+
+/*transferência*/
+.payment-information{
+	text-align: center;
+	font-size: 14px;
+	font-weight: 800;
+	letter-spacing: -1px;
+	margin-bottom: 10px;;
+}
+
+.bancos{
+	text-align: center;
+	margin-bottom: 10px;
+}
+.bancos .banco{
+	display: inline-block;
+}
+.bancos .banco label{
+    display: inline-block;
+    text-align: center;
+    padding: 10px 0;
+    border: 3px solid transparent;
+    -webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	position: relative;
+}
+
+.bancos .banco label i{
+	display: none;
+}
+
+.bancos .banco input{
+	display: none;
+}
+
+.bancos .banco input:checked+label{
+	border:3px solid green;
+}
+
+.bancos .banco input:checked+label i{
+	position: absolute;
+	display: inline-block;
+	background: green;
+	color:#fff;
+	right:-3px;
+	padding:4px;
+	bottom:-3px;
+	text-shadow:0 1px 0 #000;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+}
+
+/*cartão*/
+.dados_cartao{
+	margin-bottom: 10px;
+	width: 317px;
+	margin: 20px auto;
+}
+
+.dados_cartao .input-block-float{
+    float: left;
+    position: relative;
+}
+
+.dados_cartao #cardBrand{
+    display: inline-block;
+    position: absolute;
+    top: 10px;
+    left: 107px;
+    width: 32px;
+}
+
+.dados_cartao #cardBrand img{
+	width: 100%;
+}
+
+.dados_cartao label{
+	display: block;
+	margin-top: 10px;
+	cursor: pointer;
+	position: relative;
+}
+
+.dados_cartao input, .dados_cartao select{
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	padding: 10px;
+	display: inline-block;
+	border-radius: 5px;
+	background: #fff;
+	outline: none;
+	cursor: pointer;
+}
+
+#tool-tip-cvc{
+    position: relative;
+}
+
+#label-cvc:hover #tool-tip-content{
+	display: block;
+}
+#tool-tip-cvc i{}
+#tool-tip-cvc #tool-tip-content{
+   	display: none;
+    left: 20px;
+    width: 82px;
+    top: -16px;
+    position: absolute;	
+}
+
+#tool-tip-cvc #tool-tip-content:before{
+	content:'';
+	width: 0;
+	height: 0;
+	border-style: solid;
+	border-width: 5px 5px 5px 0;
+	border-color: transparent #000 transparent transparent;
+	position: absolute;
+	top: 50%;
+	margin-top: -8px;
+	left: -5px;
+}
+
+#tool-tip-cvc #tool-tip-content img{
+    width: 100%;
+}
+
+
+/**
+ * For modern browsers
+ * 1. The space content is one way to avoid an Opera bug when the
+ *    contenteditable attribute is included anywhere else in the document.
+ *    Otherwise it causes space to appear at the top and bottom of elements
+ *    that are clearfixed.
+ * 2. The use of `table` rather than `block` is only necessary if using
+ *    `:before` to contain the top-margins of child elements.
+ */
+.cf:before,
+.cf:after {
+    content: " "; /* 1 */
+    display: table; /* 2 */
+}
+
+.cf:after {
+    clear: both;
+}
+
+/**
+ * For IE 6/7 only
+ * Include this rule to trigger hasLayout and contain floats.
+ */
+.cf {
+    *zoom: 1;
+}
+
+
+

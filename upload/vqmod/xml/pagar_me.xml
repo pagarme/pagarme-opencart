@@ -1,0 +1,18 @@
+
+<modification>
+    <id>VQmod para o módulo de pagamento Pagar.me</id>
+    <version>1.0</version>
+    <vqmver>2.1.5</vqmver>
+    <author>Santive Tecnologia contato@santive.com</author>
+
+    <file name="catalog/view/theme/*/template/common/header.tpl">
+        <operation>
+            <search position="before">
+                <![CDATA[</head>]]>
+            </search>
+            <add>
+                <![CDATA[<script src="https://pagar.me/assets/pagarme-v2.min.js"></script>]]>
+            </add>
+        </operation>
+    </file>
+</modification>
