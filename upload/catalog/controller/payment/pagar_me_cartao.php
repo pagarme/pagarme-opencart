@@ -25,6 +25,23 @@ class ControllerPaymentPagarMeCartao extends Controller {
         $this->data['url'] = $this->url->link('payment/pagar_me_cartao/confirm', '', 'SSL');
         $this->data['url2'] = $this->url->link('payment/pagar_me_cartao/error', '', 'SSL');
 
+        /* Parcelas */
+        Pagarme::setApiKey($this->config->get('pagar_me_cartao_api'));
+
+        try {
+            
+            $numero_parcelas = floor($order_info['total'] / $this->config->get('pagar_me_cartao_valor_parcela'));
+            
+            $max_parcelas = $numero_parcelas ? $numero_parcelas : 1;
+
+            $this->data['parcelas'] = PagarMe_Transaction::calculateInstallmentsAmount($this->data['total'], $this->config->get('pagar_me_cartao_taxa_juros'), $max_parcelas, $this->config->get('pagar_me_cartao_parcelas_sem_juros'));
+        } catch (PagarMe_Exception $e) {
+            $this->log->write("Erro Pagar.me: " . $e->buildWithFullMessage());
+            die();
+        }
+
+
+
         if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/payment/pagar_me_cartao.tpl')) {
             $this->template = $this->config->get('config_template') . '/template/payment/pagar_me_cartao.tpl';
         } else {
@@ -134,16 +151,17 @@ class ControllerPaymentPagarMeCartao extends Controller {
     }
 
     public function callback() {
-
+        
     }
 
     public function payment() {
 
         Pagarme::setApiKey($this->config->get('pagar_me_cartao_api'));
-
+        
         $transaction = new PagarMe_Transaction(array(
             'amount' => $_POST['amount'],
-            'card_hash' => $_POST['card_hash']
+            'card_hash' => $_POST['card_hash'],
+            'installments' => $_POST['installments']
         ));
 
         $transaction->charge();

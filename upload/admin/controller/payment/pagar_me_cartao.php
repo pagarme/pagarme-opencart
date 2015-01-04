@@ -30,6 +30,10 @@ class ControllerPaymentPagarMeCartao extends Controller {
         $this->data['entry_criptografia'] = $this->language->get('entry_criptografia');
         $this->data['entry_api'] = $this->language->get('entry_api');
         $this->data['entry_nome'] = $this->language->get('entry_nome');
+        $this->data['entry_max_parcelas'] = $this->language->get('entry_max_parcelas');
+        $this->data['entry_parcelas_sem_juros'] = $this->language->get('entry_parcelas_sem_juros');
+        $this->data['entry_valor_parcela'] = $this->language->get('entry_valor_parcela');
+        $this->data['entry_taxa_juros'] = $this->language->get('entry_taxa_juros');
         $this->data['entry_text_information'] = $this->language->get('entry_text_information');
         $this->data['entry_order_status'] = $this->language->get('entry_order_status');
         $this->data['entry_order_processing'] = $this->language->get('entry_order_processing');
@@ -55,6 +59,30 @@ class ControllerPaymentPagarMeCartao extends Controller {
             $this->data['error_criptografia'] = $this->error['criptografia'];
         } else {
             $this->data['error_criptografia'] = '';
+        }
+        
+        if (isset($this->error['max_parcelas'])) {
+            $this->data['error_max_parcelas'] = $this->error['max_parcelas'];
+        } else {
+            $this->data['error_max_parcelas'] = '';
+        }
+        
+        if (isset($this->error['parcelas_sem_juros'])) {
+            $this->data['error_parcelas_sem_juros'] = $this->error['parcelas_sem_juros'];
+        } else {
+            $this->data['error_parcelas_sem_juros'] = '';
+        }
+        
+        if (isset($this->error['valor_parcelas'])) {
+            $this->data['error_valor_parcelas'] = $this->error['valor_parcelas'];
+        } else {
+            $this->data['error_valor_parcelas'] = '';
+        }
+        
+        if (isset($this->error['taxa_juros'])) {
+            $this->data['error_taxa_juros'] = $this->error['taxa_juros'];
+        } else {
+            $this->data['error_taxa_juros'] = '';
         }
 
         if (isset($this->error['api'])) {
@@ -97,6 +125,30 @@ class ControllerPaymentPagarMeCartao extends Controller {
             $this->data['pagar_me_cartao_criptografia'] = $this->request->post['pagar_me_cartao_criptografia'];
         } else {
             $this->data['pagar_me_cartao_criptografia'] = $this->config->get('pagar_me_cartao_criptografia');
+        }
+        
+        if (isset($this->request->post['pagar_me_cartao_taxa_juros'])) {
+            $this->data['pagar_me_cartao_taxa_juros'] = $this->request->post['pagar_me_cartao_taxa_juros'];
+        } else {
+            $this->data['pagar_me_cartao_taxa_juros'] = $this->config->get('pagar_me_cartao_taxa_juros');
+        }
+        
+        if (isset($this->request->post['pagar_me_cartao_max_parcelas'])) {
+            $this->data['pagar_me_cartao_max_parcelas'] = $this->request->post['pagar_me_cartao_max_parcelas'];
+        } else {
+            $this->data['pagar_me_cartao_max_parcelas'] = $this->config->get('pagar_me_cartao_max_parcelas');
+        }
+        
+        if (isset($this->request->post['pagar_me_cartao_parcelas_sem_juros'])) {
+            $this->data['pagar_me_cartao_parcelas_sem_juros'] = $this->request->post['pagar_me_cartao_parcelas_sem_juros'];
+        } else {
+            $this->data['pagar_me_cartao_parcelas_sem_juros'] = $this->config->get('pagar_me_cartao_parcelas_sem_juros');
+        }
+        
+        if (isset($this->request->post['pagar_me_cartao_valor_parcela'])) {
+            $this->data['pagar_me_cartao_valor_parcela'] = $this->request->post['pagar_me_cartao_valor_parcela'];
+        } else {
+            $this->data['pagar_me_cartao_valor_parcela'] = $this->config->get('pagar_me_cartao_valor_parcela');
         }
 
         if (isset($this->request->post['pagar_me_cartao_api'])) {
@@ -216,6 +268,22 @@ class ControllerPaymentPagarMeCartao extends Controller {
 
         if (!$this->request->post['pagar_me_cartao_criptografia']) {
             $this->error['criptografia'] = $this->language->get('error_criptografia');
+        }
+        
+        if (!$this->request->post['pagar_me_cartao_taxa_juros']) {
+            $this->error['taxa_juros'] = $this->language->get('error_taxa_juros');
+        }
+        
+        if (!$this->request->post['pagar_me_cartao_max_parcelas']) {
+            $this->error['max_parcelas'] = $this->language->get('error_max_parcelas');
+        }
+        
+        if (!$this->request->post['pagar_me_cartao_parcelas_sem_juros']) {
+            $this->error['parcelas_sem_juros'] = $this->language->get('error_parcelas_sem_juros');
+        }
+        
+        if (!$this->request->post['pagar_me_cartao_valor_parcela']) {
+            $this->error['valor_parcela'] = $this->language->get('error_valor_parcela');
         }
 
         if (!$this->request->post['pagar_me_cartao_api']) {

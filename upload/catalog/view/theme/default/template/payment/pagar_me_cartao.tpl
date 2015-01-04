@@ -5,7 +5,7 @@
 
 <div class="dados_cartao">
 
-    <form id="payment_form" method="POST">
+    <form id="payment_form" method="POST">        
 
         <!-- Total do pedido -->
         <input type="hidden" name="totalValue" id="totalValue" value="<?php echo $total; ?>" >
@@ -32,6 +32,17 @@
         <div class="input-block">
             <label for="card_holder_name">Nome impresso no cartão</label>
             <input type="text" id="card_holder_name" value="<?php echo $nome_cartao ?>" />
+        </div>
+
+        <div id="installmentsWrapper">            
+            <div class="input-block">
+                <label for="installmentQuantity">Parcelamento</label>
+                <select name="installments" id="installments">
+                    <?php foreach ($parcelas['installments'] as $parcela): ?>
+                    <option value="<?php echo $parcela['installment'] ?>"><?php echo $parcela['installment'] ?>x de R$ <?php echo substr_replace((string)$parcela['installment_amount'], ',', -2, 0); ?></option>
+                    <?php endforeach; ?>
+                </select>                
+            </div>
         </div>
 
     </form>
@@ -108,23 +119,23 @@
                 form.append($('<input type="hidden" id="card_hash" name="card_hash">').val(cardHash));
                 // e envia o form
                 $.ajax({
-                type: 'POST',
-                url: 'index.php?route=payment/pagar_me_cartao/payment',
-                dataType: 'json',
-                data: { amount: $("#totalValue").val(), card_hash: $("#card_hash").val() },
-                success: function (response) {
-                    if (response['error']) {
-                        alert('Ocorreu um erro inesperado. Por favor contate a loja.')
-                    } else if (response['success']) {
-                        // alert(response['success']);
-                        //$.colorbox({href: response['success']});
-                        //window.open(response['success']);
-                        location = '<?php echo $url; ?>';
-                    } else {
-                        location = '<?php echo $url2; ?>';
+                    type: 'POST',
+                    url: 'index.php?route=payment/pagar_me_cartao/payment',
+                    dataType: 'json',
+                    data: {amount: $("#totalValue").val(), card_hash: $("#card_hash").val(), installments: $("#installments").val()},
+                    success: function (response) {
+                        if (response['error']) {
+                            alert('Ocorreu um erro inesperado. Por favor contate a loja.')
+                        } else if (response['success']) {
+                            // alert(response['success']);
+                            //$.colorbox({href: response['success']});
+                            //window.open(response['success']);
+                            location = '<?php echo $url; ?>';
+                        } else {
+                            location = '<?php echo $url2; ?>';
+                        }
                     }
-                }
-            });
+                });
             });
         }
     });
