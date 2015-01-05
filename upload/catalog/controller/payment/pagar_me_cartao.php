@@ -29,14 +29,18 @@ class ControllerPaymentPagarMeCartao extends Controller {
         Pagarme::setApiKey($this->config->get('pagar_me_cartao_api'));
 
         try {
-            
+
             $numero_parcelas = floor($order_info['total'] / $this->config->get('pagar_me_cartao_valor_parcela'));
-            
+
             $max_parcelas = $numero_parcelas ? $numero_parcelas : 1;
 
+            if($max_parcelas > $this->config->get('pagar_me_cartao_max_parcelas')){
+                $max_parcelas = $this->config->get('pagar_me_cartao_max_parcelas');
+            }
+
             $this->data['parcelas'] = PagarMe_Transaction::calculateInstallmentsAmount($this->data['total'], $this->config->get('pagar_me_cartao_taxa_juros'), $max_parcelas, $this->config->get('pagar_me_cartao_parcelas_sem_juros'));
-        } catch (PagarMe_Exception $e) {
-            $this->log->write("Erro Pagar.me: " . $e->buildWithFullMessage());
+        } catch (Exception $e) {
+            $this->log->write("Erro Pagar.me: " . $e->getTraceAsString());
             die();
         }
 
@@ -151,13 +155,13 @@ class ControllerPaymentPagarMeCartao extends Controller {
     }
 
     public function callback() {
-        
+
     }
 
     public function payment() {
 
         Pagarme::setApiKey($this->config->get('pagar_me_cartao_api'));
-        
+
         $transaction = new PagarMe_Transaction(array(
             'amount' => $_POST['amount'],
             'card_hash' => $_POST['card_hash'],
