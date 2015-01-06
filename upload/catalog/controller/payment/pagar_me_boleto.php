@@ -48,6 +48,23 @@ class ControllerPaymentPagarMeBoleto extends Controller {
 
     public function callback() {
 
+        $event = $_POST['event'];
+        $this->load->model('checkout/order');
+
+        if($event == 'transaction_status_changed'){
+
+            $this->log->write($_POST['id']);
+
+            $order_id = $_POST['id'];
+
+            $current_status = 'pagar_me_boleto_order_' . $_POST['current_status'];
+
+            $this->model_checkout_order->update($order_id, $this->config->get($current_status), '', true);
+
+        }else{
+            $this->log->write("Pagar.Me boleto: Notificação inválida");
+        }
+
     }
 
     public function payment() {
@@ -56,7 +73,8 @@ class ControllerPaymentPagarMeBoleto extends Controller {
 
         $transaction = new PagarMe_Transaction(array(
             'amount' => $_POST['amount'],
-            'payment_method' => 'boleto'
+            'payment_method' => 'boleto',
+            'postback_url' => HTTP_SERVER . 'index.php?route=payment/pagar_me_boleto/callback'
         ));
 
         try{

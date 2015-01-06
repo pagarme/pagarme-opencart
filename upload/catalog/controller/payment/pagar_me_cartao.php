@@ -165,7 +165,8 @@ class ControllerPaymentPagarMeCartao extends Controller {
         $transaction = new PagarMe_Transaction(array(
             'amount' => $_POST['amount'],
             'card_hash' => $_POST['card_hash'],
-            'installments' => $_POST['installments']
+            'installments' => $_POST['installments'],
+            'postback_url' => HTTP_SERVER . 'index.php?route=payment/pagar_me_cartao/callback'
         ));
 
         $transaction->charge();
