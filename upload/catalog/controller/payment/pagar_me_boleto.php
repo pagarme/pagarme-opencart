@@ -72,13 +72,37 @@ class ControllerPaymentPagarMeBoleto extends Controller {
 
     public function payment() {
 
+        $this->load->model('checkout/order');
+        $this->load->model('account/customer');
+
+        $order_info = $this->model_checkout_order->getOrder($this->session->data['order_id']);
+
+        $customer = $this->model_account_customer->getCustomer($order_info['customer_id']);
+
+        $telephone = explode(" ", str_replace(array('(', ')', '-'), array('', '', ''), $order_info['telephone']));
+
         Pagarme::setApiKey($this->config->get('pagar_me_boleto_api'));
 
         $transaction = new PagarMe_Transaction(array(
             'amount' => $_POST['amount'],
             'payment_method' => 'boleto',
-            'postback_url' => HTTP_SERVER . 'index.php?route=payment/pagar_me_boleto/callback'
-        ));
+            'postback_url' => HTTP_SERVER . 'index.php?route=payment/pagar_me_boleto/callback',
+            "customer" => array(
+                "name" => $order_info['payment_firstname'] . " " . $order_info['payment_lastname'],
+                "document_number" => str_replace(array('-', '.'), array('', ''), $customer['cpf']),
+                "email" => $order_info['email'],
+                "address" => array(
+                    "street" => $order_info['payment_address_1'],
+                    "neighborhood" => $order_info['payment_address_2'],
+                    "zipcode" => $order_info['payment_postcode'],
+                    "street_number" => $order_info['payment_numero'],
+                    "complementary" => $order_info['payment_company']
+                ),
+                "phone" => array(
+                    "ddd" => $telephone[0],
+                    "number" => $telephone[1]
+                )
+        )));
 
         try{
             $transaction->charge();

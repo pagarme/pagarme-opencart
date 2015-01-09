@@ -34,7 +34,7 @@ class ControllerPaymentPagarMeCartao extends Controller {
 
             $max_parcelas = $numero_parcelas ? $numero_parcelas : 1;
 
-            if($max_parcelas > $this->config->get('pagar_me_cartao_max_parcelas')){
+            if ($max_parcelas > $this->config->get('pagar_me_cartao_max_parcelas')) {
                 $max_parcelas = $this->config->get('pagar_me_cartao_max_parcelas');
             }
 
@@ -160,7 +160,7 @@ class ControllerPaymentPagarMeCartao extends Controller {
         $this->load->model('checkout/order');
         $this->load->model('payment/pagar_me_cartao');
 
-        if($event == 'transaction_status_changed'){
+        if ($event == 'transaction_status_changed') {
 
             $order_id = $this->model_payment_pagar_me_cartao->getOrderByTransactionId($_POST['id']);
 
@@ -168,17 +168,24 @@ class ControllerPaymentPagarMeCartao extends Controller {
 
             $current_status = 'pagar_me_cartao_order_' . $_POST['current_status'];
 
-           // $this->log->write("Status retornado: " . $current_status);
+            // $this->log->write("Status retornado: " . $current_status);
 
             $this->model_checkout_order->update($order_id, $this->config->get($current_status), '', true);
-
-        }else{
+        } else {
             $this->log->write("Pagar.Me cartão de crédito: Notificação inválida");
         }
-
     }
 
     public function payment() {
+
+        $this->load->model('checkout/order');
+        $this->load->model('account/customer');
+
+        $order_info = $this->model_checkout_order->getOrder($this->session->data['order_id']);
+
+        $customer = $this->model_account_customer->getCustomer($order_info['customer_id']);
+
+        $telephone = explode(" ", str_replace(array('(', ')', '-'), array('', '', ''), $order_info['telephone']));
 
         Pagarme::setApiKey($this->config->get('pagar_me_cartao_api'));
 
@@ -186,8 +193,23 @@ class ControllerPaymentPagarMeCartao extends Controller {
             'amount' => $_POST['amount'],
             'card_hash' => $_POST['card_hash'],
             'installments' => $_POST['installments'],
-            'postback_url' => HTTP_SERVER . 'index.php?route=payment/pagar_me_cartao/callback'
-        ));
+            'postback_url' => HTTP_SERVER . 'index.php?route=payment/pagar_me_cartao/callback',
+            "customer" => array(
+                "name" => $order_info['payment_firstname'] . " " . $order_info['payment_lastname'],
+                "document_number" => str_replace(array('-', '.'), array('', ''), $customer['cpf']),
+                "email" => $order_info['email'],
+                "address" => array(
+                    "street" => $order_info['payment_address_1'],
+                    "neighborhood" => $order_info['payment_address_2'],
+                    "zipcode" => $order_info['payment_postcode'],
+                    "street_number" => $order_info['payment_numero'],
+                    "complementary" => $order_info['payment_company']
+                ),
+                "phone" => array(
+                    "ddd" => $telephone[0],
+                    "number" => $telephone[1]
+                )
+        )));
 
         $transaction->charge();
 
