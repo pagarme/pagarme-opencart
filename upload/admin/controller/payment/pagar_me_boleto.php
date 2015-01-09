@@ -199,11 +199,15 @@ class ControllerPaymentPagarMeBoleto extends Controller {
     }
 
     public function install() {
-
+        if ($this->config->get('pagar_me_cartao_status') === null) {
+            $this->db->query("ALTER TABLE  `" . DB_PREFIX . "order` ADD `pagar_me_transaction` VARCHAR( 512 ) NULL DEFAULT NULL AFTER  `payment_code`");
+        }
     }
 
     public function uninstall() {
-
+        if ($this->config->get('pagar_me_cartao_status') === null) {
+            $this->db->query("ALTER TABLE  `" . DB_PREFIX . "order` DROP `pagar_me_transaction`");
+        }
     }
 
 }

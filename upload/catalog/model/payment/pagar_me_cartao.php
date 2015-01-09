@@ -28,6 +28,20 @@ class ModelPaymentPagarMeCartao extends Model {
         return $method_data;
     }
 
+    public function addTransactionId($order_id, $transaction_id) {
+        $this->db->query("UPDATE `" . DB_PREFIX . "order` SET pagar_me_transaction = '" . $transaction_id . "' WHERE order_id = '" . (int) $order_id . "'");
+    }
+
+    public function getOrderByTransactionId($transaction_id) {
+        $order_query = $this->db->query("SELECT o.order_id FROM `" . DB_PREFIX . "order` o WHERE o.pagar_me_transaction = '" . (int) $transaction_id . "'");
+
+        if ($order_query->num_rows) {
+            return $order_query->row['order_id'];
+        } else {
+            return false;
+        }
+    }
+
 }
 
 ?>

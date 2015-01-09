@@ -50,14 +50,17 @@ class ControllerPaymentPagarMeBoleto extends Controller {
 
         $event = $_POST['event'];
         $this->load->model('checkout/order');
+        $this->load->model('payment/pagar_me_boleto');
 
         if($event == 'transaction_status_changed'){
 
-            $this->log->write($_POST['id']);
+            $order_id = $this->model_payment_pagar_me_boleto->getOrderByTransactionId($_POST['id']);
 
-            $order_id = $_POST['id'];
+            $this->log->write("Id do pedido: " . $order_id);
 
             $current_status = 'pagar_me_boleto_order_' . $_POST['current_status'];
+
+            $this->log->write("Status retornado: " . $current_status);
 
             $this->model_checkout_order->update($order_id, $this->config->get($current_status), '', true);
 
@@ -88,10 +91,14 @@ class ControllerPaymentPagarMeBoleto extends Controller {
 
         $boleto_url = $transaction->boleto_url; // URL do boleto bancário
 
+        $id_transacao = $transaction->id;
+
         $json = array();
 
         if ($status == 'waiting_payment') {
-            $json['transaction'] = $transaction;
+            $this->load->model('payment/pagar_me_boleto');
+            $this->model_payment_pagar_me_boleto->addTransactionId($this->session->data['order_id'], $id_transacao);
+            $json['transaction'] = $transaction->id;
             $json['success'] = true;
             $json['boleto_url'] = $boleto_url;
         } else {

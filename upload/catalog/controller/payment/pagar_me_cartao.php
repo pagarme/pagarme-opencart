@@ -156,6 +156,26 @@ class ControllerPaymentPagarMeCartao extends Controller {
 
     public function callback() {
 
+        $event = $_POST['event'];
+        $this->load->model('checkout/order');
+        $this->load->model('payment/pagar_me_cartao');
+
+        if($event == 'transaction_status_changed'){
+
+            $order_id = $this->model_payment_pagar_me_cartao->getOrderByTransactionId($_POST['id']);
+
+            //$this->log->write("Id do pedido: " . $order_id);
+
+            $current_status = 'pagar_me_cartao_order_' . $_POST['current_status'];
+
+           // $this->log->write("Status retornado: " . $current_status);
+
+            $this->model_checkout_order->update($order_id, $this->config->get($current_status), '', true);
+
+        }else{
+            $this->log->write("Pagar.Me cartão de crédito: Notificação inválida");
+        }
+
     }
 
     public function payment() {
@@ -173,11 +193,20 @@ class ControllerPaymentPagarMeCartao extends Controller {
 
         $status = $transaction->status; // status da transação
 
+        $id_transacao = $transaction->id;
+
         $json = array();
 
-        if ($status == 'paid') {
+        $this->log->write($status);
+
+        $this->load->model('payment/pagar_me_cartao');
+
+        if ($status == 'paid' || $status == 'processing') {
+            $this->model_payment_pagar_me_cartao->addTransactionId($this->session->data['order_id'], $id_transacao);
+
             $json['success'] = true;
         } else {
+            $this->model_payment_pagar_me_cartao->addTransactionId($this->session->data['order_id'], $id_transacao);
             $json['success'] = false;
         }
 
