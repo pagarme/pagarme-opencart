@@ -1,14 +1,47 @@
 <link rel="stylesheet" href="<?php echo $stylesheet; ?>">
+<script src="catalog/view/javascript/jquery.creditCardValidator.js" />
+
 <?php if ($text_information) { ?>
     <div class="payment-information"><?php echo $text_information; ?></div>
 <?php } ?>
 
 <div class="dados_cartao">
 
-    <form id="payment_form" method="POST">        
+    <form id="payment_form" method="POST">
 
         <!-- Total do pedido -->
         <input type="hidden" name="totalValue" id="totalValue" value="<?php echo $total; ?>" >
+
+        <ul class="bandeiras">
+            <li class="bandeira amex">
+                <img src="catalog/view/theme/default/image/bancos/americanexpress.png" alt="">
+                <i class="fa fa-check"></i>
+            </li>
+            <li class="bandeira diners_club_carte_blanche diners_club_international">
+                <img src="catalog/view/theme/default/image/bancos/dinersclub.png" alt="">
+                <i class="fa fa-check"></i>
+            </li>
+            <li class="bandeira discover">
+                <img src="catalog/view/theme/default/image/bancos/discover.png" alt="">
+                <i class="fa fa-check"></i>
+            </li>
+            <li class="bandeira mastercard">
+                <img src="catalog/view/theme/default/image/bancos/mastercard.png" alt="">
+                <i class="fa fa-check"></i>
+            </li>
+            <li class="bandeira visa">
+                <img src="catalog/view/theme/default/image/bancos/visa02.png" alt="">
+                <i class="fa fa-check"></i>
+            </li>
+<!--            <li class="bandeira hipercard">
+                <img src="catalog/view/theme/default/image/bancos/hipercard.png" alt="">
+                <i class="fa fa-check"></i>
+            </li>-->
+             <li class="bandeira elo">
+                <img src="catalog/view/theme/default/image/bancos/elo.png" alt="">
+                <i class="fa fa-check"></i>
+            </li>
+        </ul>
 
         <div class="input-block-float">
             <label for="card_number">Número do cartão</label>
@@ -34,14 +67,14 @@
             <input type="text" id="card_holder_name" value="<?php echo $nome_cartao ?>" />
         </div>
 
-        <div id="installmentsWrapper">            
+        <div id="installmentsWrapper">
             <div class="input-block">
                 <label for="installmentQuantity">Parcelamento</label>
                 <select name="installments" id="installments">
                     <?php foreach ($parcelas['installments'] as $parcela): ?>
-                    <option value="<?php echo $parcela['installment'] ?>"><?php echo $parcela['installment'] ?>x de R$ <?php echo substr_replace((string)$parcela['installment_amount'], ',', -2, 0); ?></option>
+                        <option value="<?php echo $parcela['installment'] ?>"><?php echo $parcela['installment'] ?>x de R$ <?php echo substr_replace((string) $parcela['installment_amount'], ',', -2, 0); ?></option>
                     <?php endforeach; ?>
-                </select>                
+                </select>
             </div>
         </div>
 
@@ -68,7 +101,7 @@
 <script type="text/javascript"><!--
     /* Máscaras dos inputs do cartão */
     $("#card_number").livequery(function () {
-        $(this).mask("9999999999999999");
+        $(this).mask("9999999999999?999999", {placeholder: ''});
     });
     $("#card_cvv").livequery(function () {
         $(this).mask("999?9");
@@ -78,6 +111,24 @@
     });
     $("#card_expiration_year").livequery(function () {
         $(this).mask("9999");
+    });
+
+    /*Validação Cartão de crédito*/
+    $('#card_number').validateCreditCard(function (result)
+    {
+        console.log(result);
+        if (result.card_type == null) {
+            $(".bandeiras li").removeClass('is-selected');
+        } else {
+            if(result.luhn_valid == true || result.length_valid == true){
+                $('#card_number').addClass('valid');
+            }else{
+                $('#card_number').removeClass('valid');
+            }
+            $(".bandeiras li").removeClass('is-selected');
+            $(".bandeiras li." + result.card_type.name).addClass('is-selected');
+        }
+
     });
 
     $('#button-confirm').bind('click', function () {
@@ -109,8 +160,10 @@
 
         if (hasErrors) {
             // realiza o tratamento de errors
-            alert("Verifique se os dados informados estão corretos. Qualque rproblema entre em contato com a loja.");
+            alert("Verifique se os dados informados estão corretos. Qualquer problema entre em contato com a loja.");
+            $('.wait').hide();
             $('#button-confirm').show();
+            return false;
         } else {
             //console.log("oi")
             // se não há erros, gera o card_hash...
