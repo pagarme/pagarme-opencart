@@ -104,10 +104,10 @@ class ControllerPaymentPagarMeBoleto extends Controller {
             $this->data['pagar_me_boleto_criptografia'] = $this->config->get('pagar_me_boleto_criptografia');
         }
 
-        if (isset($this->request->post['pagar_me_dias_vencimento'])) {
-            $this->data['pagar_me_dias_vencimento'] = $this->request->post['pagar_me_dias_vencimento'];
+        if (isset($this->request->post['pagar_me_boleto_dias_vencimento'])) {
+            $this->data['pagar_me_boleto_dias_vencimento'] = $this->request->post['pagar_me_boleto_dias_vencimento'];
         } else {
-            $this->data['pagar_me_dias_vencimento'] = $this->config->get('pagar_me_dias_vencimento');
+            $this->data['pagar_me_boleto_dias_vencimento'] = $this->config->get('pagar_me_boleto_dias_vencimento');
         }
 
         if (isset($this->request->post['pagar_me_boleto_api'])) {
