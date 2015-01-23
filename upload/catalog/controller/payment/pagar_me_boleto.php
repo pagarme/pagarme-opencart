@@ -41,9 +41,17 @@ class ControllerPaymentPagarMeBoleto extends Controller {
 
         $this->load->model('checkout/order');
 
-        $this->model_checkout_order->confirm($this->session->data['order_id'], $this->config->get('pagar_me_boleto_order_waiting_payment'));
+        $order = $this->model_checkout_order->getOrder($this->session->data['order_id']);
+
+        $this->model_checkout_order->confirm($this->session->data['order_id'], $this->config->get('pagar_me_boleto_order_waiting_payment'), 'Imprima seu bolero aqui -> ' . $order['pagar_me_boleto_url']);
 
         $this->redirect($this->url->link('checkout/success'));
+    }
+
+    public function gera(){
+        $boleto_url = $this->request->get['boleto'];
+
+        $this->redirect($boleto_url);
     }
 
     public function callback() {
@@ -121,7 +129,7 @@ class ControllerPaymentPagarMeBoleto extends Controller {
 
         if ($status == 'waiting_payment') {
             $this->load->model('payment/pagar_me_boleto');
-            $this->model_payment_pagar_me_boleto->addTransactionId($this->session->data['order_id'], $id_transacao);
+            $this->model_payment_pagar_me_boleto->addTransactionId($this->session->data['order_id'], $id_transacao, $boleto_url);
             $json['transaction'] = $transaction->id;
             $json['success'] = true;
             $json['boleto_url'] = $boleto_url;

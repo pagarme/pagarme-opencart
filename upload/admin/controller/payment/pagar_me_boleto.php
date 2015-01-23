@@ -104,10 +104,10 @@ class ControllerPaymentPagarMeBoleto extends Controller {
             $this->data['pagar_me_boleto_criptografia'] = $this->config->get('pagar_me_boleto_criptografia');
         }
 
-        if (isset($this->request->post['pagar_me_boleto_dias_vencimento'])) {
-            $this->data['pagar_me_boleto_dias_vencimento'] = $this->request->post['pagar_me_boleto_dias_vencimento'];
+        if (isset($this->request->post['pagar_me_dias_vencimento'])) {
+            $this->data['pagar_me_dias_vencimento'] = $this->request->post['pagar_me_dias_vencimento'];
         } else {
-            $this->data['pagar_me_boleto_dias_vencimento'] = $this->config->get('pagar_me_boleto_dias_vencimento');
+            $this->data['pagar_me_dias_vencimento'] = $this->config->get('pagar_me_dias_vencimento');
         }
 
         if (isset($this->request->post['pagar_me_boleto_api'])) {
@@ -201,12 +201,14 @@ class ControllerPaymentPagarMeBoleto extends Controller {
     public function install() {
         if ($this->config->get('pagar_me_cartao_status') === null) {
             $this->db->query("ALTER TABLE  `" . DB_PREFIX . "order` ADD `pagar_me_transaction` VARCHAR( 512 ) NULL DEFAULT NULL AFTER  `payment_code`");
+            $this->db->query("ALTER TABLE  `" . DB_PREFIX . "order` ADD `pagar_me_boleto_url` VARCHAR( 512 ) NULL DEFAULT NULL AFTER  `payment_code`");
         }
     }
 
     public function uninstall() {
         if ($this->config->get('pagar_me_cartao_status') === null) {
             $this->db->query("ALTER TABLE  `" . DB_PREFIX . "order` DROP `pagar_me_transaction`");
+            $this->db->query("ALTER TABLE  `" . DB_PREFIX . "order` DROP `pagar_me_boleto_url`");
         }
     }
 

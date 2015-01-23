@@ -8,6 +8,8 @@
 <script type="text/javascript"><!--
 $('#button-confirm').bind('click', function (e) {
         e.preventDefault();
+        var w = window.open('', 'janelaBoleto', 'height=600,width=800,channelmode=0,dependent=0,directories=0,fullscreen=0,location=0,menubar=0,resizable=1,scrollbars=1,status=0,toolbar=0')
+        w.document.body.innerHTML = "<h1>Por favor aguarde...</h1>";
         $('#button-confirm').hide();
         $('#aguardando').show();
         $.ajax({
@@ -25,29 +27,12 @@ $('#button-confirm').bind('click', function (e) {
                 if (response['error']) {
                     alert('Ocorreu um erro inesperado. Por favor contate a loja.');
                 } else {
-                    console.log(response);
-                    window.onbeforeunload = confirmExit;
-                    $.colorbox({
-                        href: response['boleto_url'],
-                        iframe: true,
-                        width: '90%',
-                        height: '90%',
-                        onLoad: function () {
-                            $("#cboxClose").css('background', 'transparent');
-                            $("#cboxClose").css('width', '400px');
-                            $("#cboxClose").css('text-indent', '0');
-                            $("#cboxClose").html("<span style='display: block; text-align: center; font-weight: bold; width: auto; background-color: #D34937; padding: 2px; color: #FFFFFF;'>Após imprimir o boleto, clique aqui para concluir a compra.</span>");
-                        },
-                        onClosed: function () {
-                            window.onbeforeunload = function () {
-                                null;
-                            };
-                            location = '<?php echo $url; ?>';
-                        }
-                    });
+
+                    w.location.href = '<?php echo HTTPS_SERVER ?>index.php?route=payment/pagar_me_boleto/gera&boleto=' + response['boleto_url'], 'janelaBoleto';
                 }
             },
             complete: function () {
+                location = '<?php echo $url; ?>';
             }
         });
     });
