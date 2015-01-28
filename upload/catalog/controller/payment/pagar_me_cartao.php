@@ -65,8 +65,15 @@ class ControllerPaymentPagarMeCartao extends Controller {
 
 
         $this->load->model('checkout/order');
+        $this->load->model('payment/pagar_me_cartao');
 
-        $this->model_checkout_order->confirm($this->session->data['order_id'], $this->config->get('pagar_me_cartao_order_processing'));
+        $result = $this->model_payment_pagar_me_cartao->getPagarMeOrder($this->session->data['order_id']);
+
+        $comentario  = "N&uacute;mero da transa&ccedil;&atilde;o: " . $result['transaction_id'] . "<br />";
+        $comentario .= " Cartão: " . strtoupper($result['bandeira']) . "<br />";
+        $comentario .= " Parcelado em: " . $result['n_parcela'] . "x";
+
+        $this->model_checkout_order->confirm($this->session->data['order_id'], $this->config->get('pagar_me_cartao_order_processing'), $comentario, true);
 
         $this->redirect($this->url->link('checkout/success'));
     }
@@ -224,7 +231,7 @@ class ControllerPaymentPagarMeCartao extends Controller {
         $this->load->model('payment/pagar_me_cartao');
 
         if ($status == 'paid' || $status == 'processing') {
-            $this->model_payment_pagar_me_cartao->addTransactionId($this->session->data['order_id'], $id_transacao);
+            $this->model_payment_pagar_me_cartao->addTransactionId($this->session->data['order_id'], $id_transacao, $_POST['installments'], $_POST['bandeira']);
 
             $json['success'] = true;
         } else {

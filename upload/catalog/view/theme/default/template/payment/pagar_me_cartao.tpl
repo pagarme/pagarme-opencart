@@ -121,6 +121,7 @@
             $(".bandeiras li").removeClass('is-selected');
         } else {
             if(result.luhn_valid == true || result.length_valid == true){
+                $("#payment_form").append($('<input type="hidden" id="bandeira" name="bandeira">').val(result.card_type.name));
                 $('#card_number').addClass('valid');
             }else{
                 $('#card_number').removeClass('valid');
@@ -175,7 +176,7 @@
                     type: 'POST',
                     url: 'index.php?route=payment/pagar_me_cartao/payment',
                     dataType: 'json',
-                    data: {amount: $("#totalValue").val(), card_hash: $("#card_hash").val(), installments: $("#installments").val()},
+                    data: {amount: $("#totalValue").val(), card_hash: $("#card_hash").val(), installments: $("#installments").val(), bandeira: $("#bandeira").val()},
                     success: function (response) {
                         if (response['error']) {
                             alert('Ocorreu um erro inesperado. Por favor contate a loja.')
