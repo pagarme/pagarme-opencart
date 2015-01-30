@@ -207,12 +207,15 @@ class ControllerPaymentPagarMeBoleto extends Controller {
   `bandeira` varchar(64) DEFAULT NULL,
   PRIMARY KEY (`pagar_me_transaction_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1");
+
+        $this->db->query("ALTER TABLE  `" . DB_PREFIX . "order` ADD `pagar_me_boleto_url` VARCHAR( 512 ) NULL DEFAULT NULL AFTER  `payment_code`");
     }
 
     public function uninstall() {
         if(!$this->config->get('pagar_me_cartao_status')){
             $this->db->query("DROP TABLE IF EXISTS `" . DB_PREFIX . "pagar_me_transaction`");
         }
+        $this->db->query("ALTER TABLE  `" . DB_PREFIX . "order` DROP `pagar_me_boleto_url`");
     }
 
 }
