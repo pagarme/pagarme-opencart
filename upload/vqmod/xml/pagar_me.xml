@@ -6,7 +6,7 @@
     <author>Santive Tecnologia contato@santive.com</author>
 
     <file name="catalog/view/theme/*/template/common/header.tpl">
-        <operation>
+        <operation error="log">
             <search position="before">
                 <![CDATA[</head>]]>
             </search>

@@ -32,7 +32,7 @@ class ModelPaymentPagarMeBoleto extends Model {
         $this->db->query("INSERT INTO `" . DB_PREFIX . "pagar_me_transaction` SET order_id = '" . (int) $order_id . "', transaction_id = '" . $transaction_id . "'");
     }
 
-    public function getOrderByTransactionId($transaction_id) {
+    public function getPagarMeOrder($transaction_id) {
         $order_query = $this->db->query("SELECT * FROM `" . DB_PREFIX . "pagar_me_transaction` WHERE transaction_id = '" . (int) $transaction_id . "'");
 
         if ($order_query->num_rows) {

@@ -94,6 +94,7 @@ class ControllerPaymentPagarMeBoleto extends Controller {
         $transaction = new PagarMe_Transaction(array(
             'amount' => $_POST['amount'],
             'payment_method' => 'boleto',
+            'boleto_expiration_date' => date('Y-m-d', strtotime('+'. $this->config->get('pagar_me_boleto_dias_vencimento') + 1 . ' days')),
             'postback_url' => HTTP_SERVER . 'index.php?route=payment/pagar_me_boleto/callback',
             "customer" => array(
                 "name" => $order_info['payment_firstname'] . " " . $order_info['payment_lastname'],

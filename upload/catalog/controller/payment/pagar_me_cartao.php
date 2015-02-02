@@ -169,7 +169,7 @@ class ControllerPaymentPagarMeCartao extends Controller {
 
         if ($event == 'transaction_status_changed') {
 
-            $order_id = $this->model_payment_pagar_me_cartao->getOrderByTransactionId($_POST['id']);
+            $order_id = $this->model_payment_pagar_me_cartao->getPagarMeOrder($_POST['id']);
 
             //$this->log->write("Id do pedido: " . $order_id);
 
