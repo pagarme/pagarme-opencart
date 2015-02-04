@@ -67,7 +67,7 @@ class ControllerPaymentPagarMeCartao extends Controller {
         $this->load->model('checkout/order');
         $this->load->model('payment/pagar_me_cartao');
 
-        $result = $this->model_payment_pagar_me_cartao->getPagarMeOrder($this->session->data['order_id']);
+        $result = $this->model_payment_pagar_me_cartao->getPagarMeOrderByOrderId($this->session->data['order_id']);
 
         $comentario  = "N&uacute;mero da transa&ccedil;&atilde;o: " . $result['transaction_id'] . "<br />";
         $comentario .= " Cartão: " . strtoupper($result['bandeira']) . "<br />";

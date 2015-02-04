@@ -1,6 +1,6 @@
 <?php
 // Heading
-$_['heading_title']       			= 'Pagar.me - Boleto';
+$_['heading_title']       			= 'Pagar.me - Boleto - Desenvolvido por <a target="_blank" href="http://www.santive.com">Santive Tecnologia</a>';
 
 // Text
 $_['text_payment']        			= 'Pagamento';

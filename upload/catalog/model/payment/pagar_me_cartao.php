@@ -33,7 +33,17 @@ class ModelPaymentPagarMeCartao extends Model {
     }
 
     public function getPagarMeOrder($transaction_id) {
-        $order_query = $this->db->query("SELECT * FROM `" . DB_PREFIX . "pagar_me_transaction` WHERE transaction_id = '" . (int) $trnsaction_id . "'");
+        $order_query = $this->db->query("SELECT * FROM `" . DB_PREFIX . "pagar_me_transaction` WHERE transaction_id = '" . (int) $transaction_id . "'");
+
+        if ($order_query->num_rows) {
+            return $order_query->row['order_id'];
+        } else {
+            return false;
+        }
+    }
+
+    public function getPagarMeOrderByOrderId($order_id) {
+        $order_query = $this->db->query("SELECT * FROM `" . DB_PREFIX . "pagar_me_transaction` WHERE order_id = '" . (int) $order_id . "'");
 
         if ($order_query->num_rows) {
             return $order_query->row;

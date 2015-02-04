@@ -88,10 +88,6 @@
     #aguardando{
         display: none;
     }
-
-    #installmentsWrapper{
-        display: none;
-    }
 </style>
 
 <?php if (!$this->config->get('dados_status')): ?>
@@ -166,6 +162,8 @@
             $('#button-confirm').show();
             return false;
         } else {
+            $('#button-confirm').hide();
+            $('#aguardando').show();
             //console.log("oi")
             // se não há erros, gera o card_hash...
             creditCard.generateHash(function (cardHash) {

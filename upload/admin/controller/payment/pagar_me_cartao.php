@@ -313,9 +313,6 @@ class ControllerPaymentPagarMeCartao extends Controller {
     }
 
     public function uninstall() {
-        if(!$this->config->get('pagar_me_boleto_status')){
-            $this->db->query("DROP TABLE IF EXISTS `" . DB_PREFIX . "pagar_me_transaction`");
-        }
     }
 
 }
