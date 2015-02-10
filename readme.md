@@ -25,4 +25,4 @@
  Vqmod necessário. Baixe a última versão em http://www.vqmod.com
 
 ### Licença
-Confira a licensa [aqui](/LICENSE.md).
+Confira a licença [aqui](/LICENSE.md).
