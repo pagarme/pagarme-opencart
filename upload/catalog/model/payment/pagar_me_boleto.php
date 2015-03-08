@@ -28,8 +28,11 @@ class ModelPaymentPagarMeBoleto extends Model {
         return $method_data;
     }
 
-    public function addTransactionId($order_id, $transaction_id) {
+    public function addTransactionId($order_id, $transaction_id, $boleto_url) {
         $this->db->query("INSERT INTO `" . DB_PREFIX . "pagar_me_transaction` SET order_id = '" . (int) $order_id . "', transaction_id = '" . $transaction_id . "'");
+        
+        $this->db->query("UPDATE `" . DB_PREFIX . "order` SET pagar_me_boleto_url = '" . $boleto_url . "' WHERE order_id = '" . (int) $order_id . "'");        
+        
     }
 
     public function getPagarMeOrder($transaction_id) {

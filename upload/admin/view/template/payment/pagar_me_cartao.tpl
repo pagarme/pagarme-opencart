@@ -62,8 +62,8 @@
               <tr>
 	        <td><span class="required">*</span> <?php echo $entry_valor_parcela; ?></td>
 	        <td><input type="text" name="pagar_me_cartao_valor_parcela" value="<?php echo $pagar_me_cartao_valor_parcela; ?>" size="50%" />
-	          <?php if ($error_valor_parcela) { ?>
-	          <span class="error"><?php echo $error_valor_parcela; ?></span>
+	          <?php if ($error_valor_parcelas) { ?>
+	          <span class="error"><?php echo $error_valor_parcelas; ?></span>
 	          <?php } ?></td>
 	      </tr>
               
