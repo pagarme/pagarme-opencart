@@ -51,7 +51,7 @@
         <div class="input-block-float">
             <!-- aqui colocar um tooltip com uma imagem mostrando onde fica o CVV de um cartão de crédito -->
 
-            <label for="card_cvv" id="label-cvc">CVV <span id="tool-tip-cvc"><i class="fa fa-question-circle"></i> <span id="tool-tip-content"><img src="catalog/view/theme/default/image/bancos/cartao-cvc.png" alt=""></span></span></label>
+            <label for="card_cvv" id="label-cvv">CVV <span id="tool-tip-cvv"><i class="fa fa-question-circle"></i> <span id="tool-tip-content"><img src="catalog/view/theme/default/image/bancos/cartao-cvv.png" alt=""></span></span></label>
             <input type="text" id="card_cvv" size="4" placeholder="CVV" maxlength="4" class="so_numeros" />
 
         </div>
