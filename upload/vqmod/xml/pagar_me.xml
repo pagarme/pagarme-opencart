@@ -45,6 +45,17 @@
         </operation>
     </file>
 
+    <file name="catalog/model/checkout/order.php">
+        <operation>
+            <search position="after">
+                <![CDATA[return array(]]>
+            </search>
+            <add>
+                <![CDATA['pagar_me_boleto_url'                => $order_query->row['pagar_me_boleto_url'],]]>
+            </add>
+        </operation>
+    </file>
+
     <file name="catalog/view/theme/*/template/account/order_info.tpl">
         <operation>
             <search position="replace">
@@ -61,6 +72,47 @@
                     endif;
                     ?>
                     <br />]]>
+            </add>
+        </operation>
+    </file>
+
+    <file name="catalog/controller/onecheckout/success.php" error="skip">
+        <operation>
+            <search position="after">
+                <![CDATA[public function index() {]]>
+            </search>
+            <add>
+                <![CDATA[if (isset($this->session->data['pagar_me_boleto_url'])) {
+                    $this->data['pagar_me_boleto_url'] = $this->session->data['pagar_me_boleto_url'];
+                }]]>
+            </add>
+        </operation>
+    </file>
+
+    <file name="catalog/controller/checkout/success.php">
+        <operation>
+            <search position="after">
+                <![CDATA[public function index() {]]>
+            </search>
+            <add>
+                <![CDATA[if (isset($this->session->data['pagar_me_boleto_url'])) {
+                    $this->data['pagar_me_boleto_url'] = $this->session->data['pagar_me_boleto_url'];
+                }]]>
+            </add>
+        </operation>
+    </file>
+
+    <file name="catalog/view/theme/*/template/common/success.tpl">
+        <operation error="skip">
+            <search position="before">
+                <![CDATA[<div class="right"><a href="<?php echo $continue; ?>" class="button"><?php echo $button_continue; ?></a></div>]]>
+            </search>
+            <add>
+                <![CDATA[
+                <?php if(isset($pagar_me_boleto_url)): ?>
+                    <div class="left"><a href="<?php echo $pagar_me_boleto_url; ?>" class="button">Imprima seu boleto</a></div>
+                <?php endif; ?>
+                ]]>
             </add>
         </operation>
     </file>
