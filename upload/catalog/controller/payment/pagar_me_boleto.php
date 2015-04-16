@@ -45,6 +45,8 @@ class ControllerPaymentPagarMeBoleto extends Controller {
 
         $this->model_checkout_order->confirm($this->session->data['order_id'], $this->config->get('pagar_me_boleto_order_waiting_payment'), 'Imprima seu boleto aqui -> ' . $order['pagar_me_boleto_url']);
 
+        $this->session->data['pagar_me_boleto_url'] = $order['pagar_me_boleto_url'];
+
         $this->redirect($this->url->link('checkout/success'));
     }
 
