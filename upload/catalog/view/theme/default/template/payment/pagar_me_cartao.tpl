@@ -56,7 +56,7 @@
         </div>
         <div class="input-block">
             <label for="card_holder_name">Nome impresso no cartão</label>
-            <input type="text" id="card_holder_name" value="<?php echo $nome_cartao ?>" />
+            <input type="text" id="card_holder_name" value="" />
         </div>
         <div id="installmentsWrapper">
             <div class="input-block">
