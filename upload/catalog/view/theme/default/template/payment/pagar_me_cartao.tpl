@@ -7,7 +7,6 @@
 
 <div class="dados_cartao">
     <form id="payment_form" method="POST">
-        <!-- Total do pedido -->
         <input type="hidden" name="totalValue" id="totalValue" value="<?php echo $total; ?>" >
         <ul class="bandeiras">
             <li class="bandeira amex">
@@ -30,10 +29,6 @@
                 <img src="catalog/view/theme/default/image/bancos/visa02.png" alt="">
                 <i class="fa fa-check"></i>
             </li>
-            <!--            <li class="bandeira hipercard">
-                <img src="catalog/view/theme/default/image/bancos/hipercard.png" alt="">
-                <i class="fa fa-check"></i>
-            </li>-->
             <li class="bandeira elo">
                 <img src="catalog/view/theme/default/image/bancos/elo.png" alt="">
                 <i class="fa fa-check"></i>
@@ -44,7 +39,6 @@
             <input type="text" id="card_number"/>
         </div>
         <div class="input-block-float">
-            <!-- aqui colocar um tooltip com uma imagem mostrando onde fica o CVV de um cartão de crédito -->
             <label for="card_cvv" id="label-cvv">CVV <span id="tool-tip-cvv"><i class="fa fa-question-circle"></i> <span id="tool-tip-content"><img src="catalog/view/theme/default/image/bancos/cartao-cvv.png" alt=""></span></span></label>
             <input type="text" id="card_cvv" size="4" placeholder="CVV" maxlength="4" class="so_numeros" />
         </div>
@@ -71,7 +65,7 @@
     </form>
 </div>
 <div class="buttons">
-    <div class="right"><a id="button-confirm" class="button disabled"><span><?php echo $button_confirm; ?></span></a><span id="aguardando">Aguarde...</span></div>
+    <div class="center"><a id="button-confirm" class="button disabled"><span><?php echo $button_confirm; ?></span></a><span id="aguardando">Aguarde...</span></div>
 </div>
 <style>
     #aguardando{
