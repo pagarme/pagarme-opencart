@@ -5,7 +5,7 @@
 ##                                                     ##
 #########################################################
 
-[![Code Climate](https://codeclimate.com/github/Santive/opencart/badges/gpa.svg)](https://codeclimate.com/github/Santive/opencart)
+[![Code Climate](https://codeclimate.com/github/Santive/pagar-me-opencart/badges/gpa.svg)](https://codeclimate.com/github/Santive/pagar-me-opencart)
 
 ### Compatibilidade
 
