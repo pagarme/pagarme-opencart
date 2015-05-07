@@ -5,6 +5,8 @@
 ##                                                     ##
 #########################################################
 
+[![Code Climate](https://codeclimate.com/github/Santive/opencart/badges/gpa.svg)](https://codeclimate.com/github/Santive/opencart)
+
 ### Compatibilidade
 
  OpenCart 1.5 ou superior, deve pegar também em Opencarts mais antigos
