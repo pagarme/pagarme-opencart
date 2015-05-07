@@ -171,16 +171,14 @@ class ControllerPaymentPagarMeCartao extends Controller {
 
             $order_id = $this->model_payment_pagar_me_cartao->getPagarMeOrder($_POST['id']);
 
-            //$this->log->write("Id do pedido: " . $order_id);
-
             $current_status = 'pagar_me_cartao_order_' . $_POST['current_status'];
-
-            // $this->log->write("Status retornado: " . $current_status);
 
             $this->model_checkout_order->update($order_id, $this->config->get($current_status), '', true);
         } else {
             $this->log->write("Pagar.Me cartão de crédito: Notificação inválida");
         }
+
+        echo "OK";
     }
 
     public function payment() {
