@@ -89,6 +89,14 @@ class ControllerPaymentPagarMeBoleto extends Controller {
 
         $telephone = explode(" ", str_replace(array('(', ')', '-'), array('', '', ''), $order_info['telephone']));
 
+        if($customer['cpf'] != ''){
+            $document_number = $customer['cpf'];
+            $customer_name = $order_info['payment_firstname'] . " " . $order_info['payment_lastname'];
+        }else{
+            $document_number = $customer['cnpj'];
+            $customer_name = $customer['razao_social'];
+        }
+
         Pagarme::setApiKey($this->config->get('pagar_me_boleto_api'));
 
         $transaction = new PagarMe_Transaction(array(
@@ -97,8 +105,8 @@ class ControllerPaymentPagarMeBoleto extends Controller {
             'boleto_expiration_date' => date('Y-m-d', strtotime('+'. $this->config->get('pagar_me_boleto_dias_vencimento') + 1 . ' days')),
             'postback_url' => HTTP_SERVER . 'index.php?route=payment/pagar_me_boleto/callback',
             "customer" => array(
-                "name" => $order_info['payment_firstname'] . " " . $order_info['payment_lastname'],
-                "document_number" => str_replace(array('-', '.'), array('', ''), $customer['cpf']),
+                "name" => $customer_name,
+                "document_number" => $document_number,
                 "email" => $order_info['email'],
                 "address" => array(
                     "street" => $order_info['payment_address_1'],

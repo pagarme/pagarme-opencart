@@ -98,6 +98,9 @@
                 <![CDATA[if (isset($this->session->data['pagar_me_boleto_url'])) {
                     $this->data['pagar_me_boleto_url'] = $this->session->data['pagar_me_boleto_url'];
                     unset($this->session->data['pagar_me_boleto_url']);
+                }else{
+                    unset($this->data['pagar_me_boleto_url']);
+                    unset($this->session->data['pagar_me_boleto_url']);
                 }]]>
             </add>
         </operation>

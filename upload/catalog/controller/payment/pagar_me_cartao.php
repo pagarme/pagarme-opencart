@@ -192,6 +192,14 @@ class ControllerPaymentPagarMeCartao extends Controller {
 
         $telephone = explode(" ", str_replace(array('(', ')', '-'), array('', '', ''), $order_info['telephone']));
 
+        if($customer['cpf'] != ''){
+            $document_number = $customer['cpf'];
+            $customer_name = $order_info['payment_firstname'] . " " . $order_info['payment_lastname'];
+        }else{
+            $document_number = $customer['cnpj'];
+            $customer_name = $customer['razao_social'];
+        }
+
         Pagarme::setApiKey($this->config->get('pagar_me_cartao_api'));
 
         $transaction = new PagarMe_Transaction(array(
@@ -200,8 +208,8 @@ class ControllerPaymentPagarMeCartao extends Controller {
             'installments' => $_POST['installments'],
             'postback_url' => HTTP_SERVER . 'index.php?route=payment/pagar_me_cartao/callback',
             "customer" => array(
-                "name" => $order_info['payment_firstname'] . " " . $order_info['payment_lastname'],
-                "document_number" => str_replace(array('-', '.'), array('', ''), $customer['cpf']),
+                "name" => $customer_name,
+                "document_number" => str_replace(array('-', '.', '/'), array('', '', ''), $document_number),
                 "email" => $order_info['email'],
                 "address" => array(
                     "street" => $order_info['payment_address_1'],
