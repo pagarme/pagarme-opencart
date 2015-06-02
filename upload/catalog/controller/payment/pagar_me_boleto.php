@@ -89,12 +89,22 @@ class ControllerPaymentPagarMeBoleto extends Controller {
 
         $telephone = explode(" ", str_replace(array('(', ')', '-'), array('', '', ''), $order_info['telephone']));
 
-        if($customer['cpf'] != ''){
-            $document_number = $customer['cpf'];
-            $customer_name = $order_info['payment_firstname'] . " " . $order_info['payment_lastname'];
+        if($this->config->get('dados_status')) {
+            if ($customer['cpf'] != '') {
+                $document_number = $this->removeSeparadores($customer['cpf']);
+                $customer_name = $order_info['payment_firstname'] . " " . $order_info['payment_lastname'];
+            } else {
+                $document_number = $this->removeSeparadores($customer['cnpj']);
+                $customer_name = $customer['razao_social'];
+
+            }
+            $numero = $order_info['payment_numero'];
+            $complemento = $order_info['payment_company'];
         }else{
-            $document_number = $customer['cnpj'];
-            $customer_name = $customer['razao_social'];
+            $document_number = $this->removeSeparadores($order_info['payment_tax_id']);
+            $customer_name = $order_info['payment_firstname'] . " " . $order_info['payment_lastname'];
+            $numero = 'Sem número';
+            $complemento = '';
         }
 
         Pagarme::setApiKey($this->config->get('pagar_me_boleto_api'));
@@ -111,9 +121,9 @@ class ControllerPaymentPagarMeBoleto extends Controller {
                 "address" => array(
                     "street" => $order_info['payment_address_1'],
                     "neighborhood" => $order_info['payment_address_2'],
-                    "zipcode" => $order_info['payment_postcode'],
-                    "street_number" => $order_info['payment_numero'],
-                    "complementary" => $order_info['payment_company']
+                    "zipcode" => $this->removeSeparadores($order_info['payment_postcode']),
+                    "street_number" => $numero,
+                    "complementary" => $complemento
                 ),
                 "phone" => array(
                     "ddd" => $telephone[0],
@@ -147,6 +157,12 @@ class ControllerPaymentPagarMeBoleto extends Controller {
         }
 
         $this->response->setOutput(json_encode($json));
+    }
+
+    private function removeSeparadores($string){
+        $nova_string = str_replace(array('.', '-', '/', '(', ')', ' '), array('', '', '', '', '', ''), $string);
+
+        return $nova_string;
     }
 
 }

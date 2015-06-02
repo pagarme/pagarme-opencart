@@ -5,15 +5,21 @@
 ##                                                     ##
 #########################################################
 
-[![Code Climate](https://codeclimate.com/github/Santive/pagar-me-opencart/badges/gpa.svg)](https://codeclimate.com/github/Santive/pagar-me-opencart)
-
 ### Compatibilidade
 
- OpenCart 1.5 ou superior, deve pegar também em Opencarts mais antigos
+ OpenCart 1.5.x, deve pegar também em Opencarts mais antigos
 
 ### Funcionalidades
 
  Integra sua loja virtual OpenCart com o gateway de pagamentos Pagar.Me http://www.pagar.me
+
+ Segunda via de boleto
+
+ Atualização de status automática
+ 
+ Configuração de parcelamento de cartão
+
+
 
 ### Instalação e configuração
 1. Copie todo o conteúdo da pasta "upload" para a raíz da sua loja
@@ -24,7 +30,6 @@
 
 ### Requisitos
 
- Vqmod necessário. Baixe a última versão em http://www.vqmod.com
+- Vqmod necessário. Baixe a última versão em http://www.vqmod.com
 
-### Licença
-Confira a licença [aqui](/LICENSE.md).
+- Sua loja deve estar configurada para receber o CPF/CNPJ do seu cliente
