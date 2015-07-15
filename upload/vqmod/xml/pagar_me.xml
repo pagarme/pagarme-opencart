@@ -11,7 +11,7 @@
                 <![CDATA[</head>]]>
             </search>
             <add>
-                <![CDATA[<script src="https://pagar.me/assets/pagarme-v2.min.js"></script>]]>
+                <![CDATA[<script src="https://assets.pagar.me/js/pagarme.min.js"></script>]]>
             </add>
         </operation>
     </file>
