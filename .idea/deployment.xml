@@ -9,6 +9,13 @@
           </mappings>
         </serverdata>
       </paths>
+      <paths name="FTP Techard">
+        <serverdata>
+          <mappings>
+            <mapping deploy="/public_html/loja" local="$PROJECT_DIR$/upload" web="/" />
+          </mappings>
+        </serverdata>
+      </paths>
     </serverData>
   </component>
 </project>
