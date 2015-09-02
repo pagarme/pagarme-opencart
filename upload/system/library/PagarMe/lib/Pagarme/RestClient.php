@@ -11,138 +11,77 @@ class RestClient
 
 	public function __construct($params = array()) 
 	{
-			$this->curl = curl_init();
-			$this->headers = array(
-				'Accept: application/json',
-				'Content-Type: application/json',
-			);
+		$this->curl = curl_init();
+		$this->headers = array(
+			'Accept: application/json',
+			'Content-Type: application/json',
+		);
 
-			if(!$params["url"]) {
-				throw new PagarMe_Exception("You must set the URL to make a request.");
-			} else {
-				$this->url = $params["url"];
-			}
-
-			curl_setopt($this->curl, CURLOPT_RETURNTRANSFER, true);
-
-			if($params["parameters"]) {
-				$this->parameters = array_merge($this->parameters, $params["parameters"]);
-			}
-
-			if($params["method"]) {
-				$this->method = $params["method"];
-			}
-
-			$params =  self::_encodeObjects($this->parameters);
-			$this->parameters = http_build_query($params);
-
-			if ($this->method){
-				switch($this->method) {
-				case 'post':
-				case 'POST':
-					curl_setopt($this->curl, CURLOPT_POST, true);
-					curl_setopt($this->curl, CURLOPT_POSTFIELDS, $this->parameters);	
-					break;
-				case 'get':
-				case 'GET':
-					$this->url .= '?'.$this->parameters;
-					break;
-				case 'put':
-				case 'PUT':
-					$this->method = 'HTTP_METH_PUT';
-					curl_setopt($this->curl, CURLOPT_CUSTOMREQUEST, 'PUT');
-					curl_setopt($this->curl, CURLOPT_POSTFIELDS, $this->parameters);
-					break;
-				case 'delete':
-				case 'DELETE':
-					$this->method = HTTP_METH_DELETE;
-					curl_setopt($this->curl, CURLOPT_CUSTOMREQUEST, 'DELETE');
-					curl_setopt($this->curl, CURLOPT_POSTFIELDS, $this->parameters);
-					break;
-
-				}
-			}
-
-			curl_setopt($this->curl, CURLOPT_URL, $this->url);	
-
-			if(isset($params["headers"])) {
-				$this->headers = array_merge($this->headers, $params["headers"]);
-				curl_setopt($this->curl, CURLOPT_HTTPHEADER, $this->headers);
-			}
-	}
-
-
-	public static function _encodeObjects($d)
-	{
-		if ($d === true) {
-			return 'true';
-		} else if ($d === false) {
-			return 'false';
-		} else if (is_array($d)) {
-			$res = array();
-			foreach ($d as $k => $v)
-				$res[$k] = self::_encodeObjects($v);
-			return $res;
+		if(!$params["url"]) {
+			throw new PagarMe_Exception("You must set the URL to make a request.");
 		} else {
-			return self::utf8($d);
+			$this->url = $params["url"];
 		}
-	}
 
-	public static function utf8($value)
-	{
-		if (is_string($value) && mb_detect_encoding($value, "UTF-8", TRUE) != "UTF-8")
-			return utf8_encode($value);
-		else
-			return $value;
-	}
+		curl_setopt($this->curl, CURLOPT_RETURNTRANSFER, true);
+		curl_setopt($this->curl, CURLOPT_TIMEOUT, 60);
 
-	public static function encode($arr, $prefix=null)
-	{
-		if (!is_array($arr))
-			return $arr;
+		if ($params["parameters"]) {
+			$this->parameters = array_merge($this->parameters, $params["parameters"]);
+		}
 
-		$r = array();
-		foreach ($arr as $k => $v) {
-			if (is_null($v))
-				continue;
+		if($params["method"]) {
+			$this->method = $params["method"];
+		}
 
-			if ($prefix && $k && !is_int($k))
-				$k = $prefix."[".$k."]";
-			else if ($prefix)
-				$k = $prefix."[]";
+		if(isset($params["headers"])) {
+			$this->headers = array_merge($this->headers, $params["headers"]);
+		}
 
-			if (is_array($v)) {
-				$r[] = self::encode($v, $k, true);
-			} else {
-				$r[] = rawurlencode($k)."=".rawurlencode($v);
+		if ($this->method){
+			switch($this->method) {
+			case 'post':
+			case 'POST':
+				curl_setopt($this->curl, CURLOPT_POST, true);
+				curl_setopt($this->curl, CURLOPT_POSTFIELDS, json_encode($this->parameters));
+				break;
+			case 'get':
+			case 'GET':
+				$this->url .= '?' . http_build_query($this->parameters);
+				break;
+			case 'put':
+			case 'PUT':
+				curl_setopt($this->curl, CURLOPT_CUSTOMREQUEST, 'PUT');
+				curl_setopt($this->curl, CURLOPT_POSTFIELDS, json_encode($this->parameters));
+				break;
+			case 'delete':
+			case 'DELETE':
+				curl_setopt($this->curl, CURLOPT_CUSTOMREQUEST, 'DELETE');
+				curl_setopt($this->curl, CURLOPT_POSTFIELDS, json_encode($this->parameters));
+				break;
+
 			}
 		}
 
-		return implode("&", $r);
+		curl_setopt($this->curl, CURLOPT_URL, $this->url);	
+		curl_setopt($this->curl, CURLOPT_HTTPHEADER, $this->headers);
+		curl_setopt($this->curl, CURLOPT_CAINFO, dirname(__FILE__) . '/ca-certificates.crt');
 	}
-
 
 	public function run() 
 	{
-			$response = curl_exec($this->curl);
+		$response = curl_exec($this->curl);
+		$error = curl_error($this->curl);
 
-			if (!defined('CURLE_SSL_CACERT_BADFILE')) {
-				define('CURLE_SSL_CACERT_BADFILE', 77);
-			}
+		if ($error) {
+			throw new PagarMe_Exception("error: ".$error);
+		}
 
-			$errno = curl_errno($this->curl);
-			if ($errno == CURLE_SSL_CACERT || $errno == CURLE_SSL_PEER_CERTIFICATE ||$errno == CURLE_SSL_CACERT_BADFILE) {
-				curl_setopt($this->curl, CURLOPT_CAINFO, dirname(__FILE__) . '/ca-certificates.crt');
-				$response = curl_exec($this->curl);
-			}
+		$code = curl_getinfo($this->curl, CURLINFO_HTTP_CODE);
 
-			$error = curl_error($this->curl);
-			if($error) {
-				throw new PagarMe_Exception("error: ".$error);
-			}
-			$code = curl_getinfo($this->curl, CURLINFO_HTTP_CODE);
-			curl_close($this->curl);
-			return array("code" => $code, "body" => $response);
+		curl_close($this->curl);
+
+		return array("code" => $code, "body" => $response);
 	}
 
 }

@@ -2,9 +2,11 @@
 
 require_once DIR_SYSTEM . 'library/PagarMe/Pagarme.php';
 
-class ControllerPaymentPagarMeCartao extends Controller {
+class ControllerPaymentPagarMeCartao extends Controller
+{
 
-    protected function index() {
+    protected function index()
+    {
 
         $this->language->load('payment/pagar_me_cartao');
         $this->load->model('checkout/order');
@@ -45,7 +47,6 @@ class ControllerPaymentPagarMeCartao extends Controller {
         }
 
 
-
         if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/payment/pagar_me_cartao.tpl')) {
             $this->template = $this->config->get('config_template') . '/template/payment/pagar_me_cartao.tpl';
         } else {
@@ -61,7 +62,8 @@ class ControllerPaymentPagarMeCartao extends Controller {
         $this->render();
     }
 
-    public function confirm() {
+    public function confirm()
+    {
 
 
         $this->load->model('checkout/order');
@@ -69,7 +71,7 @@ class ControllerPaymentPagarMeCartao extends Controller {
 
         $result = $this->model_payment_pagar_me_cartao->getPagarMeOrderByOrderId($this->session->data['order_id']);
 
-        $comentario  = "N&uacute;mero da transa&ccedil;&atilde;o: " . $result['transaction_id'] . "<br />";
+        $comentario = "N&uacute;mero da transa&ccedil;&atilde;o: " . $result['transaction_id'] . "<br />";
         $comentario .= " Cartão: " . strtoupper($result['bandeira']) . "<br />";
         $comentario .= " Parcelado em: " . $result['n_parcela'] . "x";
 
@@ -78,7 +80,8 @@ class ControllerPaymentPagarMeCartao extends Controller {
         $this->redirect($this->url->link('checkout/success'));
     }
 
-    public function error() {
+    public function error()
+    {
 
 
         $this->load->model('checkout/order');
@@ -161,7 +164,8 @@ class ControllerPaymentPagarMeCartao extends Controller {
         $this->response->setOutput($this->render());
     }
 
-    public function callback() {
+    public function callback()
+    {
 
         $event = $_POST['event'];
         $this->load->model('checkout/order');
@@ -171,19 +175,18 @@ class ControllerPaymentPagarMeCartao extends Controller {
 
             $order_id = $this->model_payment_pagar_me_cartao->getPagarMeOrder($_POST['id']);
 
-            //$this->log->write("Id do pedido: " . $order_id);
-
             $current_status = 'pagar_me_cartao_order_' . $_POST['current_status'];
-
-            // $this->log->write("Status retornado: " . $current_status);
 
             $this->model_checkout_order->update($order_id, $this->config->get($current_status), '', true);
         } else {
             $this->log->write("Pagar.Me cartão de crédito: Notificação inválida");
         }
+
+        echo "OK";
     }
 
-    public function payment() {
+    public function payment()
+    {
 
         $this->load->model('checkout/order');
         $this->load->model('account/customer');
@@ -192,7 +195,23 @@ class ControllerPaymentPagarMeCartao extends Controller {
 
         $customer = $this->model_account_customer->getCustomer($order_info['customer_id']);
 
-        $telephone = explode(" ", str_replace(array('(', ')', '-'), array('', '', ''), $order_info['telephone']));
+        if ($this->config->get('dados_status')) {
+            if ($customer['cpf'] != '') {
+                $document_number = $this->removeSeparadores($customer['cpf']);
+                $customer_name = $order_info['payment_firstname'] . " " . $order_info['payment_lastname'];
+            } else {
+                $document_number = $this->removeSeparadores($customer['cnpj']);
+                $customer_name = $customer['razao_social'];
+
+            }
+            $numero = $order_info['payment_numero'];
+            $complemento = $order_info['payment_company'];
+        } else {
+            $document_number = $this->removeSeparadores($order_info['payment_tax_id']);
+            $customer_name = $order_info['payment_firstname'] . " " . $order_info['payment_lastname'];
+            $numero = 'Sem número';
+            $complemento = '';
+        }
 
         Pagarme::setApiKey($this->config->get('pagar_me_cartao_api'));
 
@@ -202,21 +221,21 @@ class ControllerPaymentPagarMeCartao extends Controller {
             'installments' => $_POST['installments'],
             'postback_url' => HTTP_SERVER . 'index.php?route=payment/pagar_me_cartao/callback',
             "customer" => array(
-                "name" => $order_info['payment_firstname'] . " " . $order_info['payment_lastname'],
-                "document_number" => str_replace(array('-', '.'), array('', ''), $customer['cpf']),
+                "name" => $customer_name,
+                "document_number" => $document_number,
                 "email" => $order_info['email'],
                 "address" => array(
                     "street" => $order_info['payment_address_1'],
                     "neighborhood" => $order_info['payment_address_2'],
                     "zipcode" => $order_info['payment_postcode'],
-                    "street_number" => $order_info['payment_numero'],
-                    "complementary" => $order_info['payment_company']
+                    "street_number" => $numero,
+                    "complementary" => $complemento
                 ),
                 "phone" => array(
-                    "ddd" => $telephone[0],
-                    "number" => $telephone[1]
+                    "ddd" => substr(preg_replace('/[^0-9]/', '', $order_info['telephone']), 0, 2),
+                    "number" => substr(preg_replace('/[^0-9]/', '', $order_info['telephone']), 2),
                 )
-        )));
+            )));
 
         $transaction->charge();
 
@@ -240,6 +259,13 @@ class ControllerPaymentPagarMeCartao extends Controller {
         }
 
         $this->response->setOutput(json_encode($json));
+    }
+
+    private function removeSeparadores($string)
+    {
+        $nova_string = str_replace(array('.', '-', '/', '(', ')', ' '), array('', '', '', '', '', ''), $string);
+
+        return $nova_string;
     }
 
 }
