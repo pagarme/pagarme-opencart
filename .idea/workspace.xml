@@ -2,9 +2,125 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d30fbd3b-b9c8-443e-9262-3bbc6502ff51" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/upload/catalog/view/javascript/jquery.mask.min.js" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/upload/catalog/view/javascript/mask.js" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/upload/catalog/view/theme/default/template/payment/pagar_me_cartao.tpl" afterPath="$PROJECT_DIR$/upload/catalog/view/theme/default/template/payment/pagar_me_cartao.tpl" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/2.x/upload/catalog/view/theme/default/image/bancos/americanexpress.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/2.x/upload/catalog/view/theme/default/image/bancos/cartao-cvv.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/2.x/upload/catalog/view/theme/default/image/bancos/dinersclub.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/2.x/upload/catalog/view/theme/default/image/bancos/discover.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/2.x/upload/catalog/view/theme/default/image/bancos/elo.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/2.x/upload/catalog/view/theme/default/image/bancos/hipercard.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/2.x/upload/catalog/view/theme/default/image/bancos/is-valid.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/2.x/upload/catalog/view/theme/default/image/bancos/mastercard.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/2.x/upload/admin/view/image/payment/pagarme.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/2.x/upload/catalog/view/theme/default/image/bancos/valid-card-flag.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/2.x/upload/catalog/view/theme/default/image/bancos/visa02.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/2.x/upload/system/library/PagarMe/lib/Pagarme/Address.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/2.x/upload/system/library/PagarMe/lib/Pagarme/Card.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/2.x/upload/system/library/PagarMe/lib/Pagarme/CardHashCommon.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/2.x/upload/system/library/PagarMe/lib/Pagarme/Customer.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/2.x/upload/system/library/PagarMe/lib/Pagarme/Error.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/2.x/upload/system/library/PagarMe/lib/Pagarme/Exception.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/2.x/upload/system/library/PagarMe/lib/Pagarme/Model.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/2.x/upload/system/library/PagarMe/lib/Pagarme/Object.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/2.x/upload/system/library/PagarMe/lib/Pagarme/PagarMe.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/2.x/upload/system/library/PagarMe/Pagarme.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/2.x/upload/system/library/PagarMe/lib/Pagarme/Phone.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/2.x/upload/system/library/PagarMe/lib/Pagarme/Plan.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/2.x/upload/system/library/PagarMe/lib/Pagarme/Request.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/2.x/upload/system/library/PagarMe/lib/Pagarme/RestClient.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/2.x/upload/system/library/PagarMe/lib/Pagarme/Set.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/2.x/upload/system/library/PagarMe/lib/Pagarme/Subscription.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/2.x/upload/system/library/PagarMe/lib/Pagarme/Transaction.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/2.x/upload/system/library/PagarMe/lib/Pagarme/TransactionCommon.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/2.x/upload/system/library/PagarMe/lib/Pagarme/Util.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/2.x/upload/system/library/PagarMe/lib/Pagarme/ca-certificates.crt" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/2.x/upload/catalog/view/javascript/jquery.creditCardValidator.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/2.x/upload/catalog/view/javascript/jquery.mask.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/2.x/upload/vqmod/xml/pagar_me.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/2.x/upload/admin/controller/payment/pagar_me_boleto.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/2.x/upload/admin/language/english/payment/pagar_me_boleto.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/2.x/upload/admin/language/portuguese-br/payment/pagar_me_boleto.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/2.x/upload/admin/model/payment/pagar_me_boleto.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/2.x/upload/catalog/controller/payment/pagar_me_boleto.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/2.x/upload/catalog/language/english/payment/pagar_me_boleto.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/2.x/upload/catalog/language/portuguese-br/payment/pagar_me_boleto.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/2.x/upload/catalog/model/payment/pagar_me_boleto.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/2.x/upload/admin/view/template/payment/pagar_me_boleto.tpl" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/2.x/upload/catalog/view/theme/default/template/payment/pagar_me_boleto.tpl" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/2.x/upload/admin/view/template/payment/pagar_me_boleto_bkp.tpl" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/2.x/upload/catalog/view/theme/default/stylesheet/pagar_me_cartao.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/2.x/upload/admin/controller/payment/pagar_me_cartao.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/2.x/upload/admin/language/english/payment/pagar_me_cartao.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/2.x/upload/admin/language/portuguese-br/payment/pagar_me_cartao.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/2.x/upload/admin/model/payment/pagar_me_cartao.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/2.x/upload/catalog/controller/payment/pagar_me_cartao.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/2.x/upload/catalog/language/english/payment/pagar_me_cartao.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/2.x/upload/catalog/language/portuguese-br/payment/pagar_me_cartao.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/2.x/upload/catalog/model/payment/pagar_me_cartao.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/2.x/upload/admin/view/template/payment/pagar_me_cartao.tpl" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/2.x/upload/catalog/view/theme/default/template/payment/pagar_me_cartao.tpl" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/2.x/upload/catalog/view/theme/default/template/payment/pagar_me_cartao_message.tpl" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/nbproject/project.properties" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/nbproject/project.xml" afterPath="" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/LICENSE.md" afterPath="$PROJECT_DIR$/1.5.x/LICENSE.md" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/prints/admin_payments.png" afterPath="$PROJECT_DIR$/1.5.x/prints/admin_payments.png" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/prints/boleto_admin.png" afterPath="$PROJECT_DIR$/1.5.x/prints/boleto_admin.png" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/prints/cartao_admin.png" afterPath="$PROJECT_DIR$/1.5.x/prints/cartao_admin.png" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/prints/cartao_checkout.png" afterPath="$PROJECT_DIR$/1.5.x/prints/cartao_checkout.png" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/readme.md" afterPath="$PROJECT_DIR$/1.5.x/readme.md" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/upload/admin/controller/payment/pagar_me_boleto.php" afterPath="$PROJECT_DIR$/1.5.x/upload/admin/controller/payment/pagar_me_boleto.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/upload/admin/controller/payment/pagar_me_cartao.php" afterPath="$PROJECT_DIR$/1.5.x/upload/admin/controller/payment/pagar_me_cartao.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/upload/admin/language/english/payment/pagar_me_boleto.php" afterPath="$PROJECT_DIR$/1.5.x/upload/admin/language/english/payment/pagar_me_boleto.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/upload/admin/language/english/payment/pagar_me_cartao.php" afterPath="$PROJECT_DIR$/1.5.x/upload/admin/language/english/payment/pagar_me_cartao.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/upload/admin/language/portuguese-br/payment/pagar_me_boleto.php" afterPath="$PROJECT_DIR$/1.5.x/upload/admin/language/portuguese-br/payment/pagar_me_boleto.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/upload/admin/language/portuguese-br/payment/pagar_me_cartao.php" afterPath="$PROJECT_DIR$/1.5.x/upload/admin/language/portuguese-br/payment/pagar_me_cartao.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/upload/admin/view/image/payment/pagarme.png" afterPath="$PROJECT_DIR$/1.5.x/upload/admin/view/image/payment/pagarme.png" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/upload/admin/view/template/payment/pagar_me_boleto.tpl" afterPath="$PROJECT_DIR$/1.5.x/upload/admin/view/template/payment/pagar_me_boleto.tpl" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/upload/admin/view/template/payment/pagar_me_cartao.tpl" afterPath="$PROJECT_DIR$/1.5.x/upload/admin/view/template/payment/pagar_me_cartao.tpl" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/upload/catalog/controller/payment/pagar_me_boleto.php" afterPath="$PROJECT_DIR$/1.5.x/upload/catalog/controller/payment/pagar_me_boleto.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/upload/catalog/controller/payment/pagar_me_cartao.php" afterPath="$PROJECT_DIR$/1.5.x/upload/catalog/controller/payment/pagar_me_cartao.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/upload/catalog/language/english/payment/pagar_me_boleto.php" afterPath="$PROJECT_DIR$/1.5.x/upload/catalog/language/english/payment/pagar_me_boleto.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/upload/catalog/language/english/payment/pagar_me_cartao.php" afterPath="$PROJECT_DIR$/1.5.x/upload/catalog/language/english/payment/pagar_me_cartao.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/upload/catalog/language/portuguese-br/payment/pagar_me_boleto.php" afterPath="$PROJECT_DIR$/1.5.x/upload/catalog/language/portuguese-br/payment/pagar_me_boleto.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/upload/catalog/language/portuguese-br/payment/pagar_me_cartao.php" afterPath="$PROJECT_DIR$/1.5.x/upload/catalog/language/portuguese-br/payment/pagar_me_cartao.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/upload/catalog/model/payment/pagar_me_boleto.php" afterPath="$PROJECT_DIR$/1.5.x/upload/catalog/model/payment/pagar_me_boleto.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/upload/catalog/model/payment/pagar_me_cartao.php" afterPath="$PROJECT_DIR$/1.5.x/upload/catalog/model/payment/pagar_me_cartao.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/upload/catalog/view/javascript/jquery.creditCardValidator.js" afterPath="$PROJECT_DIR$/1.5.x/upload/catalog/view/javascript/jquery.creditCardValidator.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/upload/catalog/view/javascript/jquery.mask.min.js" afterPath="$PROJECT_DIR$/1.5.x/upload/catalog/view/javascript/jquery.mask.min.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/upload/catalog/view/theme/default/image/bancos/americanexpress.png" afterPath="$PROJECT_DIR$/1.5.x/upload/catalog/view/theme/default/image/bancos/americanexpress.png" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/upload/catalog/view/theme/default/image/bancos/cartao-cvv.png" afterPath="$PROJECT_DIR$/1.5.x/upload/catalog/view/theme/default/image/bancos/cartao-cvv.png" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/upload/catalog/view/theme/default/image/bancos/dinersclub.png" afterPath="$PROJECT_DIR$/1.5.x/upload/catalog/view/theme/default/image/bancos/dinersclub.png" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/upload/catalog/view/theme/default/image/bancos/discover.png" afterPath="$PROJECT_DIR$/1.5.x/upload/catalog/view/theme/default/image/bancos/discover.png" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/upload/catalog/view/theme/default/image/bancos/elo.png" afterPath="$PROJECT_DIR$/1.5.x/upload/catalog/view/theme/default/image/bancos/elo.png" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/upload/catalog/view/theme/default/image/bancos/hipercard.png" afterPath="$PROJECT_DIR$/1.5.x/upload/catalog/view/theme/default/image/bancos/hipercard.png" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/upload/catalog/view/theme/default/image/bancos/is-valid.png" afterPath="$PROJECT_DIR$/1.5.x/upload/catalog/view/theme/default/image/bancos/is-valid.png" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/upload/catalog/view/theme/default/image/bancos/mastercard.png" afterPath="$PROJECT_DIR$/1.5.x/upload/catalog/view/theme/default/image/bancos/mastercard.png" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/upload/catalog/view/theme/default/image/bancos/valid-card-flag.png" afterPath="$PROJECT_DIR$/1.5.x/upload/catalog/view/theme/default/image/bancos/valid-card-flag.png" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/upload/catalog/view/theme/default/image/bancos/visa02.png" afterPath="$PROJECT_DIR$/1.5.x/upload/catalog/view/theme/default/image/bancos/visa02.png" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/upload/catalog/view/theme/default/stylesheet/pagar_me_cartao.css" afterPath="$PROJECT_DIR$/1.5.x/upload/catalog/view/theme/default/stylesheet/pagar_me_cartao.css" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/upload/catalog/view/theme/default/template/payment/pagar_me_boleto.tpl" afterPath="$PROJECT_DIR$/1.5.x/upload/catalog/view/theme/default/template/payment/pagar_me_boleto.tpl" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/upload/catalog/view/theme/default/template/payment/pagar_me_cartao.tpl" afterPath="$PROJECT_DIR$/1.5.x/upload/catalog/view/theme/default/template/payment/pagar_me_cartao.tpl" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/upload/catalog/view/theme/default/template/payment/pagar_me_cartao_message.tpl" afterPath="$PROJECT_DIR$/1.5.x/upload/catalog/view/theme/default/template/payment/pagar_me_cartao_message.tpl" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/upload/system/library/PagarMe/Pagarme.php" afterPath="$PROJECT_DIR$/1.5.x/upload/system/library/PagarMe/Pagarme.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/upload/system/library/PagarMe/lib/Pagarme/Address.php" afterPath="$PROJECT_DIR$/1.5.x/upload/system/library/PagarMe/lib/Pagarme/Address.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/upload/system/library/PagarMe/lib/Pagarme/Card.php" afterPath="$PROJECT_DIR$/1.5.x/upload/system/library/PagarMe/lib/Pagarme/Card.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/upload/system/library/PagarMe/lib/Pagarme/CardHashCommon.php" afterPath="$PROJECT_DIR$/1.5.x/upload/system/library/PagarMe/lib/Pagarme/CardHashCommon.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/upload/system/library/PagarMe/lib/Pagarme/Customer.php" afterPath="$PROJECT_DIR$/1.5.x/upload/system/library/PagarMe/lib/Pagarme/Customer.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/upload/system/library/PagarMe/lib/Pagarme/Error.php" afterPath="$PROJECT_DIR$/1.5.x/upload/system/library/PagarMe/lib/Pagarme/Error.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/upload/system/library/PagarMe/lib/Pagarme/Exception.php" afterPath="$PROJECT_DIR$/1.5.x/upload/system/library/PagarMe/lib/Pagarme/Exception.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/upload/system/library/PagarMe/lib/Pagarme/Model.php" afterPath="$PROJECT_DIR$/1.5.x/upload/system/library/PagarMe/lib/Pagarme/Model.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/upload/system/library/PagarMe/lib/Pagarme/Object.php" afterPath="$PROJECT_DIR$/1.5.x/upload/system/library/PagarMe/lib/Pagarme/Object.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/upload/system/library/PagarMe/lib/Pagarme/PagarMe.php" afterPath="$PROJECT_DIR$/1.5.x/upload/system/library/PagarMe/lib/Pagarme/PagarMe.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/upload/system/library/PagarMe/lib/Pagarme/Phone.php" afterPath="$PROJECT_DIR$/1.5.x/upload/system/library/PagarMe/lib/Pagarme/Phone.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/upload/system/library/PagarMe/lib/Pagarme/Plan.php" afterPath="$PROJECT_DIR$/1.5.x/upload/system/library/PagarMe/lib/Pagarme/Plan.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/upload/system/library/PagarMe/lib/Pagarme/Request.php" afterPath="$PROJECT_DIR$/1.5.x/upload/system/library/PagarMe/lib/Pagarme/Request.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/upload/system/library/PagarMe/lib/Pagarme/RestClient.php" afterPath="$PROJECT_DIR$/1.5.x/upload/system/library/PagarMe/lib/Pagarme/RestClient.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/upload/system/library/PagarMe/lib/Pagarme/Set.php" afterPath="$PROJECT_DIR$/1.5.x/upload/system/library/PagarMe/lib/Pagarme/Set.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/upload/system/library/PagarMe/lib/Pagarme/Subscription.php" afterPath="$PROJECT_DIR$/1.5.x/upload/system/library/PagarMe/lib/Pagarme/Subscription.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/upload/system/library/PagarMe/lib/Pagarme/Transaction.php" afterPath="$PROJECT_DIR$/1.5.x/upload/system/library/PagarMe/lib/Pagarme/Transaction.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/upload/system/library/PagarMe/lib/Pagarme/TransactionCommon.php" afterPath="$PROJECT_DIR$/1.5.x/upload/system/library/PagarMe/lib/Pagarme/TransactionCommon.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/upload/system/library/PagarMe/lib/Pagarme/Util.php" afterPath="$PROJECT_DIR$/1.5.x/upload/system/library/PagarMe/lib/Pagarme/Util.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/upload/system/library/PagarMe/lib/Pagarme/ca-certificates.crt" afterPath="$PROJECT_DIR$/1.5.x/upload/system/library/PagarMe/lib/Pagarme/ca-certificates.crt" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/upload/vqmod/xml/pagar_me.xml" afterPath="$PROJECT_DIR$/1.5.x/upload/vqmod/xml/pagar_me.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="pagar_me.iws" />
@@ -27,21 +143,21 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="pagar_me_cartao.tpl" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/upload/catalog/view/theme/default/template/payment/pagar_me_cartao.tpl">
+      <file leaf-file-name="pagar_me_boleto_bkp.tpl" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/2.x/upload/admin/view/template/payment/pagar_me_boleto_bkp.tpl">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="89" column="71" selection-start-line="89" selection-start-column="71" selection-end-line="89" selection-end-column="71" />
+            <state vertical-scroll-proportion="-0.0">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="pagar_me_cartao.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/upload/catalog/controller/payment/pagar_me_cartao.php">
+      <file leaf-file-name="pagar_me_boleto.tpl" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/2.x/upload/admin/view/template/payment/pagar_me_boleto.tpl">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="7" column="30" selection-start-line="7" selection-start-column="30" selection-end-line="7" selection-end-column="30" />
+            <state vertical-scroll-proportion="0.019933555">
+              <caret line="1" column="66" selection-start-line="1" selection-start-column="66" selection-end-line="1" selection-end-column="66" />
               <folding />
             </state>
           </provider>
@@ -52,7 +168,7 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <push-targets>
-      <push-target-info repo="$PROJECT_DIR$" source="master" target-remote="origin3" target-branch="master" />
+      <push-target-info repo="$PROJECT_DIR$" source="master" target-remote="origin" target-branch="master" />
     </push-targets>
   </component>
   <component name="IdeDocumentHistory">
@@ -65,6 +181,13 @@
         <option value="$PROJECT_DIR$/upload/catalog/view/theme/default/template/payment/pagar_me_boleto.tpl" />
         <option value="$PROJECT_DIR$/upload/catalog/view/theme/default/template/payment/pagar_me_cartao.tpl" />
         <option value="$PROJECT_DIR$/upload/catalog/controller/payment/pagar_me_cartao.php" />
+        <option value="$PROJECT_DIR$/2.x/upload/admin/model/payment/pagar_me_boleto.php" />
+        <option value="$PROJECT_DIR$/2.x/upload/admin/model/payment/pagar_me_cartao.php" />
+        <option value="$PROJECT_DIR$/2.x/upload/admin/language/portuguese-br/payment/pagar_me_boleto.php" />
+        <option value="$PROJECT_DIR$/2.x/upload/admin/controller/payment/pagar_me_boleto.php" />
+        <option value="$PROJECT_DIR$/2.x/upload/admin/language/portuguese-br/payment/pagar_me_cartao.php" />
+        <option value="$PROJECT_DIR$/2.x/upload/admin/controller/payment/pagar_me_cartao.php" />
+        <option value="$PROJECT_DIR$/2.x/upload/admin/view/template/payment/pagar_me_boleto.tpl" />
       </list>
     </option>
   </component>
@@ -78,9 +201,9 @@
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
   <component name="ProjectFrameBounds">
     <option name="x" value="65" />
-    <option name="y" value="-4" />
+    <option name="y" value="24" />
     <option name="width" value="1855" />
-    <option name="height" value="1084" />
+    <option name="height" value="1056" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -105,8 +228,8 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Scratches" />
       <pane id="Scope" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -135,15 +258,11 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="2.x" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="upload" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="vqmod" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="xml" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -157,29 +276,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="upload" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="system" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="library" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="PagarMe" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="pagar_me" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="pagar_me" />
+              <option name="myItemId" value="2.x" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -187,53 +284,11 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="system" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="library" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="PagarMe" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="lib" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Pagarme" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="pagar_me" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="pagar_me" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="upload" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="catalog" />
+              <option name="myItemId" value="admin" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="view" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="theme" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="default" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -255,23 +310,41 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="2.x" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="upload" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="catalog" />
+              <option name="myItemId" value="admin" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="view" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
+          </PATH>
+          <PATH>
             <PATH_ELEMENT>
-              <option name="myItemId" value="theme" />
+              <option name="myItemId" value="pagar_me" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="pagar_me" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="default" />
+              <option name="myItemId" value="2.x" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="upload" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="admin" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -285,19 +358,27 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="2.x" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="upload" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="catalog" />
+              <option name="myItemId" value="admin" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="view" />
+              <option name="myItemId" value="language" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="javascript" />
+              <option name="myItemId" value="portuguese-br" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="payment" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -311,11 +392,23 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="2.x" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="upload" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="catalog" />
+              <option name="myItemId" value="admin" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="language" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="english" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -329,11 +422,15 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="2.x" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="upload" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="catalog" />
+              <option name="myItemId" value="admin" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -355,7 +452,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="upload" />
+              <option name="myItemId" value="1.5.x" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -368,7 +465,7 @@
     <property name="options.splitter.main.proportions" value="0.3" />
     <property name="options.splitter.details.proportions" value="0.2" />
     <property name="WebServerToolWindowFactoryState" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/upload" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="WebServerToolWindowPanel.toolwindow.show.size" value="false" />
     <property name="WebServerToolWindowPanel.toolwindow.show.date" value="false" />
     <property name="WebServerToolWindowPanel.toolwindow.show.permissions" value="false" />
@@ -378,8 +475,15 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/2.x/upload/admin/language/english" />
+      <recent name="$PROJECT_DIR$/2.x/upload/admin/model/payment" />
+      <recent name="$PROJECT_DIR$/2.x" />
       <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/upload/catalog/view/javascript" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/2.x/upload/admin/language/english/payment" />
+      <recent name="$PROJECT_DIR$/1.5.x" />
     </key>
   </component>
   <component name="RunManager">
@@ -481,20 +585,26 @@
       <option name="project" value="LOCAL" />
       <updated>1439394624079</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="troca do plugin de mascara do form de cartao de credito">
+      <created>1440103309016</created>
+      <option name="number" value="00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1440103309016</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="65" y="-4" width="1855" height="1084" extended-state="6" />
+    <frame x="65" y="24" width="1855" height="1056" extended-state="6" />
     <editor active="false" />
     <layout>
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2299613" sideWeight="0.53333336" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24101713" sideWeight="0.55" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Remote Host" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.50082916" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2299613" sideWeight="0.46666667" order="1" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24101713" sideWeight="0.45" order="1" side_tool="false" content_ui="combo" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.346875" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -502,14 +612,14 @@
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32916668" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32916668" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -535,111 +645,29 @@
     <MESSAGE value="Finalização do módulo para disponibilização ao público&#10;&#10;Inserção dos prints" />
     <MESSAGE value="Alteração do caminho do CDN do JS do Pagar.Me" />
     <MESSAGE value="Correção de telefone com expressão regular" />
-    <option name="LAST_COMMIT_MESSAGE" value="Correção de telefone com expressão regular" />
+    <MESSAGE value="troca do plugin de mascara do form de cartao de credito" />
+    <option name="LAST_COMMIT_MESSAGE" value="troca do plugin de mascara do form de cartao de credito" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/upload/catalog/controller/payment/pagar_me_cartao.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/upload/catalog/controller/payment/pagar_me_boleto.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="88" column="0" selection-start-line="88" selection-start-column="0" selection-end-line="88" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/readme.md">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-      <provider editor-type-id="MarkdownPreviewEditor">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/upload/catalog/controller/payment/pagar_me_cartao.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="228" column="51" selection-start-line="228" selection-start-column="51" selection-end-line="228" selection-end-column="51" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/upload/catalog/view/theme/default/image/bancos/cartao-cvv.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/upload/catalog/view/theme/default/template/payment/pagar_me_cartao.tpl">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="81" column="21" selection-start-line="81" selection-start-column="21" selection-end-line="81" selection-end-column="21" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/upload/vqmod/xml/pagar_me.xml">
+    <entry file="file://$PROJECT_DIR$/1.5.x/upload/vqmod/xml/pagar_me.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="101" column="61" selection-start-line="101" selection-start-column="61" selection-end-line="101" selection-end-column="61" />
-          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/upload/catalog/controller/payment/pagar_me_boleto.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/upload/catalog/controller/payment/pagar_me_cartao.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="199" column="31" selection-start-line="199" selection-start-column="31" selection-end-line="199" selection-end-column="31" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/upload/catalog/view/theme/default/image/bancos/cartao-cvv.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/upload/catalog/view/theme/default/template/payment/pagar_me_cartao.tpl">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="81" column="21" selection-start-line="81" selection-start-column="21" selection-end-line="81" selection-end-column="21" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/upload/vqmod/xml/pagar_me.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="101" column="61" selection-start-line="101" selection-start-column="61" selection-end-line="101" selection-end-column="61" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/upload/catalog/controller/payment/pagar_me_boleto.php">
+    <entry file="file://$PROJECT_DIR$/1.5.x/upload/catalog/controller/payment/pagar_me_boleto.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="80" column="20" selection-start-line="80" selection-start-column="20" selection-end-line="80" selection-end-column="20" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/upload/catalog/controller/payment/pagar_me_cartao.php">
+    <entry file="file://$PROJECT_DIR$/1.5.x/upload/catalog/controller/payment/pagar_me_cartao.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="199" column="31" selection-start-line="199" selection-start-column="31" selection-end-line="199" selection-end-column="31" />
@@ -647,12 +675,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/upload/catalog/view/theme/default/image/bancos/cartao-cvv.png">
+    <entry file="file://$PROJECT_DIR$/1.5.x/upload/catalog/view/theme/default/image/bancos/cartao-cvv.png">
       <provider selected="true" editor-type-id="images">
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/upload/catalog/view/theme/default/template/payment/pagar_me_cartao.tpl">
+    <entry file="file://$PROJECT_DIR$/1.5.x/upload/catalog/view/theme/default/template/payment/pagar_me_cartao.tpl">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -660,22 +688,21 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/upload/vqmod/xml/pagar_me.xml">
+    <entry file="file://$PROJECT_DIR$/1.5.x/upload/vqmod/xml/pagar_me.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="101" column="61" selection-start-line="101" selection-start-column="61" selection-end-line="101" selection-end-column="61" />
-          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/upload/catalog/controller/payment/pagar_me_boleto.php">
+    <entry file="file://$PROJECT_DIR$/1.5.x/upload/catalog/controller/payment/pagar_me_boleto.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="80" column="20" selection-start-line="80" selection-start-column="20" selection-end-line="80" selection-end-column="20" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/upload/catalog/controller/payment/pagar_me_cartao.php">
+    <entry file="file://$PROJECT_DIR$/1.5.x/upload/catalog/controller/payment/pagar_me_cartao.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="199" column="31" selection-start-line="199" selection-start-column="31" selection-end-line="199" selection-end-column="31" />
@@ -683,12 +710,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/upload/catalog/view/theme/default/image/bancos/cartao-cvv.png">
+    <entry file="file://$PROJECT_DIR$/1.5.x/upload/catalog/view/theme/default/image/bancos/cartao-cvv.png">
       <provider selected="true" editor-type-id="images">
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/upload/catalog/view/theme/default/template/payment/pagar_me_cartao.tpl">
+    <entry file="file://$PROJECT_DIR$/1.5.x/upload/catalog/view/theme/default/template/payment/pagar_me_cartao.tpl">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="51" column="53" selection-start-line="51" selection-start-column="53" selection-end-line="51" selection-end-column="53" />
@@ -696,22 +723,21 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/upload/vqmod/xml/pagar_me.xml">
+    <entry file="file://$PROJECT_DIR$/1.5.x/upload/vqmod/xml/pagar_me.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/upload/catalog/controller/payment/pagar_me_boleto.php">
+    <entry file="file://$PROJECT_DIR$/1.5.x/upload/catalog/controller/payment/pagar_me_boleto.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="76" column="18" selection-start-line="76" selection-start-column="18" selection-end-line="76" selection-end-column="18" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/upload/catalog/controller/payment/pagar_me_cartao.php">
+    <entry file="file://$PROJECT_DIR$/1.5.x/upload/catalog/controller/payment/pagar_me_cartao.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -719,7 +745,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/upload/catalog/view/theme/default/template/payment/pagar_me_cartao.tpl">
+    <entry file="file://$PROJECT_DIR$/1.5.x/upload/catalog/view/theme/default/template/payment/pagar_me_cartao.tpl">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="38" column="14" selection-start-line="38" selection-start-column="14" selection-end-line="38" selection-end-column="14" />
@@ -727,29 +753,28 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/upload/system/library/PagarMe/lib/Pagarme/Util.php">
+    <entry file="file://$PROJECT_DIR$/1.5.x/upload/system/library/PagarMe/lib/Pagarme/Util.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/upload/system/library/PagarMe/lib/Pagarme/TransactionCommon.php">
+    <entry file="file://$PROJECT_DIR$/1.5.x/upload/system/library/PagarMe/lib/Pagarme/TransactionCommon.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="50" column="72" selection-start-line="50" selection-start-column="72" selection-end-line="50" selection-end-column="72" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/upload/vqmod/xml/pagar_me.xml">
+    <entry file="file://$PROJECT_DIR$/1.5.x/upload/vqmod/xml/pagar_me.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/upload/catalog/view/theme/default/template/payment/pagar_me_cartao.tpl">
+    <entry file="file://$PROJECT_DIR$/1.5.x/upload/catalog/view/theme/default/template/payment/pagar_me_cartao.tpl">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="38" column="14" selection-start-line="38" selection-start-column="14" selection-end-line="38" selection-end-column="14" />
@@ -757,21 +782,21 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/upload/system/library/PagarMe/lib/Pagarme/Util.php">
+    <entry file="file://$PROJECT_DIR$/1.5.x/upload/system/library/PagarMe/lib/Pagarme/Util.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/upload/system/library/PagarMe/lib/Pagarme/TransactionCommon.php">
+    <entry file="file://$PROJECT_DIR$/1.5.x/upload/system/library/PagarMe/lib/Pagarme/TransactionCommon.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/upload/catalog/view/theme/default/template/payment/pagar_me_cartao.tpl">
+    <entry file="file://$PROJECT_DIR$/1.5.x/upload/catalog/view/theme/default/template/payment/pagar_me_cartao.tpl">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -779,75 +804,104 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/upload/catalog/controller/payment/pagar_me_boleto.php">
+    <entry file="file://$PROJECT_DIR$/1.5.x/upload/catalog/controller/payment/pagar_me_boleto.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/upload/catalog/controller/payment/pagar_me_cartao.php">
+    <entry file="file://$PROJECT_DIR$/1.5.x/upload/catalog/controller/payment/pagar_me_cartao.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/upload/admin/controller/payment/pagar_me_boleto.php">
+    <entry file="file://$PROJECT_DIR$/1.5.x/upload/admin/controller/payment/pagar_me_boleto.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="200" column="20" selection-start-line="200" selection-start-column="20" selection-end-line="200" selection-end-column="20" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/upload/admin/controller/payment/pagar_me_cartao.php">
+    <entry file="file://$PROJECT_DIR$/1.5.x/upload/admin/controller/payment/pagar_me_cartao.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="303" column="20" selection-start-line="303" selection-start-column="20" selection-end-line="303" selection-end-column="20" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/upload/vqmod/xml/pagar_me.xml">
+    <entry file="file://$PROJECT_DIR$/1.5.x/upload/vqmod/xml/pagar_me.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/upload/admin/controller/payment/pagar_me_cartao.php">
+    <entry file="file://$PROJECT_DIR$/1.5.x/upload/admin/controller/payment/pagar_me_cartao.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.3217993">
           <caret line="303" column="20" selection-start-line="303" selection-start-column="20" selection-end-line="303" selection-end-column="20" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/upload/admin/controller/payment/pagar_me_boleto.php">
+    <entry file="file://$PROJECT_DIR$/1.5.x/upload/admin/controller/payment/pagar_me_boleto.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.2681661">
           <caret line="200" column="20" selection-start-line="200" selection-start-column="20" selection-end-line="200" selection-end-column="20" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/upload/system/library/PagarMe/lib/Pagarme/Util.php">
+    <entry file="file://$PROJECT_DIR$/1.5.x/upload/system/library/PagarMe/lib/Pagarme/Util.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/upload/system/library/PagarMe/lib/Pagarme/TransactionCommon.php">
+    <entry file="file://$PROJECT_DIR$/1.5.x/upload/system/library/PagarMe/lib/Pagarme/TransactionCommon.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="50" column="72" selection-start-line="50" selection-start-column="72" selection-end-line="50" selection-end-column="72" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/upload/catalog/view/theme/default/image/bancos/cartao-cvv.png">
+    <entry file="file://$PROJECT_DIR$/1.5.x/upload/catalog/view/theme/default/image/bancos/cartao-cvv.png">
       <provider selected="true" editor-type-id="images">
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/LICENSE.md">
+    <entry file="file://$PROJECT_DIR$/1.5.x/upload/system/library/PagarMe/lib/Pagarme/Model.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="20" column="40" selection-start-line="20" selection-start-column="40" selection-end-line="20" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/1.5.x/upload/catalog/view/theme/default/template/payment/pagar_me_boleto.tpl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="35" column="13" selection-start-line="32" selection-start-column="13" selection-end-line="35" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/1.5.x/upload/catalog/view/javascript/jquery.creditCardValidator.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="15" column="19" selection-start-line="15" selection-start-column="17" selection-end-line="15" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/1.5.x/upload/catalog/view/theme/default/template/payment/pagar_me_cartao.tpl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="89" column="71" selection-start-line="89" selection-start-column="71" selection-end-line="89" selection-end-column="71" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/1.5.x/LICENSE.md">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -856,10 +910,13 @@
       <provider editor-type-id="com.intellij.database.editor.CsvTableFileEditorProvider">
         <state />
       </provider>
+      <provider editor-type-id="MarkdownPreviewEditor">
+        <state />
+      </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/readme.md">
+    <entry file="file://$PROJECT_DIR$/1.5.x/readme.md">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
+        <state vertical-scroll-proportion="0.6807564">
           <caret line="34" column="72" selection-start-line="7" selection-start-column="0" selection-end-line="34" selection-end-column="72" />
         </state>
       </provider>
@@ -867,54 +924,134 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/upload/vqmod/xml/pagar_me.xml">
+    <entry file="file://$PROJECT_DIR$/1.5.x/upload/catalog/controller/payment/pagar_me_cartao.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="7" column="65" selection-start-line="7" selection-start-column="65" selection-end-line="7" selection-end-column="65" />
+          <caret line="252" column="58" selection-start-line="252" selection-start-column="50" selection-end-line="252" selection-end-column="58" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/upload/catalog/controller/payment/pagar_me_boleto.php">
+    <entry file="file://$PROJECT_DIR$/1.5.x/upload/catalog/model/payment/pagar_me_cartao.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="111" column="9" selection-start-line="111" selection-start-column="9" selection-end-line="111" selection-end-column="9" />
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <marker date="1423072857829" expanded="true" signature="-1:-1" placeholder="SELECT * FRO..." />
+            <marker date="1423072857829" expanded="true" signature="-1:-1" placeholder="INSERT INTO ..." />
+            <marker date="1423072857829" expanded="true" signature="-1:-1" placeholder="SELECT * FRO..." />
+            <marker date="1423072857829" expanded="true" signature="-1:-1" placeholder="SELECT * FRO..." />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/upload/system/library/PagarMe/lib/Pagarme/Model.php">
+    <entry file="file://$PROJECT_DIR$/1.5.x/upload/catalog/model/payment/pagar_me_boleto.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="20" column="40" selection-start-line="20" selection-start-column="40" selection-end-line="20" selection-end-column="40" />
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <marker date="1429125025045" expanded="true" signature="-1:-1" placeholder="SELECT * FRO..." />
+            <marker date="1429125025045" expanded="true" signature="-1:-1" placeholder="INSERT INTO ..." />
+            <marker date="1429125025045" expanded="true" signature="-1:-1" placeholder="SELECT * FRO..." />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/upload/catalog/view/theme/default/template/payment/pagar_me_boleto.tpl">
+    <entry file="file://$PROJECT_DIR$/1.5.x/upload/catalog/controller/payment/pagar_me_boleto.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="35" column="13" selection-start-line="32" selection-start-column="13" selection-end-line="35" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/upload/catalog/view/javascript/jquery.creditCardValidator.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="15" column="19" selection-start-line="15" selection-start-column="17" selection-end-line="15" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/upload/catalog/view/theme/default/template/payment/pagar_me_cartao.tpl">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="89" column="71" selection-start-line="89" selection-start-column="71" selection-end-line="89" selection-end-column="71" />
+          <caret line="154" column="129" selection-start-line="154" selection-start-column="12" selection-end-line="154" selection-end-column="129" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/upload/catalog/controller/payment/pagar_me_cartao.php">
+    <entry file="file://$PROJECT_DIR$/1.5.x/upload/vqmod/xml/pagar_me.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.8442211">
+          <caret line="46" column="0" selection-start-line="46" selection-start-column="0" selection-end-line="46" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="7" column="30" selection-start-line="7" selection-start-column="30" selection-end-line="7" selection-end-column="30" />
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/2.x/upload/admin/model/payment/pagar_me_cartao.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-7.3333335">
+          <caret line="11" column="58" selection-start-line="11" selection-start-column="58" selection-end-line="11" selection-end-column="58" />
+          <folding>
+            <marker date="1445009228887" expanded="true" signature="-1:-1" placeholder="CREATE TABLE..IF..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/2.x/upload/admin/model/payment/pagar_me_boleto.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-8.666667">
+          <caret line="13" column="84" selection-start-line="13" selection-start-column="84" selection-end-line="13" selection-end-column="84" />
+          <folding>
+            <marker date="1445008996415" expanded="true" signature="-1:-1" placeholder="CREATE TABLE..IF..." />
+            <marker date="1445008996415" expanded="true" signature="-1:-1" placeholder="ALTER TABLE ..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/2.x/upload/admin/controller/payment/pagar_me_boleto.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-3.9772727">
+          <caret line="36" column="85" selection-start-line="33" selection-start-column="8" selection-end-line="36" selection-end-column="85" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/2.x/upload/admin/language/portuguese-br/payment/pagar_me_boleto.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-9.333333">
+          <caret line="14" column="6" selection-start-line="14" selection-start-column="6" selection-end-line="14" selection-end-column="6" />
+          <folding>
+            <marker date="1445015082251" expanded="true" signature="-1:-1" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/2.x/upload/admin/language/portuguese-br/payment/pagar_me_cartao.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-23.444445">
+          <caret line="37" column="79" selection-start-line="37" selection-start-column="77" selection-end-line="37" selection-end-column="79" />
+          <folding>
+            <marker date="1445016385051" expanded="true" signature="-1:-1" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/2.x/upload/admin/controller/payment/pagar_me_cartao.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="5.431818">
+          <caret line="41" column="75" selection-start-line="41" selection-start-column="75" selection-end-line="41" selection-end-column="75" />
+          <folding>
+            <marker date="1445016784323" expanded="true" signature="-1:-1" placeholder="CREATE TABLE..IF..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/2.x/upload/admin/view/template/payment/pagar_me_boleto_bkp.tpl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/2.x/upload/admin/view/template/payment/pagar_me_boleto.tpl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.019933555">
+          <caret line="1" column="66" selection-start-line="1" selection-start-column="66" selection-end-line="1" selection-end-column="66" />
           <folding />
         </state>
       </provider>
