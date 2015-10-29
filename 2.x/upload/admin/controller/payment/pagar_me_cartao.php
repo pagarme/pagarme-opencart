@@ -16,7 +16,7 @@ class ControllerPaymentPagarMeCartao extends Controller {
 
             $this->session->data['success'] = $this->language->get('text_success');
 
-            $this->redirect($this->url->link('extension/payment', 'token=' . $this->session->data['token'], 'SSL'));
+            $this->response->redirect($this->url->link('extension/payment', 'token=' . $this->session->data['token'], 'SSL'));
         }
         $data['heading_title'] = $this->language->get('heading_title');
 
@@ -26,6 +26,7 @@ class ControllerPaymentPagarMeCartao extends Controller {
         $data['text_none'] = $this->language->get('text_none');
         $data['text_yes'] = $this->language->get('text_yes');
         $data['text_no'] = $this->language->get('text_no');
+        $data['text_edit'] = $this->language->get('text_edit');
 
         $data['entry_criptografia'] = $this->language->get('entry_criptografia');
         $data['entry_api'] = $this->language->get('entry_api');

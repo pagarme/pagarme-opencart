@@ -6,6 +6,7 @@ $_['heading_title']       			= 'Pagar.me - Cartão de crédito - Desenvolvido po
 $_['text_payment']        			= 'Pagamento';
 $_['text_success']        			= 'Módulo Pagar.me - Cartão de crédito atualizado com sucesso!';
 $_['text_pagar_me_cartao'] 				= '<a onclick="window.open(\'http://www.pagar.me/\');"><img src="view/image/payment/pagarme.png" alt="Pagar.me" title="Pagar.me" style="border: 1px solid #EEEEEE;" /></a>';
+$_['text_edit'] = 'Configurações - Pagar.Me Cartão de Crédito';
 
 
 // Entry
