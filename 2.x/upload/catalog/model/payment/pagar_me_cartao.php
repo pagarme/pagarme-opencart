@@ -21,6 +21,7 @@ class ModelPaymentPagarMeCartao extends Model {
             $method_data = array(
                 'code' => 'pagar_me_cartao',
                 'title' => $this->config->get('pagar_me_cartao_nome'),
+                'terms' => '',
                 'sort_order' => $this->config->get('pagar_me_cartao_sort_order')
             );
         }

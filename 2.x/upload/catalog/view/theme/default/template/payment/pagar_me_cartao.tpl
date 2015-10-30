@@ -112,7 +112,7 @@
     $('#button-confirm').bind('click', function () {
 
         /*Função Pagar.me*/
-        PagarMe.encryption_key = "<?php echo $this->config->get('pagar_me_cartao_criptografia'); ?>";
+        PagarMe.encryption_key = "<?php echo $pagar_me_cartao_criptografia; ?>";
 
         var form = $("#payment_form");
 
@@ -139,12 +139,10 @@
         if (hasErrors) {
             // realiza o tratamento de errors
             alert("Verifique se os dados informados estão corretos. Qualquer problema entre em contato com a loja.");
-            $('.wait').hide();
-            $('#button-confirm').show();
+            $('#button-confirm').button('reset');
             return false;
         } else {
-            $('#button-confirm').hide();
-            $('#aguardando').show();
+            $('#button-confirm').button('loading');
             //console.log("oi")
             // se não há erros, gera o card_hash...
             creditCard.generateHash(function (cardHash) {

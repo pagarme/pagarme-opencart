@@ -5,7 +5,7 @@ require_once DIR_SYSTEM . 'library/PagarMe/Pagarme.php';
 class ControllerPaymentPagarMeCartao extends Controller
 {
 
-    protected function index()
+    public function index()
     {
 
         $this->language->load('payment/pagar_me_cartao');
@@ -15,17 +15,18 @@ class ControllerPaymentPagarMeCartao extends Controller
         $customer = $this->model_account_customer->getCustomer($order_info['customer_id']);
 
         if ($this->customer->isLogged()) {
-            $this->data['nome_cartao'] = $order_info['payment_firstname'] . ' ' . $order_info['payment_lastname'];
+            $data['nome_cartao'] = $order_info['payment_firstname'] . ' ' . $order_info['payment_lastname'];
         }
 
-        $this->data['total'] = str_replace(".", "", number_format($order_info['total'], 2, ".", ""));
+        $data['pagar_me_cartao_criptografia'] = $this->config->get('pagar_me_cartao_criptografia');
+        $data['total'] = str_replace(".", "", number_format($order_info['total'], 2, ".", ""));
 
-        $this->data['button_confirm'] = $this->language->get('button_confirm');
-        $this->data['text_information'] = $this->language->get('text_information');
-        $this->data['text_wait'] = $this->language->get('text_wait');
-        $this->data['text_information'] = $this->config->get('pagar_me_cartao_text_information');
-        $this->data['url'] = $this->url->link('payment/pagar_me_cartao/confirm', '', 'SSL');
-        $this->data['url2'] = $this->url->link('payment/pagar_me_cartao/error', '', 'SSL');
+        $data['button_confirm'] = $this->language->get('button_confirm');
+        $data['text_information'] = $this->language->get('text_information');
+        $data['text_wait'] = $this->language->get('text_wait');
+        $data['text_information'] = $this->config->get('pagar_me_cartao_text_information');
+        $data['url'] = $this->url->link('payment/pagar_me_cartao/confirm', '', 'SSL');
+        $data['url2'] = $this->url->link('payment/pagar_me_cartao/error', '', 'SSL');
 
         /* Parcelas */
         Pagarme::setApiKey($this->config->get('pagar_me_cartao_api'));
@@ -40,26 +41,25 @@ class ControllerPaymentPagarMeCartao extends Controller
                 $max_parcelas = $this->config->get('pagar_me_cartao_max_parcelas');
             }
 
-            $this->data['parcelas'] = PagarMe_Transaction::calculateInstallmentsAmount($this->data['total'], $this->config->get('pagar_me_cartao_taxa_juros'), $max_parcelas, $this->config->get('pagar_me_cartao_parcelas_sem_juros'));
+            $data['parcelas'] = PagarMe_Transaction::calculateInstallmentsAmount($data['total'], $this->config->get('pagar_me_cartao_taxa_juros'), $max_parcelas, $this->config->get('pagar_me_cartao_parcelas_sem_juros'));
         } catch (Exception $e) {
             $this->log->write("Erro Pagar.me: " . $e->getTraceAsString());
             die();
         }
 
 
-        if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/payment/pagar_me_cartao.tpl')) {
-            $this->template = $this->config->get('config_template') . '/template/payment/pagar_me_cartao.tpl';
-        } else {
-            $this->template = 'default/template/payment/pagar_me_cartao.tpl';
-        }
         // incluindo css
         if (file_exists('catalog/view/theme/' . $this->config->get('config_template') . '/stylesheet/pagar_me_cartao.css')) {
-            $this->data['stylesheet'] = 'catalog/view/theme/' . $this->config->get('config_template') . '/stylesheet/pagar_me_cartao.css';
+            $data['stylesheet'] = 'catalog/view/theme/' . $this->config->get('config_template') . '/stylesheet/pagar_me_cartao.css';
         } else {
-            $this->data['stylesheet'] = 'catalog/view/theme/default/stylesheet/pagar_me_cartao.css';
+            $data['stylesheet'] = 'catalog/view/theme/default/stylesheet/pagar_me_cartao.css';
         }
 
-        $this->render();
+        if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/payment/pagar_me_cartao.tpl')) {
+            return $this->load->view($this->config->get('config_template') . '/template/payment/pagar_me_cartao.tpl', $data);
+        } else {
+            return $this->load->view('default/template/payment/pagar_me_cartao.tpl', $data);
+        }
     }
 
     public function confirm()
@@ -75,9 +75,9 @@ class ControllerPaymentPagarMeCartao extends Controller
         $comentario .= " Cartão: " . strtoupper($result['bandeira']) . "<br />";
         $comentario .= " Parcelado em: " . $result['n_parcela'] . "x";
 
-        $this->model_checkout_order->confirm($this->session->data['order_id'], $this->config->get('pagar_me_cartao_order_processing'), $comentario, true);
+        $this->model_checkout_order->addOrderHistory($this->session->data['order_id'], $this->config->get('pagar_me_cartao_order_processing'), $comentario, true);
 
-        $this->redirect($this->url->link('checkout/success'));
+        $this->response->redirect($this->url->link('checkout/success'));
     }
 
     public function error()
@@ -108,43 +108,43 @@ class ControllerPaymentPagarMeCartao extends Controller
 
         $this->document->setTitle($this->language->get('heading_title'));
 
-        $this->data['breadcrumbs'] = array();
+        $data['breadcrumbs'] = array();
 
-        $this->data['breadcrumbs'][] = array(
+        $data['breadcrumbs'][] = array(
             'href' => $this->url->link('common/home'),
             'text' => $this->language->get('text_home'),
             'separator' => false
         );
 
-        $this->data['breadcrumbs'][] = array(
+        $data['breadcrumbs'][] = array(
             'href' => $this->url->link('checkout/cart'),
             'text' => $this->language->get('text_basket'),
             'separator' => $this->language->get('text_separator')
         );
 
-        $this->data['breadcrumbs'][] = array(
+        $data['breadcrumbs'][] = array(
             'href' => $this->url->link('checkout/checkout', '', 'SSL'),
             'text' => $this->language->get('text_checkout'),
             'separator' => $this->language->get('text_separator')
         );
 
-        $this->data['breadcrumbs'][] = array(
+        $data['breadcrumbs'][] = array(
             'href' => $this->url->link('payment/cielo_message'),
             'text' => $this->language->get('text_no_success'),
             'separator' => $this->language->get('text_separator')
         );
 
-        $this->data['heading_title'] = $this->language->get('heading_title');
+        $data['heading_title'] = $this->language->get('heading_title');
 
         if ($this->customer->isLogged()) {
-            $this->data['text_message'] = sprintf($this->language->get('text_customer'), $this->url->link('account/order', '', 'SSL'), $this->url->link('information/contact'));
+            $data['text_message'] = sprintf($this->language->get('text_customer'), $this->url->link('account/order', '', 'SSL'), $this->url->link('information/contact'));
         } else {
-            $this->data['text_message'] = sprintf($this->language->get('text_guest'), $this->url->link('information/contact'));
+            $data['text_message'] = sprintf($this->language->get('text_guest'), $this->url->link('information/contact'));
         }
 
-        $this->data['button_continue'] = $this->language->get('button_continue');
+        $data['button_continue'] = $this->language->get('button_continue');
 
-        $this->data['continue'] = $this->url->link('common/home');
+        $data['continue'] = $this->url->link('common/home');
 
         if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/payment/pagar_me_cartao_message.tpl')) {
             $this->template = $this->config->get('config_template') . '/template/payment/pagar_me_cartao_message.tpl';
@@ -195,22 +195,25 @@ class ControllerPaymentPagarMeCartao extends Controller
 
         $customer = $this->model_account_customer->getCustomer($order_info['customer_id']);
 
-        if ($this->config->get('dados_status')) {
-            if ($customer['cpf'] != '') {
-                $document_number = $this->removeSeparadores($customer['cpf']);
-                $customer_name = $order_info['payment_firstname'] . " " . $order_info['payment_lastname'];
-            } else {
-                $document_number = $this->removeSeparadores($customer['cnpj']);
-                $customer_name = $customer['razao_social'];
-
+        $document_number = '';
+        $numero = 'Sem Número';
+        $complemento = '';
+        $customer_name = trim($order_info['payment_firstname']).' '.trim($order_info['payment_lastname']);
+        /* Pega os custom fields de CPF/CNPJ, número e complemento */
+        $this->load->model('account/custom_field');
+        $custom_fields = $this->model_account_custom_field->getCustomFields($customer['customer_group_id']);
+        foreach($custom_fields as $custom_field){
+            if($custom_field['location'] == 'account'){
+                if((strpos(strtolower($custom_field['name']), 'cpf') || strpos(strtolower($custom_field['name']), 'cnpj')) !== false){
+                    $document_number = $order_info['custom_field'][$custom_field['custom_field_id']];
+                }
+            }elseif($custom_field['location'] == 'address'){
+                if(strpos(strtolower($custom_field['name']), 'numero') !== false || strpos(strtolower($custom_field['name']), 'número') !== false){
+                    $numero = $order_info['payment_custom_field'][$custom_field['custom_field_id']];
+                }elseif(strpos(strtolower($custom_field['name']), 'complemento')){
+                    $complemento = $order_info['payment_custom_field'][$custom_field['custom_field_id']];
+                }
             }
-            $numero = $order_info['payment_numero'];
-            $complemento = $order_info['payment_company'];
-        } else {
-            $document_number = $this->removeSeparadores($order_info['payment_tax_id']);
-            $customer_name = $order_info['payment_firstname'] . " " . $order_info['payment_lastname'];
-            $numero = 'Sem número';
-            $complemento = '';
         }
 
         Pagarme::setApiKey($this->config->get('pagar_me_cartao_api'));
@@ -227,7 +230,7 @@ class ControllerPaymentPagarMeCartao extends Controller
                 "address" => array(
                     "street" => $order_info['payment_address_1'],
                     "neighborhood" => $order_info['payment_address_2'],
-                    "zipcode" => $order_info['payment_postcode'],
+                    "zipcode" => $this->removeSeparadores($order_info['payment_postcode']),
                     "street_number" => $numero,
                     "complementary" => $complemento
                 ),

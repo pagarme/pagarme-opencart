@@ -5,7 +5,7 @@ require_once DIR_SYSTEM . 'library/PagarMe/Pagarme.php';
 class ControllerPaymentPagarMeBoleto extends Controller
 {
 
-    protected function index()
+    public function index()
     {
 
         $this->language->load('payment/pagar_me_boleto');
@@ -14,28 +14,27 @@ class ControllerPaymentPagarMeBoleto extends Controller
         $order_info = $this->model_checkout_order->getOrder($this->session->data['order_id']);
         $customer = $this->model_account_customer->getCustomer($order_info['customer_id']);
 
-        $this->data['total'] = str_replace(".", "", number_format($order_info['total'], 2, ".", ""));
+        $data['total'] = str_replace(".", "", number_format($order_info['total'], 2, ".", ""));
 
-        $this->data['button_confirm'] = $this->language->get('button_confirm');
-        $this->data['text_information'] = $this->language->get('text_information');
-        $this->data['text_wait'] = $this->language->get('text_wait');
-        $this->data['text_information'] = $this->config->get('pagar_me_boleto_text_information');
-        $this->data['url'] = $this->url->link('payment/pagar_me_boleto/confirm', '', 'SSL');
-        $this->data['url2'] = $this->url->link('payment/pagar_me_boleto/error', '', 'SSL');
+        $data['button_confirm'] = $this->language->get('button_confirm');
+        $data['text_information'] = $this->language->get('text_information');
+        $data['text_wait'] = $this->language->get('text_wait');
+        $data['text_information'] = $this->config->get('pagar_me_boleto_text_information');
+        $data['url'] = $this->url->link('payment/pagar_me_boleto/confirm', '', 'SSL');
+        $data['url2'] = $this->url->link('payment/pagar_me_boleto/error', '', 'SSL');
+
+         //incluindo css
+        if (file_exists('catalog/view/theme/' . $this->config->get('config_template') . '/stylesheet/pagar_me_boleto.css')) {
+            $data['stylesheet'] = 'catalog/view/theme/' . $this->config->get('config_template') . '/stylesheet/pagar_me_cartao.css';
+        } else {
+            $data['stylesheet'] = 'catalog/view/theme/default/stylesheet/pagar_me_cartao.css';
+        }
 
         if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/payment/pagar_me_boleto.tpl')) {
-            $this->template = $this->config->get('config_template') . '/template/payment/pagar_me_boleto.tpl';
+            return $this->load->view($this->config->get('config_template') . '/template/payment/pagar_me_boleto.tpl', $data);
         } else {
-            $this->template = 'default/template/payment/pagar_me_boleto.tpl';
+            return $this->load->view('default/template/payment/pagar_me_boleto.tpl', $data);
         }
-        // incluindo css
-        if (file_exists('catalog/view/theme/' . $this->config->get('config_template') . '/stylesheet/pagar_me_boleto.css')) {
-            $this->data['stylesheet'] = 'catalog/view/theme/' . $this->config->get('config_template') . '/stylesheet/pagar_me_cartao.css';
-        } else {
-            $this->data['stylesheet'] = 'catalog/view/theme/default/stylesheet/pagar_me_cartao.css';
-        }
-
-        $this->render();
     }
 
     public function confirm()
@@ -46,18 +45,18 @@ class ControllerPaymentPagarMeBoleto extends Controller
 
         $order = $this->model_checkout_order->getOrder($this->session->data['order_id']);
 
-        $this->model_checkout_order->confirm($this->session->data['order_id'], $this->config->get('pagar_me_boleto_order_waiting_payment'), 'Imprima seu boleto aqui -> ' . $order['pagar_me_boleto_url']);
+        $this->model_checkout_order->addOrderHistory($this->session->data['order_id'], $this->config->get('pagar_me_boleto_order_waiting_payment'), 'Imprima seu boleto aqui -> ' . $order['pagar_me_boleto_url']);
 
         $this->session->data['pagar_me_boleto_url'] = $order['pagar_me_boleto_url'];
 
-        $this->redirect($this->url->link('checkout/success'));
+        $this->response->redirect($this->url->link('checkout/success'));
     }
 
     public function gera()
     {
         $boleto_url = $this->request->get['boleto'];
 
-        $this->redirect($boleto_url);
+        $this->response->redirect($boleto_url);
     }
 
     public function callback()
@@ -93,22 +92,25 @@ class ControllerPaymentPagarMeBoleto extends Controller
 
         $customer = $this->model_account_customer->getCustomer($order_info['customer_id']);
 
-        if ($this->config->get('dados_status')) {
-            if ($customer['cpf'] != '') {
-                $document_number = $this->removeSeparadores($customer['cpf']);
-                $customer_name = $order_info['payment_firstname'] . " " . $order_info['payment_lastname'];
-            } else {
-                $document_number = $this->removeSeparadores($customer['cnpj']);
-                $customer_name = $customer['razao_social'];
-
+        $document_number = '';
+        $numero = 'Sem Número';
+        $complemento = '';
+        $customer_name = trim($order_info['payment_firstname']).' '.trim($order_info['payment_lastname']);
+        /* Pega os custom fields de CPF/CNPJ, número e complemento */
+        $this->load->model('account/custom_field');
+        $custom_fields = $this->model_account_custom_field->getCustomFields($customer['customer_group_id']);
+        foreach($custom_fields as $custom_field){
+            if($custom_field['location'] == 'account'){
+                if((strpos(strtolower($custom_field['name']), 'cpf') || strpos(strtolower($custom_field['name']), 'cnpj')) !== false){
+                    $document_number = $order_info['custom_field'][$custom_field['custom_field_id']];
+                }
+            }elseif($custom_field['location'] == 'address'){
+                if(strpos(strtolower($custom_field['name']), 'numero') !== false || strpos(strtolower($custom_field['name']), 'número') !== false){
+                    $numero = $order_info['payment_custom_field'][$custom_field['custom_field_id']];
+                }elseif(strpos(strtolower($custom_field['name']), 'complemento')){
+                    $complemento = $order_info['payment_custom_field'][$custom_field['custom_field_id']];
+                }
             }
-            $numero = $order_info['payment_numero'];
-            $complemento = $order_info['payment_company'];
-        } else {
-            $document_number = $this->removeSeparadores($order_info['payment_tax_id']);
-            $customer_name = $order_info['payment_firstname'] . " " . $order_info['payment_lastname'];
-            $numero = 'Sem número';
-            $complemento = '';
         }
 
         Pagarme::setApiKey($this->config->get('pagar_me_boleto_api'));
