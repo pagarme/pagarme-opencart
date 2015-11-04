@@ -202,11 +202,13 @@ class ControllerPaymentPagarMeBoleto extends Controller {
     }
 
     public function install() {
-        $this->load->model('payment/pagar_me_checkout');
-        $this->model_payment_pagar_me_checkout->install();
+        $this->load->model('payment/pagar_me_boleto');
+        $this->model_payment_pagar_me_boleto->install();
     }
 
     public function uninstall() {
+        $this->load->model('payment/pagar_me_boleto');
+        $this->model_payment_pagar_me_boleto->uninstall();
     }
 
 }

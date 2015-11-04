@@ -1,7 +1,5 @@
 <?php
 
-/* TODO: checar model de adição de URL do boleto | estilizar corretamente tpl de cartão de crédito */
-
 class ModelPaymentPagarMeBoleto extends Model {
 
     public function getMethod($address, $total) {

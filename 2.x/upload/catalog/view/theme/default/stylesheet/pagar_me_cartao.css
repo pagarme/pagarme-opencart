@@ -22,12 +22,11 @@
 .dados_cartao #cardBrand{display:inline-block;position:absolute;top:10px;left:107px;width:32px;}
 .dados_cartao #cardBrand img{width:100%;}
 .dados_cartao label{display:block;position:relative;cursor:pointer;margin-top:10px;}
-.dados_cartao input,.dados_cartao select{-webkit-border-radius:5px;-moz-border-radius:5px;padding:10px;display:inline-block;border-radius:5px;background:#fff;outline:none;cursor:pointer;}
 .dados_cartao #card_number.valid{background:url('../image/bancos/is-valid.png') center right no-repeat;padding-right:5px;}
 #tool-tip-cvv{position:relative;}
 #label-cvv:hover #tool-tip-content{display:block;}
 #tool-tip-cvv i{}
-#tool-tip-cvv #tool-tip-content{left:57px;width:60px;top:19px;position:absolute;display:block;}
+#tool-tip-cvv #tool-tip-content{left:17px;width:60px;top:-10px;position:absolute;display:none;}
 #tool-tip-cvv #tool-tip-content:before{content:'';width:0;height:0;border-style:solid;border-width:5px 5px 5px 0;border-color:transparent #989898 transparent transparent;position:absolute;left:-5px;margin-top:12px;}
 #tool-tip-cvv #tool-tip-content img{width:100%;}
 @media (max-width:600px){

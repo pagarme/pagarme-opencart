@@ -76,4 +76,36 @@
             </add>
         </operation>
     </file>
+
+    <file path="catalog/controller/checkout/success.php">
+        <operation>
+            <search>
+                <![CDATA[public function index() {]]>
+            </search>
+            <add position="after">
+                <![CDATA[if (isset($this->session->data['pagar_me_boleto_url'])) {
+                    $data['pagar_me_boleto_url'] = $this->session->data['pagar_me_boleto_url'];
+                    unset($this->session->data['pagar_me_boleto_url']);
+                }else{
+                    $data['pagar_me_boleto_url'] = null;
+                    unset($this->session->data['pagar_me_boleto_url']);
+                }]]>
+            </add>
+        </operation>
+    </file>
+
+    <file path="catalog/view/theme/*/template/common/success.tpl">
+        <operation error="skip">
+            <search>
+                <![CDATA[<div class="pull-right"><a href="<?php echo $continue; ?>" class="btn btn-primary"><?php echo $button_continue; ?></a></div>]]>
+            </search>
+            <add position="before">
+                <![CDATA[
+                <?php if(isset($pagar_me_boleto_url)): ?>
+                    <div class="pull-left"><a href="<?php echo $pagar_me_boleto_url; ?>" class="btn btn-primary">Imprima seu boleto</a></div>
+                <?php endif; ?>
+                ]]>
+            </add>
+        </operation>
+    </file>
 </modification>

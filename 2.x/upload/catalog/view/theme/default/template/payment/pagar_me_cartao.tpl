@@ -1,5 +1,5 @@
 <link rel="stylesheet" href="<?php echo $stylesheet; ?>">
-<script src="catalog/view/javascript/jquery.mask.min.js" />
+<script src="catalog/view/javascript/jquery.mask.min.js"/>
 <script src="catalog/view/javascript/jquery.creditCardValidator.js"/>
 
 <?php if ($text_information) { ?>
@@ -7,7 +7,7 @@
 <?php } ?>
 
 <div class="dados_cartao">
-    <form id="payment_form" method="POST">
+    <form id="payment_form" method="POST" class="form-horizontal">
         <input type="hidden" name="totalValue" id="totalValue" value="<?php echo $total; ?>">
         <ul class="bandeiras">
             <li class="bandeira amex">
@@ -35,41 +35,60 @@
                 <i class="fa fa-check"></i>
             </li>
         </ul>
-        <div class="input-block-float">
-            <label for="card_number">Número do cartão</label>
-            <input type="text" id="card_number"/>
+        <div class="row">
+            <div class="col-xs-12 col-md-7">
+                <label for="card_number">Número do cartão</label>
+                <input class="form-control" type="text" id="card_number"/>
+            </div>
+            <div class="col-xs-12 col-md-5">
+                <label for="card_cvv" id="label-cvv">CVV <span id="tool-tip-cvv"><i
+                            class="fa fa-question-circle"></i> <span
+                            id="tool-tip-content"><img src="catalog/view/theme/default/image/bancos/cartao-cvv.png"
+                                                       alt=""></span></span></label>
+                <input type="text" id="card_cvv" size="4" placeholder="CVV" maxlength="4"
+                       class="so_numeros form-control"/>
+            </div>
         </div>
-        <div class="input-block-float">
-            <label for="card_cvv" id="label-cvv">CVV <span id="tool-tip-cvv"><i class="fa fa-question-circle"></i> <span
-                        id="tool-tip-content"><img src="catalog/view/theme/default/image/bancos/cartao-cvv.png" alt=""></span></span></label>
-            <input type="text" id="card_cvv" size="4" placeholder="CVV" maxlength="4" class="so_numeros"/>
+        <div class="row">
+            <div class="col-xs-12">
+                <label>Validade do cartão</label>
+            </div>
+            <div class="col-xs-6">
+                <input type="text" class="so_numeros form-control" placeholder="MM" maxlength="2" size="2"
+                       id="card_expiration_month">
+
+            </div>
+            <div class="col-xs-6">
+                <input type="text" class="so_numeros form-control" maxlength="4" placeholder="AAAA" size="4"
+                       id="card_expiration_year">
+            </div>
         </div>
-        <div class="cf"></div>
-        <div class="input-block">
-            <label>Validade do cartão</label>
-            <input type="text" id="card_expiration_month" size="2" maxlength="2" placeholder="MM" class="so_numeros"/>
-            <input type="text" id="card_expiration_year" size="4" placeholder="AAAA" maxlength="4" class="so_numeros"/>
+        <div class="row">
+            <div class="col-xs-12">
+                <label for="card_holder_name">Nome impresso no cartão</label>
+                <input type="text" id="card_holder_name" value="" class="form-control"/>
+            </div>
         </div>
-        <div class="input-block">
-            <label for="card_holder_name">Nome impresso no cartão</label>
-            <input type="text" id="card_holder_name" value=""/>
-        </div>
-        <div id="installmentsWrapper">
-            <div class="input-block">
-                <label for="installmentQuantity">Parcelamento</label>
-                <select name="installments" id="installments">
-                    <?php foreach ($parcelas['installments'] as $parcela): ?>
-                        <option value="<?php echo $parcela['installment'] ?>"><?php echo $parcela['installment'] ?>x de
-                            R$ <?php echo substr_replace((string)$parcela['installment_amount'], ',', -2, 0); ?></option>
-                    <?php endforeach; ?>
-                </select>
+        <div class="row">
+            <div id="installmentsWrapper">
+                <div class="col-xs-12">
+                    <label for="installmentQuantity">Parcelamento</label>
+                    <select name="installments" id="installments" class="form-control">
+                        <?php foreach ($parcelas['installments'] as $parcela): ?>
+                            <option value="<?php echo $parcela['installment'] ?>"><?php echo $parcela['installment'] ?>x
+                                de
+                                R$ <?php echo substr_replace((string)$parcela['installment_amount'], ',', -2, 0); ?></option>
+                        <?php endforeach; ?>
+                    </select>
+                </div>
             </div>
         </div>
     </form>
 </div>
 <div class="buttons">
-    <div class="center"><a id="button-confirm"
-                           class="button disabled"><span><?php echo $button_confirm; ?></span></a><span id="aguardando">Aguarde...</span>
+    <div class="text-center">
+        <input type="button" value="<?php echo $button_confirm; ?>" id="button-confirm" class="btn btn-primary"
+               data-loading-text="Processando..."/>
     </div>
 </div>
 <style>
