@@ -29,7 +29,7 @@ class ModelPaymentPagarMeCheckout extends Model {
     }
 
     public function addTransactionId($order_id, $transaction_id, $boleto_url) {
-        $this->db->query("INSERT INTO `" . DB_PREFIX . "pagar_me_transaction` SET order_id = '" . (int) $order_id . "', transaction_id =
+        $this->db->query("INSERT INTO `" . DB_PREFIX . "pagar_me_checkout_transaction` SET order_id = '" . (int) $order_id . "', transaction_id =
 '" . $this->db->escape($transaction_id) . "'");
 
         $this->db->query("UPDATE `" . DB_PREFIX . "order` SET pagar_me_checkout_url = '" . $this->db->escape($boleto_url) . "' WHERE
@@ -37,7 +37,7 @@ class ModelPaymentPagarMeCheckout extends Model {
     }
 
     public function getPagarMeOrder($transaction_id) {
-        $order_query = $this->db->query("SELECT * FROM `" . DB_PREFIX . "pagar_me_transaction` WHERE transaction_id = '" . $this->db->escape($transaction_id) . "'");
+        $order_query = $this->db->query("SELECT * FROM `" . DB_PREFIX . "pagar_me_checkout_transaction` WHERE transaction_id = '" . $this->db->escape($transaction_id) . "'");
 
         if ($order_query->num_rows) {
             return $order_query->row['order_id'];

@@ -1,10 +1,12 @@
 <?php
 
-class ControllerPaymentPagarMeCartao extends Controller {
+class ControllerPaymentPagarMeCartao extends Controller
+{
 
     private $error = array();
 
-    public function index() {
+    public function index()
+    {
         $this->load->language('payment/pagar_me_cartao');
 
         $this->document->setTitle($this->language->get('heading_title'));
@@ -260,7 +262,8 @@ class ControllerPaymentPagarMeCartao extends Controller {
         $this->response->setOutput($this->render(TRUE), $this->config->get('config_compression'));
     }
 
-    private function validate() {
+    private function validate()
+    {
 
         if (!$this->user->hasPermission('modify', 'payment/pagar_me_cartao')) {
             $this->error['warning'] = $this->language->get('error_permission');
@@ -301,7 +304,8 @@ class ControllerPaymentPagarMeCartao extends Controller {
         }
     }
 
-    public function install() {
+    public function install()
+    {
         $this->db->query("CREATE TABLE IF NOT EXISTS `" . DB_PREFIX . "pagar_me_transaction` (
   `pagar_me_transaction_id` int(11) NOT NULL AUTO_INCREMENT,
   `order_id` int(11) NOT NULL,
@@ -312,7 +316,11 @@ class ControllerPaymentPagarMeCartao extends Controller {
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1");
     }
 
-    public function uninstall() {
+    public function uninstall()
+    {
+        if (!$this->config->get('pagar_me_boleto_status')) {
+            $this->db->query("DROP TABLE IF EXISTS `" . DB_PREFIX . "pagar_me_transaction`");
+        }
     }
 
 }

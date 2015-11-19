@@ -1,10 +1,12 @@
 <?php
 
-class ControllerPaymentPagarMeBoleto extends Controller {
+class ControllerPaymentPagarMeBoleto extends Controller
+{
 
     private $error = array();
 
-    public function index() {
+    public function index()
+    {
         $this->load->language('payment/pagar_me_boleto');
 
         $this->document->setTitle($this->language->get('heading_title'));
@@ -169,7 +171,8 @@ class ControllerPaymentPagarMeBoleto extends Controller {
         $this->response->setOutput($this->render(TRUE), $this->config->get('config_compression'));
     }
 
-    private function validate() {
+    private function validate()
+    {
 
         if (!$this->user->hasPermission('modify', 'payment/pagar_me_boleto')) {
             $this->error['warning'] = $this->language->get('error_permission');
@@ -198,7 +201,8 @@ class ControllerPaymentPagarMeBoleto extends Controller {
         }
     }
 
-    public function install() {
+    public function install()
+    {
         $this->db->query("CREATE TABLE IF NOT EXISTS `" . DB_PREFIX . "pagar_me_transaction` (
   `pagar_me_transaction_id` int(11) NOT NULL AUTO_INCREMENT,
   `order_id` int(11) NOT NULL,
@@ -211,7 +215,13 @@ class ControllerPaymentPagarMeBoleto extends Controller {
         $this->db->query("ALTER TABLE  `" . DB_PREFIX . "order` ADD `pagar_me_boleto_url` VARCHAR( 512 ) NULL DEFAULT NULL AFTER  `payment_code`");
     }
 
-    public function uninstall() {
+    public function uninstall()
+    {
+        if (!$this->config->get('pagar_me_cartao_status')) {
+            $this->db->query("DROP TABLE IF EXISTS `" . DB_PREFIX . "pagar_me_transaction`");
+        }
+
+        $this->db->query("ALTER TABLE `" . DB_PREFIX . "order` DROP COLUMN `pagar_me_boleto_url`");
     }
 
 }

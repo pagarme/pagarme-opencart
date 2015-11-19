@@ -1,10 +1,12 @@
 <?php
 
-class ControllerPaymentPagarMeCheckout extends Controller {
+class ControllerPaymentPagarMeCheckout extends Controller
+{
 
     private $error = array();
 
-    public function index() {
+    public function index()
+    {
         $this->load->language('payment/pagar_me_checkout');
 
         $this->document->setTitle($this->language->get('heading_title'));
@@ -35,12 +37,12 @@ class ControllerPaymentPagarMeCheckout extends Controller {
         $this->data['entry_api'] = $this->language->get('entry_api');
         $this->data['entry_nome'] = $this->language->get('entry_nome');
         $this->data['entry_texto_botao'] = $this->language->get('entry_texto_botao');
-        $this->data['entry_payment_methods'] =  $this->language->get('entry_payment_methods');
-        $this->data['entry_card_brands'] =      $this->language->get('entry_card_brands');
-        $this->data['entry_max_installments'] =  $this->language->get('entry_max_installments');
-        $this->data['entry_interest_rate'] =  $this->language->get('entry_insterest_rate');
-        $this->data['entry_ui_color'] =         $this->language->get('entry_ui_color');
-        $this->data['entry_button_css_class'] =         $this->language->get('entry_button_css_class');
+        $this->data['entry_payment_methods'] = $this->language->get('entry_payment_methods');
+        $this->data['entry_card_brands'] = $this->language->get('entry_card_brands');
+        $this->data['entry_max_installments'] = $this->language->get('entry_max_installments');
+        $this->data['entry_interest_rate'] = $this->language->get('entry_insterest_rate');
+        $this->data['entry_ui_color'] = $this->language->get('entry_ui_color');
+        $this->data['entry_button_css_class'] = $this->language->get('entry_button_css_class');
         $this->data['entry_text_information'] = $this->language->get('entry_text_information');
         $this->data['entry_order_status'] = $this->language->get('entry_order_status');
         $this->data['entry_order_waiting_payment'] = $this->language->get('entry_order_waiting_payment');
@@ -140,17 +142,17 @@ class ControllerPaymentPagarMeCheckout extends Controller {
 
         if (isset($this->request->post['pagar_me_checkout_payment_methods'])) {
             $this->data['pagar_me_checkout_payment_methods'] = $this->request->post['pagar_me_checkout_payment_methods'];
-        } elseif($this->config->get('pagar_me_checkout_payment_methods')) {
+        } elseif ($this->config->get('pagar_me_checkout_payment_methods')) {
             $this->data['pagar_me_checkout_payment_methods'] = $this->config->get('pagar_me_checkout_payment_methods');
-        }else{
-            $this->data['pagar_me_checkout_payment_methods'] =  array();
+        } else {
+            $this->data['pagar_me_checkout_payment_methods'] = array();
         }
 
         if (isset($this->request->post['pagar_me_checkout_card_brands'])) {
             $this->data['pagar_me_checkout_card_brands'] = $this->request->post['pagar_me_checkout_card_brands'];
-        } elseif($this->config->get('pagar_me_checkout_card_brands')) {
+        } elseif ($this->config->get('pagar_me_checkout_card_brands')) {
             $this->data['pagar_me_checkout_card_brands'] = $this->config->get('pagar_me_checkout_card_brands');
-        }else{
+        } else {
             $this->data['pagar_me_checkout_card_brands'] = array();
         }
 
@@ -243,7 +245,8 @@ class ControllerPaymentPagarMeCheckout extends Controller {
         $this->response->setOutput($this->render(TRUE), $this->config->get('config_compression'));
     }
 
-    private function validate() {
+    private function validate()
+    {
 
         if (!$this->user->hasPermission('modify', 'payment/pagar_me_checkout')) {
             $this->error['warning'] = $this->language->get('error_permission');
@@ -260,7 +263,7 @@ class ControllerPaymentPagarMeCheckout extends Controller {
         if (!$this->request->post['pagar_me_checkout_payment_methods']) {
             $this->error['payment_methods'] = $this->language->get('error_payment_methods');
         }
-        
+
         if (!$this->request->post['pagar_me_checkout_card_brands']) {
             $this->error['card_brands'] = $this->language->get('error_card_brands');
         }
@@ -286,8 +289,9 @@ class ControllerPaymentPagarMeCheckout extends Controller {
         }
     }
 
-    public function install() {
-        $this->db->query("CREATE TABLE IF NOT EXISTS `" . DB_PREFIX . "pagar_me_transaction` (
+    public function install()
+    {
+        $this->db->query("CREATE TABLE IF NOT EXISTS `" . DB_PREFIX . "pagar_me_checkout_transaction` (
   `pagar_me_transaction_id` int(11) NOT NULL AUTO_INCREMENT,
   `order_id` int(11) NOT NULL,
   `transaction_id` varchar(512) DEFAULT NULL,
@@ -297,7 +301,11 @@ class ControllerPaymentPagarMeCheckout extends Controller {
         $this->db->query("ALTER TABLE  `" . DB_PREFIX . "order` ADD `pagar_me_checkout_url` VARCHAR( 512 ) NULL DEFAULT NULL AFTER  `payment_code`");
     }
 
-    public function uninstall() {
+    public function uninstall()
+    {
+        $this->db->query("DROP TABLE IF EXISTS `" . DB_PREFIX . "pagar_me_checkout_transaction`");
+
+        $this->db->query("ALTER TABLE `" . DB_PREFIX . "order` DROP COLUMN `pagar_me_checkout_url`");
     }
 
 }
