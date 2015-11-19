@@ -1,10 +1,8 @@
-#########################################################
-##          Módulo integração Pagar.Me via API e       ## 
-##          Checkout Pagar.ME                          ##
-##          Desenvolvedor: Santive Tecnologia          ##
-##          Contato: contato@santive.com               ##
-##                                                     ##
-#########################################################
+######################################################################
+##          Módulo integração Pagar.Me via API e Checkout Pagar.ME  ## 
+##          Desenvolvedor: Santive Tecnologia                       ##
+##          Contato: contato@santive.com                            ##
+######################################################################
 
 ### Compatibilidade
 
