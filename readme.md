@@ -1,5 +1,6 @@
 #########################################################
-##          Módulo integração Pagar.Me                 ##
+##          Módulo integração Pagar.Me via API e       ## 
+##          Checkout Pagar.ME                          ##
 ##          Desenvolvedor: Santive Tecnologia          ##
 ##          Contato: contato@santive.com               ##
 ##                                                     ##
@@ -7,7 +8,7 @@
 
 ### Compatibilidade
 
- OpenCart 1.5.x, deve pegar também em Opencarts mais antigos
+ OpenCart 1.5.x e 2.x
 
 ### Funcionalidades
 
