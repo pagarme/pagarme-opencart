@@ -1,0 +1,94 @@
+
+<modification>
+    <id>VQmod para o módulo de pagamento Checkout Pagar.me (segunda via de boleto)</id>
+    <version>1.0</version>
+    <vqmver>2.1.5</vqmver>
+    <author>Santive Tecnologia contato@santive.com</author>
+
+    <file name="catalog/controller/account/order.php">
+        <operation>
+            <search position="after">
+                <![CDATA[
+                $this->data['date_added'] = date($this->language->get('date_format_short'), strtotime($order_info['date_added']));
+                ]]>
+            </search>
+            <add>
+                <![CDATA[if($this->config->get('pagar_me_checkout_status')){
+                    $this->data['order_status_id'] = $order_info['order_status_id'];
+                    $this->data['pagar_me_checkout_url'] = $order_info['pagar_me_checkout_url'];
+                    $this->data['payment_code'] = $order_info['payment_code'];
+                }]]>
+            </add>
+        </operation>
+    </file>
+
+    <file name="catalog/model/account/order.php">
+        <operation>
+            <search position="after">
+                <![CDATA[$order_query->row['payment_company'],]]>
+            </search>
+            <add>
+                <![CDATA['payment_code'         => $order_query->row['payment_code'],
+                'pagar_me_checkout_url'         => $order_query->row['pagar_me_checkout_url'],]]>
+            </add>
+        </operation>
+    </file>
+
+    <file name="catalog/model/checkout/order.php">
+        <operation>
+            <search position="after">
+                <![CDATA[return array(]]>
+            </search>
+            <add>
+                <![CDATA['pagar_me_checkout_url'                => $order_query->row['pagar_me_checkout_url'],]]>
+            </add>
+        </operation>
+    </file>
+
+    <file name="catalog/view/theme/*/template/account/order_info.tpl">
+        <operation>
+            <search position="replace">
+                <![CDATA[<b><?php echo $text_payment_method; ?></b> <?php echo $payment_method; ?><br />]]>
+            </search>
+            <add>
+                <![CDATA[<b><?php echo $text_payment_method; ?></b> <?php echo $payment_method; ?>
+                <?php
+                if($this->config->get('pagar_me_checkout_status')):
+                    if($payment_code == 'pagar_me_checkout' && $order_status_id == $this->config->get('pagar_me_checkout_order_waiting_payment')): ?>
+                        <a style="cursor: pointer;" onclick="javascript:window.open('<?php echo $pagar_me_checkout_url; ?>', 'jstest', 'height=600,width=800,channelmode=0,dependent=0,directories=0,fullscreen=0,location=0,menubar=0,resizable=1,scrollbars=1,status=0,toolbar=0');" target="_blank">Emitir 2&ordf; via do boleto</a>
+                    <?php
+                        endif;
+                    endif;
+                    ?>
+                    <br />]]>
+            </add>
+        </operation>
+    </file>
+
+    <file path="catalog/controller/checkout/success.php">
+        <operation>
+            <search position="before">
+                <![CDATA[$this->data['button_continue'] = $this->language->get('button_continue');]]>
+            </search>
+            <add>
+                <![CDATA[if($this->session->data['checkout_pagar_me_boleto_url']){
+                    $this->data['button_checkout_pagar_me_boleto'] = $this->session->data['checkout_pagar_me_boleto_url'];
+                    unset($this->session->data['checkout_pagar_me_boleto_url']);
+                }]]>
+            </add>
+        </operation>
+    </file>
+
+    <file name="catalog/view/theme/*/template/common/success.tpl">
+        <operation>
+            <search position="before">
+                <![CDATA[<div class="right"><a href="<?php echo $continue; ?>" class="button"><?php echo $button_continue; ?></a></div>]]>
+            </search>
+            <add>
+                <![CDATA[<?php if($button_checkout_pagar_me_boleto): ?>
+  <div class="left"><a href="<?php echo $button_checkout_pagar_me_boleto ?>" target="_blank" class="button"><strong>Imprima seu boleto</strong></a></div>
+<?php endif; ?>]]>
+            </add>
+        </operation>
+    </file>
+</modification>
