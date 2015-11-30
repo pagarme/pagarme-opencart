@@ -149,6 +149,18 @@
                                    class="form-control"/>
                         </div>
                     </div>
+                    
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label"
+                               for="input-free_installments"><?php echo $entry_free_installments; ?></label>
+
+                        <div class="col-sm-10">
+                            <input type="text" name="pagar_me_checkout_free_installments"
+                                   value="<?php echo $pagar_me_checkout_free_installments; ?>"
+                                   placeholder="<?php echo $entry_free_installments; ?>" id="input-free_installments"
+                                   class="form-control"/>
+                        </div>
+                    </div>
 
                     <div class="form-group">
                         <label class="col-sm-2 control-label"

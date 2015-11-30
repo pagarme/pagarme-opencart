@@ -36,6 +36,7 @@ class ControllerPaymentPagarMeCheckout extends Controller
 
         $this->data['card_brands'] = $card_brands;
         $this->data['max_installments'] = $this->config->get('pagar_me_checkout_max_installments');
+        $this->data['free_installments'] = $this->config->get('pagar_me_checkout_free_installments');
         $this->data['ui_color'] = $this->config->get('pagar_me_checkout_ui_color');
         $this->data['postback_url'] =HTTP_SERVER . 'index.php?route=payment/pagar_me_checkout/callback';
         $this->data['customer_name'] = trim($order_info['payment_firstname']).' '.trim($order_info['payment_lastname']);
