@@ -14,6 +14,7 @@
     script.setAttribute('data-payment-methods', "<?php echo $payment_methods; ?>");
     script.setAttribute('data-card-brands', "<?php echo $card_brands; ?>");
     script.setAttribute('data-max-installments', "<?php echo $max_installments; ?>");
+    script.setAttribute('data-free-installments', "<?php echo $free_installments; ?>");
     script.setAttribute('data-ui-color', "<?php echo $ui_color; ?>");
     script.setAttribute('data-postback-url', "<?php echo $postback_url; ?>");
     script.setAttribute('data-customer-name', "<?php echo $customer_name; ?>");
