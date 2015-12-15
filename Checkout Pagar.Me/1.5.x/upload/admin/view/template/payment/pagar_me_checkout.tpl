@@ -76,6 +76,11 @@
 				<td><input type="text" name="pagar_me_checkout_max_installments" value="<?php echo $pagar_me_checkout_max_installments; ?>" size="50%" />
 			</tr>
 
+            <tr>
+                <td><?php echo $entry_free_installments; ?></td>
+                <td><input type="text" name="pagar_me_checkout_free_installments" value="<?php echo $pagar_me_checkout_free_installments; ?>" size="50%" />
+            </tr>
+
 			<tr>
 				<td><?php echo $entry_interest_rate; ?></td>
 				<td><input type="text" name="pagar_me_checkout_interest_rate" value="<?php echo $pagar_me_checkout_interest_rate; ?>" size="50%" />

@@ -17,6 +17,7 @@ $_['entry_texto_botao']         				= 'Texto para o botão de pagamento:<br /><s
 $_['entry_payment_methods'] = 'Métodos de pagamento aceitos:';
 $_['entry_card_brands'] = 'Bandeiras de cartão aceitas:';
 $_['entry_max_installments'] = 'Número máximo de parcelas:';
+$_['entry_free_installments'] = 'Número de parcelas sem juros:';
 $_['entry_insterest_rate'] = 'Taxa de juros a ser cobrada na transação (%):<br /><span class="help">Ex: 1.99 (utilizar somente número com "." como separador)</span>';
 $_['entry_ui_color'] = 'Cor primária do checkout:';
 $_['entry_button_css_class'] = 'Classe css a ser aplicada no botão:';
