@@ -136,6 +136,12 @@ class ControllerPaymentPagarMeBoleto extends Controller
             $this->data['pagar_me_boleto_order_waiting_payment'] = $this->config->get('pagar_me_boleto_order_waiting_payment');
         }
 
+        if (isset($this->request->post['pagar_me_boleto_order_paid'])) {
+            $this->data['pagar_me_boleto_order_paid'] = $this->request->post['pagar_me_boleto_order_paid'];
+        } else {
+            $this->data['pagar_me_boleto_order_paid'] = $this->config->get('pagar_me_boleto_order_paid');
+        }
+
         $this->load->model('localisation/order_status');
 
         $this->data['order_statuses'] = $this->model_localisation_order_status->getOrderStatuses();
