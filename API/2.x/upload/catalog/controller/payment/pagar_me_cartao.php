@@ -195,7 +195,7 @@ class ControllerPaymentPagarMeCartao extends Controller
 
         $customer = $this->model_account_customer->getCustomer($order_info['customer_id']);
 
-        $document_number = '';
+
         $numero = 'Sem Número';
         $complemento = '';
         $customer_name = trim($order_info['payment_firstname']).' '.trim($order_info['payment_lastname']);
@@ -203,11 +203,7 @@ class ControllerPaymentPagarMeCartao extends Controller
         $this->load->model('account/custom_field');
         $custom_fields = $this->model_account_custom_field->getCustomFields($customer['customer_group_id']);
         foreach($custom_fields as $custom_field){
-            if($custom_field['location'] == 'account'){
-                if((strpos(strtolower($custom_field['name']), 'cpf') || strpos(strtolower($custom_field['name']), 'cnpj')) !== false){
-                    $document_number = $order_info['custom_field'][$custom_field['custom_field_id']];
-                }
-            }elseif($custom_field['location'] == 'address'){
+            if($custom_field['location'] == 'address'){
                 if(strpos(strtolower($custom_field['name']), 'numero') !== false || strpos(strtolower($custom_field['name']), 'número') !== false){
                     $numero = $order_info['payment_custom_field'][$custom_field['custom_field_id']];
                 }elseif(strpos(strtolower($custom_field['name']), 'complemento')){
@@ -225,7 +221,7 @@ class ControllerPaymentPagarMeCartao extends Controller
             'postback_url' => HTTP_SERVER . 'index.php?route=payment/pagar_me_cartao/callback',
             "customer" => array(
                 "name" => $customer_name,
-                "document_number" => $document_number,
+                "document_number" => $this->request->post['cpf_customer'],
                 "email" => $order_info['email'],
                 "address" => array(
                     "street" => $order_info['payment_address_1'],
