@@ -232,6 +232,10 @@ class ControllerPaymentPagarMeCartao extends Controller
                     "ddd" => substr(preg_replace('/[^0-9]/', '', $order_info['telephone']), 0, 2),
                     "number" => substr(preg_replace('/[^0-9]/', '', $order_info['telephone']), 2),
                 )
+            ),
+            'metadata' => array(
+                'id_pedido' => $order_info['order_id'],
+                'loja' => $this->config->get('config_title'),
             )));
 
         $transaction->charge();
