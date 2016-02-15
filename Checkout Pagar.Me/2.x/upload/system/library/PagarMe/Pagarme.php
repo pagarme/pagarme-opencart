@@ -37,9 +37,11 @@ require(dirname(__FILE__) . '/lib/Pagarme/TransactionCommon.php');
 require(dirname(__FILE__) . '/lib/Pagarme/Transaction.php');
 require(dirname(__FILE__) . '/lib/Pagarme/Plan.php');
 require(dirname(__FILE__) . '/lib/Pagarme/Subscription.php');
-require(dirname(__FILE__) . '/lib/Pagarme/Customer.php');
 require(dirname(__FILE__) . '/lib/Pagarme/Address.php');
 require(dirname(__FILE__) . '/lib/Pagarme/Phone.php');
 require(dirname(__FILE__) . '/lib/Pagarme/Card.php');
+require(dirname(__FILE__) . '/lib/Pagarme/Bank_Account.php');
+require(dirname(__FILE__) . '/lib/Pagarme/Recipient.php');
+require(dirname(__FILE__) . '/lib/Pagarme/Customer.php');
 
 ?>

@@ -43,7 +43,7 @@ class PagarMe_Object implements ArrayAccess, Iterator {
 	public function __call($name, $arguments) {
 		$var = PagarMe_Util::fromCamelCase(substr($name,3));
 		if(!strncasecmp($name, 'get', 3)) {
-			return $this->$var;	
+			return $this->$var;
 		}	else if(!strncasecmp($name, 'set',3)) {
 			$this->$var = $arguments[0];
 		} else {
@@ -92,7 +92,7 @@ class PagarMe_Object implements ArrayAccess, Iterator {
 	}
 
 	public function keys() {
-		return array_keys($this->_attributes);	
+		return array_keys($this->_attributes);
 	}
 
 	public function unsavedArray() {
@@ -111,7 +111,7 @@ class PagarMe_Object implements ArrayAccess, Iterator {
 	}
 
 	public static function build($response, $class = null) {
-		if(!$class) { 
+		if(!$class) {
 			$class = get_class();
 		}
 		$obj = new $class($response);
@@ -119,14 +119,14 @@ class PagarMe_Object implements ArrayAccess, Iterator {
 	}
 
 	public function refresh($response) {
-		$removed = array_diff(array_keys($this->_attributes), array_keys($response));		
+		$removed = array_diff(array_keys($this->_attributes), array_keys($response));
 
 		foreach($removed as $k) {
 			unset($this->$k);
 		}
 
 		foreach($response as $key => $value) {
-			$this->_attributes[$key] = PagarMe_Util::convertToPagarMeObject($value);	
+			$this->_attributes[$key] = PagarMe_Util::convertToPagarMeObject($value);
 			$this->_unsavedAttributes->remove($key);
 		}
 
@@ -182,5 +182,3 @@ class PagarMe_Object implements ArrayAccess, Iterator {
 	}
 
 }
-
-?>

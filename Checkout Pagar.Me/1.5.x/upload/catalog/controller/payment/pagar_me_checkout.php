@@ -15,22 +15,22 @@ class ControllerPaymentPagarMeCheckout extends Controller
 
         //Dados para o checkout
         $this->data['encryption_key'] = $this->config->get('pagar_me_checkout_criptografia');
-        $this->data['amount'] = str_replace(array(".", ","), array("", ""), number_format($order_info['total'],2,'',''));
+        $this->data['amount'] = str_replace(array(".", ","), array("", ""), number_format($order_info['total'], 2, '', ''));
         $this->data['button_text'] = $this->config->get('pagar_me_checkout_texto_botao') ? $this->config->get('pagar_me_checkout_texto_botao') : "Pagar";
         $this->data['button_class'] = $this->config->get('pagar_me_checkout_button_css_class');
         $payment_methods = $this->config->get('pagar_me_checkout_payment_methods');
-        if(count($payment_methods) == 1){
+        if (count($payment_methods) == 1) {
             $this->data['payment_methods'] = $payment_methods[0];
-        }else{
-            $this->data['payment_methods'] = $payment_methods[0].','.$payment_methods[1];
+        } else {
+            $this->data['payment_methods'] = $payment_methods[0] . ',' . $payment_methods[1];
         }
         $card_brands = '';
         $card_brands_array = $this->config->get('pagar_me_checkout_card_brands');
-        foreach($card_brands_array as $card_brand){
-            if(reset($card_brands_array) == $card_brand){
+        foreach ($card_brands_array as $card_brand) {
+            if (reset($card_brands_array) == $card_brand) {
                 $card_brands .= $card_brand;
-            }else{
-                $card_brands .= ','.$card_brand;
+            } else {
+                $card_brands .= ',' . $card_brand;
             }
         }
 
@@ -38,8 +38,8 @@ class ControllerPaymentPagarMeCheckout extends Controller
         $this->data['max_installments'] = $this->config->get('pagar_me_checkout_max_installments');
         $this->data['free_installments'] = $this->config->get('pagar_me_checkout_free_installments');
         $this->data['ui_color'] = $this->config->get('pagar_me_checkout_ui_color');
-        $this->data['postback_url'] =HTTP_SERVER . 'index.php?route=payment/pagar_me_checkout/callback';
-        $this->data['customer_name'] = trim($order_info['payment_firstname']).' '.trim($order_info['payment_lastname']);
+        $this->data['postback_url'] = HTTP_SERVER . 'index.php?route=payment/pagar_me_checkout/callback';
+        $this->data['customer_name'] = trim($order_info['payment_firstname']) . ' ' . trim($order_info['payment_lastname']);
         if ($this->config->get('dados_status')) {
             if ($customer['cpf'] != '') {
                 $this->data['customer_document_number'] = $this->removeSeparadores($customer['cpf']);
@@ -50,7 +50,7 @@ class ControllerPaymentPagarMeCheckout extends Controller
             }
             $this->data['customer_address_street_number'] = $order_info['payment_numero'];
             $this->data['customer_address_complementary'] = $order_info['payment_company'];
-        }else{
+        } else {
             $this->data['customer_document_number'] = $this->removeSeparadores($order_info['payment_tax_id']);
             $this->data['customer_address_street_number'] = '';
             $this->data['customer_address_complementary'] = '';
@@ -101,25 +101,30 @@ class ControllerPaymentPagarMeCheckout extends Controller
         Pagarme::setApiKey($this->config->get('pagar_me_checkout_api'));
 
         $transaction = PagarMe_Transaction::findById($this->request->post['token']);
-        $amount=$transaction->amount;
+        $amount = $transaction->amount;
 
-        try{
-            $transaction->capture($amount);
-        }catch (Exception $e){
-            $this->log->write($e->getMessage());
+        try {
+            $transaction->capture(array(
+                'amount' => $amount,
+                'metadata' => array(
+                    'id_pedido' => $this->session->data['order_id'],
+                    'loja' => $this->config->get('config_title'),
+                )));
+        } catch (Exception $e) {
+            $this->log->write($e->getMessage() . " amount: " . $amount);
         }
 
         $status = $transaction->status;
 
-        if($transaction->status == 'authorized' || $transaction->status == 'paid'){
+        if ($transaction->status == 'authorized' || $transaction->status == 'paid') {
             $status = 'paid';
             $this->model_payment_pagar_me_checkout->addTransactionId($this->session->data['order_id'], $transaction->id, NULL);
-        }else{
+        } else {
             $this->model_payment_pagar_me_checkout->addTransactionId($this->session->data['order_id'], $transaction->id, $transaction->boleto_url);
             $this->session->data['checkout_pagar_me_boleto_url'] = $transaction->boleto_url;
         }
 
-        $this->model_checkout_order->confirm($this->session->data['order_id'], $this->config->get('pagar_me_checkout_order_'.$status), '', true);
+        $this->model_checkout_order->confirm($this->session->data['order_id'], $this->config->get('pagar_me_checkout_order_' . $status), '', true);
 
         $this->redirect($this->url->link('checkout/success'));
     }

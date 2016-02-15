@@ -1,8 +1,7 @@
 <?php
 
-abstract class PagarMe 
-{
-	public static $api_key; 
+abstract class PagarMe {
+	public static $api_key;
 	const live = 1;
 	const endpoint = "https://api.pagar.me";
 	const api_version = '1';
@@ -13,7 +12,7 @@ abstract class PagarMe
 	}
 
 	public static function setApiKey($api_key) {
-		self::$api_key = $api_key; 
+		self::$api_key = $api_key;
 	}
 
 	public static function getApiKey() {
@@ -24,6 +23,3 @@ abstract class PagarMe
 			return (sha1($id."#".self::$api_key) == $fingerprint);
 	}
 }
-
-
-?>

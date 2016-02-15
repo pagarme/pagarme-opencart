@@ -102,7 +102,12 @@ class ControllerPaymentPagarMeCheckout extends Controller
             $amount = $transaction->amount;
 
             try {
-                $transaction->capture($amount);
+                $transaction->capture(array(
+                    'amount' => $amount,
+                    'metadata' => array(
+                        'id_pedido' => $this->session->data['order_id'],
+                        'loja' => $this->config->get('config_name'),
+                    )));
             } catch (Exception $e) {
                 $this->log->write($e->getMessage());
             }

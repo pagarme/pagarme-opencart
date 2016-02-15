@@ -1,11 +1,10 @@
 <?php
 
-class PagarMe_Exception extends Exception 
-{
+class PagarMe_Exception extends Exception {
 	protected $url, $method, $return_code, $parameter_name, $type, $errors;
 
 	// Builds with a message and a response from the server
-	public function __construct($message = null, $response_error = null) 
+	public function __construct($message = null, $response_error = null)
 	{
 		$this->url = (isset($response_error['url'])) ? $response_error['url'] : null;
 		$this->method = (isset($response_error['method'])) ? $response_error['method'] : null;
@@ -43,21 +42,18 @@ class PagarMe_Exception extends Exception
 		return $this->errors;
 	}
 
-	public function getUrl() 
+	public function getUrl()
 	{
 		return $this->url;
 	}
 
-	public function getMethod() 
+	public function getMethod()
 	{
 		return $this->method;
 	}
 
-	public function getReturnCode() 
+	public function getReturnCode()
 	{
 		return $this->return_code;
 	}
 }
-
-
-?>
