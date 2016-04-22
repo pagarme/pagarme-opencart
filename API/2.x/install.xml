@@ -102,7 +102,7 @@
             <add position="before">
                 <![CDATA[
                 <?php if(isset($pagar_me_boleto_url)): ?>
-                    <div class="pull-left"><a href="<?php echo $pagar_me_boleto_url; ?>" class="btn btn-primary">Imprima seu boleto</a></div>
+                    <div class="text-center"><a target="_blank" href="<?php echo $pagar_me_boleto_url; ?>" class="btn btn-primary btn-lg">Imprima seu boleto</a></div>
                 <?php endif; ?>
                 ]]>
             </add>

@@ -64,7 +64,7 @@ class PagarMe_Util {
 			return $output;
 		} else if(is_array($response)) {
 			if(isset($response['object']) && is_string($response['object']) && isset($types[$response['object']])) {
-				$class = $types[$response['object']];	
+				$class = $types[$response['object']];
 			} else {
 				$class = 'PagarMe_Object';
 			}
@@ -73,8 +73,6 @@ class PagarMe_Util {
 		} else {
 			return $response;
 		}
-	}	
+	}
 
 }
-
-?>

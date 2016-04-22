@@ -1,8 +1,7 @@
 <?php
 
-class PagarMe_CardHashCommon extends PagarMe_Model
-{
-	public function generateCardHash() 
+class PagarMe_CardHashCommon extends PagarMe_Model {
+	public function generateCardHash()
 	{
 		$request = new PagarMe_Request('/transactions/card_hash_key','GET');
 		$response = $request->run();
@@ -15,7 +14,7 @@ class PagarMe_CardHashCommon extends PagarMe_Model
 		);
 		$str = "";
 		foreach($params as $k => $v) {
-			$str .= $k . "=" . $v . "&";	
+			$str .= $k . "=" . $v . "&";
 		}
 		$str = substr($str, 0, -1);
 		openssl_public_encrypt($str,$encrypt, $key);
@@ -43,7 +42,7 @@ class PagarMe_CardHashCommon extends PagarMe_Model
 	{
 		if(!$this->card_hash && $this->shouldGenerateCardHash()) {
 			$this->card_hash = $this->generateCardHash();
-		} 
+		}
 
 		if($this->card_hash) {
 			unset($this->card_holder_name);

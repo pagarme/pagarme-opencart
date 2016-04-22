@@ -45,6 +45,8 @@ class ControllerPaymentPagarMeCheckout extends Controller
         $data['entry_payment_methods'] = $this->language->get('entry_payment_methods');
         $data['entry_card_brands'] = $this->language->get('entry_card_brands');
         $data['entry_max_installments'] = $this->language->get('entry_max_installments');
+        $data['entry_free_installments'] = $this->language->get('entry_free_installments');
+        $data['entry_max_installment_value'] = $this->language->get('entry_max_installment_value');
         $data['entry_interest_rate'] = $this->language->get('entry_insterest_rate');
         $data['help_interest_rate'] = $this->language->get('help_insterest_rate');
         $data['entry_ui_color'] = $this->language->get('entry_ui_color');
@@ -58,6 +60,8 @@ class ControllerPaymentPagarMeCheckout extends Controller
         $data['entry_sort_order'] = $this->language->get('entry_sort_order');
         $data['entry_update_status_alert'] = $this->language->get('entry_update_status_alert');
         $data['entry_total'] = $this->language->get('entry_total');
+        $data['entry_boleto_discount_percentage'] = $this->language->get('entry_boleto_discount_percentage');
+        $data['help_boleto_discount_percentage'] = $this->language->get('help_boleto_discount_percentage');
 
         $data['button_save'] = $this->language->get('button_save');
         $data['button_cancel'] = $this->language->get('button_cancel');
@@ -162,10 +166,22 @@ class ControllerPaymentPagarMeCheckout extends Controller
             $data['pagar_me_checkout_card_brands'] = array();
         }
 
+        if (isset($this->request->post['pagar_me_checkout_max_installment_value'])) {
+            $data['pagar_me_checkout_max_installment_value'] = $this->request->post['pagar_me_checkout_max_installment_value'];
+        } else {
+            $data['pagar_me_checkout_max_installment_value'] = $this->config->get('pagar_me_checkout_max_installment_value');
+        }
+
         if (isset($this->request->post['pagar_me_checkout_max_installments'])) {
             $data['pagar_me_checkout_max_installments'] = $this->request->post['pagar_me_checkout_max_installments'];
         } else {
             $data['pagar_me_checkout_max_installments'] = $this->config->get('pagar_me_checkout_max_installments');
+        }
+        
+        if (isset($this->request->post['pagar_me_checkout_free_installments'])) {
+            $data['pagar_me_checkout_free_installments'] = $this->request->post['pagar_me_checkout_free_installments'];
+        } else {
+            $data['pagar_me_checkout_free_installments'] = $this->config->get('pagar_me_checkout_free_installments');
         }
 
         if (isset($this->request->post['pagar_me_checkout_interest_rate'])) {
@@ -214,6 +230,12 @@ class ControllerPaymentPagarMeCheckout extends Controller
             $data['pagar_me_checkout_order_paid'] = $this->request->post['pagar_me_checkout_order_paid'];
         } else {
             $data['pagar_me_checkout_order_paid'] = $this->config->get('pagar_me_checkout_order_paid');
+        }
+
+        if (isset($this->request->post['pagar_me_checkout_boleto_discount_percentage'])) {
+            $data['pagar_me_checkout_boleto_discount_percentage'] = $this->request->post['pagar_me_checkout_boleto_discount_percentage'];
+        } else {
+            $data['pagar_me_checkout_boleto_discount_percentage'] = $this->config->get('pagar_me_checkout_boleto_discount_percentage');
         }
 
         $this->load->model('localisation/order_status');

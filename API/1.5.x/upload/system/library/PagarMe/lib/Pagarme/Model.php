@@ -1,6 +1,6 @@
 <?php
-class PagarMe_Model extends PagarMe_Object
-{	
+
+class PagarMe_Model extends PagarMe_Object {
 	protected static $root_url;
 
 	public function __construct($response = array()) {
@@ -25,7 +25,7 @@ class PagarMe_Model extends PagarMe_Object
 		}
 	}
 
-	public function save() 
+	public function save()
 	{
 		try {
 			if(method_exists(get_called_class(), 'validate')) {
@@ -42,21 +42,21 @@ class PagarMe_Model extends PagarMe_Object
 	}
 
 
-	public static function findById($id) 
+	public static function findById($id)
 	{
 		$request = new PagarMe_Request(self::getUrl() . '/' . $id, 'GET');
 		$response = $request->run();
-		$class = get_called_class(); 
+		$class = get_called_class();
 		return new $class($response);
 	}
 
-	public static function all($page = 1, $count = 10) 
+	public static function all($page = 1, $count = 10)
 	{
 		$request = new PagarMe_Request(self::getUrl(), 'GET');
 		$request->setParameters(array("page" => $page, "count" => $count));
 		$response = $request->run();
 		$return_array = Array();
-		$class = get_called_class(); 
+		$class = get_called_class();
 		foreach($response as $r) {
 			$return_array[] = new $class($r);
 		}
@@ -64,4 +64,3 @@ class PagarMe_Model extends PagarMe_Object
 		return $return_array;
 	}
 }
-?>

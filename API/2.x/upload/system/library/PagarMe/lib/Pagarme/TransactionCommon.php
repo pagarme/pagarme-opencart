@@ -1,9 +1,9 @@
 <?php
-class PagarMe_TransactionCommon extends PagarMe_CardHashCommon 
-{
+
+class PagarMe_TransactionCommon extends PagarMe_CardHashCommon {
 	public function __construct($response = array())
 	{
-		parent::__construct($response);			
+		parent::__construct($response);
 		if(!isset($this->payment_method)) {
 			$this->payment_method = 'credit_card';
 		}
@@ -11,7 +11,7 @@ class PagarMe_TransactionCommon extends PagarMe_CardHashCommon
 		if(!isset($this->status)) {
 			$this->status = 'local';
 		}
-	} 
+	}
 
 	protected function checkCard()
 	{
@@ -43,13 +43,13 @@ class PagarMe_TransactionCommon extends PagarMe_CardHashCommon
 		parent::save();
 	}
 
-	public static function calculateInstallmentsAmount($amount, $interest_rate, $max_installments, $free_instalments)
+	public static function calculateInstallmentsAmount($amount, $interest_rate, $max_installments)
 	{
 		$request = new PagarMe_Request(self::getUrl() . '/calculate_installments_amount', 'GET');
-		$params = array('amount' => $amount, 'interest_rate' => $interest_rate, 'max_installments' => $max_installments, 'free_installments' => $free_instalments);
+		$params = array('amount' => $amount, 'interest_rate' => $interest_rate, 'max_installments' => $max_installments);
 		$request->setParameters($params);
 		$response = $request->run();
-		
+
 		return $response;
 	}
 
@@ -65,4 +65,3 @@ class PagarMe_TransactionCommon extends PagarMe_CardHashCommon
 		return $hasUnsavedCardAttrbutes;
 	}
 }
-

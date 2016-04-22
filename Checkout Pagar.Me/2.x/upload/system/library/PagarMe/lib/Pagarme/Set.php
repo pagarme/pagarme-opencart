@@ -5,7 +5,7 @@ class PagarMe_Set implements Iterator {
 	private $_values;
 	private $_orderedValues;
 	private $_position;
-	
+
 
 	public function __construct(array $members = array()) {
 		$this->_values =  Array();
@@ -18,7 +18,7 @@ class PagarMe_Set implements Iterator {
 			}
 			$this->_values[$m] = true;
 		}
-	}	
+	}
 
 	public function includes($member) {
 		return isset($this->_values[$member]);
@@ -56,5 +56,3 @@ class PagarMe_Set implements Iterator {
 		return isset($this->_orderedValues[$this->_position]);
 	}
 }
-
-?>

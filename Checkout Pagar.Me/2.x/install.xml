@@ -6,6 +6,17 @@
     <author>Santive</author>
     <link>http://www.santive.com</link>
 
+    <file path="catalog/view/theme/*/template/common/header.tpl">
+        <operation>
+            <search>
+                <![CDATA[</head>]]>
+            </search>
+            <add position="before">
+                <![CDATA[<script src="https://assets.pagar.me/checkout/checkout.js"></script>]]>
+            </add>
+        </operation>
+    </file>
+
     <file path="catalog/controller/account/order.php">
         <operation>
             <search>
@@ -72,7 +83,7 @@
                 <![CDATA[$data['button_continue'] = $this->language->get('button_continue');]]>
             </search>
             <add position="before">
-                <![CDATA[if($this->session->data['checkout_pagar_me_boleto_url']){
+                <![CDATA[if(isset($this->session->data['checkout_pagar_me_boleto_url'])){
                     $data['button_checkout_pagar_me_boleto'] = $this->session->data['checkout_pagar_me_boleto_url'];
                     unset($this->session->data['checkout_pagar_me_boleto_url']);
                 }]]>
@@ -86,7 +97,7 @@
                 <![CDATA[<?php echo $text_message; ?>]]>
             </search>
             <add position="after">
-                <![CDATA[<?php if($button_checkout_pagar_me_boleto): ?>
+                <![CDATA[<?php if(isset($button_checkout_pagar_me_boleto)): ?>
                 <div class="buttons">
   <div class="text-center"><a href="<?php echo $button_checkout_pagar_me_boleto ?>" target="_blank" class="btn btn-lg btn-primary"><strong>Imprima seu boleto</strong></a></div>
 </div>
