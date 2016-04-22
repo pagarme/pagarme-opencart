@@ -1,36 +1,77 @@
-<form id="form-pagarme" method="POST" action="<?php echo $url; ?>">
-<div class="buttons"><div id="button-right" class="right"></div></div>
-</form>
-<script type="text/javascript">
-        var script = document.createElement('script');
-        script.type = 'text/javascript';
-        script.src = 'https://assets.pagar.me/checkout/checkout.js';
-        script.setAttribute('data-button-text', "<?php echo $button_text; ?>");
-        script.setAttribute('data-encryption-key', "<?php echo $encryption_key; ?>");
-        script.setAttribute('data-amount', "<?php echo $amount; ?>");
-        script.setAttribute('data-button-class', "<?php echo $button_class; ?>");
-        script.setAttribute('data-payment-methods', "<?php echo $payment_methods; ?>");
-        script.setAttribute('data-card-brands', "<?php echo $card_brands; ?>");
-        script.setAttribute('data-max-installments', "<?php echo $max_installments; ?>");
-        script.setAttribute('data-free-installments', "<?php echo $free_installments; ?>");
-        script.setAttribute('data-ui-color', "<?php echo $ui_color; ?>");
-        script.setAttribute('data-postback-url', "<?php echo $postback_url; ?>");
-        script.setAttribute('data-customer-name', "<?php echo $customer_name; ?>");
-        script.setAttribute('data-customer-document-number', "<?php echo $customer_document_number; ?>");
-        script.setAttribute('data-customer-email', "<?php echo $customer_email; ?>");
-        script.setAttribute('data-customer-address-street', "<?php echo $customer_address_street; ?>");
-        script.setAttribute('data-customer-address-street-number', "<?php echo $customer_address_street_number; ?>");
-        script.setAttribute('data-customer-address-complementary', "<?php echo $customer_address_complementary; ?>");
-        script.setAttribute('data-customer-address-neighborhood', "<?php echo $customer_address_neighborhood; ?>");
-        script.setAttribute('data-customer-address-city', "<?php echo $customer_address_city; ?>");
-        script.setAttribute('data-customer-address-state', "<?php echo $customer_address_state; ?>");
-        script.setAttribute('data-customer-address-zipcode', "<?php echo $customer_address_zipcode; ?>");
-        script.setAttribute('data-customer-phone-ddd', "<?php echo $customer_phone_ddd; ?>");
-        script.setAttribute('data-customer-phone-number', "<?php echo $customer_phone_number; ?>");
-        script.setAttribute('data-interest-rate', "<?php echo $interest_rate; ?>");
+<style>
+        .payment-information{text-align:center;font-size:18px;font-weight:800;letter-spacing:-0.55pt;margin-bottom:10px;}
+</style>
+<?php if ($text_information) { ?>
+        <div class="payment-information"><?php echo $text_information; ?></div>
+<?php } ?>
+<div class="buttons">
+        <div class="right"><a id="button-confirm" class="<?php echo $button_css_class ?>"><span><?php echo $texto_botao; ?></span></a></div>
+</div>
 
-        document.getElementById('button-right').appendChild(script);
+<script>
 
+        $('#button-confirm').on('click', function (e) {
+
+                $.ajax({
+                        url: 'index.php?route=payment/pagar_me_checkout/submit',
+                        dataType: 'json',
+                        success: function (response) {
+                                // INICIAR A INSTÂNCIA DO CHECKOUT
+                                // declarando um callback de sucesso
+                                var checkout = new PagarMeCheckout.Checkout({
+                                        'customer_data': false,
+                                        'encryption_key': '<?php echo $encryption_key; ?>', success: function (data) {
+                                                var input_form = $('<input>').attr({
+                                                        type: 'hidden',
+                                                        name: 'token',
+                                                        value: data.token
+                                                });
+                                                var form = $('<form>').attr({
+                                                        action: '<?php echo $url; ?>',
+                                                        id: 'form-pagarme',
+                                                        name: 'form-pagarme',
+                                                        method: 'POST'
+                                                });
+                                                form.append(input_form);
+                                                $('body').append(form);
+                                                form.submit();
+                                        }
+                                });
+
+                                // DEFINIR AS OPÇÕES
+                                // e abrir o modal
+                                var params = {
+                                        'buttonText': response['button_text'],
+                                        'amount': response['amount'],
+                                        'buttonClass': response['button_class'],
+                                        'paymentMethods': response['payment_methods'],
+                                        'cardBrands': response['card_brands'],
+                                        'maxInstallments': response['max_installments'],
+                                        'freeInstallments': response['free_installments'],
+                                        'uiColor': response['ui_color'],
+                                        'postbackUrl': response['postback_url'],
+                                        'customerName': response['customer_name'],
+                                        'customerDocumentNumber': response['customer_document_number'],
+                                        'customerEmail': response['customer_email'],
+                                        'customerAddressStreet': response['customer_address_street'],
+                                        'customerAddressStreetNumber': response['customer_address_street_number'],
+                                        'customerAddressComplementary': response['customer_address_complementary'],
+                                        'customerAddressNeighborhood': response['customer_address_neighborhood'],
+                                        'customerAddressCity': response['customer_address_city'],
+                                        'customerAddressState': response['customer_address_state'],
+                                        'customerAddressZipcode': response['customer_address_zipcode'],
+                                        'customerPhoneDdd': response['customer_phone_ddd'],
+                                        'customerPhoneNumber': response['customer_phone_number'],
+                                        'interestRate': response['interest_rate'],
+                                        'boletoDiscountPercentage': response['boleto_discount_percentage']
+                                };
+                                checkout.open(params);
+                        },
+                        error: function (xhr, error) {
+                                console.debug(xhr);
+                                console.debug(error);
+                        }
+                });
+        });
 
 </script>
-
