@@ -5,8 +5,19 @@
     <vqmver>2.1.5</vqmver>
     <author>Santive Tecnologia contato@santive.com</author>
 
+    <file name="catalog/view/theme/*/template/common/header.tpl">
+        <operation>
+            <search position="before">
+                <![CDATA[</head>]]>
+            </search>
+            <add>
+                <![CDATA[<script src="https://assets.pagar.me/checkout/checkout.js"></script>]]>
+            </add>
+        </operation>
+    </file>
+
     <file name="catalog/controller/account/order.php">
-        <   operation>
+        <operation>
             <search position="after">
                 <![CDATA[
                 $this->data['date_added'] = date($this->language->get('date_format_short'), strtotime($order_info['date_added']));

@@ -6,6 +6,17 @@
     <author>Santive</author>
     <link>http://www.santive.com</link>
 
+    <file path="catalog/view/theme/*/template/common/header.tpl">
+        <operation>
+            <search>
+                <![CDATA[</head>]]>
+            </search>
+            <add position="before">
+                <![CDATA[<script src="https://assets.pagar.me/checkout/checkout.js"></script>]]>
+            </add>
+        </operation>
+    </file>
+
     <file path="catalog/controller/account/order.php">
         <operation>
             <search>

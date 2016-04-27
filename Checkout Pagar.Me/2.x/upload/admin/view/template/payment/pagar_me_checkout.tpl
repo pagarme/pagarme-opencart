@@ -164,12 +164,36 @@
 
                     <div class="form-group">
                         <label class="col-sm-2 control-label"
+                               for="input-max_installment_value"><?php echo $entry_max_installment_value; ?></label>
+
+                        <div class="col-sm-10">
+                            <input type="text" name="pagar_me_checkout_max_installment_value"
+                                   value="<?php echo $pagar_me_checkout_max_installment_value; ?>"
+                                   placeholder="<?php echo $entry_max_installment_value; ?>" id="input-max_installment_value"
+                                   class="form-control"/>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label"
                                for="input-interest_rate"><span data-toggle="tootip" title="<?php echo $help_interest_rate; ?>"><?php echo $entry_interest_rate; ?></span></label>
 
                         <div class="col-sm-10">
                             <input type="text" name="pagar_me_checkout_interest_rate"
                                    value="<?php echo $pagar_me_checkout_interest_rate; ?>"
                                    placeholder="<?php echo $entry_interest_rate; ?>" id="input-interest_rate"
+                                   class="form-control"/>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label"
+                               for="input-boleto_discount_percentage"><span data-toggle="tootip" title="<?php echo $help_boleto_discount_percentage; ?>"><?php echo $entry_boleto_discount_percentage; ?></span></label>
+
+                        <div class="col-sm-10">
+                            <input type="text" name="pagar_me_checkout_boleto_discount_percentage"
+                                   value="<?php echo $pagar_me_checkout_boleto_discount_percentage; ?>"
+                                   placeholder="<?php echo $entry_boleto_discount_percentage; ?>" id="input-boleto_discount_percentage"
                                    class="form-control"/>
                         </div>
                     </div>
