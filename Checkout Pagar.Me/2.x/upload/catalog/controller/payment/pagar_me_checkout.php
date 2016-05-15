@@ -149,6 +149,10 @@ class ControllerPaymentPagarMeCheckout extends Controller
                 $this->model_payment_pagar_me_checkout->addTransactionId($this->session->data['order_id'], $transaction->id, NULL);
             } else {
                 $this->model_payment_pagar_me_checkout->addTransactionId($this->session->data['order_id'], $transaction->id, $transaction->boleto_url);
+                /* Adiciona desconto do boleto ao pedido para que o total seja calculado corretamente */
+                /* Pega a ordem do sub-total do pedido e acrescenta o desconto ao pedido */
+                if($this->config->get('pagar_me_checkout_boleto_discount_percentage'))
+                    $this->model_payment_pagar_me_checkout->addDescontoBoleto($this->session->data['order_id']);
                 $this->session->data['checkout_pagar_me_boleto_url'] = $transaction->boleto_url;
                 $comentario  = "Para imprimir seu boleto <a href='" . $transaction->boleto_url . "'>clique aqui</a>";
             }
