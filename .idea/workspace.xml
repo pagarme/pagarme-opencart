@@ -2,7 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="90ac4e93-4ebd-48f3-a007-1a6304bdc60e" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Checkout Pagar.Me/1.5.x/upload/catalog/model/total/pagar_me_checkout_desconto.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Checkout Pagar.Me/2.x/upload/catalog/model/total/pagar_me_checkout_desconto.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Checkout Pagar.Me/1.5.x/checkout_pagarme.zip" afterPath="$PROJECT_DIR$/Checkout Pagar.Me/1.5.x/checkout_pagarme.zip" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Checkout Pagar.Me/2.x/pagar_me_checkout.ocmod.zip" afterPath="$PROJECT_DIR$/Checkout Pagar.Me/2.x/pagar_me_checkout.ocmod.zip" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Checkout Pagar.Me/1.5.x/upload/catalog/controller/payment/pagar_me_checkout.php" afterPath="$PROJECT_DIR$/Checkout Pagar.Me/1.5.x/upload/catalog/controller/payment/pagar_me_checkout.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Checkout Pagar.Me/1.5.x/upload/catalog/model/payment/pagar_me_checkout.php" afterPath="$PROJECT_DIR$/Checkout Pagar.Me/1.5.x/upload/catalog/model/payment/pagar_me_checkout.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Checkout Pagar.Me/2.x/upload/catalog/controller/payment/pagar_me_checkout.php" afterPath="$PROJECT_DIR$/Checkout Pagar.Me/2.x/upload/catalog/controller/payment/pagar_me_checkout.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Checkout Pagar.Me/2.x/upload/catalog/model/payment/pagar_me_checkout.php" afterPath="$PROJECT_DIR$/Checkout Pagar.Me/2.x/upload/catalog/model/payment/pagar_me_checkout.php" />
     </list>
     <ignored path="pagar_me.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -25,20 +33,10 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file leaf-file-name="pagar_me_checkout.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Checkout Pagar.Me/1.5.x/upload/catalog/model/payment/pagar_me_checkout.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="936">
-              <caret line="52" column="5" selection-start-line="48" selection-start-column="4" selection-end-line="52" selection-end-column="5" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="pagar_me_checkout.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Checkout Pagar.Me/2.x/upload/catalog/controller/payment/pagar_me_checkout.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2898">
-              <caret line="161" column="20" selection-start-line="161" selection-start-column="20" selection-end-line="161" selection-end-column="20" />
+            <state relative-caret-position="342">
+              <caret line="154" column="112" selection-start-line="154" selection-start-column="112" selection-end-line="154" selection-end-column="112" />
               <folding />
             </state>
           </provider>
@@ -47,14 +45,31 @@
       <file leaf-file-name="pagar_me_checkout.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Checkout Pagar.Me/2.x/upload/catalog/model/payment/pagar_me_checkout.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="810">
-              <caret line="45" column="5" selection-start-line="45" selection-start-column="5" selection-end-line="45" selection-end-column="5" />
+            <state relative-caret-position="216">
+              <caret line="82" column="66" selection-start-line="82" selection-start-column="66" selection-end-line="82" selection-end-column="66" />
+              <folding>
+                <marker date="1463344919599" expanded="true" signature="208:461" placeholder="SELECT * FRO... ${DB_PREFIX}" />
+                <marker date="1463344919599" expanded="true" signature="1188:1352" placeholder="INSERT INTO `${DB_PREFIX}pagar_me_checkout_transaction`... " />
+                <marker date="1463344919599" expanded="true" signature="1695:1825" placeholder="SELECT * FRO... ${DB_PREFIX}pagar_me_checkout_transaction" />
+                <marker date="1463344919599" expanded="true" signature="2102:2259" placeholder="SELECT COUNT... ${DB_PREFIX}" />
+                <marker date="1463344919599" expanded="true" signature="2815:2920" placeholder="SELECT * FRO... ${DB_PREFIX}order_total" />
+                <marker date="1463344919599" expanded="true" signature="3083:3357" placeholder="INSERT INTO ${DB_PREFIX}order_total... " />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="pagar_me_checkout_desconto.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Checkout Pagar.Me/2.x/upload/catalog/model/total/pagar_me_checkout_desconto.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="198">
+              <caret line="16" column="125" selection-start-line="16" selection-start-column="125" selection-end-line="16" selection-end-column="125" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="readme.md" pinned="false" current-in-tab="true">
+      <file leaf-file-name="readme.md" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/readme.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="SPLIT">
@@ -67,12 +82,15 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="pagar_me_checkout.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Checkout Pagar.Me/1.5.x/upload/catalog/controller/payment/pagar_me_checkout.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2628">
-              <caret line="146" column="113" selection-start-line="146" selection-start-column="12" selection-end-line="146" selection-end-column="113" />
-              <folding />
+      <file leaf-file-name="LICENSE.md" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/LICENSE.md">
+          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+            <state split_layout="SPLIT">
+              <first_editor relative-caret-position="-403">
+                <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+                <folding />
+              </first_editor>
+              <second_editor />
             </state>
           </provider>
         </entry>
@@ -81,6 +99,14 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="santive-master" />
+      </map>
+    </option>
+    <push-targets>
+      <push-target-info repo="$PROJECT_DIR$" source="master" target-remote="origin" target-branch="master" />
+    </push-targets>
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -99,18 +125,20 @@
         <option value="$PROJECT_DIR$/Checkout Pagar.Me/1.5.x/upload/admin/language/english/payment/pagar_me_checkout.php" />
         <option value="$PROJECT_DIR$/Checkout Pagar.Me/2.x/upload/admin/language/english/payment/pagar_me_checkout.php" />
         <option value="$PROJECT_DIR$/Checkout Pagar.Me/2.x/upload/admin/view/template/payment/pagar_me_checkout.tpl" />
-        <option value="$PROJECT_DIR$/Checkout Pagar.Me/1.5.x/upload/catalog/model/payment/pagar_me_checkout.php" />
+        <option value="$PROJECT_DIR$/readme.md" />
         <option value="$PROJECT_DIR$/Checkout Pagar.Me/1.5.x/upload/catalog/controller/payment/pagar_me_checkout.php" />
+        <option value="$PROJECT_DIR$/Checkout Pagar.Me/1.5.x/upload/catalog/model/payment/pagar_me_checkout.php" />
         <option value="$PROJECT_DIR$/Checkout Pagar.Me/2.x/upload/catalog/controller/payment/pagar_me_checkout.php" />
         <option value="$PROJECT_DIR$/Checkout Pagar.Me/2.x/upload/catalog/model/payment/pagar_me_checkout.php" />
-        <option value="$PROJECT_DIR$/readme.md" />
+        <option value="$PROJECT_DIR$/Checkout Pagar.Me/2.x/upload/catalog/model/total/pagar_me_checkout_desconto.php" />
       </list>
     </option>
   </component>
-  <component name="JsBuildToolGruntFileManager" detection-done="true" />
-  <component name="JsBuildToolPackageJson" detection-done="true" />
+  <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
   <component name="JsGulpfileManager">
     <detection-done>true</detection-done>
+    <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="PhpServers">
     <servers />
@@ -118,9 +146,9 @@
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
   <component name="ProjectFrameBounds">
     <option name="x" value="65" />
-    <option name="y" value="24" />
-    <option name="width" value="1855" />
-    <option name="height" value="1056" />
+    <option name="y" value="-4" />
+    <option name="width" value="1301" />
+    <option name="height" value="772" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <OptionsSetting value="true" id="Add" />
@@ -147,7 +175,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -179,263 +206,10 @@
               <option name="myItemId" value="Checkout Pagar.Me" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="2.x" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="pagar_me" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="pagar_me" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Checkout Pagar.Me" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="2.x" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="upload" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="pagar_me" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="pagar_me" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Checkout Pagar.Me" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="2.x" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="upload" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="catalog" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="pagar_me" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="pagar_me" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Checkout Pagar.Me" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="2.x" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="upload" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="catalog" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="model" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="payment" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="pagar_me" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="pagar_me" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Checkout Pagar.Me" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="2.x" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="upload" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="catalog" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="controller" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="payment" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="pagar_me" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="pagar_me" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Checkout Pagar.Me" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="1.5.x" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="pagar_me" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="pagar_me" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Checkout Pagar.Me" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="1.5.x" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="upload" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="pagar_me" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="pagar_me" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Checkout Pagar.Me" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="1.5.x" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="upload" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="catalog" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="pagar_me" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="pagar_me" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Checkout Pagar.Me" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="1.5.x" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="upload" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="catalog" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="model" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="payment" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="pagar_me" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="pagar_me" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Checkout Pagar.Me" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="1.5.x" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="upload" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="catalog" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="controller" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="payment" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scratches" />
       <pane id="Scope" />
     </panes>
   </component>
@@ -444,9 +218,13 @@
     <property name="js-jscs-nodeInterpreter" value="/usr/bin/node" />
     <property name="ignore_missing_gitignore" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../opencart-pagarme-20" />
+    <property name="settings.editor.selected.configurable" value="preferences.keymap" />
+    <property name="settings.editor.splitter.proportion" value="0.2" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/Checkout Pagar.Me/2.x/upload/catalog/model/total" />
+      <recent name="$PROJECT_DIR$/Checkout Pagar.Me/1.5.x/upload/catalog/model/total" />
       <recent name="$PROJECT_DIR$/Checkout Pagar.Me/2.x/upload/admin/language/portuguese-br/payment" />
     </key>
   </component>
@@ -497,33 +275,46 @@
       <updated>1457961959644</updated>
       <workItem from="1461272861511" duration="23000" />
       <workItem from="1461272888717" duration="4091000" />
-      <workItem from="1461330583062" duration="7321000" />
-      <workItem from="1461767324674" duration="658000" />
-      <workItem from="1461778322793" duration="23000" />
+      <workItem from="1461330583062" duration="9193000" />
+      <workItem from="1463344407047" duration="750000" />
     </task>
-    <task id="LOCAL-00001" summary="Merge branch 'master' of file:///home/rodrigo/Dropbox/eder.rodrigo/desenvolvimento/modulos_vqmod/pagar_me&#10;&#10;Conflicts:&#10;&#9;.idea/workspace.xml&#10;">
-      <created>1461767344227</created>
+    <task id="LOCAL-00001" summary="JS do cehcout agora é chamado no cabeçalho do tema&#10;Troca do Chekout Pagar.Me para o modo API garantindo assim compatibilidade com checkouts em uma página&#10;Implementação do valor mínimo da parcela e do desconto para pagamento via boleto&#10;Melhoria no método de callback">
+      <created>1461340418018</created>
       <option name="number" value="00001" />
       <option name="presentableId" value="LOCAL-00001" />
       <option name="project" value="LOCAL" />
-      <updated>1461767344227</updated>
+      <updated>1461340418018</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Merge branch 'master' of https://github.com/rodrigosantiag/pagarme-opencart&#10;&#10;Conflicts:&#10;&#9;.gitignore&#10;&#9;API/1.5.x/upload/system/library/PagarMe/Pagarme.php&#10;&#9;API/1.5.x/upload/system/library/PagarMe/lib/Pagarme/Address.php&#10;&#9;API/1.5.x/upload/system/library/PagarMe/lib/Pagarme/Card.php&#10;&#9;API/1.5.x/upload/system/library/PagarMe/lib/Pagarme/CardHashCommon.php&#10;&#9;API/1.5.x/upload/system/library/PagarMe/lib/Pagarme/Customer.php&#10;&#9;API/1.5.x/upload/system/library/PagarMe/lib/Pagarme/Error.php&#10;&#9;API/1.5.x/upload/system/library/PagarMe/lib/Pagarme/Exception.php&#10;&#9;API/1.5.x/upload/system/library/PagarMe/lib/Pagarme/Model.php&#10;&#9;API/1.5.x/upload/system/library/PagarMe/lib/Pagarme/Object.php&#10;&#9;API/1.5.x/upload/system/library/PagarMe/lib/Pagarme/PagarMe.php&#10;&#9;API/1.5.x/upload/system/library/PagarMe/lib/Pagarme/Phone.php&#10;&#9;API/1.5.x/upload/system/library/PagarMe/lib/Pagarme/Plan.php&#10;&#9;API/1.5.x/upload/system/library/PagarMe/lib/Pagarme/Request.php&#10;&#9;API/1.5.x/upload/system/library/PagarMe/lib/Pagarme/RestClient.php&#10;&#9;API/1.5.x/upload/system/library/PagarMe/lib/Pagarme/Set.php&#10;&#9;API/1.5.x/upload/system/library/PagarMe/lib/Pagarme/Subscription.php&#10;&#9;API/1.5.x/upload/system/library/PagarMe/lib/Pagarme/Transaction.php&#10;&#9;API/1.5.x/upload/system/library/PagarMe/lib/Pagarme/TransactionCommon.php&#10;&#9;API/1.5.x/upload/system/library/PagarMe/lib/Pagarme/Util.php&#10;&#9;API/2.x/install.xml&#10;&#9;API/2.x/pagar_me.ocmod.zip&#10;&#9;API/2.x/upload/catalog/view/theme/default/template/payment/pagar_me_boleto.tpl&#10;&#9;API/2.x/upload/system/library/PagarMe/Pagarme.php&#10;&#9;API/2.x/upload/system/library/PagarMe/lib/Pagarme/Address.php&#10;&#9;API/2.x/upload/system/library/PagarMe/lib/Pagarme/Card.php&#10;&#9;API/2.x/upload/system/library/PagarMe/lib/Pagarme/CardHashCommon.php&#10;&#9;API/2.x/upload/system/library/PagarMe/lib/Pagarme/Customer.php&#10;&#9;API/2.x/upload/system/library/PagarMe/lib/Pagarme/Error.php&#10;&#9;API/2.x/upload/system/library/PagarMe/lib/Pagarme/Exception.php&#10;&#9;API/2.x/upload/system/library/PagarMe/lib/Pagarme/Model.php&#10;&#9;API/2.x/upload/system/library/PagarMe/lib/Pagarme/Object.php&#10;&#9;API/2.x/upload/system/library/PagarMe/lib/Pagarme/PagarMe.php&#10;&#9;API/2.x/upload/system/library/PagarMe/lib/Pagarme/Phone.php&#10;&#9;API/2.x/upload/system/library/PagarMe/lib/Pagarme/Plan.php&#10;&#9;API/2.x/upload/system/library/PagarMe/lib/Pagarme/Request.php&#10;&#9;API/2.x/upload/system/library/PagarMe/lib/Pagarme/RestClient.php&#10;&#9;API/2.x/upload/system/library/PagarMe/lib/Pagarme/Set.php&#10;&#9;API/2.x/upload/system/library/PagarMe/lib/Pagarme/Subscription.php&#10;&#9;API/2.x/upload/system/library/PagarMe/lib/Pagarme/Transaction.php&#10;&#9;API/2.x/upload/system/library/PagarMe/lib/Pagarme/TransactionCommon.php&#10;&#9;API/2.x/upload/system/library/PagarMe/lib/Pagarme/Util.php&#10;&#9;Checkout Pagar.Me/1.5.x/upload/admin/controller/payment/pagar_me_checkout.php&#10;&#9;Checkout Pagar.Me/1.5.x/upload/admin/language/english/payment/pagar_me_checkout.php&#10;&#9;Checkout Pagar.Me/1.5.x/upload/admin/language/portuguese-br/payment/pagar_me_checkout.php&#10;&#9;Checkout Pagar.Me/1.5.x/upload/admin/view/template/payment/pagar_me_checkout.tpl&#10;&#9;Checkout Pagar.Me/1.5.x/upload/catalog/controller/payment/pagar_me_checkout.php&#10;&#9;Checkout Pagar.Me/1.5.x/upload/catalog/model/payment/pagar_me_checkout.php&#10;&#9;Checkout Pagar.Me/1.5.x/upload/catalog/view/theme/default/template/payment/pagar_me_checkout.tpl&#10;&#9;Checkout Pagar.Me/1.5.x/upload/system/library/PagarMe/Pagarme.php&#10;&#9;Checkout Pagar.Me/1.5.x/upload/system/library/PagarMe/lib/Pagarme/Address.php&#10;&#9;Checkout Pagar.Me/1.5.x/upload/system/library/PagarMe/lib/Pagarme/Card.php&#10;&#9;Checkout Pagar.Me/1.5.x/upload/system/library/PagarMe/lib/Pagarme/CardHashCommon.php&#10;&#9;Checkout Pagar.Me/1.5.x/upload/system/library/PagarMe/lib/Pagarme/Customer.php&#10;&#9;Checkout Pagar.Me/1.5.x/upload/system/library/PagarMe/lib/Pagarme/Error.php&#10;&#9;Checkout Pagar.Me/1.5.x/upload/system/library/PagarMe/lib/Pagarme/Exception.php&#10;&#9;Checkout Pagar.Me/1.5.x/upload/system/library/PagarMe/lib/Pagarme/Model.php&#10;&#9;Checkout Pagar.Me/1.5.x/upload/system/library/PagarMe/lib/Pagarme/Object.php&#10;&#9;Checkout Pagar.Me/1.5.x/upload/system/library/PagarMe/lib/Pagarme/PagarMe.php&#10;&#9;Checkout Pagar.Me/1.5.x/upload/system/library/PagarMe/lib/Pagarme/Phone.php&#10;&#9;Checkout Pagar.Me/1.5.x/upload/system/library/PagarMe/lib/Pagarme/Plan.php&#10;&#9;Checkout Pagar.Me/1.5.x/upload/system/library/PagarMe/lib/Pagarme/Request.php&#10;&#9;Checkout Pagar.Me/1.5.x/upload/system/library/PagarMe/lib/Pagarme/RestClient.php&#10;&#9;Checkout Pagar.Me/1.5.x/upload/system/library/PagarMe/lib/Pagarme/Set.php&#10;&#9;Checkout Pagar.Me/1.5.x/upload/system/library/PagarMe/lib/Pagarme/Subscription.php&#10;&#9;Checkout Pagar.Me/1.5.x/upload/system/library/PagarMe/lib/Pagarme/Transaction.php&#10;&#9;Checkout Pagar.Me/1.5.x/upload/system/library/PagarMe/lib/Pagarme/TransactionCommon.php&#10;&#9;Checkout Pagar.Me/1.5.x/upload/system/library/PagarMe/lib/Pagarme/Util.php&#10;&#9;Checkout Pagar.Me/1.5.x/upload/vqmod/xml/pagar_me_checkout.xml&#10;&#9;Checkout Pagar.Me/2.x/install.xml&#10;&#9;Checkout Pagar.Me/2.x/pagar_me_checkout.ocmod.zip&#10;&#9;Checkout Pagar.Me/2.x/upload/admin/controller/payment/pagar_me_checkout.php&#10;&#9;Checkout Pagar.Me/2.x/upload/admin/language/english/payment/pagar_me_checkout.php&#10;&#9;Checkout Pagar.Me/2.x/upload/admin/language/portuguese-br/payment/pagar_me_checkout.php&#10;&#9;Checkout Pagar.Me/2.x/upload/admin/view/template/payment/pagar_me_checkout.tpl&#10;&#9;Checkout Pagar.Me/2.x/upload/catalog/controller/payment/pagar_me_checkout.php&#10;&#9;Checkout Pagar.Me/2.x/upload/catalog/model/payment/pagar_me_checkout.php&#10;&#9;Checkout Pagar.Me/2.x/upload/catalog/view/theme/default/template/payment/pagar_me_checkout.tpl&#10;&#9;Checkout Pagar.Me/2.x/upload/system/library/PagarMe/Pagarme.php&#10;&#9;Checkout Pagar.Me/2.x/upload/system/library/PagarMe/lib/Pagarme/Address.php&#10;&#9;Checkout Pagar.Me/2.x/upload/system/library/PagarMe/lib/Pagarme/Card.php&#10;&#9;Checkout Pagar.Me/2.x/upload/system/library/PagarMe/lib/Pagarme/CardHashCommon.php&#10;&#9;Checkout Pagar.Me/2.x/upload/system/library/PagarMe/lib/Pagarme/Customer.php&#10;&#9;Checkout Pagar.Me/2.x/upload/system/library/PagarMe/lib/Pagarme/Error.php&#10;&#9;Checkout Pagar.Me/2.x/upload/system/library/PagarMe/lib/Pagarme/Exception.php&#10;&#9;Checkout Pagar.Me/2.x/upload/system/library/PagarMe/lib/Pagarme/Model.php&#10;&#9;Checkout Pagar.Me/2.x/upload/system/library/PagarMe/lib/Pagarme/Object.php&#10;&#9;Checkout Pagar.Me/2.x/upload/system/library/PagarMe/lib/Pagarme/PagarMe.php&#10;&#9;Checkout Pagar.Me/2.x/upload/system/library/PagarMe/lib/Pagarme/Phone.php&#10;&#9;Checkout Pagar.Me/2.x/upload/system/library/PagarMe/lib/Pagarme/Plan.php&#10;&#9;Checkout Pagar.Me/2.x/upload/system/library/PagarMe/lib/Pagarme/Request.php&#10;&#9;Checkout Pagar.Me/2.x/upload/system/library/PagarMe/lib/Pagarme/RestClient.php&#10;&#9;Checkout Pagar.Me/2.x/upload/system/library/PagarMe/lib/Pagarme/Set.php&#10;&#9;Checkout Pagar.Me/2.x/upload/system/library/PagarMe/lib/Pagarme/Subscription.php&#10;&#9;Checkout Pagar.Me/2.x/upload/system/library/PagarMe/lib/Pagarme/Transaction.php&#10;&#9;Checkout Pagar.Me/2.x/upload/system/library/PagarMe/lib/Pagarme/TransactionCommon.php&#10;&#9;Checkout Pagar.Me/2.x/upload/system/library/PagarMe/lib/Pagarme/Util.php&#10;&#9;readme.md&#10;">
+      <created>1461340836415</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1461340836415</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Merge branch 'master' of https://github.com/Santive/pagarme-opencart into santive-master&#10;&#10;Conflicts:&#10;&#9;API/2.x/pagar_me.ocmod.zip&#10;&#9;Checkout Pagar.Me/1.5.x/upload/catalog/controller/payment/pagar_me_checkout.php&#10;&#9;Checkout Pagar.Me/2.x/pagar_me_checkout.ocmod.zip&#10;">
+      <created>1461341886636</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1461341886636</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="12116000" />
+    <option name="totallyTimeSpent" value="14057000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="65" y="24" width="1855" height="1056" extended-state="6" />
+    <frame x="65" y="-4" width="1301" height="772" extended-state="6" />
     <editor active="false" />
     <layout>
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.27473742" sideWeight="0.464" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2733068" sideWeight="0.46666667" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32939914" sideWeight="0.5041459" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3287037" sideWeight="0.5059761" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32939914" sideWeight="0.49585405" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.27473742" sideWeight="0.536" order="1" side_tool="true" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3287037" sideWeight="0.49402392" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2733068" sideWeight="0.53333336" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -552,8 +343,10 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="Merge branch 'master' of file:///home/rodrigo/Dropbox/eder.rodrigo/desenvolvimento/modulos_vqmod/pagar_me&#10;&#10;Conflicts:&#10;&#9;.idea/workspace.xml&#10;" />
-    <option name="LAST_COMMIT_MESSAGE" value="Merge branch 'master' of file:///home/rodrigo/Dropbox/eder.rodrigo/desenvolvimento/modulos_vqmod/pagar_me&#10;&#10;Conflicts:&#10;&#9;.idea/workspace.xml&#10;" />
+    <MESSAGE value="JS do cehcout agora é chamado no cabeçalho do tema&#10;Troca do Chekout Pagar.Me para o modo API garantindo assim compatibilidade com checkouts em uma página&#10;Implementação do valor mínimo da parcela e do desconto para pagamento via boleto&#10;Melhoria no método de callback" />
+    <MESSAGE value="Merge branch 'master' of https://github.com/rodrigosantiag/pagarme-opencart&#10;&#10;Conflicts:&#10;&#9;.gitignore&#10;&#9;API/1.5.x/upload/system/library/PagarMe/Pagarme.php&#10;&#9;API/1.5.x/upload/system/library/PagarMe/lib/Pagarme/Address.php&#10;&#9;API/1.5.x/upload/system/library/PagarMe/lib/Pagarme/Card.php&#10;&#9;API/1.5.x/upload/system/library/PagarMe/lib/Pagarme/CardHashCommon.php&#10;&#9;API/1.5.x/upload/system/library/PagarMe/lib/Pagarme/Customer.php&#10;&#9;API/1.5.x/upload/system/library/PagarMe/lib/Pagarme/Error.php&#10;&#9;API/1.5.x/upload/system/library/PagarMe/lib/Pagarme/Exception.php&#10;&#9;API/1.5.x/upload/system/library/PagarMe/lib/Pagarme/Model.php&#10;&#9;API/1.5.x/upload/system/library/PagarMe/lib/Pagarme/Object.php&#10;&#9;API/1.5.x/upload/system/library/PagarMe/lib/Pagarme/PagarMe.php&#10;&#9;API/1.5.x/upload/system/library/PagarMe/lib/Pagarme/Phone.php&#10;&#9;API/1.5.x/upload/system/library/PagarMe/lib/Pagarme/Plan.php&#10;&#9;API/1.5.x/upload/system/library/PagarMe/lib/Pagarme/Request.php&#10;&#9;API/1.5.x/upload/system/library/PagarMe/lib/Pagarme/RestClient.php&#10;&#9;API/1.5.x/upload/system/library/PagarMe/lib/Pagarme/Set.php&#10;&#9;API/1.5.x/upload/system/library/PagarMe/lib/Pagarme/Subscription.php&#10;&#9;API/1.5.x/upload/system/library/PagarMe/lib/Pagarme/Transaction.php&#10;&#9;API/1.5.x/upload/system/library/PagarMe/lib/Pagarme/TransactionCommon.php&#10;&#9;API/1.5.x/upload/system/library/PagarMe/lib/Pagarme/Util.php&#10;&#9;API/2.x/install.xml&#10;&#9;API/2.x/pagar_me.ocmod.zip&#10;&#9;API/2.x/upload/catalog/view/theme/default/template/payment/pagar_me_boleto.tpl&#10;&#9;API/2.x/upload/system/library/PagarMe/Pagarme.php&#10;&#9;API/2.x/upload/system/library/PagarMe/lib/Pagarme/Address.php&#10;&#9;API/2.x/upload/system/library/PagarMe/lib/Pagarme/Card.php&#10;&#9;API/2.x/upload/system/library/PagarMe/lib/Pagarme/CardHashCommon.php&#10;&#9;API/2.x/upload/system/library/PagarMe/lib/Pagarme/Customer.php&#10;&#9;API/2.x/upload/system/library/PagarMe/lib/Pagarme/Error.php&#10;&#9;API/2.x/upload/system/library/PagarMe/lib/Pagarme/Exception.php&#10;&#9;API/2.x/upload/system/library/PagarMe/lib/Pagarme/Model.php&#10;&#9;API/2.x/upload/system/library/PagarMe/lib/Pagarme/Object.php&#10;&#9;API/2.x/upload/system/library/PagarMe/lib/Pagarme/PagarMe.php&#10;&#9;API/2.x/upload/system/library/PagarMe/lib/Pagarme/Phone.php&#10;&#9;API/2.x/upload/system/library/PagarMe/lib/Pagarme/Plan.php&#10;&#9;API/2.x/upload/system/library/PagarMe/lib/Pagarme/Request.php&#10;&#9;API/2.x/upload/system/library/PagarMe/lib/Pagarme/RestClient.php&#10;&#9;API/2.x/upload/system/library/PagarMe/lib/Pagarme/Set.php&#10;&#9;API/2.x/upload/system/library/PagarMe/lib/Pagarme/Subscription.php&#10;&#9;API/2.x/upload/system/library/PagarMe/lib/Pagarme/Transaction.php&#10;&#9;API/2.x/upload/system/library/PagarMe/lib/Pagarme/TransactionCommon.php&#10;&#9;API/2.x/upload/system/library/PagarMe/lib/Pagarme/Util.php&#10;&#9;Checkout Pagar.Me/1.5.x/upload/admin/controller/payment/pagar_me_checkout.php&#10;&#9;Checkout Pagar.Me/1.5.x/upload/admin/language/english/payment/pagar_me_checkout.php&#10;&#9;Checkout Pagar.Me/1.5.x/upload/admin/language/portuguese-br/payment/pagar_me_checkout.php&#10;&#9;Checkout Pagar.Me/1.5.x/upload/admin/view/template/payment/pagar_me_checkout.tpl&#10;&#9;Checkout Pagar.Me/1.5.x/upload/catalog/controller/payment/pagar_me_checkout.php&#10;&#9;Checkout Pagar.Me/1.5.x/upload/catalog/model/payment/pagar_me_checkout.php&#10;&#9;Checkout Pagar.Me/1.5.x/upload/catalog/view/theme/default/template/payment/pagar_me_checkout.tpl&#10;&#9;Checkout Pagar.Me/1.5.x/upload/system/library/PagarMe/Pagarme.php&#10;&#9;Checkout Pagar.Me/1.5.x/upload/system/library/PagarMe/lib/Pagarme/Address.php&#10;&#9;Checkout Pagar.Me/1.5.x/upload/system/library/PagarMe/lib/Pagarme/Card.php&#10;&#9;Checkout Pagar.Me/1.5.x/upload/system/library/PagarMe/lib/Pagarme/CardHashCommon.php&#10;&#9;Checkout Pagar.Me/1.5.x/upload/system/library/PagarMe/lib/Pagarme/Customer.php&#10;&#9;Checkout Pagar.Me/1.5.x/upload/system/library/PagarMe/lib/Pagarme/Error.php&#10;&#9;Checkout Pagar.Me/1.5.x/upload/system/library/PagarMe/lib/Pagarme/Exception.php&#10;&#9;Checkout Pagar.Me/1.5.x/upload/system/library/PagarMe/lib/Pagarme/Model.php&#10;&#9;Checkout Pagar.Me/1.5.x/upload/system/library/PagarMe/lib/Pagarme/Object.php&#10;&#9;Checkout Pagar.Me/1.5.x/upload/system/library/PagarMe/lib/Pagarme/PagarMe.php&#10;&#9;Checkout Pagar.Me/1.5.x/upload/system/library/PagarMe/lib/Pagarme/Phone.php&#10;&#9;Checkout Pagar.Me/1.5.x/upload/system/library/PagarMe/lib/Pagarme/Plan.php&#10;&#9;Checkout Pagar.Me/1.5.x/upload/system/library/PagarMe/lib/Pagarme/Request.php&#10;&#9;Checkout Pagar.Me/1.5.x/upload/system/library/PagarMe/lib/Pagarme/RestClient.php&#10;&#9;Checkout Pagar.Me/1.5.x/upload/system/library/PagarMe/lib/Pagarme/Set.php&#10;&#9;Checkout Pagar.Me/1.5.x/upload/system/library/PagarMe/lib/Pagarme/Subscription.php&#10;&#9;Checkout Pagar.Me/1.5.x/upload/system/library/PagarMe/lib/Pagarme/Transaction.php&#10;&#9;Checkout Pagar.Me/1.5.x/upload/system/library/PagarMe/lib/Pagarme/TransactionCommon.php&#10;&#9;Checkout Pagar.Me/1.5.x/upload/system/library/PagarMe/lib/Pagarme/Util.php&#10;&#9;Checkout Pagar.Me/1.5.x/upload/vqmod/xml/pagar_me_checkout.xml&#10;&#9;Checkout Pagar.Me/2.x/install.xml&#10;&#9;Checkout Pagar.Me/2.x/pagar_me_checkout.ocmod.zip&#10;&#9;Checkout Pagar.Me/2.x/upload/admin/controller/payment/pagar_me_checkout.php&#10;&#9;Checkout Pagar.Me/2.x/upload/admin/language/english/payment/pagar_me_checkout.php&#10;&#9;Checkout Pagar.Me/2.x/upload/admin/language/portuguese-br/payment/pagar_me_checkout.php&#10;&#9;Checkout Pagar.Me/2.x/upload/admin/view/template/payment/pagar_me_checkout.tpl&#10;&#9;Checkout Pagar.Me/2.x/upload/catalog/controller/payment/pagar_me_checkout.php&#10;&#9;Checkout Pagar.Me/2.x/upload/catalog/model/payment/pagar_me_checkout.php&#10;&#9;Checkout Pagar.Me/2.x/upload/catalog/view/theme/default/template/payment/pagar_me_checkout.tpl&#10;&#9;Checkout Pagar.Me/2.x/upload/system/library/PagarMe/Pagarme.php&#10;&#9;Checkout Pagar.Me/2.x/upload/system/library/PagarMe/lib/Pagarme/Address.php&#10;&#9;Checkout Pagar.Me/2.x/upload/system/library/PagarMe/lib/Pagarme/Card.php&#10;&#9;Checkout Pagar.Me/2.x/upload/system/library/PagarMe/lib/Pagarme/CardHashCommon.php&#10;&#9;Checkout Pagar.Me/2.x/upload/system/library/PagarMe/lib/Pagarme/Customer.php&#10;&#9;Checkout Pagar.Me/2.x/upload/system/library/PagarMe/lib/Pagarme/Error.php&#10;&#9;Checkout Pagar.Me/2.x/upload/system/library/PagarMe/lib/Pagarme/Exception.php&#10;&#9;Checkout Pagar.Me/2.x/upload/system/library/PagarMe/lib/Pagarme/Model.php&#10;&#9;Checkout Pagar.Me/2.x/upload/system/library/PagarMe/lib/Pagarme/Object.php&#10;&#9;Checkout Pagar.Me/2.x/upload/system/library/PagarMe/lib/Pagarme/PagarMe.php&#10;&#9;Checkout Pagar.Me/2.x/upload/system/library/PagarMe/lib/Pagarme/Phone.php&#10;&#9;Checkout Pagar.Me/2.x/upload/system/library/PagarMe/lib/Pagarme/Plan.php&#10;&#9;Checkout Pagar.Me/2.x/upload/system/library/PagarMe/lib/Pagarme/Request.php&#10;&#9;Checkout Pagar.Me/2.x/upload/system/library/PagarMe/lib/Pagarme/RestClient.php&#10;&#9;Checkout Pagar.Me/2.x/upload/system/library/PagarMe/lib/Pagarme/Set.php&#10;&#9;Checkout Pagar.Me/2.x/upload/system/library/PagarMe/lib/Pagarme/Subscription.php&#10;&#9;Checkout Pagar.Me/2.x/upload/system/library/PagarMe/lib/Pagarme/Transaction.php&#10;&#9;Checkout Pagar.Me/2.x/upload/system/library/PagarMe/lib/Pagarme/TransactionCommon.php&#10;&#9;Checkout Pagar.Me/2.x/upload/system/library/PagarMe/lib/Pagarme/Util.php&#10;&#9;readme.md&#10;" />
+    <MESSAGE value="Merge branch 'master' of https://github.com/Santive/pagarme-opencart into santive-master&#10;&#10;Conflicts:&#10;&#9;API/2.x/pagar_me.ocmod.zip&#10;&#9;Checkout Pagar.Me/1.5.x/upload/catalog/controller/payment/pagar_me_checkout.php&#10;&#9;Checkout Pagar.Me/2.x/pagar_me_checkout.ocmod.zip&#10;" />
+    <option name="LAST_COMMIT_MESSAGE" value="Merge branch 'master' of https://github.com/Santive/pagarme-opencart into santive-master&#10;&#10;Conflicts:&#10;&#9;API/2.x/pagar_me.ocmod.zip&#10;&#9;Checkout Pagar.Me/1.5.x/upload/catalog/controller/payment/pagar_me_checkout.php&#10;&#9;Checkout Pagar.Me/2.x/pagar_me_checkout.ocmod.zip&#10;" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -572,15 +365,22 @@
     <entry file="file://$PROJECT_DIR$/Checkout Pagar.Me/1.5.x/upload/catalog/model/payment/pagar_me_checkout.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="936">
-          <caret line="52" column="5" selection-start-line="48" selection-start-column="4" selection-end-line="52" selection-end-column="5" />
-          <folding />
+          <caret line="52" column="5" selection-start-line="52" selection-start-column="5" selection-end-line="52" selection-end-column="5" />
+          <folding>
+            <marker date="1463344493866" expanded="true" signature="204:460" placeholder="SELECT * FRO... ${DB_PREFIX}" />
+            <marker date="1463344493866" expanded="true" signature="1145:1309" placeholder="INSERT INTO `${DB_PREFIX}pagar_me_checkout_transaction`... " />
+            <marker date="1463344493866" expanded="true" signature="1598:1728" placeholder="SELECT * FRO... ${DB_PREFIX}pagar_me_checkout_transaction" />
+            <marker date="1463344493866" expanded="true" signature="2005:2162" placeholder="SELECT COUNT... ${DB_PREFIX}" />
+            <marker date="1463344493866" expanded="true" signature="2718:2823" placeholder="SELECT * FRO... ${DB_PREFIX}order_total" />
+            <marker date="1463344493866" expanded="true" signature="2986:3341" placeholder="INSERT INTO ${DB_PREFIX}order_total... " />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Checkout Pagar.Me/2.x/upload/catalog/controller/payment/pagar_me_checkout.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2898">
-          <caret line="161" column="20" selection-start-line="161" selection-start-column="20" selection-end-line="161" selection-end-column="20" />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -589,7 +389,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="810">
           <caret line="45" column="5" selection-start-line="45" selection-start-column="5" selection-end-line="45" selection-end-column="5" />
-          <folding />
+          <folding>
+            <marker date="1463344919599" expanded="true" signature="208:461" placeholder="SELECT * FRO... ${DB_PREFIX}" />
+            <marker date="1463344919599" expanded="true" signature="1188:1352" placeholder="INSERT INTO `${DB_PREFIX}pagar_me_checkout_transaction`... " />
+            <marker date="1463344919599" expanded="true" signature="1695:1825" placeholder="SELECT * FRO... ${DB_PREFIX}pagar_me_checkout_transaction" />
+            <marker date="1463344919599" expanded="true" signature="2102:2259" placeholder="SELECT COUNT... ${DB_PREFIX}" />
+            <marker date="1463344919599" expanded="true" signature="2815:2920" placeholder="SELECT * FRO... ${DB_PREFIX}order_total" />
+            <marker date="1463344919599" expanded="true" signature="3083:3357" placeholder="INSERT INTO ${DB_PREFIX}order_total... " />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -607,47 +414,7 @@
     <entry file="file://$PROJECT_DIR$/Checkout Pagar.Me/1.5.x/upload/catalog/controller/payment/pagar_me_checkout.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2628">
-          <caret line="146" column="113" selection-start-line="146" selection-start-column="12" selection-end-line="146" selection-end-column="113" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Checkout Pagar.Me/1.5.x/upload/catalog/model/payment/pagar_me_checkout.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="936">
-          <caret line="52" column="5" selection-start-line="48" selection-start-column="4" selection-end-line="52" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Checkout Pagar.Me/2.x/upload/catalog/controller/payment/pagar_me_checkout.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2898">
-          <caret line="161" column="20" selection-start-line="161" selection-start-column="20" selection-end-line="161" selection-end-column="20" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Checkout Pagar.Me/2.x/upload/catalog/model/payment/pagar_me_checkout.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="810">
-          <caret line="45" column="5" selection-start-line="45" selection-start-column="5" selection-end-line="45" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/readme.md">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Checkout Pagar.Me/1.5.x/upload/catalog/controller/payment/pagar_me_checkout.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2628">
-          <caret line="146" column="113" selection-start-line="146" selection-start-column="12" selection-end-line="146" selection-end-column="113" />
+          <caret line="146" column="9" selection-start-line="146" selection-start-column="9" selection-end-line="146" selection-end-column="9" />
           <folding />
         </state>
       </provider>
@@ -832,41 +599,63 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Checkout Pagar.Me/1.5.x/upload/catalog/model/payment/pagar_me_checkout.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="198">
+          <caret line="74" column="0" selection-start-line="74" selection-start-column="0" selection-end-line="75" selection-end-column="70" />
+          <folding>
+            <marker date="1463344493866" expanded="true" signature="204:460" placeholder="SELECT * FRO... ${DB_PREFIX}" />
+            <marker date="1463344493866" expanded="true" signature="1145:1309" placeholder="INSERT INTO `${DB_PREFIX}pagar_me_checkout_transaction`... " />
+            <marker date="1463344493866" expanded="true" signature="1598:1728" placeholder="SELECT * FRO... ${DB_PREFIX}pagar_me_checkout_transaction" />
+            <marker date="1463344493866" expanded="true" signature="2005:2162" placeholder="SELECT COUNT... ${DB_PREFIX}" />
+            <marker date="1463344493866" expanded="true" signature="2718:2823" placeholder="SELECT * FRO... ${DB_PREFIX}order_total" />
+            <marker date="1463344493866" expanded="true" signature="2986:3341" placeholder="INSERT INTO ${DB_PREFIX}order_total... " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Checkout Pagar.Me/1.5.x/upload/catalog/controller/payment/pagar_me_checkout.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2628">
-          <caret line="146" column="113" selection-start-line="146" selection-start-column="12" selection-end-line="146" selection-end-column="113" />
+        <state relative-caret-position="324">
+          <caret line="148" column="108" selection-start-line="148" selection-start-column="108" selection-end-line="148" selection-end-column="108" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Checkout Pagar.Me/2.x/upload/catalog/controller/payment/pagar_me_checkout.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2898">
-          <caret line="161" column="20" selection-start-line="161" selection-start-column="20" selection-end-line="161" selection-end-column="20" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Checkout Pagar.Me/1.5.x/upload/catalog/model/payment/pagar_me_checkout.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="936">
-          <caret line="52" column="5" selection-start-line="48" selection-start-column="4" selection-end-line="52" selection-end-column="5" />
+        <state relative-caret-position="342">
+          <caret line="154" column="112" selection-start-line="154" selection-start-column="112" selection-end-line="154" selection-end-column="112" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Checkout Pagar.Me/2.x/upload/catalog/model/payment/pagar_me_checkout.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="810">
-          <caret line="45" column="5" selection-start-line="45" selection-start-column="5" selection-end-line="45" selection-end-column="5" />
+        <state relative-caret-position="216">
+          <caret line="82" column="66" selection-start-line="82" selection-start-column="66" selection-end-line="82" selection-end-column="66" />
+          <folding>
+            <marker date="1463344919599" expanded="true" signature="208:461" placeholder="SELECT * FRO... ${DB_PREFIX}" />
+            <marker date="1463344919599" expanded="true" signature="1188:1352" placeholder="INSERT INTO `${DB_PREFIX}pagar_me_checkout_transaction`... " />
+            <marker date="1463344919599" expanded="true" signature="1695:1825" placeholder="SELECT * FRO... ${DB_PREFIX}pagar_me_checkout_transaction" />
+            <marker date="1463344919599" expanded="true" signature="2102:2259" placeholder="SELECT COUNT... ${DB_PREFIX}" />
+            <marker date="1463344919599" expanded="true" signature="2815:2920" placeholder="SELECT * FRO... ${DB_PREFIX}order_total" />
+            <marker date="1463344919599" expanded="true" signature="3083:3357" placeholder="INSERT INTO ${DB_PREFIX}order_total... " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Checkout Pagar.Me/2.x/upload/catalog/model/total/pagar_me_checkout_desconto.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="198">
+          <caret line="16" column="125" selection-start-line="16" selection-start-column="125" selection-end-line="16" selection-end-column="125" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/readme.md">
       <provider editor-type-id="text-editor">
-        <state relative-caret-position="650">
+        <state relative-caret-position="256">
           <caret line="37" column="1" selection-start-line="37" selection-start-column="1" selection-end-line="37" selection-end-column="1" />
           <folding />
         </state>
@@ -874,6 +663,17 @@
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
           <first_editor relative-caret-position="0">
+            <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <folding />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/LICENSE.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="-403">
             <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
             <folding />
           </first_editor>
