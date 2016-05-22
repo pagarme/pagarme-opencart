@@ -2,15 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="90ac4e93-4ebd-48f3-a007-1a6304bdc60e" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Checkout Pagar.Me/1.5.x/upload/catalog/model/total/pagar_me_checkout_desconto.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Checkout Pagar.Me/2.x/upload/catalog/model/total/pagar_me_checkout_desconto.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Checkout Pagar.Me/1.5.x/checkout_pagarme.zip" afterPath="$PROJECT_DIR$/Checkout Pagar.Me/1.5.x/checkout_pagarme.zip" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Checkout Pagar.Me/2.x/pagar_me_checkout.ocmod.zip" afterPath="$PROJECT_DIR$/Checkout Pagar.Me/2.x/pagar_me_checkout.ocmod.zip" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Checkout Pagar.Me/1.5.x/upload/catalog/controller/payment/pagar_me_checkout.php" afterPath="$PROJECT_DIR$/Checkout Pagar.Me/1.5.x/upload/catalog/controller/payment/pagar_me_checkout.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Checkout Pagar.Me/1.5.x/upload/catalog/model/payment/pagar_me_checkout.php" afterPath="$PROJECT_DIR$/Checkout Pagar.Me/1.5.x/upload/catalog/model/payment/pagar_me_checkout.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Checkout Pagar.Me/2.x/upload/catalog/controller/payment/pagar_me_checkout.php" afterPath="$PROJECT_DIR$/Checkout Pagar.Me/2.x/upload/catalog/controller/payment/pagar_me_checkout.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Checkout Pagar.Me/2.x/upload/catalog/model/payment/pagar_me_checkout.php" afterPath="$PROJECT_DIR$/Checkout Pagar.Me/2.x/upload/catalog/model/payment/pagar_me_checkout.php" />
     </list>
     <ignored path="pagar_me.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -86,7 +78,7 @@
         <entry file="file://$PROJECT_DIR$/LICENSE.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="SPLIT">
-              <first_editor relative-caret-position="-403">
+              <first_editor relative-caret-position="-391">
                 <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
                 <folding />
               </first_editor>
@@ -105,7 +97,7 @@
       </map>
     </option>
     <push-targets>
-      <push-target-info repo="$PROJECT_DIR$" source="master" target-remote="origin" target-branch="master" />
+      <push-target-info repo="$PROJECT_DIR$" source="master" target-remote="origin2" target-branch="master" />
     </push-targets>
   </component>
   <component name="IdeDocumentHistory">
@@ -145,10 +137,10 @@
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
   <component name="ProjectFrameBounds">
-    <option name="x" value="65" />
-    <option name="y" value="-4" />
-    <option name="width" value="1301" />
-    <option name="height" value="772" />
+    <option name="x" value="172" />
+    <option name="y" value="312" />
+    <option name="width" value="1291" />
+    <option name="height" value="744" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <OptionsSetting value="true" id="Add" />
@@ -276,7 +268,7 @@
       <workItem from="1461272861511" duration="23000" />
       <workItem from="1461272888717" duration="4091000" />
       <workItem from="1461330583062" duration="9193000" />
-      <workItem from="1463344407047" duration="750000" />
+      <workItem from="1463344407047" duration="836000" />
     </task>
     <task id="LOCAL-00001" summary="JS do cehcout agora é chamado no cabeçalho do tema&#10;Troca do Chekout Pagar.Me para o modo API garantindo assim compatibilidade com checkouts em uma página&#10;Implementação do valor mínimo da parcela e do desconto para pagamento via boleto&#10;Melhoria no método de callback">
       <created>1461340418018</created>
@@ -299,22 +291,29 @@
       <option name="project" value="LOCAL" />
       <updated>1461341886636</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Inserção do desconto de boleto no pedido do OpenCart par ao Checkout Pagar.Me">
+      <created>1463345192806</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1463345192806</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="14057000" />
+    <option name="totallyTimeSpent" value="14143000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="65" y="-4" width="1301" height="772" extended-state="6" />
-    <editor active="false" />
+    <frame x="172" y="312" width="1291" height="744" extended-state="0" />
+    <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2733068" sideWeight="0.46666667" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.275502" sideWeight="0.46683046" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3287037" sideWeight="0.5059761" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3435484" sideWeight="0.5060241" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3287037" sideWeight="0.49402392" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2733068" sideWeight="0.53333336" order="1" side_tool="true" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3435484" sideWeight="0.4939759" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.275502" sideWeight="0.5331695" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -346,7 +345,8 @@
     <MESSAGE value="JS do cehcout agora é chamado no cabeçalho do tema&#10;Troca do Chekout Pagar.Me para o modo API garantindo assim compatibilidade com checkouts em uma página&#10;Implementação do valor mínimo da parcela e do desconto para pagamento via boleto&#10;Melhoria no método de callback" />
     <MESSAGE value="Merge branch 'master' of https://github.com/rodrigosantiag/pagarme-opencart&#10;&#10;Conflicts:&#10;&#9;.gitignore&#10;&#9;API/1.5.x/upload/system/library/PagarMe/Pagarme.php&#10;&#9;API/1.5.x/upload/system/library/PagarMe/lib/Pagarme/Address.php&#10;&#9;API/1.5.x/upload/system/library/PagarMe/lib/Pagarme/Card.php&#10;&#9;API/1.5.x/upload/system/library/PagarMe/lib/Pagarme/CardHashCommon.php&#10;&#9;API/1.5.x/upload/system/library/PagarMe/lib/Pagarme/Customer.php&#10;&#9;API/1.5.x/upload/system/library/PagarMe/lib/Pagarme/Error.php&#10;&#9;API/1.5.x/upload/system/library/PagarMe/lib/Pagarme/Exception.php&#10;&#9;API/1.5.x/upload/system/library/PagarMe/lib/Pagarme/Model.php&#10;&#9;API/1.5.x/upload/system/library/PagarMe/lib/Pagarme/Object.php&#10;&#9;API/1.5.x/upload/system/library/PagarMe/lib/Pagarme/PagarMe.php&#10;&#9;API/1.5.x/upload/system/library/PagarMe/lib/Pagarme/Phone.php&#10;&#9;API/1.5.x/upload/system/library/PagarMe/lib/Pagarme/Plan.php&#10;&#9;API/1.5.x/upload/system/library/PagarMe/lib/Pagarme/Request.php&#10;&#9;API/1.5.x/upload/system/library/PagarMe/lib/Pagarme/RestClient.php&#10;&#9;API/1.5.x/upload/system/library/PagarMe/lib/Pagarme/Set.php&#10;&#9;API/1.5.x/upload/system/library/PagarMe/lib/Pagarme/Subscription.php&#10;&#9;API/1.5.x/upload/system/library/PagarMe/lib/Pagarme/Transaction.php&#10;&#9;API/1.5.x/upload/system/library/PagarMe/lib/Pagarme/TransactionCommon.php&#10;&#9;API/1.5.x/upload/system/library/PagarMe/lib/Pagarme/Util.php&#10;&#9;API/2.x/install.xml&#10;&#9;API/2.x/pagar_me.ocmod.zip&#10;&#9;API/2.x/upload/catalog/view/theme/default/template/payment/pagar_me_boleto.tpl&#10;&#9;API/2.x/upload/system/library/PagarMe/Pagarme.php&#10;&#9;API/2.x/upload/system/library/PagarMe/lib/Pagarme/Address.php&#10;&#9;API/2.x/upload/system/library/PagarMe/lib/Pagarme/Card.php&#10;&#9;API/2.x/upload/system/library/PagarMe/lib/Pagarme/CardHashCommon.php&#10;&#9;API/2.x/upload/system/library/PagarMe/lib/Pagarme/Customer.php&#10;&#9;API/2.x/upload/system/library/PagarMe/lib/Pagarme/Error.php&#10;&#9;API/2.x/upload/system/library/PagarMe/lib/Pagarme/Exception.php&#10;&#9;API/2.x/upload/system/library/PagarMe/lib/Pagarme/Model.php&#10;&#9;API/2.x/upload/system/library/PagarMe/lib/Pagarme/Object.php&#10;&#9;API/2.x/upload/system/library/PagarMe/lib/Pagarme/PagarMe.php&#10;&#9;API/2.x/upload/system/library/PagarMe/lib/Pagarme/Phone.php&#10;&#9;API/2.x/upload/system/library/PagarMe/lib/Pagarme/Plan.php&#10;&#9;API/2.x/upload/system/library/PagarMe/lib/Pagarme/Request.php&#10;&#9;API/2.x/upload/system/library/PagarMe/lib/Pagarme/RestClient.php&#10;&#9;API/2.x/upload/system/library/PagarMe/lib/Pagarme/Set.php&#10;&#9;API/2.x/upload/system/library/PagarMe/lib/Pagarme/Subscription.php&#10;&#9;API/2.x/upload/system/library/PagarMe/lib/Pagarme/Transaction.php&#10;&#9;API/2.x/upload/system/library/PagarMe/lib/Pagarme/TransactionCommon.php&#10;&#9;API/2.x/upload/system/library/PagarMe/lib/Pagarme/Util.php&#10;&#9;Checkout Pagar.Me/1.5.x/upload/admin/controller/payment/pagar_me_checkout.php&#10;&#9;Checkout Pagar.Me/1.5.x/upload/admin/language/english/payment/pagar_me_checkout.php&#10;&#9;Checkout Pagar.Me/1.5.x/upload/admin/language/portuguese-br/payment/pagar_me_checkout.php&#10;&#9;Checkout Pagar.Me/1.5.x/upload/admin/view/template/payment/pagar_me_checkout.tpl&#10;&#9;Checkout Pagar.Me/1.5.x/upload/catalog/controller/payment/pagar_me_checkout.php&#10;&#9;Checkout Pagar.Me/1.5.x/upload/catalog/model/payment/pagar_me_checkout.php&#10;&#9;Checkout Pagar.Me/1.5.x/upload/catalog/view/theme/default/template/payment/pagar_me_checkout.tpl&#10;&#9;Checkout Pagar.Me/1.5.x/upload/system/library/PagarMe/Pagarme.php&#10;&#9;Checkout Pagar.Me/1.5.x/upload/system/library/PagarMe/lib/Pagarme/Address.php&#10;&#9;Checkout Pagar.Me/1.5.x/upload/system/library/PagarMe/lib/Pagarme/Card.php&#10;&#9;Checkout Pagar.Me/1.5.x/upload/system/library/PagarMe/lib/Pagarme/CardHashCommon.php&#10;&#9;Checkout Pagar.Me/1.5.x/upload/system/library/PagarMe/lib/Pagarme/Customer.php&#10;&#9;Checkout Pagar.Me/1.5.x/upload/system/library/PagarMe/lib/Pagarme/Error.php&#10;&#9;Checkout Pagar.Me/1.5.x/upload/system/library/PagarMe/lib/Pagarme/Exception.php&#10;&#9;Checkout Pagar.Me/1.5.x/upload/system/library/PagarMe/lib/Pagarme/Model.php&#10;&#9;Checkout Pagar.Me/1.5.x/upload/system/library/PagarMe/lib/Pagarme/Object.php&#10;&#9;Checkout Pagar.Me/1.5.x/upload/system/library/PagarMe/lib/Pagarme/PagarMe.php&#10;&#9;Checkout Pagar.Me/1.5.x/upload/system/library/PagarMe/lib/Pagarme/Phone.php&#10;&#9;Checkout Pagar.Me/1.5.x/upload/system/library/PagarMe/lib/Pagarme/Plan.php&#10;&#9;Checkout Pagar.Me/1.5.x/upload/system/library/PagarMe/lib/Pagarme/Request.php&#10;&#9;Checkout Pagar.Me/1.5.x/upload/system/library/PagarMe/lib/Pagarme/RestClient.php&#10;&#9;Checkout Pagar.Me/1.5.x/upload/system/library/PagarMe/lib/Pagarme/Set.php&#10;&#9;Checkout Pagar.Me/1.5.x/upload/system/library/PagarMe/lib/Pagarme/Subscription.php&#10;&#9;Checkout Pagar.Me/1.5.x/upload/system/library/PagarMe/lib/Pagarme/Transaction.php&#10;&#9;Checkout Pagar.Me/1.5.x/upload/system/library/PagarMe/lib/Pagarme/TransactionCommon.php&#10;&#9;Checkout Pagar.Me/1.5.x/upload/system/library/PagarMe/lib/Pagarme/Util.php&#10;&#9;Checkout Pagar.Me/1.5.x/upload/vqmod/xml/pagar_me_checkout.xml&#10;&#9;Checkout Pagar.Me/2.x/install.xml&#10;&#9;Checkout Pagar.Me/2.x/pagar_me_checkout.ocmod.zip&#10;&#9;Checkout Pagar.Me/2.x/upload/admin/controller/payment/pagar_me_checkout.php&#10;&#9;Checkout Pagar.Me/2.x/upload/admin/language/english/payment/pagar_me_checkout.php&#10;&#9;Checkout Pagar.Me/2.x/upload/admin/language/portuguese-br/payment/pagar_me_checkout.php&#10;&#9;Checkout Pagar.Me/2.x/upload/admin/view/template/payment/pagar_me_checkout.tpl&#10;&#9;Checkout Pagar.Me/2.x/upload/catalog/controller/payment/pagar_me_checkout.php&#10;&#9;Checkout Pagar.Me/2.x/upload/catalog/model/payment/pagar_me_checkout.php&#10;&#9;Checkout Pagar.Me/2.x/upload/catalog/view/theme/default/template/payment/pagar_me_checkout.tpl&#10;&#9;Checkout Pagar.Me/2.x/upload/system/library/PagarMe/Pagarme.php&#10;&#9;Checkout Pagar.Me/2.x/upload/system/library/PagarMe/lib/Pagarme/Address.php&#10;&#9;Checkout Pagar.Me/2.x/upload/system/library/PagarMe/lib/Pagarme/Card.php&#10;&#9;Checkout Pagar.Me/2.x/upload/system/library/PagarMe/lib/Pagarme/CardHashCommon.php&#10;&#9;Checkout Pagar.Me/2.x/upload/system/library/PagarMe/lib/Pagarme/Customer.php&#10;&#9;Checkout Pagar.Me/2.x/upload/system/library/PagarMe/lib/Pagarme/Error.php&#10;&#9;Checkout Pagar.Me/2.x/upload/system/library/PagarMe/lib/Pagarme/Exception.php&#10;&#9;Checkout Pagar.Me/2.x/upload/system/library/PagarMe/lib/Pagarme/Model.php&#10;&#9;Checkout Pagar.Me/2.x/upload/system/library/PagarMe/lib/Pagarme/Object.php&#10;&#9;Checkout Pagar.Me/2.x/upload/system/library/PagarMe/lib/Pagarme/PagarMe.php&#10;&#9;Checkout Pagar.Me/2.x/upload/system/library/PagarMe/lib/Pagarme/Phone.php&#10;&#9;Checkout Pagar.Me/2.x/upload/system/library/PagarMe/lib/Pagarme/Plan.php&#10;&#9;Checkout Pagar.Me/2.x/upload/system/library/PagarMe/lib/Pagarme/Request.php&#10;&#9;Checkout Pagar.Me/2.x/upload/system/library/PagarMe/lib/Pagarme/RestClient.php&#10;&#9;Checkout Pagar.Me/2.x/upload/system/library/PagarMe/lib/Pagarme/Set.php&#10;&#9;Checkout Pagar.Me/2.x/upload/system/library/PagarMe/lib/Pagarme/Subscription.php&#10;&#9;Checkout Pagar.Me/2.x/upload/system/library/PagarMe/lib/Pagarme/Transaction.php&#10;&#9;Checkout Pagar.Me/2.x/upload/system/library/PagarMe/lib/Pagarme/TransactionCommon.php&#10;&#9;Checkout Pagar.Me/2.x/upload/system/library/PagarMe/lib/Pagarme/Util.php&#10;&#9;readme.md&#10;" />
     <MESSAGE value="Merge branch 'master' of https://github.com/Santive/pagarme-opencart into santive-master&#10;&#10;Conflicts:&#10;&#9;API/2.x/pagar_me.ocmod.zip&#10;&#9;Checkout Pagar.Me/1.5.x/upload/catalog/controller/payment/pagar_me_checkout.php&#10;&#9;Checkout Pagar.Me/2.x/pagar_me_checkout.ocmod.zip&#10;" />
-    <option name="LAST_COMMIT_MESSAGE" value="Merge branch 'master' of https://github.com/Santive/pagarme-opencart into santive-master&#10;&#10;Conflicts:&#10;&#9;API/2.x/pagar_me.ocmod.zip&#10;&#9;Checkout Pagar.Me/1.5.x/upload/catalog/controller/payment/pagar_me_checkout.php&#10;&#9;Checkout Pagar.Me/2.x/pagar_me_checkout.ocmod.zip&#10;" />
+    <MESSAGE value="Inserção do desconto de boleto no pedido do OpenCart par ao Checkout Pagar.Me" />
+    <option name="LAST_COMMIT_MESSAGE" value="Inserção do desconto de boleto no pedido do OpenCart par ao Checkout Pagar.Me" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -673,7 +673,7 @@
     <entry file="file://$PROJECT_DIR$/LICENSE.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
-          <first_editor relative-caret-position="-403">
+          <first_editor relative-caret-position="-391">
             <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
             <folding />
           </first_editor>
