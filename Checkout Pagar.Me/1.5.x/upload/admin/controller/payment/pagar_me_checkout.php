@@ -315,7 +315,9 @@ class ControllerPaymentPagarMeCheckout extends Controller
         $this->db->query("CREATE TABLE IF NOT EXISTS `" . DB_PREFIX . "pagar_me_checkout_transaction` (
   `pagar_me_transaction_id` int(11) NOT NULL AUTO_INCREMENT,
   `order_id` int(11) NOT NULL,
-  `transaction_id` varchar(512) DEFAULT NULL,
+  `transaction_id` varchar(512) DEFAULT NULL,  
+  `n_parcela` int(11) DEFAULT '0',
+  `bandeira` varchar(64) DEFAULT NULL,
   PRIMARY KEY (`pagar_me_transaction_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1");
 
