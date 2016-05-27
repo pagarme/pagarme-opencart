@@ -5,6 +5,17 @@
     <vqmver>2.1.5</vqmver>
     <author>Santive Tecnologia contato@santive.com</author>
 
+    <file name="catalog/view/theme/*/template/common/header.tpl">
+        <operation>
+            <search position="before">
+                <![CDATA[</head>]]>
+            </search>
+            <add>
+                <![CDATA[<script src="https://assets.pagar.me/checkout/checkout.js"></script>]]>
+            </add>
+        </operation>
+    </file>
+
     <file name="catalog/controller/account/order.php">
         <operation>
             <search position="after">
@@ -23,7 +34,7 @@
     </file>
 
     <file name="catalog/model/account/order.php">
-        <operation>
+        <operation error="log">
             <search position="after">
                 <![CDATA[$order_query->row['payment_company'],]]>
             </search>
@@ -35,7 +46,7 @@
     </file>
 
     <file name="catalog/model/checkout/order.php">
-        <operation>
+        <operation error="log">
             <search position="after">
                 <![CDATA[return array(]]>
             </search>
@@ -46,7 +57,7 @@
     </file>
 
     <file name="catalog/view/theme/*/template/account/order_info.tpl">
-        <operation>
+        <operation error="log">
             <search position="replace">
                 <![CDATA[<b><?php echo $text_payment_method; ?></b> <?php echo $payment_method; ?><br />]]>
             </search>
@@ -66,7 +77,7 @@
     </file>
 
     <file path="catalog/controller/checkout/success.php">
-        <operation>
+        <operation error="log">
             <search position="before">
                 <![CDATA[$this->data['button_continue'] = $this->language->get('button_continue');]]>
             </search>
@@ -80,7 +91,7 @@
     </file>
 
     <file name="catalog/view/theme/*/template/common/success.tpl">
-        <operation>
+        <operation error="log">
             <search position="before">
                 <![CDATA[<div class="right"><a href="<?php echo $continue; ?>" class="button"><?php echo $button_continue; ?></a></div>]]>
             </search>

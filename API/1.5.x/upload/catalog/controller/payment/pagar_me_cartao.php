@@ -197,17 +197,14 @@ class ControllerPaymentPagarMeCartao extends Controller
 
         if ($this->config->get('dados_status')) {
             if ($customer['cpf'] != '') {
-                $document_number = $this->removeSeparadores($customer['cpf']);
                 $customer_name = $order_info['payment_firstname'] . " " . $order_info['payment_lastname'];
             } else {
-                $document_number = $this->removeSeparadores($customer['cnpj']);
                 $customer_name = $customer['razao_social'];
 
             }
             $numero = $order_info['payment_numero'];
             $complemento = $order_info['payment_company'];
         } else {
-            $document_number = $this->removeSeparadores($order_info['payment_tax_id']);
             $customer_name = $order_info['payment_firstname'] . " " . $order_info['payment_lastname'];
             $numero = 'Sem número';
             $complemento = '';
@@ -222,7 +219,7 @@ class ControllerPaymentPagarMeCartao extends Controller
             'postback_url' => HTTP_SERVER . 'index.php?route=payment/pagar_me_cartao/callback',
             "customer" => array(
                 "name" => $customer_name,
-                "document_number" => $document_number,
+                "document_number" => $this->request->post['cpf_customer'],
                 "email" => $order_info['email'],
                 "address" => array(
                     "street" => $order_info['payment_address_1'],
@@ -235,6 +232,10 @@ class ControllerPaymentPagarMeCartao extends Controller
                     "ddd" => substr(preg_replace('/[^0-9]/', '', $order_info['telephone']), 0, 2),
                     "number" => substr(preg_replace('/[^0-9]/', '', $order_info['telephone']), 2),
                 )
+            ),
+            'metadata' => array(
+                'id_pedido' => $order_info['order_id'],
+                'loja' => $this->config->get('config_title'),
             )));
 
         $transaction->charge();

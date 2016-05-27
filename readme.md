@@ -33,7 +33,9 @@
 2. Faça o upload do arquivo OCMOD
 3. Acesse Extensões > Modificações
 4. Clique no botão atualizar
-5. Pronto! O módulo está funcionando
+5. Acesse extensões pagamentos
+6. Instale e configure
+7. Pronto! O módulo está funcionando
 
 ### Requisitos
 

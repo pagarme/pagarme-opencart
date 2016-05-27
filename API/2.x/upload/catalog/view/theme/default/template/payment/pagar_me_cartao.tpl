@@ -70,6 +70,12 @@
             </div>
         </div>
         <div class="row">
+            <div class="col-xs-12">
+                <label for="cpf_customer">CPF/CNPJ (somente números)</label>
+                <input type="text" id="cpf_customer" value="" class="form-control"/>
+            </div>
+        </div>
+        <div class="row">
             <div id="installmentsWrapper">
                 <div class="col-xs-12">
                     <label for="installmentQuantity">Parcelamento</label>
@@ -176,7 +182,8 @@
                         amount: $("#totalValue").val(),
                         card_hash: $("#card_hash").val(),
                         installments: $("#installments").val(),
-                        bandeira: $("#bandeira").val()
+                        bandeira: $("#bandeira").val(),
+                        cpf_customer: $("#cpf_customer").val()
                     },
                     success: function (response) {
                         if (response['error']) {

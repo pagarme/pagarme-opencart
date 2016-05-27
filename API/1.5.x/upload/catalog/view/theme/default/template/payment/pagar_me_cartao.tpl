@@ -54,6 +54,12 @@
             <label for="card_holder_name">Nome impresso no cartão</label>
             <input type="text" id="card_holder_name" value=""/>
         </div>
+
+        <div class="input-block">
+            <label for="cpf_customer">CPF/CNPJ (somente números)</label>
+            <input type="text" id="cpf_customer" value=""/>
+        </div>
+        
         <div id="installmentsWrapper">
             <div class="input-block">
                 <label for="installmentQuantity">Parcelamento</label>
@@ -126,7 +132,7 @@
         creditCard.cardNumber = $("#payment_form #card_number").val();
         creditCard.cardCVV = $("#payment_form #card_cvv").val();
 
-        // pega os erros de validação nos campos do form
+        // pega os erros de validação nos campos dcustomer_cpfo form
         var fieldErrors = creditCard.fieldErrors();
 
         //Verifica se há erros
@@ -159,7 +165,8 @@
                         amount: $("#totalValue").val(),
                         card_hash: $("#card_hash").val(),
                         installments: $("#installments").val(),
-                        bandeira: $("#bandeira").val()
+                        bandeira: $("#bandeira").val(),
+                        cpf_customer: $("#cpf_customer").val()
                     },
                     success: function (response) {
                         if (response['error']) {

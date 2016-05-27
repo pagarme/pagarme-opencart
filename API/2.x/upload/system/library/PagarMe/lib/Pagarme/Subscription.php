@@ -1,4 +1,5 @@
 <?php
+
 class PagarMe_Subscription extends PagarMe_TransactionCommon {
 
 	public function create() {
@@ -42,4 +43,3 @@ class PagarMe_Subscription extends PagarMe_TransactionCommon {
 			$this->refresh($response);
 	}
 }
-?>

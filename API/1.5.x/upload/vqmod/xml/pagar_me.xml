@@ -17,7 +17,7 @@
     </file>
 
     <file name="catalog/controller/account/order.php">
-        <operation>
+        <operation error="log">
             <search position="after">
                 <![CDATA[
                 $this->data['date_added'] = date($this->language->get('date_format_short'), strtotime($order_info['date_added']));
@@ -34,7 +34,7 @@
     </file>
 
     <file name="catalog/model/account/order.php">
-        <operation>
+        <operation error="log">
             <search position="after">
                 <![CDATA[$order_query->row['payment_company'],]]>
             </search>
@@ -46,7 +46,7 @@
     </file>
 
     <file name="catalog/model/checkout/order.php">
-        <operation>
+        <operation error="log">
             <search position="after">
                 <![CDATA[return array(]]>
             </search>
@@ -57,7 +57,7 @@
     </file>
 
     <file name="catalog/view/theme/*/template/account/order_info.tpl">
-        <operation>
+        <operation error="log">
             <search position="replace">
                 <![CDATA[<b><?php echo $text_payment_method; ?></b> <?php echo $payment_method; ?><br />]]>
             </search>
@@ -77,7 +77,7 @@
     </file>
 
     <file name="catalog/controller/onecheckout/success.php" error="skip">
-        <operation>
+        <operation error="log">
             <search position="after">
                 <![CDATA[public function index() {]]>
             </search>
@@ -90,7 +90,7 @@
     </file>
 
     <file name="catalog/controller/checkout/success.php">
-        <operation>
+        <operation error="log">
             <search position="after">
                 <![CDATA[public function index() {]]>
             </search>

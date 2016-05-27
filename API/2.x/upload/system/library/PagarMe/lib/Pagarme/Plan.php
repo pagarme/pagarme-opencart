@@ -1,8 +1,4 @@
 <?php
 
-class PagarMe_Plan extends PagarMe_Model 
-{
+class PagarMe_Plan extends PagarMe_Model {
 }
-
-
-?>
