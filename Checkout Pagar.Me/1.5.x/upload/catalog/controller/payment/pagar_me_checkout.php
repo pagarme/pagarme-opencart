@@ -104,7 +104,7 @@ class ControllerPaymentPagarMeCheckout extends Controller
         $json['customer_address_state'] = $uf['code'];
         $json['customer_address_zipcode'] = $this->removeSeparadores($order_info['payment_postcode']);
         $json['customer_phone_ddd'] = substr(preg_replace('/[^0-9]/', '', $order_info['telephone']), 0, 2);
-        $json['customer_phone_number'] = substr(preg_replace('/[^0-9]/', '', $order_info['telephone']), 2);
+        $json['customer_phone_number'] = substr(preg_replace('/[^0-9]/', '', $order_info['telephone']), 2, 9);
         $json['interest_rate'] = $this->config->get('pagar_me_checkout_interest_rate');
 
 

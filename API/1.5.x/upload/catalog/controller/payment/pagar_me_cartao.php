@@ -230,7 +230,7 @@ class ControllerPaymentPagarMeCartao extends Controller
                 ),
                 "phone" => array(
                     "ddd" => substr(preg_replace('/[^0-9]/', '', $order_info['telephone']), 0, 2),
-                    "number" => substr(preg_replace('/[^0-9]/', '', $order_info['telephone']), 2),
+                    "number" => substr(preg_replace('/[^0-9]/', '', $order_info['telephone']), 2, 9),
                 )
             ),
             'metadata' => array(
