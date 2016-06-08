@@ -2,15 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="90ac4e93-4ebd-48f3-a007-1a6304bdc60e" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/API/2.x/pagar_me.ocmod.zip" afterPath="$PROJECT_DIR$/API/2.x/pagar_me.ocmod.zip" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Checkout Pagar.Me/2.x/pagar_me_checkout.ocmod.zip" afterPath="$PROJECT_DIR$/Checkout Pagar.Me/2.x/pagar_me_checkout.ocmod.zip" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/API/1.5.x/upload/catalog/controller/payment/pagar_me_boleto.php" afterPath="$PROJECT_DIR$/API/1.5.x/upload/catalog/controller/payment/pagar_me_boleto.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/API/1.5.x/upload/catalog/controller/payment/pagar_me_cartao.php" afterPath="$PROJECT_DIR$/API/1.5.x/upload/catalog/controller/payment/pagar_me_cartao.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/API/2.x/upload/catalog/controller/payment/pagar_me_boleto.php" afterPath="$PROJECT_DIR$/API/2.x/upload/catalog/controller/payment/pagar_me_boleto.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/API/2.x/upload/catalog/controller/payment/pagar_me_cartao.php" afterPath="$PROJECT_DIR$/API/2.x/upload/catalog/controller/payment/pagar_me_cartao.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Checkout Pagar.Me/1.5.x/upload/catalog/controller/payment/pagar_me_checkout.php" afterPath="$PROJECT_DIR$/Checkout Pagar.Me/1.5.x/upload/catalog/controller/payment/pagar_me_checkout.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Checkout Pagar.Me/2.x/upload/catalog/controller/payment/pagar_me_checkout.php" afterPath="$PROJECT_DIR$/Checkout Pagar.Me/2.x/upload/catalog/controller/payment/pagar_me_checkout.php" />
     </list>
     <ignored path="pagar_me.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -656,7 +648,7 @@
       <workItem from="1463581928890" duration="206000" />
       <workItem from="1464962598181" duration="2102000" />
       <workItem from="1465394160299" duration="685000" />
-      <workItem from="1465408290003" duration="1193000" />
+      <workItem from="1465408290003" duration="1288000" />
     </task>
     <task id="LOCAL-00001" summary="JS do cehcout agora é chamado no cabeçalho do tema&#10;Troca do Chekout Pagar.Me para o modo API garantindo assim compatibilidade com checkouts em uma página&#10;Implementação do valor mínimo da parcela e do desconto para pagamento via boleto&#10;Melhoria no método de callback">
       <created>1461340418018</created>
@@ -700,11 +692,18 @@
       <option name="project" value="LOCAL" />
       <updated>1465394835255</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Correção do status_id POSTBack">
+      <created>1465409797528</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1465409797528</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="21011000" />
+    <option name="totallyTimeSpent" value="21106000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="65" y="24" width="1855" height="1056" extended-state="6" />
@@ -749,7 +748,8 @@
     <MESSAGE value="Merge branch 'master' of https://github.com/Santive/pagarme-opencart into santive-master&#10;&#10;Conflicts:&#10;&#9;API/2.x/pagar_me.ocmod.zip&#10;&#9;Checkout Pagar.Me/1.5.x/upload/catalog/controller/payment/pagar_me_checkout.php&#10;&#9;Checkout Pagar.Me/2.x/pagar_me_checkout.ocmod.zip&#10;" />
     <MESSAGE value="Correção no callback do Pagar Me Boleto" />
     <MESSAGE value="Inserção do método que previne a atrualização via POSTBack do mesmo status diversas vezes" />
-    <option name="LAST_COMMIT_MESSAGE" value="Inserção do método que previne a atrualização via POSTBack do mesmo status diversas vezes" />
+    <MESSAGE value="Correção do status_id POSTBack" />
+    <option name="LAST_COMMIT_MESSAGE" value="Correção do status_id POSTBack" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
