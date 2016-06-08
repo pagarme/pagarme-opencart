@@ -73,7 +73,9 @@ class ControllerPaymentPagarMeBoleto extends Controller
 
             $current_status = 'pagar_me_boleto_order_' . $this->request->post['current_status'];
 
-            $this->model_checkout_order->update($order_id, $this->config->get($current_status), '', true);
+            if(!$this->model_payment_pagar_me_boleto->getTotalOrderHistoriesByOrderStatusId($current_status, $order_id)) {
+                $this->model_checkout_order->update($order_id, $this->config->get($current_status), '', true);
+            }
 
         } else {
             $this->log->write("Pagar.Me boleto: Notificação inválida");
