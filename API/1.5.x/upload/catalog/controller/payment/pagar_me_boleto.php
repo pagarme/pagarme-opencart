@@ -71,7 +71,7 @@ class ControllerPaymentPagarMeBoleto extends Controller
 
             $order_id = $this->model_payment_pagar_me_boleto->getPagarMeOrder($this->request->post['id']);
 
-            $current_status = 'pagar_me_boleto_order_' . $this->request->post['current_status'];
+            $current_status = $this->config->get('pagar_me_boleto_order_' . $this->request->post['current_status']);
 
             if(!$this->model_payment_pagar_me_boleto->getTotalOrderHistoriesByOrderStatusId($current_status, $order_id)) {
                 $this->model_checkout_order->update($order_id, $this->config->get($current_status), '', true);
