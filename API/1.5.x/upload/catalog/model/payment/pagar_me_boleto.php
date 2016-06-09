@@ -37,13 +37,19 @@ class ModelPaymentPagarMeBoleto extends Model {
     }
 
     public function getPagarMeOrder($transaction_id) {
-        $order_query = $this->db->query("SELECT * FROM `" . DB_PREFIX . "pagar_me_transaction` WHERE transaction_id = '" . $this->db->escpae($transaction_id). "'");
+        $order_query = $this->db->query("SELECT * FROM `" . DB_PREFIX . "pagar_me_transaction` WHERE transaction_id = '" . $this->db->escape($transaction_id). "'");
 
         if ($order_query->num_rows) {
             return $order_query->row['order_id'];
         } else {
             return false;
         }
+    }
+
+    public function getTotalOrderHistoriesByOrderStatusId($order_status_id, $order_id) {
+        $query = $this->db->query("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "order_history WHERE order_status_id = '" . (int)$order_status_id . "' AND order_id = '" . (int) $order_id . "'");
+
+        return $query->row['total'];
     }
 
 }
