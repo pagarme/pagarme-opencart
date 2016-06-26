@@ -82,7 +82,7 @@
                 <![CDATA[$this->data['button_continue'] = $this->language->get('button_continue');]]>
             </search>
             <add>
-                <![CDATA[if($this->session->data['checkout_pagar_me_boleto_url']){
+                <![CDATA[if(isset($this->session->data['checkout_pagar_me_boleto_url'])){
                     $this->data['button_checkout_pagar_me_boleto'] = $this->session->data['checkout_pagar_me_boleto_url'];
                     unset($this->session->data['checkout_pagar_me_boleto_url']);
                 }]]>
@@ -96,7 +96,7 @@
                 <![CDATA[<div class="right"><a href="<?php echo $continue; ?>" class="button"><?php echo $button_continue; ?></a></div>]]>
             </search>
             <add>
-                <![CDATA[<?php if($button_checkout_pagar_me_boleto): ?>
+                <![CDATA[<?php if(isset($button_checkout_pagar_me_boleto)): ?>
   <div class="left"><a href="<?php echo $button_checkout_pagar_me_boleto ?>" target="_blank" class="button"><strong>Imprima seu boleto</strong></a></div>
 <?php endif; ?>]]>
             </add>
