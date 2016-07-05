@@ -178,7 +178,7 @@ class ControllerPaymentPagarMeCartao extends Controller
             $current_status = $this->config->get('pagar_me_cartao_order_' . $this->request->post['current_status']);
 
             if(!$this->model_payment_pagar_me_cartao->getTotalOrderHistoriesByOrderStatusId($current_status, $order_id)) {
-                $this->model_checkout_order->update($order_id, $this->config->get($current_status), '', true);
+                $this->model_checkout_order->update($order_id, $current_status, '', true);
             }
         } else {
             $this->log->write("Pagar.Me cartão de crédito: Notificação inválida");

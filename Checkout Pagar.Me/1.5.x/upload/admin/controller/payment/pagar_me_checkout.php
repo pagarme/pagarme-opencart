@@ -35,7 +35,8 @@ class ControllerPaymentPagarMeCheckout extends Controller
 
         $this->data['entry_criptografia'] = $this->language->get('entry_criptografia');
         $this->data['entry_api'] = $this->language->get('entry_api');
-        $this->data['entry_nome'] = $this->language->get('entry_nome');
+        $this->data['entry_nome'] = $this->language->get('entry_nome');        
+        $this->data['entry_customer_data'] = $this->language->get('entry_customer_data');        
         $this->data['entry_texto_botao'] = $this->language->get('entry_texto_botao');
         $this->data['entry_payment_methods'] = $this->language->get('entry_payment_methods');
         $this->data['entry_card_brands'] = $this->language->get('entry_card_brands');
@@ -205,6 +206,12 @@ class ControllerPaymentPagarMeCheckout extends Controller
             $this->data['pagar_me_checkout_nome'] = $this->request->post['pagar_me_checkout_nome'];
         } else {
             $this->data['pagar_me_checkout_nome'] = $this->config->get('pagar_me_checkout_nome');
+        }
+
+        if (isset($this->request->post['pagar_me_checkout_customer_data'])) {
+            $this->data['pagar_me_checkout_customer_data'] = $this->request->post['pagar_me_checkout_customer_data'];
+        } else {
+            $this->data['pagar_me_checkout_customer_data'] = $this->config->get('pagar_me_checkout_customer_data');
         }
 
         if (isset($this->request->post['pagar_me_checkout_text_information'])) {

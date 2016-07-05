@@ -39,6 +39,19 @@
 						</tr>
 
 						<tr>
+							<td><?php echo $entry_customer_data; ?></td>
+							<td><select name="pagar_me_checkout_customer_data">
+									<?php if ($pagar_me_checkout_customer_data) { ?>
+										<option value="1" selected="selected"><?php echo $text_yes; ?></option>
+										<option value="0"><?php echo $text_no; ?></option>
+									<?php } else { ?>
+										<option value="1"><?php echo $text_yes; ?></option>
+										<option value="0" selected="selected"><?php echo $text_no; ?></option>
+									<?php } ?>
+								</select></td>
+						</tr>
+
+						<tr>
 							<td><?php echo $entry_text_information; ?></td>
 							<td><textarea name="pagar_me_checkout_text_information" cols="40" rows="5"><?php echo $pagar_me_checkout_text_information; ?></textarea></td>
 						</tr>
