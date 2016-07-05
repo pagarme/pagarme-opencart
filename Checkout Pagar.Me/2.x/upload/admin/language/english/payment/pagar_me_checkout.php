@@ -12,6 +12,8 @@ $_['text_edit'] = 'Configurações do Checkout Pagar.Me';
 // Entry
 $_['entry_nome'] = 'Texto a ser exibido na loja';
 $_['help_nome'] = 'Ex: Checkout Pagar.Me';
+$_['entry_customer_data'] = 'Pedir dados do cliente na tela do Checkout Pagar.Me';
+$_['help_customer_data'] = 'Caso "Não", os dados do cadastro serão utilizados';
 $_['entry_text_information'] = 'Texto informativo exibido na confirmação do pedido';
 $_['entry_criptografia']         				= 'Chave de criptografia';
 $_['help_criptografia']         				= 'Encontrada nos dados da sua conta no Dashboard do Pagar.me';

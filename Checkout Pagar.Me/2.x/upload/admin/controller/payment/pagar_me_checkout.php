@@ -39,6 +39,7 @@ class ControllerPaymentPagarMeCheckout extends Controller
         $data['entry_api'] = $this->language->get('entry_api');
         $data['help_api'] = $this->language->get('help_api');
         $data['entry_nome'] = $this->language->get('entry_nome');
+        $data['entry_customer_data'] = $this->language->get('entry_customer_data');
         $data['help_nome'] = $this->language->get('help_nome');
         $data['entry_texto_botao'] = $this->language->get('entry_texto_botao');
         $data['help_texto_botao'] = $this->language->get('help_texto_botao');
@@ -212,6 +213,12 @@ class ControllerPaymentPagarMeCheckout extends Controller
             $data['pagar_me_checkout_nome'] = $this->request->post['pagar_me_checkout_nome'];
         } else {
             $data['pagar_me_checkout_nome'] = $this->config->get('pagar_me_checkout_nome');
+        }
+
+        if (isset($this->request->post['pagar_me_checkout_customer_data'])) {
+            $data['pagar_me_checkout_customer_data'] = $this->request->post['pagar_me_checkout_customer_data'];
+        } else {
+            $data['pagar_me_checkout_customer_data'] = $this->config->get('pagar_me_checkout_customer_data');
         }
 
         if (isset($this->request->post['pagar_me_checkout_text_information'])) {

@@ -42,6 +42,22 @@
                     </div>
 
                     <div class="form-group required">
+                        <label class="col-sm-2 control-label" for="input-customer-data"><span data-toggle="tootip" title="<?php echo $help_customer_data; ?>"><?php echo $entry_customer_data; ?></span></label>
+
+                        <div class="col-sm-10">
+                            <select name="pagar_me_checkout_customer_data" id="input-customer-data" class="form-control">
+                                <?php if ($pagar_me_checkout_customer_data) { ?>
+                                    <option value="1" selected="selected"><?php echo $text_yes; ?></option>
+                                    <option value="0"><?php echo $text_no; ?></option>
+                                <?php } else { ?>
+                                    <option value="1"><?php echo $text_yes; ?></option>
+                                    <option value="0" selected="selected"><?php echo $text_no; ?></option>
+                                <?php } ?>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group required">
                         <label class="col-sm-2 control-label"
                                for="input-criptografia"><span data-toggle="tootip" title="<?php echo $help_criptografia; ?>"><?php echo $entry_criptografia; ?></span></label>
 

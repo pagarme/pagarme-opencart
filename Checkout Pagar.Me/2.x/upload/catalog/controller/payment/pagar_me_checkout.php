@@ -13,6 +13,7 @@ class ControllerPaymentPagarMeCheckout extends Controller
         $data['encryption_key'] = $this->config->get('pagar_me_checkout_criptografia');
 
         $data['text_information'] = $this->config->get('pagar_me_checkout_text_information');
+        $data['customer_data'] = $this->config->get('pagar_me_checkout_customer_data');
         $data['url'] = $this->url->link('payment/pagar_me_checkout/confirm', '', 'SSL');
         $data['texto_botao'] = $this->config->get('pagar_me_checkout_texto_botao');
         $data['button_css_class'] = $this->config->get('pagar_me_checkout_button_css_class');
@@ -181,7 +182,7 @@ class ControllerPaymentPagarMeCheckout extends Controller
 
 
                 if(!$this->model_payment_pagar_me_checkout->getTotalOrderHistoriesByOrderStatusId($current_status, $order_id)) {
-                    $this->model_checkout_order->addOrderHistory($order_id, $this->config->get($current_status), '', true);
+                    $this->model_checkout_order->addOrderHistory($order_id, $current_status, '', true);
                 }
 
 
