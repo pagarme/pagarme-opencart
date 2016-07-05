@@ -31,10 +31,10 @@ class ModelPaymentPagarMeCheckout extends Model
         return $method_data;
     }
 
-    public function addTransactionId($order_id, $transaction_id, $boleto_url = null)
+    public function addTransactionId($order_id, $transaction_id, $boleto_url = null, $n_parcela = 0, $bandeira = null)
     {
         $this->db->query("INSERT INTO `" . DB_PREFIX . "pagar_me_checkout_transaction` SET order_id = '" . (int) $order_id . "', transaction_id =
-'" . $this->db->escape($transaction_id) . "'");
+'" . $this->db->escape($transaction_id) . "', n_parcela = '" . (int)$n_parcela . "', bandeira = '" . $this->db->escape($bandeira) . "'");
 
         if (!is_null($boleto_url)) {
             $this->db->query("UPDATE `" . DB_PREFIX . "order` SET pagar_me_checkout_url = '" . $this->db->escape($boleto_url) . "' WHERE

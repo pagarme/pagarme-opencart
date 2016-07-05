@@ -146,7 +146,7 @@ class ControllerPaymentPagarMeCheckout extends Controller
                 $comentario = "N&uacute;mero da transa&ccedil;&atilde;o: " . $transaction->id . "<br />";
                 $comentario .= " Cartão: " . strtoupper($transaction->card->brand) . "<br />";
                 $comentario .= " Parcelado em: " . $transaction->installments . "x";
-                $this->model_payment_pagar_me_checkout->addTransactionId($this->session->data['order_id'], $transaction->id, NULL);
+                $this->model_payment_pagar_me_checkout->addTransactionId($this->session->data['order_id'], $transaction->id, NULL, $transaction->installments, $transaction->card->brand);
             } else {
                 $this->model_payment_pagar_me_checkout->addTransactionId($this->session->data['order_id'], $transaction->id, $transaction->boleto_url);
                 /* Adiciona desconto do boleto ao pedido para que o total seja calculado corretamente */
