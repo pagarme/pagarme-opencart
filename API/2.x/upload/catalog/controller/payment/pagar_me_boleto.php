@@ -4,6 +4,7 @@ require_once DIR_SYSTEM . 'library/PagarMe/Pagarme.php';
 
 class ControllerPaymentPagarMeBoleto extends Controller
 {
+    private $error;
 
     public function index()
     {
@@ -145,7 +146,7 @@ class ControllerPaymentPagarMeBoleto extends Controller
             $transaction->charge();
         } catch (Exception $e) {
             $this->log->write("Erro Pagar.Me boleto: " . $e->getMessage());
-            die();
+            $this->error = $e->getMessage();
         }
 
         $status = $transaction->status; // status da transação
@@ -164,6 +165,10 @@ class ControllerPaymentPagarMeBoleto extends Controller
             $json['boleto_url'] = $boleto_url;
         } else {
             $json['success'] = false;
+        }
+
+        if ($this->error) {
+            $json['error'] = $this->error;
         }
 
         $this->response->setOutput(json_encode($json));

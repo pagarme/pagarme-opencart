@@ -5,6 +5,8 @@ require_once DIR_SYSTEM . 'library/PagarMe/Pagarme.php';
 class ControllerPaymentPagarMeCartao extends Controller
 {
 
+    private $error;
+
     public function index()
     {
 
@@ -44,7 +46,7 @@ class ControllerPaymentPagarMeCartao extends Controller
             $data['parcelas'] = PagarMe_Transaction::calculateInstallmentsAmount($data['total'], $this->config->get('pagar_me_cartao_taxa_juros'), $max_parcelas, $this->config->get('pagar_me_cartao_parcelas_sem_juros'));
         } catch (Exception $e) {
             $this->log->write("Erro Pagar.me: " . $e->getTraceAsString());
-            die();
+            $this->error = $e->getTraceAsString();
         }
 
 
@@ -259,6 +261,10 @@ class ControllerPaymentPagarMeCartao extends Controller
         } else {
             $this->model_payment_pagar_me_cartao->addTransactionId($this->session->data['order_id'], $id_transacao);
             $json['success'] = false;
+        }
+
+        if ($this->error) {
+            $json['error'] = $this->error;
         }
 
         $this->response->setOutput(json_encode($json));
