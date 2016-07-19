@@ -55,11 +55,16 @@ class ControllerPaymentPagarMeCartao extends Controller
             $data['stylesheet'] = 'catalog/view/theme/default/stylesheet/pagar_me_cartao.css';
         }
 
+<<<<<<< HEAD
         if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/payment/pagar_me_cartao.tpl')) {
             return $this->load->view($this->config->get('config_template') . '/template/payment/pagar_me_cartao.tpl', $data);
         } else {
             return $this->load->view('default/template/payment/pagar_me_cartao.tpl', $data);
         }
+=======
+        return $this->load->view('payment/pagar_me_cartao', $data);
+
+>>>>>>> 89e222dc840613ab6fb9d93e90bae0f2fdcbc502
     }
 
     public function confirm()
@@ -146,6 +151,7 @@ class ControllerPaymentPagarMeCartao extends Controller
 
         $data['continue'] = $this->url->link('common/home');
 
+<<<<<<< HEAD
         if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/payment/pagar_me_cartao_message.tpl')) {
             $this->template = $this->config->get('config_template') . '/template/payment/pagar_me_cartao_message.tpl';
         } else {
@@ -162,6 +168,9 @@ class ControllerPaymentPagarMeCartao extends Controller
         );
 
         $this->response->setOutput($this->render());
+=======
+        return $this->load->view('payment/pagar_me_cartao_message', $data);
+>>>>>>> 89e222dc840613ab6fb9d93e90bae0f2fdcbc502
     }
 
     public function callback()
