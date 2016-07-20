@@ -43,15 +43,10 @@ class PagarMe_TransactionCommon extends PagarMe_CardHashCommon {
 		parent::save();
 	}
 
-	public static function calculateInstallmentsAmount($amount, $interest_rate, $max_installments, $freeInstallments)
+	public static function calculateInstallmentsAmount($amount, $interest_rate, $max_installments, $free_installments = 1)
 	{
 		$request = new PagarMe_Request(self::getUrl() . '/calculate_installments_amount', 'GET');
-		$params = array(
-			'amount' => $amount,
-			'interest_rate' => $interest_rate,
-			'max_installments' => $max_installments,
-			'free_installments' => $freeInstallments
-		);
+		$params = array('amount' => $amount, 'interest_rate' => $interest_rate, 'max_installments' => $max_installments, 'free_installments' => $free_installments);
 		$request->setParameters($params);
 		$response = $request->run();
 
