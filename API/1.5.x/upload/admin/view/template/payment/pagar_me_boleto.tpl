@@ -96,7 +96,7 @@
 	        <td><?php echo $entry_status; ?></td>
 	        <td>
 			  <select name="pagar_me_boleto_status">
-	            <?php if ($pagar_me_boleto_status) { ?>
+	            <?php if (isset($pagar_me_boleto_status)) { ?>
 	            <option value="1" selected="selected"><?php echo $text_enabled; ?></option>
 	            <option value="0"><?php echo $text_disabled; ?></option>
 	            <?php } else { ?>

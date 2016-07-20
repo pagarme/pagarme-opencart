@@ -8,8 +8,6 @@
 <script type="text/javascript"><!--
 $('#button-confirm').bind('click', function (e) {
         e.preventDefault();
-        var w = window.open('', 'janelaBoleto', 'height=600,width=800,channelmode=0,dependent=0,directories=0,fullscreen=0,location=0,menubar=0,resizable=1,scrollbars=1,status=0,toolbar=0')
-        w.document.body.innerHTML = "<h1>Por favor aguarde...</h1>";
         $('#button-confirm').hide();
         $('#aguardando').show();
         $.ajax({
@@ -26,9 +24,7 @@ $('#button-confirm').bind('click', function (e) {
             success: function (response) {
                 if (response['error']) {
                     alert('Ocorreu um erro inesperado. Por favor contate a loja.');
-                } else {
-
-                    w.location.href = '<?php echo HTTPS_SERVER ?>index.php?route=payment/pagar_me_boleto/gera&boleto=' + response['boleto_url'], 'janelaBoleto';
+                    return false;
                 }
             },
             complete: function () {
