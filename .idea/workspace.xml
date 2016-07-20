@@ -1,46 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="90ac4e93-4ebd-48f3-a007-1a6304bdc60e" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/API/2.2/pagar_me_api_2-2.ocmod.zip" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/API/2.2/upload/catalog/view/theme/default/image/bancos/americanexpress.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/API/2.2/upload/catalog/view/theme/default/image/bancos/cartao-cvv.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/API/2.2/upload/catalog/view/theme/default/image/bancos/dinersclub.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/API/2.2/upload/catalog/view/theme/default/image/bancos/discover.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/API/2.2/upload/catalog/view/theme/default/image/bancos/elo.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/API/2.2/upload/catalog/view/theme/default/image/bancos/hipercard.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/API/2.2/upload/catalog/view/theme/default/image/bancos/is-valid.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/API/2.2/upload/catalog/view/theme/default/image/bancos/mastercard.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/API/2.2/upload/catalog/view/theme/default/image/bancos/valid-card-flag.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/API/2.2/upload/catalog/view/theme/default/image/bancos/visa02.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Checkout Pagar.Me/2.2/checkout_pagar_me_2-2.ocmod.zip" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/API/2.2/install.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/API/2.2/upload/admin/controller/payment/pagar_me_boleto.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/API/2.2/upload/admin/controller/payment/pagar_me_cartao.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/API/2.2/upload/admin/language/english/payment/pagar_me_boleto.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/API/2.2/upload/admin/language/english/payment/pagar_me_cartao.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/API/2.2/upload/admin/language/portuguese-br/payment/pagar_me_boleto.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/API/2.2/upload/admin/language/portuguese-br/payment/pagar_me_cartao.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/API/2.2/upload/admin/model/payment/pagar_me_boleto.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/API/2.2/upload/admin/model/payment/pagar_me_cartao.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/API/2.2/upload/admin/view/template/payment/pagar_me_boleto.tpl" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/API/2.2/upload/admin/view/template/payment/pagar_me_cartao.tpl" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/API/2.2/upload/catalog/controller/payment/pagar_me_boleto.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/API/2.2/upload/catalog/controller/payment/pagar_me_cartao.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/API/2.2/upload/catalog/language/english/payment/pagar_me_boleto.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/API/2.2/upload/catalog/language/english/payment/pagar_me_cartao.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/API/2.2/upload/catalog/language/portuguese-br/payment/pagar_me_boleto.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/API/2.2/upload/catalog/language/portuguese-br/payment/pagar_me_cartao.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/API/2.2/upload/catalog/model/payment/pagar_me_boleto.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/API/2.2/upload/catalog/model/payment/pagar_me_cartao.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/API/2.2/upload/catalog/view/javascript/jquery.creditCardValidator.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/API/2.2/upload/catalog/view/javascript/jquery.mask.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/API/2.2/upload/catalog/view/theme/default/stylesheet/pagar_me_cartao.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/API/2.2/upload/catalog/view/theme/default/template/payment/pagar_me_boleto.tpl" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/API/2.2/upload/catalog/view/theme/default/template/payment/pagar_me_cartao.tpl" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/API/2.2/upload/catalog/view/theme/default/template/payment/pagar_me_cartao_message.tpl" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Checkout Pagar.Me/2.2/upload/catalog/controller/payment/pagar_me_checkout.php" afterPath="$PROJECT_DIR$/Checkout Pagar.Me/2.2/upload/catalog/controller/payment/pagar_me_checkout.php" />
+    <list default="true" id="90ac4e93-4ebd-48f3-a007-1a6304bdc60e" name="Default" comment="Upgrade da versão API para a versão 2.2 do OpenCart">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Checkout Pagar.Me/2.0-2.1/pagar_me_checkout_20-21.ocmod.zip" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Checkout Pagar.Me/2.2/checkout_pagar_me_22.ocmod.zip" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Checkout Pagar.Me/2.0-2.1/pagar_me_checkout_2x.ocmod.zip" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Checkout Pagar.Me/2.2/checkout_pagar_me_2-2.ocmod.zip" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Checkout Pagar.Me/1.5.x/upload/catalog/model/payment/pagar_me_checkout.php" afterPath="$PROJECT_DIR$/Checkout Pagar.Me/1.5.x/upload/catalog/model/payment/pagar_me_checkout.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Checkout Pagar.Me/2.0-2.1/upload/catalog/model/payment/pagar_me_checkout.php" afterPath="$PROJECT_DIR$/Checkout Pagar.Me/2.0-2.1/upload/catalog/model/payment/pagar_me_checkout.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Checkout Pagar.Me/2.2/upload/catalog/model/payment/pagar_me_checkout.php" afterPath="$PROJECT_DIR$/Checkout Pagar.Me/2.2/upload/catalog/model/payment/pagar_me_checkout.php" />
     </list>
     <ignored path="pagar_me.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -62,41 +31,55 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file leaf-file-name="pagar_me_checkout.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Checkout Pagar.Me/2.2/upload/admin/controller/payment/pagar_me_checkout.php">
+        <entry file="file://$PROJECT_DIR$/Checkout Pagar.Me/2.2/upload/catalog/model/payment/pagar_me_checkout.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-4536">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
+            <state relative-caret-position="1350">
+              <caret line="75" column="60" selection-start-line="75" selection-start-column="60" selection-end-line="75" selection-end-column="60" />
+              <folding>
+                <marker date="1469022525613" expanded="true" signature="208:461" ph="SELECT * FRO... ${DB_PREFIX}" />
+                <marker date="1469022525613" expanded="true" signature="1222:1476" ph="INSERT INTO `${DB_PREFIX}pagar_me_checkout_transaction`... " />
+                <marker date="1469022525613" expanded="true" signature="1819:1949" ph="SELECT * FRO... ${DB_PREFIX}pagar_me_checkout_transaction" />
+                <marker date="1469022525613" expanded="true" signature="2226:2383" ph="SELECT COUNT... ${DB_PREFIX}" />
+                <marker date="1469022525613" expanded="true" signature="2776:2885" ph="SELECT * FRO... ${DB_PREFIX}order_total" />
+                <marker date="1469022525613" expanded="true" signature="2939:3044" ph="SELECT * FRO... ${DB_PREFIX}order_total" />
+                <marker date="1469022525613" expanded="true" signature="3232:3506" ph="INSERT INTO ${DB_PREFIX}order_total... " />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file leaf-file-name="pagar_me_checkout.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Checkout Pagar.Me/2.2/upload/catalog/controller/payment/pagar_me_checkout.php">
+        <entry file="file://$PROJECT_DIR$/Checkout Pagar.Me/1.5.x/upload/catalog/model/payment/pagar_me_checkout.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="146">
-              <caret line="21" column="5" selection-start-line="21" selection-start-column="5" selection-end-line="21" selection-end-column="5" />
-              <folding />
+            <state relative-caret-position="1224">
+              <caret line="68" column="69" selection-start-line="68" selection-start-column="69" selection-end-line="68" selection-end-column="69" />
+              <folding>
+                <marker date="1469023857197" expanded="true" signature="204:460" ph="SELECT * FRO... ${DB_PREFIX}" />
+                <marker date="1469023857197" expanded="true" signature="1186:1440" ph="INSERT INTO `${DB_PREFIX}pagar_me_checkout_transaction`... " />
+                <marker date="1469023857197" expanded="true" signature="1779:1909" ph="SELECT * FRO... ${DB_PREFIX}pagar_me_checkout_transaction" />
+                <marker date="1469023857197" expanded="true" signature="2186:2343" ph="SELECT COUNT... ${DB_PREFIX}" />
+                <marker date="1469023857197" expanded="true" signature="2736:2845" ph="SELECT * FRO... ${DB_PREFIX}order_total" />
+                <marker date="1469023857197" expanded="true" signature="2899:3004" ph="SELECT * FRO... ${DB_PREFIX}order_total" />
+                <marker date="1469023857197" expanded="true" signature="3192:3547" ph="INSERT INTO ${DB_PREFIX}order_total... " />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="pagar_me_boleto.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/API/2.2/upload/catalog/controller/payment/pagar_me_boleto.php">
+      <file leaf-file-name="pagar_me_checkout.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Checkout Pagar.Me/2.0-2.1/upload/catalog/model/payment/pagar_me_checkout.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="360">
-              <caret line="32" column="57" selection-start-line="32" selection-start-column="57" selection-end-line="32" selection-end-column="57" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="pagar_me_cartao.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/API/2.2/upload/catalog/controller/payment/pagar_me_cartao.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="144">
-              <caret line="143" column="60" selection-start-line="143" selection-start-column="60" selection-end-line="143" selection-end-column="60" />
-              <folding />
+            <state relative-caret-position="113">
+              <caret line="54" column="0" selection-start-line="54" selection-start-column="0" selection-end-line="54" selection-end-column="0" />
+              <folding>
+                <marker date="1469023855629" expanded="true" signature="208:461" ph="SELECT * FRO... ${DB_PREFIX}" />
+                <marker date="1469023855629" expanded="true" signature="1222:1476" ph="INSERT INTO `${DB_PREFIX}pagar_me_checkout_transaction`... " />
+                <marker date="1469023855629" expanded="true" signature="1819:1949" ph="SELECT * FRO... ${DB_PREFIX}pagar_me_checkout_transaction" />
+                <marker date="1469023855629" expanded="true" signature="2226:2383" ph="SELECT COUNT... ${DB_PREFIX}" />
+                <marker date="1469023855629" expanded="true" signature="2776:2885" ph="SELECT * FRO... ${DB_PREFIX}order_total" />
+                <marker date="1469023855629" expanded="true" signature="2939:3044" ph="SELECT * FRO... ${DB_PREFIX}order_total" />
+                <marker date="1469023855629" expanded="true" signature="3222:3496" ph="INSERT INTO ${DB_PREFIX}order_total... " />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -116,7 +99,7 @@
       <GitPushTagMode />
     </option>
     <push-targets>
-      <push-target-info repo="$PROJECT_DIR$" source="master" target-remote="origingh" target-branch="master" />
+      <push-target-info repo="$PROJECT_DIR$" source="master" target-remote="origin2" target-branch="master" />
     </push-targets>
   </component>
   <component name="IdeDocumentHistory">
@@ -134,7 +117,6 @@
         <option value="$PROJECT_DIR$/API/2.x/upload/catalog/model/payment/pagar_me_boleto.php" />
         <option value="$PROJECT_DIR$/API/1.5.x/upload/catalog/model/payment/pagar_me_cartao.php" />
         <option value="$PROJECT_DIR$/API/2.x/upload/catalog/model/payment/pagar_me_cartao.php" />
-        <option value="$PROJECT_DIR$/Checkout Pagar.Me/1.5.x/upload/catalog/model/payment/pagar_me_checkout.php" />
         <option value="$PROJECT_DIR$/Checkout Pagar.Me/2.x/upload/catalog/model/payment/pagar_me_checkout.php" />
         <option value="$PROJECT_DIR$/Checkout Pagar.Me/1.5.x/upload/admin/view/template/payment/pagar_me_checkout.tpl" />
         <option value="$PROJECT_DIR$/Checkout Pagar.Me/1.5.x/upload/admin/language/portuguese-br/payment/pagar_me_checkout.php" />
@@ -162,6 +144,9 @@
         <option value="$PROJECT_DIR$/API/2.2/upload/catalog/controller/payment/pagar_me_cartao.php" />
         <option value="$PROJECT_DIR$/Checkout Pagar.Me/2.2/upload/catalog/controller/payment/pagar_me_checkout.php" />
         <option value="$PROJECT_DIR$/API/2.2/upload/catalog/controller/payment/pagar_me_boleto.php" />
+        <option value="$PROJECT_DIR$/Checkout Pagar.Me/2.2/upload/catalog/model/payment/pagar_me_checkout.php" />
+        <option value="$PROJECT_DIR$/Checkout Pagar.Me/1.5.x/upload/catalog/model/payment/pagar_me_checkout.php" />
+        <option value="$PROJECT_DIR$/Checkout Pagar.Me/2.0-2.1/upload/catalog/model/payment/pagar_me_checkout.php" />
       </list>
     </option>
   </component>
@@ -203,8 +188,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
       <pane id="Scope" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -315,7 +300,37 @@
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="controller" />
+              <option name="myItemId" value="model" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="pagar_me" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="pagar_me" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Checkout Pagar.Me" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="2.2" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="upload" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="catalog" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="model" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -337,15 +352,7 @@
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="2.2" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="upload" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="admin" />
+              <option name="myItemId" value="2.0-2.1" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
@@ -363,7 +370,29 @@
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="2.2" />
+              <option name="myItemId" value="2.0-2.1" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="upload" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="pagar_me" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="pagar_me" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Checkout Pagar.Me" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="2.0-2.1" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -371,11 +400,67 @@
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="admin" />
+              <option name="myItemId" value="catalog" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="pagar_me" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="pagar_me" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="controller" />
+              <option name="myItemId" value="Checkout Pagar.Me" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="2.0-2.1" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="upload" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="catalog" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="model" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="pagar_me" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="pagar_me" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Checkout Pagar.Me" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="2.0-2.1" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="upload" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="catalog" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="model" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -396,54 +481,8 @@
               <option name="myItemId" value="Checkout Pagar.Me" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
-          </PATH>
-          <PATH>
             <PATH_ELEMENT>
-              <option name="myItemId" value="pagar_me" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="pagar_me" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="API" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="pagar_me" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="pagar_me" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="API" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="2.2" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="pagar_me" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="pagar_me" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="API" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="2.2" />
+              <option name="myItemId" value="1.5.x" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -461,11 +500,11 @@
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="API" />
+              <option name="myItemId" value="Checkout Pagar.Me" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="2.2" />
+              <option name="myItemId" value="1.5.x" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -487,11 +526,11 @@
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="API" />
+              <option name="myItemId" value="Checkout Pagar.Me" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="2.2" />
+              <option name="myItemId" value="1.5.x" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -503,7 +542,37 @@
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="controller" />
+              <option name="myItemId" value="model" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="pagar_me" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="pagar_me" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Checkout Pagar.Me" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="1.5.x" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="upload" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="catalog" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="model" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -519,15 +588,10 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="js-jscs-nodeInterpreter" value="/usr/bin/node" />
     <property name="ignore_missing_gitignore" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../opencart-pagarme-20" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../genio-do-oriente" />
     <property name="settings.editor.selected.configurable" value="vcs.Git" />
     <property name="settings.editor.splitter.proportion" value="0.2" />
     <property name="prop_add_unversioned_files" value="true" />
-  </component>
-  <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/API/2.2" />
-    </key>
   </component>
   <component name="RunManager">
     <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug">
@@ -601,7 +665,10 @@
       <workItem from="1467753475356" duration="1536000" />
       <workItem from="1467814097556" duration="473000" />
       <workItem from="1467814580127" duration="9000" />
-      <workItem from="1468850197460" duration="1836000" />
+      <workItem from="1468850197460" duration="1973000" />
+      <workItem from="1468867062401" duration="14000" />
+      <workItem from="1469021637736" duration="2251000" />
+      <workItem from="1469023971314" duration="436000" />
     </task>
     <task id="LOCAL-00001" summary="JS do cehcout agora é chamado no cabeçalho do tema&#10;Troca do Chekout Pagar.Me para o modo API garantindo assim compatibilidade com checkouts em uma página&#10;Implementação do valor mínimo da parcela e do desconto para pagamento via boleto&#10;Melhoria no método de callback">
       <created>1461340418018</created>
@@ -680,22 +747,29 @@
       <option name="project" value="LOCAL" />
       <updated>1467755175052</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="Upgrade da versão API para a versão 2.2 do OpenCart">
+      <created>1468852065789</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1468852065789</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="36823000" />
+    <option name="totallyTimeSpent" value="39661000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="65" y="-4" width="1855" height="1084" extended-state="6" />
     <editor active="false" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2697623" sideWeight="0.4015748" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.27971256" sideWeight="0.38740158" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.33716077" sideWeight="0.52349365" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.33716077" sideWeight="0.53012717" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.33716077" sideWeight="0.47650635" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2697623" sideWeight="0.5984252" order="1" side_tool="true" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.33716077" sideWeight="0.46987286" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.27971256" sideWeight="0.6125984" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.34012875" sideWeight="0.4886678" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -733,7 +807,8 @@
     <MESSAGE value="Correção da query para inserir o número de parcelas e a bandeira do cartão no Banco de Dados da tabela de transações do Pagar.Me" />
     <MESSAGE value="Correções no callback dos módulos para OC 1.5&#10;Inserção da opção de capturar ou não os dados dos clientes no checkout Pagar.Me 1.5" />
     <MESSAGE value="Correções no callback dos módulos para OC 2.x&#10;Inserção da opção de capturar ou não os dados dos clientes no checkout Pagar.Me 2.x" />
-    <option name="LAST_COMMIT_MESSAGE" value="Correções no callback dos módulos para OC 2.x&#10;Inserção da opção de capturar ou não os dados dos clientes no checkout Pagar.Me 2.x" />
+    <MESSAGE value="Upgrade da versão API para a versão 2.2 do OpenCart" />
+    <option name="LAST_COMMIT_MESSAGE" value="Upgrade da versão API para a versão 2.2 do OpenCart" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -742,21 +817,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/API/2.x/install.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/API/2.x/install.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -802,9 +862,6 @@
     <entry file="file://$PROJECT_DIR$/Checkout Pagar.Me/2.x/upload/admin/language/english/payment/pagar_me_checkout.php" />
     <entry file="file://$PROJECT_DIR$/Checkout Pagar.Me/2.x/upload/catalog/model/total/pagar_me_checkout_desconto.php" />
     <entry file="file://$PROJECT_DIR$/readme.md">
-      <provider editor-type-id="MarkdownFxPreviewEditor">
-        <state />
-      </provider>
       <provider selected="true" editor-type-id="split-provider[text-editor;MarkdownPreviewEditor]">
         <state split_layout="FIRST">
           <first_editor relative-caret-position="0">
@@ -826,11 +883,11 @@
           <second_editor />
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/LICENSE.md">
       <provider editor-type-id="MarkdownFxPreviewEditor">
         <state />
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/LICENSE.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;MarkdownPreviewEditor]">
         <state split_layout="FIRST">
           <first_editor relative-caret-position="0">
@@ -846,6 +903,9 @@
           </first_editor>
           <second_editor />
         </state>
+      </provider>
+      <provider editor-type-id="MarkdownFxPreviewEditor">
+        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/API/2.x/upload/admin/model/payment/pagar_me_cartao.php">
@@ -888,13 +948,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="54">
           <caret line="3" column="31" selection-start-line="3" selection-start-column="31" selection-end-line="3" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Checkout Pagar.Me/1.5.x/upload/catalog/model/payment/pagar_me_checkout.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="186">
-          <caret line="30" column="99" selection-start-line="30" selection-start-column="99" selection-end-line="30" selection-end-column="99" />
         </state>
       </provider>
     </entry>
@@ -1001,7 +1054,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="179">
           <caret line="95" column="64" selection-start-line="95" selection-start-column="53" selection-end-line="95" selection-end-column="64" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1024,7 +1076,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="630">
           <caret line="47" column="155" selection-start-line="47" selection-start-column="149" selection-end-line="47" selection-end-column="155" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1032,7 +1083,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="216">
           <caret line="177" column="77" selection-start-line="177" selection-start-column="77" selection-end-line="177" selection-end-column="77" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1040,29 +1090,20 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="324">
           <caret line="264" column="77" selection-start-line="264" selection-start-column="77" selection-end-line="264" selection-end-column="77" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Checkout Pagar.Me/2.2/upload/admin/controller/payment/pagar_me_checkout.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-4536">
+        <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Checkout Pagar.Me/2.2/upload/catalog/controller/payment/pagar_me_checkout.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="146">
-          <caret line="21" column="5" selection-start-line="21" selection-start-column="5" selection-end-line="21" selection-end-column="5" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/API/2.2/upload/catalog/controller/payment/pagar_me_cartao.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="144">
+        <state relative-caret-position="2574">
           <caret line="143" column="60" selection-start-line="143" selection-start-column="60" selection-end-line="143" selection-end-column="60" />
           <folding />
         </state>
@@ -1070,9 +1111,65 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/API/2.2/upload/catalog/controller/payment/pagar_me_boleto.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
+        <state relative-caret-position="18">
           <caret line="32" column="57" selection-start-line="32" selection-start-column="57" selection-end-line="32" selection-end-column="57" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Checkout Pagar.Me/2.2/upload/catalog/controller/payment/pagar_me_checkout.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="182">
+          <caret line="146" column="34" selection-start-line="146" selection-start-column="28" selection-end-line="146" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Checkout Pagar.Me/2.2/upload/catalog/model/payment/pagar_me_checkout.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1350">
+          <caret line="75" column="60" selection-start-line="75" selection-start-column="60" selection-end-line="75" selection-end-column="60" />
+          <folding>
+            <marker date="1469022525613" expanded="true" signature="208:461" ph="SELECT * FRO... ${DB_PREFIX}" />
+            <marker date="1469022525613" expanded="true" signature="1222:1476" ph="INSERT INTO `${DB_PREFIX}pagar_me_checkout_transaction`... " />
+            <marker date="1469022525613" expanded="true" signature="1819:1949" ph="SELECT * FRO... ${DB_PREFIX}pagar_me_checkout_transaction" />
+            <marker date="1469022525613" expanded="true" signature="2226:2383" ph="SELECT COUNT... ${DB_PREFIX}" />
+            <marker date="1469022525613" expanded="true" signature="2776:2885" ph="SELECT * FRO... ${DB_PREFIX}order_total" />
+            <marker date="1469022525613" expanded="true" signature="2939:3044" ph="SELECT * FRO... ${DB_PREFIX}order_total" />
+            <marker date="1469022525613" expanded="true" signature="3232:3506" ph="INSERT INTO ${DB_PREFIX}order_total... " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Checkout Pagar.Me/1.5.x/upload/catalog/model/payment/pagar_me_checkout.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1224">
+          <caret line="68" column="69" selection-start-line="68" selection-start-column="69" selection-end-line="68" selection-end-column="69" />
+          <folding>
+            <marker date="1469023857197" expanded="true" signature="204:460" ph="SELECT * FRO... ${DB_PREFIX}" />
+            <marker date="1469023857197" expanded="true" signature="1186:1440" ph="INSERT INTO `${DB_PREFIX}pagar_me_checkout_transaction`... " />
+            <marker date="1469023857197" expanded="true" signature="1779:1909" ph="SELECT * FRO... ${DB_PREFIX}pagar_me_checkout_transaction" />
+            <marker date="1469023857197" expanded="true" signature="2186:2343" ph="SELECT COUNT... ${DB_PREFIX}" />
+            <marker date="1469023857197" expanded="true" signature="2736:2845" ph="SELECT * FRO... ${DB_PREFIX}order_total" />
+            <marker date="1469023857197" expanded="true" signature="2899:3004" ph="SELECT * FRO... ${DB_PREFIX}order_total" />
+            <marker date="1469023857197" expanded="true" signature="3192:3547" ph="INSERT INTO ${DB_PREFIX}order_total... " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Checkout Pagar.Me/2.0-2.1/upload/catalog/model/payment/pagar_me_checkout.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="113">
+          <caret line="54" column="0" selection-start-line="54" selection-start-column="0" selection-end-line="54" selection-end-column="0" />
+          <folding>
+            <marker date="1469023855629" expanded="true" signature="208:461" ph="SELECT * FRO... ${DB_PREFIX}" />
+            <marker date="1469023855629" expanded="true" signature="1222:1476" ph="INSERT INTO `${DB_PREFIX}pagar_me_checkout_transaction`... " />
+            <marker date="1469023855629" expanded="true" signature="1819:1949" ph="SELECT * FRO... ${DB_PREFIX}pagar_me_checkout_transaction" />
+            <marker date="1469023855629" expanded="true" signature="2226:2383" ph="SELECT COUNT... ${DB_PREFIX}" />
+            <marker date="1469023855629" expanded="true" signature="2776:2885" ph="SELECT * FRO... ${DB_PREFIX}order_total" />
+            <marker date="1469023855629" expanded="true" signature="2939:3044" ph="SELECT * FRO... ${DB_PREFIX}order_total" />
+            <marker date="1469023855629" expanded="true" signature="3222:3496" ph="INSERT INTO ${DB_PREFIX}order_total... " />
+          </folding>
         </state>
       </provider>
     </entry>
