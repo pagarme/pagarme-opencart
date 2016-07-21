@@ -28,7 +28,7 @@ class ModelPaymentPagarMeCartao extends Model {
         return $method_data;
     }
 
-    public function addTransactionId($order_id, $transaction_id, $n_parcela = null, $bandeira = null) {
+    public function addTransactionId($order_id, $transaction_id, $n_parcela, $bandeira) {
         $this->db->query("INSERT INTO `" . DB_PREFIX . "pagar_me_transaction` SET order_id = '" . (int) $order_id . "', transaction_id = '" . $this->db->escape($transaction_id) . "', n_parcela = '" . $this->db->escape($n_parcela) . "', bandeira = '" . $this->db->escape($bandeira) . "'");
     }
 
@@ -50,12 +50,6 @@ class ModelPaymentPagarMeCartao extends Model {
         } else {
             return false;
         }
-    }
-
-    public function getTotalOrderHistoriesByOrderStatusId($order_status_id, $order_id) {
-        $query = $this->db->query("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "order_history WHERE order_status_id = '" . (int)$order_status_id . "' AND order_id = '" . (int) $order_id . "'");
-
-        return $query->row['total'];
     }
 
 }
