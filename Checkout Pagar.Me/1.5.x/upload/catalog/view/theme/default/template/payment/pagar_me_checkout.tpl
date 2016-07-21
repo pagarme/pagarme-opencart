@@ -19,6 +19,7 @@
                                 // INICIAR A INSTÂNCIA DO CHECKOUT
                                 // declarando um callback de sucesso
                                 var checkout = new PagarMeCheckout.Checkout({
+                                        'customer_data': false,
                                         'encryption_key': '<?php echo $encryption_key; ?>', success: function (data) {
                                                 var input_form = $('<input>').attr({
                                                         type: 'hidden',
@@ -40,9 +41,6 @@
                                 // DEFINIR AS OPÇÕES
                                 // e abrir o modal
                                 var params = {
-                                        <?php if($customer_data == 0): ?>
-                                        'customerData': false,
-                                        <?php endif; ?>
                                         'buttonText': response['button_text'],
                                         'amount': response['amount'],
                                         'buttonClass': response['button_class'],

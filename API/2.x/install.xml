@@ -60,7 +60,7 @@
     <file path="catalog/view/theme/*/template/account/order_info.tpl">
         <operation>
             <search>
-                <![CDATA[<b><?php echo $text_payment_method; ?></b> <?php echo $payment_method; ?>]]>
+                <![CDATA[<b><?php echo $text_payment_method; ?></b> <?php echo $payment_method; ?><br />]]>
             </search>
             <add position="replace">
                 <![CDATA[<b><?php echo $text_payment_method; ?></b> <?php echo $payment_method; ?>
@@ -71,7 +71,8 @@
                     <?php
                         endif;
                     endif;
-                    ?>]]>
+                    ?>
+                    <br />]]>
             </add>
         </operation>
     </file>

@@ -35,8 +35,7 @@ class ControllerPaymentPagarMeCheckout extends Controller
 
         $this->data['entry_criptografia'] = $this->language->get('entry_criptografia');
         $this->data['entry_api'] = $this->language->get('entry_api');
-        $this->data['entry_nome'] = $this->language->get('entry_nome');        
-        $this->data['entry_customer_data'] = $this->language->get('entry_customer_data');        
+        $this->data['entry_nome'] = $this->language->get('entry_nome');
         $this->data['entry_texto_botao'] = $this->language->get('entry_texto_botao');
         $this->data['entry_payment_methods'] = $this->language->get('entry_payment_methods');
         $this->data['entry_card_brands'] = $this->language->get('entry_card_brands');
@@ -208,12 +207,6 @@ class ControllerPaymentPagarMeCheckout extends Controller
             $this->data['pagar_me_checkout_nome'] = $this->config->get('pagar_me_checkout_nome');
         }
 
-        if (isset($this->request->post['pagar_me_checkout_customer_data'])) {
-            $this->data['pagar_me_checkout_customer_data'] = $this->request->post['pagar_me_checkout_customer_data'];
-        } else {
-            $this->data['pagar_me_checkout_customer_data'] = $this->config->get('pagar_me_checkout_customer_data');
-        }
-
         if (isset($this->request->post['pagar_me_checkout_text_information'])) {
             $this->data['pagar_me_checkout_text_information'] = $this->request->post['pagar_me_checkout_text_information'];
         } else {
@@ -322,9 +315,7 @@ class ControllerPaymentPagarMeCheckout extends Controller
         $this->db->query("CREATE TABLE IF NOT EXISTS `" . DB_PREFIX . "pagar_me_checkout_transaction` (
   `pagar_me_transaction_id` int(11) NOT NULL AUTO_INCREMENT,
   `order_id` int(11) NOT NULL,
-  `transaction_id` varchar(512) DEFAULT NULL,  
-  `n_parcela` int(11) DEFAULT '0',
-  `bandeira` varchar(64) DEFAULT NULL,
+  `transaction_id` varchar(512) DEFAULT NULL,
   PRIMARY KEY (`pagar_me_transaction_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1");
 
