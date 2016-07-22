@@ -225,7 +225,7 @@ class ControllerPaymentPagarMeCartao extends Controller
                 "email" => $order_info['email'],
                 "address" => array(
                     "street" => $order_info['payment_address_1'],
-                    "neighborhood" => $order_info['payment_address_2'],
+                    "neighborhood" => ($order_info['payment_address_2']) ? $order_info['payment_address_2'] : 'Bairro não preenchido',
                     "zipcode" => $order_info['payment_postcode'],
                     "street_number" => $numero,
                     "complementary" => $complemento

@@ -228,7 +228,7 @@ class ControllerPaymentPagarMeCartao extends Controller
                 "address" => array(
                     "street" => $order_info['payment_address_1'],
                     "neighborhood" => $order_info['payment_address_2'],
-                    "zipcode" => $this->removeSeparadores($order_info['payment_postcode']),
+                    "neighborhood" => ($order_info['payment_address_2']) ? $order_info['payment_address_2'] : 'Bairro não preenchido',
                     "street_number" => $numero,
                     "complementary" => $complemento
                 ),

@@ -127,7 +127,7 @@ class ControllerPaymentPagarMeBoleto extends Controller
                 "email" => $order_info['email'],
                 "address" => array(
                     "street" => $order_info['payment_address_1'],
-                    "neighborhood" => $order_info['payment_address_2'],
+                    "neighborhood" => ($order_info['payment_address_2']) ? $order_info['payment_address_2'] : 'Bairro não preenchido',
                     "zipcode" => $this->removeSeparadores($order_info['payment_postcode']),
                     "street_number" => $numero,
                     "complementary" => $complemento
@@ -146,7 +146,11 @@ class ControllerPaymentPagarMeBoleto extends Controller
             $transaction->charge();
         } catch (Exception $e) {
             $this->log->write("Erro Pagar.Me boleto: " . $e->getMessage());
-            $this->error = $e->getMessage();
+            $error = json_encode($e->getMessage());
+        }
+
+        if (isset($error)) {
+            $json['error'] = $error;
         }
 
         $status = $transaction->status; // status da transação
@@ -166,11 +170,6 @@ class ControllerPaymentPagarMeBoleto extends Controller
         } else {
             $json['success'] = false;
         }
-
-        if ($this->error) {
-            $json['error'] = $this->error;
-        }
-
         $this->response->setOutput(json_encode($json));
     }
 
