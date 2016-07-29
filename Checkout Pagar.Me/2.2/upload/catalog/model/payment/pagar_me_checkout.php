@@ -67,13 +67,13 @@ class ModelPaymentPagarMeCheckout extends Model
         $desconto = $this->config->get('pagar_me_checkout_boleto_discount_percentage');
 
         /* Pega a order do sub-toal */
-//        $sub_total_order_query = $this->db->query("SELECT * FROM `" . DB_PREFIX . "order_total` WHERE order_id = '" . (int)$order_id . "' AND code = 'sub_total'");
+        $sub_total_order_query = $this->db->query("SELECT * FROM `" . DB_PREFIX . "order_total` WHERE order_id = '" . (int)$order_id . "' AND code = 'sub_total'");
 
-        $total_order_query = $this->db->query("SELECT * FROM `" . DB_PREFIX . "order_total` WHERE order_id = '" . (int)$order_id . "' AND code = 'total'");
+        //$total_order_query = $this->db->query("SELECT * FROM `" . DB_PREFIX . "order_total` WHERE order_id = '" . (int)$order_id . "' AND code = 'total'");
 
-        $discount_order = $total_order_query->row['sort_order'] - 1;
+        $discount_order = $sub_total_order_query->row['sort_order'] + 1;
 
-        $valor_desconto = $order['total'] * $desconto / 100;
+        $valor_desconto = $sub_total_order_query->row['value'] * $desconto / 100;
 
         $this->db->query("INSERT INTO " . DB_PREFIX . "order_total SET order_id = '" . (int)$order_id . "', code = 'pagar_me_checkout_desconto', title = 'Desconto do boleto (" . $this->db->escape($desconto) . "%)', `value` = '" . (float)$valor_desconto*-1 . "', sort_order = '" . $discount_order . "'");
 
