@@ -30,16 +30,7 @@ class ControllerPaymentPagarMeBoleto extends Controller
             $data['stylesheet'] = 'catalog/view/theme/default/stylesheet/pagar_me_cartao.css';
         }
 
-<<<<<<< HEAD
-        if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/payment/pagar_me_boleto.tpl')) {
-            return $this->load->view($this->config->get('config_template') . '/template/payment/pagar_me_boleto.tpl', $data);
-        } else {
-            return $this->load->view('default/template/payment/pagar_me_boleto.tpl', $data);
-        }
-=======
         return $this->load->view('payment/pagar_me_boleto', $data);
-
->>>>>>> 89e222dc840613ab6fb9d93e90bae0f2fdcbc502
     }
 
     public function confirm()
@@ -50,7 +41,7 @@ class ControllerPaymentPagarMeBoleto extends Controller
 
         $order = $this->model_checkout_order->getOrder($this->session->data['order_id']);
 
-        $this->model_checkout_order->addOrderHistory($this->session->data['order_id'], $this->config->get('pagar_me_boleto_order_waiting_payment'), 'Imprima seu boleto aqui -> ' . $order['pagar_me_boleto_url']);
+	    $this->model_checkout_order->addOrderHistory($this->session->data['order_id'], $this->config->get('pagar_me_boleto_order_waiting_payment'), 'Imprima seu boleto <a href="' . $order['pagar_me_boleto_url'] . '">aqui</a>', true);
 
         $this->session->data['pagar_me_boleto_url'] = $order['pagar_me_boleto_url'];
 
