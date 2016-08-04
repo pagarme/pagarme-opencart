@@ -19,7 +19,7 @@
                                 // INICIAR A INSTÂNCIA DO CHECKOUT
                                 // declarando um callback de sucesso
                                 var checkout = new PagarMeCheckout.Checkout({
-                                        'customer_data': false,
+                                        'customer_data': true,
                                         'encryption_key': '<?php echo $encryption_key; ?>', success: function (data) {
                                                 var input_form = $('<input>').attr({
                                                         type: 'hidden',
