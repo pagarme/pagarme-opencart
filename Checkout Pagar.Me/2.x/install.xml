@@ -40,8 +40,7 @@
                 <![CDATA[$order_query->row['payment_company'],]]>
             </search>
             <add position="after">
-                <![CDATA['payment_code'         => $order_query->row['payment_code'],
-                'pagar_me_checkout_url'         => $order_query->row['pagar_me_checkout_url'],]]>
+                <![CDATA['payment_code'         => $order_query->row['payment_code'],]]>
             </add>
         </operation>
     </file>
@@ -52,7 +51,7 @@
                 <![CDATA[return array(]]>
             </search>
             <add position="after">
-                <![CDATA['pagar_me_checkout_url'                => $order_query->row['pagar_me_checkout_url'],]]>
+                <![CDATA['pagar_me_checkout_url'=> (isset($order_query->row['pagar_me_checkout_url'])) ? $order_query->row['pagar_me_checkout_url'] : null,]]>
             </add>
         </operation>
     </file>
