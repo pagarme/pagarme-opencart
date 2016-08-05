@@ -34,11 +34,14 @@ class ControllerPaymentPagarMeCheckout extends Controller
         $order_info = $this->model_checkout_order->getOrder($this->session->data['order_id']);
         $customer = $this->model_account_customer->getCustomer($order_info['customer_id']);
 
+//        $discountPercentage = $this->config->get('pagar_me_checkout_boleto_discount_percentage');
+//        $discountAmount = ($this->cart->getSubtotal() * $discountPercentage) / 100;
+
         //Dados para o checkout
         $json=array();
         $json['amount'] = str_replace(array(".", ","), array("", ""), number_format($order_info['total'], 2, '', ''));
         $json['button_text'] = $this->config->get('pagar_me_checkout_texto_botao') ? $this->config->get('pagar_me_checkout_texto_botao') : "Pagar";
-        $json['boleto_discount_percentage'] = $this->config->get('pagar_me_checkout_boleto_discount_percentage');
+        $json['boleto_discount_porcetage'] = $this->config->get('pagar_me_checkout_boleto_discount_percentage');
         $json['button_class'] = $this->config->get('pagar_me_checkout_button_css_class');
         $payment_methods = $this->config->get('pagar_me_checkout_payment_methods');
         if (count($payment_methods) == 1) {

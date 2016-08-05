@@ -305,9 +305,7 @@ class ControllerPaymentPagarMeCheckout extends Controller
         if (!$this->request->post['pagar_me_checkout_nome']) {
             $this->error['nome'] = $this->language->get('error_nome');
         }
-
-//        var_dump($this->error); exit;
-
+        
         if (!$this->error) {
             return TRUE;
         } else {
