@@ -2,8 +2,6 @@
 class ModelTotalPagarMeCheckoutDesconto extends Model {
 	public function getTotal(&$total_data, &$total, &$taxes) {
 
-
-
 			if(isset($this->session->data['payment_method']['code']))
   			$paymethod = $this->session->data['payment_method']['code'];
 

@@ -46,17 +46,6 @@
         </operation>
     </file>
 
-    <file path="catalog/model/checkout/order.php">
-        <operation>
-            <search>
-                <![CDATA[return array(]]>
-            </search>
-            <add position="after">
-                <![CDATA['pagar_me_checkout_url'                => $order_query->row['pagar_me_checkout_url'],]]>
-            </add>
-        </operation>
-    </file>
-
     <file path="catalog/view/theme/*/template/account/order_info.tpl">
         <operation>
             <search>

@@ -67,7 +67,7 @@
                     'customerPhoneDdd': response['customer_phone_ddd'],
                     'customerPhoneNumber': response['customer_phone_number'],
                     'interestRate': response['interest_rate'],
-                    'boletoDiscountPercentage': response['boleto_discount_percentage']
+                    'boletoDiscountAmount': response['boleto_discount_amount']
                 };
                 checkout.open(params);
             },
