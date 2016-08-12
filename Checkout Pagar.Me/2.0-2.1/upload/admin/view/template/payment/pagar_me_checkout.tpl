@@ -147,7 +147,10 @@
                             Diners <br>
                             <input type="checkbox" name="pagar_me_checkout_card_brands[]"
                                    value="elo"<?php echo in_array('elo', $pagar_me_checkout_card_brands) ? ' checked="checked"' : ''; ?> />
-                            Elo
+                            Elo <br>
+                            <input type="checkbox" name="pagar_me_checkout_card_brands[]"
+                                   value="hipercard"<?php echo in_array('hipercard', $pagar_me_checkout_card_brands) ? ' checked="checked"' : ''; ?> />
+                            Hipercard
                             <?php if ($error_card_brands) { ?>
                                 <div class="text-danger"><?php echo $error_card_brands; ?></div>
                             <?php } ?>

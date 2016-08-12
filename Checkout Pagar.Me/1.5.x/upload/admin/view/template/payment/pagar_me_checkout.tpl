@@ -78,7 +78,8 @@
 								<input type="checkbox" name="pagar_me_checkout_card_brands[]" value="aura"<?php echo in_array('aura', $pagar_me_checkout_card_brands) ? ' checked="checked"' : ''; ?> /> Aura <br>
 								<input type="checkbox" name="pagar_me_checkout_card_brands[]" value="jcb"<?php echo in_array('jcb', $pagar_me_checkout_card_brands) ? ' checked="checked"' : ''; ?> /> JCB <br>
 								<input type="checkbox" name="pagar_me_checkout_card_brands[]" value="diners"<?php echo in_array('diners', $pagar_me_checkout_card_brands) ? ' checked="checked"' : ''; ?> /> Diners <br>
-								<input type="checkbox" name="pagar_me_checkout_card_brands[]" value="elo"<?php echo in_array('elo', $pagar_me_checkout_card_brands) ? ' checked="checked"' : ''; ?> /> Elo
+								<input type="checkbox" name="pagar_me_checkout_card_brands[]" value="elo"<?php echo in_array('elo', $pagar_me_checkout_card_brands) ? ' checked="checked"' : ''; ?> /> Elo <br>
+								<input type="checkbox" name="pagar_me_checkout_card_brands[]" value="hipercard"<?php echo in_array('hipercard', $pagar_me_checkout_card_brands) ? ' checked="checked"' : ''; ?> /> Hipercard
 								<?php if ($error_card_brands) { ?>
 									<span class="error"><?php echo $error_card_brands; ?></span>
 								<?php } ?></td>
