@@ -5,8 +5,6 @@ require_once DIR_SYSTEM . 'library/PagarMe/Pagarme.php';
 class ControllerPaymentPagarMeCartao extends Controller
 {
 
-    private $error;
-
     protected function index()
     {
 
@@ -45,7 +43,7 @@ class ControllerPaymentPagarMeCartao extends Controller
             $this->data['parcelas'] = PagarMe_Transaction::calculateInstallmentsAmount($this->data['total'], $this->config->get('pagar_me_cartao_taxa_juros'), $max_parcelas, $this->config->get('pagar_me_cartao_parcelas_sem_juros'));
         } catch (Exception $e) {
             $this->log->write("Erro Pagar.me: " . $e->getTraceAsString());
-            $this->error = $e->getTraceAsString();
+            die();
         }
 
 
@@ -177,9 +175,11 @@ class ControllerPaymentPagarMeCartao extends Controller
 
             $order_id = $this->model_payment_pagar_me_cartao->getPagarMeOrder($this->request->post['id']);
 
-            $current_status = 'pagar_me_cartao_order_' . $this->request->post['current_status'];
+            $current_status = $this->config->get('pagar_me_cartao_order_' . $this->request->post['current_status']);
 
-            $this->model_checkout_order->update($order_id, $this->config->get($current_status), '', true);
+            if(!$this->model_payment_pagar_me_cartao->getTotalOrderHistoriesByOrderStatusId($current_status, $order_id)) {
+                $this->model_checkout_order->update($order_id, $current_status, '', true);
+            }
         } else {
             $this->log->write("Pagar.Me cartão de crédito: Notificação inválida");
         }
@@ -232,7 +232,7 @@ class ControllerPaymentPagarMeCartao extends Controller
                 ),
                 "phone" => array(
                     "ddd" => substr(preg_replace('/[^0-9]/', '', $order_info['telephone']), 0, 2),
-                    "number" => substr(preg_replace('/[^0-9]/', '', $order_info['telephone']), 2, 9),
+                    "number" => substr(preg_replace('/[^0-9]/', '', $order_info['telephone']), 2),
                 )
             ),
             'metadata' => array(
@@ -259,10 +259,6 @@ class ControllerPaymentPagarMeCartao extends Controller
         } else {
             $this->model_payment_pagar_me_cartao->addTransactionId($this->session->data['order_id'], $id_transacao);
             $json['success'] = false;
-        }
-
-        if ($this->error) {
-            $json['error'] = $this->error;
         }
 
         $this->response->setOutput(json_encode($json));

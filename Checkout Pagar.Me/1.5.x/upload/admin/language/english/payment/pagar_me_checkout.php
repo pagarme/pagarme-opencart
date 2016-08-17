@@ -10,6 +10,7 @@ $_['text_pagar_me_checkout'] 				= '<a onclick="window.open(\'http://www.pagar.m
 
 // Entry
 $_['entry_nome'] = 'Texto a ser exibido na loja:<br /><span class="help">Ex: Checkout Pagar.Me</span>';
+$_['entry_customer_data'] = 'Solicitar dados do cliente:<br /><span class="help">Solicita, ou não, os dados do cliente antes pagar o pedido. Caso "Não", os dados utilizados serão os do cadastro do cliente.</span>';
 $_['entry_text_information'] = 'Texto informativo exibido na confirmação do pedido:';
 $_['entry_criptografia']         				= 'Chave de criptografia:<br /><span class="help">Encontrada nos dados da sua conta no Dashboard do Pagar.me</span>';
 $_['entry_api']         				= 'Chave de API:<br /><span class="help">Encontrada nos dados da sua conta no Dashboard do Pagar.me</span>';

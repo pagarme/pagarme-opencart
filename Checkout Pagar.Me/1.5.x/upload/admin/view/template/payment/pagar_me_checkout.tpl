@@ -39,6 +39,19 @@
 						</tr>
 
 						<tr>
+							<td><?php echo $entry_customer_data; ?></td>
+							<td><select name="pagar_me_checkout_customer_data">
+									<?php if ($pagar_me_checkout_customer_data) { ?>
+										<option value="1" selected="selected"><?php echo $text_yes; ?></option>
+										<option value="0"><?php echo $text_no; ?></option>
+									<?php } else { ?>
+										<option value="1"><?php echo $text_yes; ?></option>
+										<option value="0" selected="selected"><?php echo $text_no; ?></option>
+									<?php } ?>
+								</select></td>
+						</tr>
+
+						<tr>
 							<td><?php echo $entry_text_information; ?></td>
 							<td><textarea name="pagar_me_checkout_text_information" cols="40" rows="5"><?php echo $pagar_me_checkout_text_information; ?></textarea></td>
 						</tr>
@@ -65,7 +78,8 @@
 								<input type="checkbox" name="pagar_me_checkout_card_brands[]" value="aura"<?php echo in_array('aura', $pagar_me_checkout_card_brands) ? ' checked="checked"' : ''; ?> /> Aura <br>
 								<input type="checkbox" name="pagar_me_checkout_card_brands[]" value="jcb"<?php echo in_array('jcb', $pagar_me_checkout_card_brands) ? ' checked="checked"' : ''; ?> /> JCB <br>
 								<input type="checkbox" name="pagar_me_checkout_card_brands[]" value="diners"<?php echo in_array('diners', $pagar_me_checkout_card_brands) ? ' checked="checked"' : ''; ?> /> Diners <br>
-								<input type="checkbox" name="pagar_me_checkout_card_brands[]" value="elo"<?php echo in_array('elo', $pagar_me_checkout_card_brands) ? ' checked="checked"' : ''; ?> /> Elo
+								<input type="checkbox" name="pagar_me_checkout_card_brands[]" value="elo"<?php echo in_array('elo', $pagar_me_checkout_card_brands) ? ' checked="checked"' : ''; ?> /> Elo <br>
+								<input type="checkbox" name="pagar_me_checkout_card_brands[]" value="hipercard"<?php echo in_array('hipercard', $pagar_me_checkout_card_brands) ? ' checked="checked"' : ''; ?> /> Hipercard
 								<?php if ($error_card_brands) { ?>
 									<span class="error"><?php echo $error_card_brands; ?></span>
 								<?php } ?></td>

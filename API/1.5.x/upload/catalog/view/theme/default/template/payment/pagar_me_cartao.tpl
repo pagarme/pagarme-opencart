@@ -34,6 +34,10 @@
                 <img src="catalog/view/theme/default/image/bancos/elo.png" alt="">
                 <i class="fa fa-check"></i>
             </li>
+            <li class="bandeira hipercard">
+                <img src="catalog/view/theme/default/image/bancos/hipercard.png" alt="">
+                <i class="fa fa-check"></i>
+            </li>
         </ul>
         <div class="input-block-float">
             <label for="card_number">Número do cartão</label>

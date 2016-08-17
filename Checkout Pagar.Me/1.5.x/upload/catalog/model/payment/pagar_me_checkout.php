@@ -28,12 +28,14 @@ class ModelPaymentPagarMeCheckout extends Model {
         return $method_data;
     }
 
-    public function addTransactionId($order_id, $transaction_id, $boleto_url) {
+    public function addTransactionId($order_id, $transaction_id, $boleto_url = null, $n_parcela = 0, $bandeira = null) {
         $this->db->query("INSERT INTO `" . DB_PREFIX . "pagar_me_checkout_transaction` SET order_id = '" . (int) $order_id . "', transaction_id =
-'" . $this->db->escape($transaction_id) . "'");
+'" . $this->db->escape($transaction_id) . "', n_parcela = '" . (int)$n_parcela . "', bandeira = '" . $this->db->escape($bandeira) . "'");
 
-        $this->db->query("UPDATE `" . DB_PREFIX . "order` SET pagar_me_checkout_url = '" . $this->db->escape($boleto_url) . "' WHERE
-        order_id = '" . (int) $order_id . "'");
+        if (!is_null($boleto_url)) {
+            $this->db->query("UPDATE `" . DB_PREFIX . "order` SET pagar_me_checkout_url = '" . $this->db->escape($boleto_url) . "' WHERE
+        order_id = '" . (int)$order_id . "'");
+        }
     }
 
     public function getPagarMeOrder($transaction_id) {
@@ -60,13 +62,13 @@ class ModelPaymentPagarMeCheckout extends Model {
         $desconto = $this->config->get('pagar_me_checkout_boleto_discount_percentage');
 
         /* Pega a order do sub-toal */
-//        $sub_total_order_query = $this->db->query("SELECT * FROM `" . DB_PREFIX . "order_total` WHERE order_id = '" . (int)$order_id . "' AND code = 'sub_total'");
+        $sub_total_order_query = $this->db->query("SELECT * FROM `" . DB_PREFIX . "order_total` WHERE order_id = '" . (int)$order_id . "' AND code = 'sub_total'");
 
-        $total_order_query = $this->db->query("SELECT * FROM `" . DB_PREFIX . "order_total` WHERE order_id = '" . (int)$order_id . "' AND code = 'total'");
+        //$total_order_query = $this->db->query("SELECT * FROM `" . DB_PREFIX . "order_total` WHERE order_id = '" . (int)$order_id . "' AND code = 'total'");
 
-        $discount_order = $total_order_query->row['sort_order'] - 1;
+        $discount_order = $sub_total_order_query->row['sort_order'] + 1;
 
-        $valor_desconto = $order['total'] * $desconto / 100;
+        $valor_desconto = $sub_total_order_query->row['value'] * $desconto / 100;
 
         $this->db->query("INSERT INTO " . DB_PREFIX . "order_total SET order_id = '" . (int)$order_id . "', code = 'pagar_me_checkout_desconto', title = 'Desconto do boleto (" . $this->db->escape($desconto) . "%)', text = '" . $this->db->escape($this->currency->format($valor_desconto*-1)) . "', `value` = '" . (float)$valor_desconto*-1 . "', sort_order = '" . $discount_order . "'");
 
