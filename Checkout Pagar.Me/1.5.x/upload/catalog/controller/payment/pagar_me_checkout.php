@@ -137,7 +137,6 @@ class ControllerPaymentPagarMeCheckout extends Controller
         $status = $transaction->status;
 
         if ($transaction->status == 'authorized' || $transaction->status == 'paid') {
-            $status = 'paid';
             $comentario = "N&uacute;mero da transa&ccedil;&atilde;o: " . $transaction->id . "<br />";
             $comentario .= " Cartão: " . strtoupper($transaction->card->brand) . "<br />";
             $comentario .= " Parcelado em: " . $transaction->installments . "x";

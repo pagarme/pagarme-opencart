@@ -252,7 +252,7 @@ class ControllerPaymentPagarMeCartao extends Controller
 
         $this->load->model('payment/pagar_me_cartao');
 
-        if ($status == 'paid' || $status == 'processing') {
+        if ($status == 'paid' || $status == 'processing' || $status == 'authorized' || $status == 'waiting_payment') {
             $this->model_payment_pagar_me_cartao->addTransactionId($this->session->data['order_id'], $id_transacao, $this->request->post['installments'], $this->request->post['bandeira']);
 
             $json['success'] = true;

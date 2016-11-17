@@ -22,6 +22,9 @@ $_['entry_order_processing'] 	= 'Status Processando:<br /><span class="help">a l
 $_['entry_order_paid'] 	= 'Status Pago:<br /><span class="help">status para transação aprovada.</span>';
 $_['entry_order_refused'] 				= 'Status Recusado:<br /><span class="help">status para transação recusada.</span>';
 $_['entry_order_refunded'] 					= 'Status Reembolso:<br /><span class="help">status para transação estornada.</span>';
+$_['entry_order_pending_refund'] 					= 'Status Reembolso Pendente:';
+$_['entry_order_authorized'] 					= 'Status Autorizado:<br /><span class="help">status para transação autorizada mas ainda não capturada.</span>';
+$_['entry_order_waiting_payment'] 					= 'Status Aguardando Pagamento:';
 
 $_['entry_geo_zone']      			= 'Região geográfica:';
 $_['entry_status']        			= 'Situação:';

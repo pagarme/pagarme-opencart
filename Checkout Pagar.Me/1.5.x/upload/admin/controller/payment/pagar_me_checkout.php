@@ -50,6 +50,11 @@ class ControllerPaymentPagarMeCheckout extends Controller
         $this->data['entry_order_status'] = $this->language->get('entry_order_status');
         $this->data['entry_order_waiting_payment'] = $this->language->get('entry_order_waiting_payment');
         $this->data['entry_order_paid'] = $this->language->get('entry_order_paid');
+        $this->data['entry_order_processing'] = $this->language->get('entry_order_processing');
+        $this->data['entry_order_authorized'] = $this->language->get('entry_order_authorized');
+        $this->data['entry_order_pending_refund'] = $this->language->get('entry_order_pending_refund');
+        $this->data['entry_order_refunded'] = $this->language->get('entry_order_refunded');
+        $this->data['entry_order_refused'] = $this->language->get('entry_order_refused');
         $this->data['entry_geo_zone'] = $this->language->get('entry_geo_zone');
         $this->data['entry_status'] = $this->language->get('entry_status');
         $this->data['entry_sort_order'] = $this->language->get('entry_sort_order');
@@ -230,6 +235,36 @@ class ControllerPaymentPagarMeCheckout extends Controller
             $this->data['pagar_me_checkout_order_paid'] = $this->request->post['pagar_me_checkout_order_paid'];
         } else {
             $this->data['pagar_me_checkout_order_paid'] = $this->config->get('pagar_me_checkout_order_paid');
+        }
+
+        if (isset($this->request->post['pagar_me_checkout_order_authorized'])) {
+            $this->data['pagar_me_checkout_order_authorized'] = $this->request->post['pagar_me_checkout_order_authorized'];
+        } else {
+            $this->data['pagar_me_checkout_order_authorized'] = $this->config->get('pagar_me_checkout_order_authorized');
+        }
+
+        if (isset($this->request->post['pagar_me_checkout_order_pending_refund'])) {
+            $this->data['pagar_me_checkout_order_pending_refund'] = $this->request->post['pagar_me_checkout_order_pending_refund'];
+        } else {
+            $this->data['pagar_me_checkout_order_pending_refund'] = $this->config->get('pagar_me_checkout_order_pending_refund');
+        }
+
+        if (isset($this->request->post['pagar_me_checkout_order_refunded'])) {
+            $this->data['pagar_me_checkout_order_refunded'] = $this->request->post['pagar_me_checkout_order_refunded'];
+        } else {
+            $this->data['pagar_me_checkout_order_refunded'] = $this->config->get('pagar_me_checkout_order_refunded');
+        }
+
+        if (isset($this->request->post['pagar_me_checkout_order_processing'])) {
+            $this->data['pagar_me_checkout_order_processing'] = $this->request->post['pagar_me_checkout_order_processing'];
+        } else {
+            $this->data['pagar_me_checkout_order_processing'] = $this->config->get('pagar_me_checkout_order_processing');
+        }
+
+        if (isset($this->request->post['pagar_me_checkout_order_refused'])) {
+            $this->data['pagar_me_checkout_order_refused'] = $this->request->post['pagar_me_checkout_order_refused'];
+        } else {
+            $this->data['pagar_me_checkout_order_refused'] = $this->config->get('pagar_me_checkout_order_refused');
         }
 
         if (isset($this->request->post['pagar_me_checkout_boleto_discount_percentage'])) {

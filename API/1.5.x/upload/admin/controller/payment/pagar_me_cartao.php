@@ -42,6 +42,9 @@ class ControllerPaymentPagarMeCartao extends Controller
         $this->data['entry_order_paid'] = $this->language->get('entry_order_paid');
         $this->data['entry_order_refused'] = $this->language->get('entry_order_refused');
         $this->data['entry_order_refunded'] = $this->language->get('entry_order_refunded');
+        $this->data['entry_order_pending_refund'] = $this->language->get('entry_order_pending_refund');
+        $this->data['entry_order_authorized'] = $this->language->get('entry_order_authorized');
+        $this->data['entry_order_waiting_payment'] = $this->language->get('entry_order_waiting_payment');
         $this->data['entry_geo_zone'] = $this->language->get('entry_geo_zone');
         $this->data['entry_status'] = $this->language->get('entry_status');
         $this->data['entry_sort_order'] = $this->language->get('entry_sort_order');
@@ -226,6 +229,24 @@ class ControllerPaymentPagarMeCartao extends Controller
         } else {
             $this->data['pagar_me_cartao_order_refunded'] = $this->config->get('pagar_me_cartao_order_refunded');
         }
+
+if (isset($this->request->post['pagar_me_cartao_order_authorized'])) {
+            $this->data['pagar_me_cartao_order_authorized'] = $this->request->post['pagar_me_cartao_order_authorized'];
+        } else {
+            $this->data['pagar_me_cartao_order_authorized'] = $this->config->get('pagar_me_cartao_order_authorized');
+        }
+
+if (isset($this->request->post['pagar_me_cartao_order_pending_refund'])) {
+            $this->data['pagar_me_cartao_order_pending_refund'] = $this->request->post['pagar_me_cartao_order_pending_refund'];
+        } else {
+            $this->data['pagar_me_cartao_order_pending_refund'] = $this->config->get('pagar_me_cartao_order_pending_refund');
+        }
+
+	    if ( isset( $this->request->post['pagar_me_cartao_order_waiting_payment'] ) ) {
+		    $this->data['pagar_me_cartao_order_waiting_payment'] = $this->request->post['pagar_me_cartao_order_waiting_payment'];
+	    } else {
+		    $this->data['pagar_me_cartao_order_waiting_payment'] = $this->config->get( 'pagar_me_cartao_order_waiting_payment' );
+	    }
 
         $this->load->model('localisation/order_status');
 

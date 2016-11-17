@@ -27,6 +27,11 @@ $_['entry_button_css_class'] = 'Classe css a ser aplicada no botão:';
 
 $_['entry_order_waiting_payment'] 	= 'Status Aguardando Pagamento:<br /><span class="help">a loja aguarda o pagamento do boleto.</span>';
 $_['entry_order_paid'] 	= 'Status Pago:<br /><span class="help">status para pedido pago (serve para boleto ou cartão).</span>';
+$_['entry_order_authorized'] 	= 'Status Autorizado:<br /><span class="help">status para pedido autorizado mas ainda não capturado (cartão de crédito).</span>';
+$_['entry_order_pending_refund'] 	= 'Status Reembolso Pendente:';
+$_['entry_order_refunded'] 	= 'Status Reembolsado:';
+$_['entry_order_processing'] 	= 'Status Processando:';
+$_['entry_order_refused'] 	= 'Status Recusado:';
 
 
 $_['entry_geo_zone']      			= 'Região geográfica:';
