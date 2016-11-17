@@ -21,6 +21,11 @@ $_['help_dias_vencimento']         				= 'Ex: 4. A data de vencimento é a data 
 
 $_['entry_order_waiting_payment'] 	= 'Status Aguardando Pagamento';
 $_['entry_order_paid'] 	= 'Status Pago';
+$_['entry_order_refused'] 	= 'Status Recusado';
+$_['entry_order_refunded'] 	= 'Status Reembolso';
+$_['entry_order_pending_refund'] 	= 'Status Reembolso Pendente';
+$_['entry_order_authorized'] 	= 'Status Autorizado';
+$_['entry_order_processing'] 	= 'Status Processando';
 
 
 $_['entry_geo_zone']      			= 'Região geográfica:';

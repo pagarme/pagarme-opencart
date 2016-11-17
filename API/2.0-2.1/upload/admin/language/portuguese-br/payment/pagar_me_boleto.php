@@ -6,7 +6,6 @@ $_['heading_title']       			= 'Pagar.me - Boleto - Desenvolvido por <a target="
 $_['text_payment']        			= 'Pagamento';
 $_['text_success']        			= 'Módulo Pagar.me - Boleto atualizado com sucesso!';
 $_['text_pagar_me_boleto'] 				= '<a onclick="window.open(\'http://www.pagar.me/\');"><img src="view/image/payment/pagarme.png" alt="Pagar.me" title="Pagar.me" style="border: 1px solid #EEEEEE;" /></a>';
-$_['text_edit'] = 'Configurações - Pagar.Me Boleto';
 
 
 // Entry
@@ -22,6 +21,11 @@ $_['help_dias_vencimento']         				= 'Ex: 4. A data de vencimento é a data 
 
 $_['entry_order_waiting_payment'] 	= 'Status Aguardando Pagamento';
 $_['entry_order_paid'] 	= 'Status Pago';
+$_['entry_order_refused'] 	= 'Status Recusado';
+$_['entry_order_refunded'] 	= 'Status Reembolso';
+$_['entry_order_pending_refund'] 	= 'Status Reembolso Pendente';
+$_['entry_order_authorized'] 	= 'Status Autorizado';
+$_['entry_order_processing'] 	= 'Status Processando';
 
 
 $_['entry_geo_zone']      			= 'Região geográfica:';

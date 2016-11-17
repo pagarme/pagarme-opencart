@@ -131,6 +131,101 @@
                     </div>
 
                     <div class="form-group">
+                        <label class="col-sm-2 control-label"
+                               for="input-pagar_me_boleto_order_refused"><?php echo $entry_order_refused; ?></label>
+                        <div class="col-sm-10">
+                            <select name="pagar_me_boleto_order_refused" id="input-pagar_me_boleto_order_refused"
+                                    class="form-control">
+                                <?php foreach ($order_statuses as $order_status) { ?>
+                                    <?php if ($order_status['order_status_id'] == $pagar_me_boleto_order_refused) { ?>
+                                        <option value="<?php echo $order_status['order_status_id']; ?>"
+                                                selected="selected"><?php echo $order_status['name']; ?></option>
+                                    <?php } else { ?>
+                                        <option
+                                            value="<?php echo $order_status['order_status_id']; ?>"><?php echo $order_status['name']; ?></option>
+                                    <?php } ?>
+                                <?php } ?>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label"
+                               for="input-pagar_me_boleto_order_refunded"><?php echo $entry_order_refunded; ?></label>
+                        <div class="col-sm-10">
+                            <select name="pagar_me_boleto_order_refunded" id="input-pagar_me_boleto_order_refunded"
+                                    class="form-control">
+                                <?php foreach ($order_statuses as $order_status) { ?>
+                                    <?php if ($order_status['order_status_id'] == $pagar_me_boleto_order_refunded) { ?>
+                                        <option value="<?php echo $order_status['order_status_id']; ?>"
+                                                selected="selected"><?php echo $order_status['name']; ?></option>
+                                    <?php } else { ?>
+                                        <option
+                                            value="<?php echo $order_status['order_status_id']; ?>"><?php echo $order_status['name']; ?></option>
+                                    <?php } ?>
+                                <?php } ?>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label"
+                               for="input-pagar_me_boleto_order_pending_refund"><?php echo $entry_order_pending_refund; ?></label>
+                        <div class="col-sm-10">
+                            <select name="pagar_me_boleto_order_pending_refund" id="input-pagar_me_boleto_order_pending_refund"
+                                    class="form-control">
+                                <?php foreach ($order_statuses as $order_status) { ?>
+                                    <?php if ($order_status['order_status_id'] == $pagar_me_boleto_order_pending_refund) { ?>
+                                        <option value="<?php echo $order_status['order_status_id']; ?>"
+                                                selected="selected"><?php echo $order_status['name']; ?></option>
+                                    <?php } else { ?>
+                                        <option
+                                            value="<?php echo $order_status['order_status_id']; ?>"><?php echo $order_status['name']; ?></option>
+                                    <?php } ?>
+                                <?php } ?>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label"
+                               for="input-pagar_me_boleto_order_authorized"><?php echo $entry_order_authorized; ?></label>
+                        <div class="col-sm-10">
+                            <select name="pagar_me_boleto_order_authorized" id="input-pagar_me_boleto_order_authorized"
+                                    class="form-control">
+                                <?php foreach ($order_statuses as $order_status) { ?>
+                                    <?php if ($order_status['order_status_id'] == $pagar_me_boleto_order_authorized) { ?>
+                                        <option value="<?php echo $order_status['order_status_id']; ?>"
+                                                selected="selected"><?php echo $order_status['name']; ?></option>
+                                    <?php } else { ?>
+                                        <option
+                                            value="<?php echo $order_status['order_status_id']; ?>"><?php echo $order_status['name']; ?></option>
+                                    <?php } ?>
+                                <?php } ?>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label"
+                               for="input-pagar_me_boleto_order_processing"><?php echo $entry_order_processing; ?></label>
+                        <div class="col-sm-10">
+                            <select name="pagar_me_boleto_order_processing" id="input-pagar_me_boleto_order_processing"
+                                    class="form-control">
+                                <?php foreach ($order_statuses as $order_status) { ?>
+                                    <?php if ($order_status['order_status_id'] == $pagar_me_boleto_order_processing) { ?>
+                                        <option value="<?php echo $order_status['order_status_id']; ?>"
+                                                selected="selected"><?php echo $order_status['name']; ?></option>
+                                    <?php } else { ?>
+                                        <option
+                                            value="<?php echo $order_status['order_status_id']; ?>"><?php echo $order_status['name']; ?></option>
+                                    <?php } ?>
+                                <?php } ?>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
                         <label class="col-sm-2 control-label" for="input-geo-zone"><?php echo $entry_geo_zone; ?></label>
                         <div class="col-sm-10">
                             <select name="pagar_me_boleto_geo_zone_id" id="input-geo-zone" class="form-control">

@@ -38,8 +38,13 @@ class ControllerPaymentPagarMeBoleto extends Controller {
         $data['help_dias_vencimento'] = $this->language->get('help_dias_vencimento');
         $data['entry_text_information'] = $this->language->get('entry_text_information');
         $data['entry_order_status'] = $this->language->get('entry_order_status');
-        $data['entry_order_waiting_payment'] = $this->language->get('entry_order_waiting_payment');
-        $data['entry_order_paid'] = $this->language->get('entry_order_paid');
+	    $data['entry_order_waiting_payment'] = $this->language->get( 'entry_order_waiting_payment' );
+	    $data['entry_order_paid']            = $this->language->get( 'entry_order_paid' );
+	    $data['entry_order_refunded']        = $this->language->get( 'entry_order_refunded' );
+	    $data['entry_order_pending_refund']  = $this->language->get( 'entry_order_pending_refund' );
+	    $data['entry_order_authorized']      = $this->language->get( 'entry_order_authorized' );
+	    $data['entry_order_processing']      = $this->language->get( 'entry_order_processing' );
+	    $data['entry_order_refused']         = $this->language->get( 'entry_order_refused' );
         $data['entry_geo_zone'] = $this->language->get('entry_geo_zone');
         $data['entry_status'] = $this->language->get('entry_status');
         $data['entry_sort_order'] = $this->language->get('entry_sort_order');
@@ -144,6 +149,36 @@ class ControllerPaymentPagarMeBoleto extends Controller {
         } else {
             $data['pagar_me_boleto_order_paid'] = $this->config->get('pagar_me_boleto_order_paid');
         }
+
+	    if ( isset( $this->request->post['pagar_me_boleto_order_refunded'] ) ) {
+		    $data['pagar_me_boleto_order_refunded'] = $this->request->post['pagar_me_boleto_order_refunded'];
+	    } else {
+		    $data['pagar_me_boleto_order_refunded'] = $this->config->get( 'pagar_me_boleto_order_refunded' );
+	    }
+
+	    if ( isset( $this->request->post['pagar_me_boleto_order_pending_refund'] ) ) {
+		    $data['pagar_me_boleto_order_pending_refund'] = $this->request->post['pagar_me_boleto_order_pending_refund'];
+	    } else {
+		    $data['pagar_me_boleto_order_pending_refund'] = $this->config->get( 'pagar_me_boleto_order_pending_refund' );
+	    }
+
+	    if ( isset( $this->request->post['pagar_me_boleto_order_refused'] ) ) {
+		    $data['pagar_me_boleto_order_refused'] = $this->request->post['pagar_me_boleto_order_refused'];
+	    } else {
+		    $data['pagar_me_boleto_order_refused'] = $this->config->get( 'pagar_me_boleto_order_refused' );
+	    }
+
+	    if ( isset( $this->request->post['pagar_me_boleto_order_processing'] ) ) {
+		    $data['pagar_me_boleto_order_processing'] = $this->request->post['pagar_me_boleto_order_processing'];
+	    } else {
+		    $data['pagar_me_boleto_order_processing'] = $this->config->get( 'pagar_me_boleto_order_processing' );
+	    }
+
+	    if ( isset( $this->request->post['pagar_me_boleto_order_authorized'] ) ) {
+		    $data['pagar_me_boleto_order_authorized'] = $this->request->post['pagar_me_boleto_order_authorized'];
+	    } else {
+		    $data['pagar_me_boleto_order_authorized'] = $this->config->get( 'pagar_me_boleto_order_authorized' );
+	    }
 
         $this->load->model('localisation/order_status');
 
