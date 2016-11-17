@@ -56,6 +56,11 @@ class ControllerPaymentPagarMeCheckout extends Controller
         $data['entry_order_status'] = $this->language->get('entry_order_status');
         $data['entry_order_waiting_payment'] = $this->language->get('entry_order_waiting_payment');
         $data['entry_order_paid'] = $this->language->get('entry_order_paid');
+	    $data['entry_order_refunded']        = $this->language->get( 'entry_order_refunded' );
+	    $data['entry_order_pending_refund']  = $this->language->get( 'entry_order_pending_refund' );
+	    $data['entry_order_authorized']      = $this->language->get( 'entry_order_authorized' );
+	    $data['entry_order_processing']      = $this->language->get( 'entry_order_processing' );
+	    $data['entry_order_refused']         = $this->language->get( 'entry_order_refused' );
         $data['entry_geo_zone'] = $this->language->get('entry_geo_zone');
         $data['entry_status'] = $this->language->get('entry_status');
         $data['entry_sort_order'] = $this->language->get('entry_sort_order');

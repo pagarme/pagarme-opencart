@@ -136,8 +136,7 @@ class ControllerPaymentPagarMeCheckout extends Controller
 
             $status = $transaction->status;
 
-            if ($transaction->status == 'authorized' || $transaction->status == 'paid') {
-                $status = 'paid';
+            if ($transaction->status == 'authorized' || $transaction->status == 'paid' || $transaction->status == 'processing') {
                 $comentario = "N&uacute;mero da transa&ccedil;&atilde;o: " . $transaction->id . "<br />";
                 $comentario .= " Cartão: " . strtoupper($transaction->card->brand) . "<br />";
                 $comentario .= " Parcelado em: " . $transaction->installments . "x";
@@ -181,7 +180,7 @@ class ControllerPaymentPagarMeCheckout extends Controller
 
 
             } else {
-                $this->log->write("Pagar.Me boleto: Notificação inválida");
+                $this->log->write("Checkout Pagar.Me: Notificação inválida");
             }
             echo "OK";
         }catch (Exception $e){
