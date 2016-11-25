@@ -59,52 +59,8 @@ class ControllerPaymentPagarMeCheckout extends Controller
         $this->data['button_save'] = $this->language->get('button_save');
         $this->data['button_cancel'] = $this->language->get('button_cancel');
 
-        if (isset($this->error['warning'])) {
-            $this->data['error_warning'] = $this->error['warning'];
-        } else {
-            $this->data['error_warning'] = '';
-        }
-
-        if (isset($this->error['criptografia'])) {
-            $this->data['error_criptografia'] = $this->error['criptografia'];
-        } else {
-            $this->data['error_criptografia'] = '';
-        }
-
-        if (isset($this->error['texto_botao'])) {
-            $this->data['error_texto_botao'] = $this->error['texto_botao'];
-        } else {
-            $this->data['error_texto_botao'] = '';
-        }
-
-        if (isset($this->error['payment_methods'])) {
-            $this->data['error_payment_methods'] = $this->error['payment_methods'];
-        } else {
-            $this->data['error_payment_methods'] = '';
-        }
-
-        if (isset($this->error['card_brands'])) {
-            $this->data['error_card_brands'] = $this->error['card_brands'];
-        } else {
-            $this->data['error_card_brands'] = '';
-        }
-
-        if (isset($this->error['max_installments'])) {
-            $this->data['error_max_installments'] = $this->error['max_installments'];
-        } else {
-            $this->data['error_max_installments'] = '';
-        }
-
-        if (isset($this->error['api'])) {
-            $this->data['error_api'] = $this->error['api'];
-        } else {
-            $this->data['error_api'] = '';
-        }
-
-        if (isset($this->error['nome'])) {
-            $this->data['error_nome'] = $this->error['nome'];
-        } else {
-            $this->data['error_nome'] = '';
+        foreach($this->error as $key => $error) {
+            $this->data["error_{$key}"] = $error;
         }
 
         $this->data['breadcrumbs'] = array();
@@ -268,10 +224,17 @@ class ControllerPaymentPagarMeCheckout extends Controller
 
     private function validate()
     {
-
         if (!$this->user->hasPermission('modify', 'payment/pagar_me_checkout')) {
             $this->error['warning'] = $this->language->get('error_permission');
         }
+
+        if (!$this->request->post['pagar_me_checkout_nome']) {
+            $this->error['nome'] = $this->language->get('error_nome');
+        }
+
+        if (!$this->request->post['pagar_me_checkout_api']) {
+            $this->error['api'] = $this->language->get('error_api');
+        }        
 
         if (!$this->request->post['pagar_me_checkout_criptografia']) {
             $this->error['criptografia'] = $this->language->get('error_criptografia');
@@ -281,11 +244,15 @@ class ControllerPaymentPagarMeCheckout extends Controller
             $this->error['texto_botao'] = $this->language->get('error_texto_botao');
         }
 
-        if (!$this->request->post['pagar_me_checkout_payment_methods']) {
+        if (!isset($this->request->post['pagar_me_checkout_payment_methods'])
+            || count($this->request->post['pagar_me_checkout_payment_methods']) < 1) {
             $this->error['payment_methods'] = $this->language->get('error_payment_methods');
         }
-
-        if (!$this->request->post['pagar_me_checkout_card_brands']) {
+        
+        if (isset($this->request->post['pagar_me_checkout_payment_methods'])
+            && in_array("credit_card", $this->request->post['pagar_me_checkout_payment_methods']) 
+            && (!isset($this->request->post['pagar_me_checkout_card_brands']) 
+            || count($this->request->post['pagar_me_checkout_card_brands']) < 1)) {
             $this->error['card_brands'] = $this->language->get('error_card_brands');
         }
 
@@ -293,21 +260,23 @@ class ControllerPaymentPagarMeCheckout extends Controller
             $this->error['max_installments'] = $this->language->get('error_max_installments');
         }
 
-        if (!$this->request->post['pagar_me_checkout_api']) {
-            $this->error['api'] = $this->language->get('error_api');
+        if (!$this->request->post['pagar_me_checkout_free_installments']) {
+            $this->error['free_installments'] = $this->language->get('error_free_installments');
         }
 
-        if (!$this->request->post['pagar_me_checkout_nome']) {
-            $this->error['nome'] = $this->language->get('error_nome');
+        if (!$this->request->post['pagar_me_checkout_max_installment_value']) {
+            $this->error['max_installment_value'] = $this->language->get('error_max_installment_value');
         }
 
-//        var_dump($this->error); exit;
-
-        if (!$this->error) {
-            return TRUE;
-        } else {
-            return FALSE;
+        if (!$this->request->post['pagar_me_checkout_interest_rate']) {
+            $this->error['interest_rate'] = $this->language->get('error_interest_rate');
         }
+
+        if (!$this->request->post['pagar_me_checkout_boleto_discount_percentage']) {
+            $this->error['boleto_discount_percentage'] = $this->language->get('error_boleto_discount_percentage');
+        }
+
+        return !$this->error;
     }
 
     public function install()
@@ -320,6 +289,8 @@ class ControllerPaymentPagarMeCheckout extends Controller
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1");
 
         $this->db->query("ALTER TABLE  `" . DB_PREFIX . "order` ADD `pagar_me_checkout_url` VARCHAR( 512 ) NULL DEFAULT NULL AFTER  `order_id`");
+
+        $this->db->query("INSERT INTO `" . DB_PREFIX . "setting` (`group`, `key`, `value`, `serialized`) VALUES ('pagar_me_checkout', 'pagar_me_checkout_nome', 'Pagar.me', 0), ('pagar_me_checkout', 'pagar_me_checkout_texto_botao', 'Pagar', 0)");
     }
 
     public function uninstall()
