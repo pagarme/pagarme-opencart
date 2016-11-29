@@ -5,7 +5,7 @@
         <div class="payment-information"><?php echo $text_information; ?></div>
 <?php } ?>
 <div class="buttons">
-        <div class="right"><a id="button-confirm" class="<?php echo $button_css_class ?>"><span><?php echo $texto_botao; ?></span></a></div>
+        <div class="right"><input type="button" id="button-confirm" class="button" value="<?php echo $texto_botao; ?>"></div>
 </div>
 
 <script>

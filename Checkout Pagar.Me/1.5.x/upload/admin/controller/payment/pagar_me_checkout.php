@@ -298,6 +298,8 @@ class ControllerPaymentPagarMeCheckout extends Controller
         $this->db->query("DROP TABLE IF EXISTS `" . DB_PREFIX . "pagar_me_checkout_transaction`");
 
         $this->db->query("ALTER TABLE `" . DB_PREFIX . "order` DROP COLUMN `pagar_me_checkout_url`");
+
+        $this->db->query("DELETE FROM `" . DB_PREFIX . "setting` WHERE `group` = 'pagar_me_checkout'");
     }
 
 }

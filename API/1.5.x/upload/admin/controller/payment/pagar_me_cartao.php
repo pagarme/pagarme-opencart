@@ -75,10 +75,10 @@ class ControllerPaymentPagarMeCartao extends Controller
             $this->data['error_parcelas_sem_juros'] = '';
         }
 
-        if (isset($this->error['valor_parcelas'])) {
-            $this->data['error_valor_parcelas'] = $this->error['valor_parcelas'];
+        if (isset($this->error['valor_parcela'])) {
+            $this->data['error_valor_parcela'] = $this->error['valor_parcela'];
         } else {
-            $this->data['error_valor_parcelas'] = '';
+            $this->data['error_valor_parcela'] = '';
         }
 
         if (isset($this->error['taxa_juros'])) {
@@ -297,11 +297,7 @@ class ControllerPaymentPagarMeCartao extends Controller
             $this->error['nome'] = $this->language->get('error_nome');
         }
 
-        if (!$this->error) {
-            return TRUE;
-        } else {
-            return FALSE;
-        }
+        return !$this->error;
     }
 
     public function install()
