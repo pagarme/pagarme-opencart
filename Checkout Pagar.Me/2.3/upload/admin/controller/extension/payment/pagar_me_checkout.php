@@ -244,6 +244,36 @@ class ControllerExtensionPaymentPagarMeCheckout extends Controller
             $data['pagar_me_checkout_order_paid'] = $this->config->get('pagar_me_checkout_order_paid');
         }
 
+	    if (isset($this->request->post['pagar_me_checkout_order_refused'])) {
+		    $data['pagar_me_checkout_order_refused'] = $this->request->post['pagar_me_checkout_order_refused'];
+	    } else {
+		    $data['pagar_me_checkout_order_refused'] = $this->config->get('pagar_me_checkout_order_refused');
+	    }
+
+	    if (isset($this->request->post['pagar_me_checkout_order_refunded'])) {
+		    $data['pagar_me_checkout_order_refunded'] = $this->request->post['pagar_me_checkout_order_refunded'];
+	    } else {
+		    $data['pagar_me_checkout_order_refunded'] = $this->config->get('pagar_me_checkout_order_refunded');
+	    }
+
+	    if (isset($this->request->post['pagar_me_checkout_order_pending_refund'])) {
+		    $data['pagar_me_checkout_order_pending_refund'] = $this->request->post['pagar_me_checkout_order_pending_refund'];
+	    } else {
+		    $data['pagar_me_checkout_order_pending_refund'] = $this->config->get('pagar_me_checkout_order_pending_refund');
+	    }
+
+	    if (isset($this->request->post['pagar_me_checkout_order_processing'])) {
+		    $data['pagar_me_checkout_order_processing'] = $this->request->post['pagar_me_checkout_order_processing'];
+	    } else {
+		    $data['pagar_me_checkout_order_processing'] = $this->config->get('pagar_me_checkout_order_processing');
+	    }
+
+	    if (isset($this->request->post['pagar_me_checkout_order_authorized'])) {
+		    $data['pagar_me_checkout_order_authorized'] = $this->request->post['pagar_me_checkout_order_authorized'];
+	    } else {
+		    $data['pagar_me_checkout_order_authorized'] = $this->config->get('pagar_me_checkout_order_authorized');
+	    }
+
         if (isset($this->request->post['pagar_me_checkout_boleto_discount_percentage'])) {
             $data['pagar_me_checkout_boleto_discount_percentage'] = $this->request->post['pagar_me_checkout_boleto_discount_percentage'];
         } else {
