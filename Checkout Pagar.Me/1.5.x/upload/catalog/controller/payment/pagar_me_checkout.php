@@ -76,7 +76,7 @@ class ControllerPaymentPagarMeCheckout extends Controller
         }
         $json['free_installments'] = $this->config->get('pagar_me_checkout_free_installments');
         $json['ui_color'] = $this->config->get('pagar_me_checkout_ui_color');
-        $json['postback_url'] = HTTP_SERVER . 'index.php?route=payment/pagar_me_checkout/callback';
+        $json['postback_url'] = $this->url->link('pagar_me_checkout/callback', '', 'SSL');
         $json['customer_name'] = trim($order_info['payment_firstname']) . ' ' . trim($order_info['payment_lastname']);
         if ($this->config->get('dados_status')) {
             if ($customer['cpf'] != '') {
@@ -153,7 +153,7 @@ class ControllerPaymentPagarMeCheckout extends Controller
 
         $this->model_checkout_order->confirm($this->session->data['order_id'], $this->config->get('pagar_me_checkout_order_' . $status), $comentario, true);
 
-        $this->redirect($this->url->link('checkout/success'));
+        $this->redirect($this->url->link('checkout/success', '', 'SSL'));
     }
 
     public function gera()
