@@ -205,7 +205,7 @@ class ControllerExtensionPaymentPagarMeCartao extends Controller
             'amount' => $this->request->post['amount'],
             'card_hash' => $this->request->post['card_hash'],
             'installments' => $this->request->post['installments'],
-            'postback_url' => HTTP_SERVER . 'index.php?route=extension/payment/pagar_me_cartao/callback',
+            'postback_url' => $this->url->link('extension/payment/pagar_me_cartao/callback', '', 'SSL'),
             "customer" => array(
                 "name" => $customer_name,
                 "document_number" => $this->request->post['cpf_customer'],

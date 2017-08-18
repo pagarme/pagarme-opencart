@@ -117,7 +117,7 @@ class ControllerExtensionPaymentPagarMeBoleto extends Controller
             'amount' => $this->request->post['amount'],
             'payment_method' => 'boleto',
             'boleto_expiration_date' => date('Y-m-d', strtotime('+' . $this->config->get('pagar_me_boleto_dias_vencimento') + 1 . ' days')),
-            'postback_url' => HTTP_SERVER . 'index.php?route=extension/payment/pagar_me_boleto/callback',
+            'postback_url' => $this->url->link('extension/payment/pagar_me_boleto/callback', '', 'SSL'),
             "customer" => array(
                 "name" => $customer_name,
                 "document_number" => $document_number,
