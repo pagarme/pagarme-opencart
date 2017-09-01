@@ -158,7 +158,7 @@ class ControllerPaymentPagarMeBoleto extends Controller
             $this->model_payment_pagar_me_boleto->addTransactionId($this->session->data['order_id'], $id_transacao, $boleto_url);
             $json['transaction'] = $transaction->id;
             $json['success'] = true;
-            $json['boleto_url'] = $boleto_url;
+            $json['pagar_me_boleto_url'] = $boleto_url;
         } else {
             $json['success'] = false;
         }
