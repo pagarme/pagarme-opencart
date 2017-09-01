@@ -60,9 +60,9 @@ class ControllerPaymentPagarMeBoleto extends Controller
     {
         Pagarme::setApiKey($this->config->get('pagar_me_boleto_api'));
         
-        $RequestBody = file_get_contents("php://input"); 
+        $requestBody = file_get_contents("php://input");
         $headers = getallheaders();
-        if(PagarMe::validateRequestSignature($RequestBody, $headers['X-Hub-Signature'])){ 
+        if(PagarMe::validateRequestSignature($requestBody, $headers['X-Hub-Signature'])){
             $event = $this->request->post['event'];
             $this->load->model('checkout/order');
             $order_id = $this->request->post['transaction']['metadata']['id_pedido'];
@@ -72,12 +72,9 @@ class ControllerPaymentPagarMeBoleto extends Controller
 
                 $this->model_checkout_order->addOrderHistory($order_id, $this->config->get($current_status), '', true);
 
-                $this->log->write("Pedido " . $order_id . " atualizado via Pagar.me Postback");
+                $this->log->write('Pedido '.$order_id.' atualizado via Pagar.me Postback');
             }            
-        }
-        else{
-            $this->log->write("Postback inválido!");
-        }
+        } 
     }
 
     public function payment()
@@ -117,7 +114,7 @@ class ControllerPaymentPagarMeBoleto extends Controller
             'amount' => $this->request->post['amount'],
             'payment_method' => 'boleto',
             'boleto_expiration_date' => date('Y-m-d', strtotime('+' . $this->config->get('pagar_me_boleto_dias_vencimento') + 1 . ' days')),
-            'async' = 'false',
+            'async' => 'false',
             'postback_url' => HTTP_SERVER . 'index.php?route=payment/pagar_me_boleto/callback',
             "customer" => array(
                 "name" => $customer_name,
