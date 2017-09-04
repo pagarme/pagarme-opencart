@@ -58,25 +58,23 @@ class ControllerPaymentPagarMeBoleto extends Controller
 
     public function callback()
     {
+        Pagarme::setApiKey($this->config->get('pagar_me_boleto_api'));
+        
+        $requestBody = file_get_contents("php://input");
+        $headers = getallheaders();
+        if(PagarMe::validateRequestSignature($requestBody, $headers['X-Hub-Signature'])){
+            $event = $this->request->post['event'];
+            $this->load->model('checkout/order');
+            $order_id = $this->request->post['transaction']['metadata']['id_pedido'];
 
-        $event = $this->request->post['event'];
-        $this->load->model('checkout/order');
-        $this->load->model('payment/pagar_me_boleto');
+            if ($event == 'transaction_status_changed') {
+                $current_status = 'pagar_me_boleto_order_' . $this->request->post['current_status'];
 
-        if ($event == 'transaction_status_changed') {
+                $this->model_checkout_order->addOrderHistory($order_id, $this->config->get($current_status), '', true);
 
-            $order_id = $this->model_payment_pagar_me_boleto->getPagarMeOrder($this->request->post['id']);
-
-            $current_status = 'pagar_me_boleto_order_' . $this->request->post['current_status'];
-
-            $this->model_checkout_order->addOrderHistory($order_id, $this->config->get($current_status), '', true);
-
-        } else {
-            $this->log->write("Pagar.Me boleto: Notificação inválida");
-        }
-
-        echo "OK";
-
+                $this->log->write('Pedido '.$order_id.' atualizado via Pagar.me Postback');
+            }            
+        } 
     }
 
     public function payment()
@@ -116,6 +114,7 @@ class ControllerPaymentPagarMeBoleto extends Controller
             'amount' => $this->request->post['amount'],
             'payment_method' => 'boleto',
             'boleto_expiration_date' => date('Y-m-d', strtotime('+' . $this->config->get('pagar_me_boleto_dias_vencimento') + 1 . ' days')),
+            'async' => 'false',
             'postback_url' => HTTP_SERVER . 'index.php?route=payment/pagar_me_boleto/callback',
             "customer" => array(
                 "name" => $customer_name,
@@ -158,7 +157,7 @@ class ControllerPaymentPagarMeBoleto extends Controller
             $this->model_payment_pagar_me_boleto->addTransactionId($this->session->data['order_id'], $id_transacao, $boleto_url);
             $json['transaction'] = $transaction->id;
             $json['success'] = true;
-            $json['boleto_url'] = $boleto_url;
+            $json['pagar_me_boleto_url'] = $boleto_url;
         } else {
             $json['success'] = false;
         }
