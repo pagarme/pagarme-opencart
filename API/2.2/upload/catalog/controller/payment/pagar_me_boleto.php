@@ -96,15 +96,15 @@ class ControllerPaymentPagarMeBoleto extends Controller
         /* Pega os custom fields de CPF/CNPJ, número e complemento */
         $this->load->model('account/custom_field');
         $custom_fields = $this->model_account_custom_field->getCustomFields($customer['customer_group_id']);
-        foreach($custom_fields as $custom_field){
+                foreach($custom_fields as $custom_field){
             if($custom_field['location'] == 'account'){
-                if((strpos(strtolower($custom_field['name']), 'cpf') || strpos(strtolower($custom_field['name']), 'cnpj')) !== false){
+                if(strtolower($custom_field['name']) == 'cpf' || strtolower($custom_field['name']) == 'cnpj'){
                     $document_number = $order_info['custom_field'][$custom_field['custom_field_id']];
                 }
             }elseif($custom_field['location'] == 'address'){
-                if(strpos(strtolower($custom_field['name']), 'numero') !== false || strpos(strtolower($custom_field['name']), 'número') !== false){
+                if(strtolower($custom_field['name']) == 'numero' || strtolower($custom_field['name']) == 'número'){
                     $numero = $order_info['payment_custom_field'][$custom_field['custom_field_id']];
-                }elseif(strpos(strtolower($custom_field['name']), 'complemento')){
+                }elseif(strtolower($custom_field['name'] == 'complemento')){
                     $complemento = $order_info['payment_custom_field'][$custom_field['custom_field_id']];
                 }
             }
