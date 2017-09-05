@@ -58,25 +58,23 @@ class ControllerPaymentPagarMeBoleto extends Controller
 
     public function callback()
     {
+        Pagarme::setApiKey($this->config->get('pagar_me_boleto_api'));
 
-        $event = $this->request->post['event'];
-        $this->load->model('checkout/order');
-        $this->load->model('payment/pagar_me_boleto');
+        $requestBody = file_get_contents("php://input");
+        $headers = getallheaders();
+        if(PagarMe::validateRequestSignature($requestBody, $headers['X-Hub-Signature'])){
+            $event = $this->request->post['event'];
+            $this->load->model('checkout/order');
+            $order_id = $this->request->post['transaction']['metadata']['id_pedido'];
 
-        if ($event == 'transaction_status_changed') {
+            if ($event == 'transaction_status_changed') {
+                $current_status = 'pagar_me_boleto_order_' . $this->request->post['current_status'];
 
-            $order_id = $this->model_payment_pagar_me_boleto->getPagarMeOrder($this->request->post['id']);
+                $this->model_checkout_order->addOrderHistory($order_id, $this->config->get($current_status), '', true);
 
-            $current_status = 'pagar_me_boleto_order_' . $this->request->post['current_status'];
-
-            $this->model_checkout_order->addOrderHistory($order_id, $this->config->get($current_status), '', true);
-
-        } else {
-            $this->log->write("Pagar.Me boleto: Notificação inválida");
+                $this->log->write('Pedido '.$order_id.' atualizado via Pagar.me Postback');
+            }
         }
-
-        echo "OK";
-
     }
 
     public function payment()
