@@ -96,7 +96,7 @@ class ControllerPaymentPagarMeBoleto extends Controller
         /* Pega os custom fields de CPF/CNPJ, número e complemento */
         $this->load->model('account/custom_field');
         $custom_fields = $this->model_account_custom_field->getCustomFields($customer['customer_group_id']);
-                foreach($custom_fields as $custom_field){
+        foreach($custom_fields as $custom_field){
             if($custom_field['location'] == 'account'){
                 if(strtolower($custom_field['name']) == 'cpf' || strtolower($custom_field['name']) == 'cnpj'){
                     $document_number = $order_info['custom_field'][$custom_field['custom_field_id']];
@@ -117,6 +117,7 @@ class ControllerPaymentPagarMeBoleto extends Controller
             'payment_method' => 'boleto',
             'boleto_expiration_date' => date('Y-m-d', strtotime('+' . $this->config->get('pagar_me_boleto_dias_vencimento') + 1 . ' days')),
             'postback_url' => HTTP_SERVER . 'index.php?route=payment/pagar_me_boleto/callback',
+            'async' => 'false',
             "customer" => array(
                 "name" => $customer_name,
                 "document_number" => $document_number,
@@ -158,7 +159,7 @@ class ControllerPaymentPagarMeBoleto extends Controller
             $this->model_payment_pagar_me_boleto->addTransactionId($this->session->data['order_id'], $id_transacao, $boleto_url);
             $json['transaction'] = $transaction->id;
             $json['success'] = true;
-            $json['boleto_url'] = $boleto_url;
+            $json['pagar_me_boleto_url'] = $boleto_url;
         } else {
             $json['success'] = false;
         }
