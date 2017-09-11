@@ -21,8 +21,8 @@
                 $('#button-confirm').button('loading');
             },
             success: function (response) {
-                if (response['error']) {
-                    alert('Ocorreu um erro inesperado. Por favor contate a loja.');
+                if (response.hasOwnProperty('error')) {
+                    alert('ERROR: ' + response.error);
                 } else {
                     window.location = '<?php echo $url; ?>';
                 }
