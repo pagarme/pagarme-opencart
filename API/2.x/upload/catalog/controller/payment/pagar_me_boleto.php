@@ -97,7 +97,13 @@ class ControllerPaymentPagarMeBoleto extends Controller
         $customer_name = trim($order_info['payment_firstname']).' '.trim($order_info['payment_lastname']);
         /* Pega os custom fields de CPF/CNPJ, número e complemento */
         $this->load->model('account/custom_field');
-        $custom_fields = $this->model_account_custom_field->getCustomFields($customer['customer_group_id']);
+
+        $default_group = 1;
+        if(isset($customer['customer_group_id'])){
+            $default_group = $customer['customer_group_id'];
+        }
+
+        $custom_fields = $this->model_account_custom_field->getCustomFields($default_group);
         foreach($custom_fields as $custom_field){
             if($custom_field['location'] == 'account'){
                 if(strtolower($custom_field['name']) == 'cpf' || strtolower($custom_field['name']) == 'cnpj'){
