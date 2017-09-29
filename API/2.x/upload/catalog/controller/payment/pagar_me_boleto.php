@@ -34,7 +34,7 @@ class ControllerPaymentPagarMeBoleto extends Controller
         if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/payment/pagar_me_boleto.tpl')) {
             return $this->load->view($this->config->get('config_template') . '/template/payment/pagar_me_boleto.tpl', $data);
         } else {
-            return $this->load->view('default/template/payment/pagar_me_boleto.tpl', $data);
+            return $this->load->view('payment/pagar_me_boleto.tpl', $data);
         }
     }
 
@@ -46,7 +46,7 @@ class ControllerPaymentPagarMeBoleto extends Controller
 
         $order = $this->model_checkout_order->getOrder($this->session->data['order_id']);
 
-        $this->model_checkout_order->addOrderHistory($this->session->data['order_id'], $this->config->get('pagar_me_boleto_order_waiting_payment'), 'Imprima seu boleto aqui -> ' . $order['pagar_me_boleto_url']);
+        $this->model_checkout_order->addOrderHistory($this->session->data['order_id'], $this->config->get('pagar_me_boleto_order_waiting_payment'), "<a href='".htmlspecialchars($order['pagar_me_boleto_url'])."'>Imprima seu boleto aqui</a>", true);
 
         $this->session->data['pagar_me_boleto_url'] = $order['pagar_me_boleto_url'];
 
@@ -62,25 +62,23 @@ class ControllerPaymentPagarMeBoleto extends Controller
 
     public function callback()
     {
+        Pagarme::setApiKey($this->config->get('pagar_me_boleto_api'));
 
-        $event = $this->request->post['event'];
-        $this->load->model('checkout/order');
-        $this->load->model('payment/pagar_me_boleto');
+        $requestBody = file_get_contents("php://input");
+        $headers = getallheaders();
+        if(PagarMe::validateRequestSignature($requestBody, $headers['X-Hub-Signature'])){
+            $event = $this->request->post['event'];
+            $this->load->model('checkout/order');
+            $order_id = $this->request->post['transaction']['metadata']['id_pedido'];
 
-        if ($event == 'transaction_status_changed') {
+            if ($event == 'transaction_status_changed') {
+                $current_status = 'pagar_me_boleto_order_' . $this->request->post['current_status'];
 
-            $order_id = $this->model_payment_pagar_me_boleto->getPagarMeOrder($this->request->post['id']);
+                $this->model_checkout_order->addOrderHistory($order_id, $this->config->get($current_status), '', true);
 
-            $current_status = 'pagar_me_boleto_order_' . $this->request->post['current_status'];
-
-            $this->model_checkout_order->addOrderHistory($order_id, $this->config->get($current_status), '', true);
-
-        } else {
-            $this->log->write("Pagar.Me boleto: Notificação inválida");
+                $this->log->write('Pedido '.$order_id.' atualizado via Pagar.me Postback');
+            }
         }
-
-        echo "OK";
-
     }
 
     public function payment()
@@ -99,16 +97,22 @@ class ControllerPaymentPagarMeBoleto extends Controller
         $customer_name = trim($order_info['payment_firstname']).' '.trim($order_info['payment_lastname']);
         /* Pega os custom fields de CPF/CNPJ, número e complemento */
         $this->load->model('account/custom_field');
-        $custom_fields = $this->model_account_custom_field->getCustomFields($customer['customer_group_id']);
+
+        $default_group = 1;
+        if(isset($customer['customer_group_id'])){
+            $default_group = $customer['customer_group_id'];
+        }
+
+        $custom_fields = $this->model_account_custom_field->getCustomFields($default_group);
         foreach($custom_fields as $custom_field){
             if($custom_field['location'] == 'account'){
-                if((strpos(strtolower($custom_field['name']), 'cpf') || strpos(strtolower($custom_field['name']), 'cnpj')) !== false){
+                if(strtolower($custom_field['name']) == 'cpf' || strtolower($custom_field['name']) == 'cnpj'){
                     $document_number = $order_info['custom_field'][$custom_field['custom_field_id']];
                 }
             }elseif($custom_field['location'] == 'address'){
-                if(strpos(strtolower($custom_field['name']), 'numero') !== false || strpos(strtolower($custom_field['name']), 'número') !== false){
+                if(strtolower($custom_field['name']) == 'numero' || strtolower($custom_field['name']) == 'número'){
                     $numero = $order_info['payment_custom_field'][$custom_field['custom_field_id']];
-                }elseif(strpos(strtolower($custom_field['name']), 'complemento')){
+                }elseif(strtolower($custom_field['name'] == 'complemento')){
                     $complemento = $order_info['payment_custom_field'][$custom_field['custom_field_id']];
                 }
             }
@@ -121,6 +125,7 @@ class ControllerPaymentPagarMeBoleto extends Controller
             'payment_method' => 'boleto',
             'boleto_expiration_date' => date('Y-m-d', strtotime('+' . $this->config->get('pagar_me_boleto_dias_vencimento') + 1 . ' days')),
             'postback_url' => HTTP_SERVER . 'index.php?route=payment/pagar_me_boleto/callback',
+            'async' => 'false',
             "customer" => array(
                 "name" => $customer_name,
                 "document_number" => $document_number,
@@ -162,7 +167,7 @@ class ControllerPaymentPagarMeBoleto extends Controller
             $this->model_payment_pagar_me_boleto->addTransactionId($this->session->data['order_id'], $id_transacao, $boleto_url);
             $json['transaction'] = $transaction->id;
             $json['success'] = true;
-            $json['boleto_url'] = $boleto_url;
+            $json['pagar_me_boleto_url'] = $boleto_url;
         } else {
             $json['success'] = false;
         }
