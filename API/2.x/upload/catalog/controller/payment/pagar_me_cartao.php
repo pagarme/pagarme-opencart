@@ -60,7 +60,7 @@ class ControllerPaymentPagarMeCartao extends Controller
         if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/payment/pagar_me_cartao.tpl')) {
             return $this->load->view($this->config->get('config_template') . '/template/payment/pagar_me_cartao.tpl', $data);
         } else {
-            return $this->load->view('default/template/payment/pagar_me_cartao.tpl', $data);
+            return $this->load->view('payment/pagar_me_cartao.tpl', $data);
         }
     }
 
