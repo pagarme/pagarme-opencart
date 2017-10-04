@@ -218,9 +218,9 @@ class ControllerPaymentPagarMeCartao extends Controller
         $custom_fields = $this->model_account_custom_field->getCustomFields($default_group);
         foreach($custom_fields as $custom_field){
             if($custom_field['location'] == 'address'){
-                if(strpos(strtolower($custom_field['name']), 'numero') !== false || strpos(strtolower($custom_field['name']), 'número') !== false){
+                if(strtolower($custom_field['name']) == 'numero' || strtolower($custom_field['name']) == 'número'){
                     $numero = $order_info['payment_custom_field'][$custom_field['custom_field_id']];
-                }elseif(strpos(strtolower($custom_field['name']), 'complemento')){
+                }elseif(strtolower($custom_field['name']) == 'complemento'){
                     $complemento = $order_info['payment_custom_field'][$custom_field['custom_field_id']];
                 }
             }
