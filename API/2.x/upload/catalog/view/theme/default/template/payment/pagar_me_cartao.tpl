@@ -163,7 +163,7 @@
 
         if (hasErrors) {
             // realiza o tratamento de errors
-            alert("Verifique se os dados informados estão corretos. Qualquer problema entre em contato com a loja.");
+            alert(fieldErrors);
             $('#button-confirm').button('reset');
             return false;
         } else {
@@ -186,8 +186,20 @@
                         cpf_customer: $("#cpf_customer").val()
                     },
                     success: function (response) {
-                        if (response['error']) {
-                            alert('Ocorreu um erro inesperado. Por favor contate a loja.')
+                        console.log(response);
+                        if (response.hasOwnProperty('error')) {
+                            //alert('ERROR: ' + response.error);
+                            var errorBox = document.createElement("p");
+                            errorBox.innerHTML = response.error;
+                            errorBox.id = 'error_message';
+                            $(errorBox).css("padding", "5px");
+                            $(errorBox).css("background-color", "#E82C0C");
+                            $(errorBox).css("color", "#FFFFFF");
+                            $(errorBox).css("width", "100%");
+                            $(".dados_cartao #error_message").remove();
+                            $(".dados_cartao").prepend(errorBox);
+                            $('#button-confirm').button('reset');
+                            $("#payment_form #card_hash").remove();  
                         } else if (response['success']) {
                             // alert(response['success']);
                             //$.colorbox({href: response['success']});

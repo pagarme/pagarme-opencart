@@ -241,25 +241,28 @@ class ControllerPaymentPagarMeCartao extends Controller
                 'id_pedido' => $order_info['order_id'],
                 'loja' => $this->config->get('config_name'),
             )));
-
-        $transaction->charge();
-
+        try{
+            $transaction->charge();
+        }catch(Exception $e){
+          $this->log->write('Erro Pagar.me cartão ' . $e->getMessage());
+          $this->error = $e->getMessage();
+        }
         $status = $transaction->status; // status da transação
 
         $id_transacao = $transaction->id;
 
         $json = array();
 
-        $this->log->write($status);
-
         $this->load->model('payment/pagar_me_cartao');
 
         if ($status == 'paid' || $status == 'processing') {
             $this->model_payment_pagar_me_cartao->addTransactionId($this->session->data['order_id'], $id_transacao, $this->request->post['installments'], $this->request->post['bandeira']);
 
+            $this->log->write($status);
             $json['success'] = true;
         } else {
-            $this->model_payment_pagar_me_cartao->addTransactionId($this->session->data['order_id'], $id_transacao);
+            $this->model_payment_pagar_me_cartao->addTransactionId($this->session->data['order_id'], $id_transacao, $this->request->post['installments'], $this->request->post['bandeira']);
+
             $json['success'] = false;
         }
 
