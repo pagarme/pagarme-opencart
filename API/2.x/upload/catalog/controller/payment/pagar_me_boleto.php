@@ -110,7 +110,7 @@ class ControllerPaymentPagarMeBoleto extends Controller
             }elseif($custom_field['location'] == 'address'){
                 if(strtolower($custom_field['name']) == 'numero' || strtolower($custom_field['name']) == 'número'){
                     $numero = $order_info['payment_custom_field'][$custom_field['custom_field_id']];
-                }elseif(strtolower($custom_field['name'] == 'complemento')){
+                }elseif(strtolower($custom_field['name']) == 'complemento'){
                     $complemento = $order_info['payment_custom_field'][$custom_field['custom_field_id']];
                 }
             }
