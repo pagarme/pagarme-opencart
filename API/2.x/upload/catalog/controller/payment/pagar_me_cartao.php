@@ -270,6 +270,8 @@ class ControllerPaymentPagarMeCartao extends Controller
             $json['error'] = $this->error;
         }
 
+        $this->log->write(json_encode($json));
+
         $this->response->setOutput(json_encode($json));
     }
 
