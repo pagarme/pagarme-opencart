@@ -137,15 +137,7 @@
     function errorFields(errorMessage){
         let errorBox = document.createElement("p");
         errorBox.innerHTML = errorMessage;
-        errorBox.className = 'error_message';
-
-        $(errorBox).css("padding", "5px");
-        $(errorBox).css("background-color", "#E82C0C");
-        $(errorBox).css("color", "#FFFFFF");
-        $(errorBox).css("width", "100%");
-        $(errorBox).css("border-radius", "2px");
-        $(errorBox).css("text-align", "center");
-        $(errorBox).css("border-left", "2px solid #cccccc");
+        errorBox.className = 'pagar_me_error_message';
 
         $(".dados_cartao").prepend(errorBox);
 
@@ -168,7 +160,7 @@
 
         var fieldErrors = creditCard.fieldErrors();
 
-        $(".dados_cartao .error_message").remove();
+        $(".dados_cartao .pagar_me_error_message").remove();
         var hasErrors = false;
         for (var field in fieldErrors) {
             errorFields(fieldErrors[field]);

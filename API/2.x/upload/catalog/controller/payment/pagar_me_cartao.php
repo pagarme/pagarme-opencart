@@ -244,8 +244,8 @@ class ControllerPaymentPagarMeCartao extends Controller
         try{
             $transaction->charge();
         }catch(Exception $e){
-          $this->log->write('Erro Pagar.me cartão ' . $e->getMessage());
-          $this->error = $e->getMessage();
+            $this->log->write('Erro Pagar.me cartão ' . $e->getMessage());
+            $this->error = $e->getMessage();
         }
         $status = $transaction->status; // status da transação
 
@@ -258,7 +258,7 @@ class ControllerPaymentPagarMeCartao extends Controller
         if ($status == 'paid' || $status == 'processing') {
             $this->model_payment_pagar_me_cartao->addTransactionId($this->session->data['order_id'], $id_transacao, $this->request->post['installments'], $this->request->post['bandeira']);
 
-            $this->log->write($status);
+            $this->log->write('Pagar.me Transaction: '.$id_transacao. ' | Status: '.$status.' | Pedido: '.$order_info['order_id']);
             $json['success'] = true;
         } else {
             $this->model_payment_pagar_me_cartao->addTransactionId($this->session->data['order_id'], $id_transacao, $this->request->post['installments'], $this->request->post['bandeira']);
@@ -269,8 +269,6 @@ class ControllerPaymentPagarMeCartao extends Controller
         if ($this->error) {
             $json['error'] = $this->error;
         }
-
-        $this->log->write(json_encode($json));
 
         $this->response->setOutput(json_encode($json));
     }
