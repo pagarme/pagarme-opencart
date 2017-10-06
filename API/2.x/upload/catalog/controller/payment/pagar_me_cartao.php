@@ -204,7 +204,7 @@ class ControllerPaymentPagarMeCartao extends Controller
         /* Pega os custom fields de CPF/CNPJ, número e complemento */
         $this->load->model('account/custom_field');
 
-        $default_group = 1;
+        $default_group = $this->config->get('config_customer_group_id');
         if(isset($customer['customer_group_id'])){
             $default_group = $customer['customer_group_id'];
         }
