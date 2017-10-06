@@ -247,33 +247,22 @@ class ControllerPaymentPagarMeCartao extends Controller
                 'id_pedido' => $order_info['order_id'],
                 'loja' => $this->config->get('config_name'),
             )));
-        try{
-            $transaction->charge();
-        }catch(Exception $e){
-            $this->log->write('Erro Pagar.me cartão ' . $e->getMessage());
-            $this->error = $e->getMessage();
-        }
-        $status = $transaction->status; // status da transação
-
-        $id_transacao = $transaction->id;
 
         $json = array();
+        try{
+            $transaction->charge();
 
-        $this->load->model('payment/pagar_me_cartao');
+            $this->load->model('payment/pagar_me_cartao');
 
-        if ($status == 'paid' || $status == 'processing') {
-            $this->model_payment_pagar_me_cartao->addTransactionId($this->session->data['order_id'], $id_transacao, $this->request->post['installments'], $this->request->post['bandeira']);
+            $this->model_payment_pagar_me_cartao->addTransactionId($this->session->data['order_id'], $transaction->id, $this->request->post['installments'], $this->request->post['bandeira']);
 
-            $this->log->write('Pagar.me Transaction: '.$id_transacao. ' | Status: '.$status.' | Pedido: '.$order_info['order_id']);
+            $this->log->write('Pagar.me Transaction: '.$transaction->id. ' | Status: '.$transaction->status.' | Pedido: '.$order_info['order_id']);
+
             $json['success'] = true;
-        } else {
-            $this->model_payment_pagar_me_cartao->addTransactionId($this->session->data['order_id'], $id_transacao, $this->request->post['installments'], $this->request->post['bandeira']);
 
-            $json['success'] = false;
-        }
-
-        if ($this->error) {
-            $json['error'] = $this->error;
+        }catch(Exception $e){
+            $this->log->write('Erro Pagar.me cartão ' . $e->getMessage());
+            $json['error'] = $e->getMessage();
         }
 
         $this->response->setOutput(json_encode($json));
