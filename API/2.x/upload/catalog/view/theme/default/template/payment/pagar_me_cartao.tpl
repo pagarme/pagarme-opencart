@@ -134,16 +134,23 @@
 
     });
 
+    function errorFields(errorMessage){
+        let errorBox = document.createElement("p");
+        errorBox.innerHTML = errorMessage;
+        errorBox.className = 'pagar_me_error_message';
+
+        $(".dados_cartao").prepend(errorBox);
+
+        $('#button-confirm').button('reset');
+        $("#payment_form #card_hash").remove();
+    }
+
     $('#button-confirm').bind('click', function () {
 
-        /*Função Pagar.me*/
         PagarMe.encryption_key = "<?php echo $pagar_me_cartao_criptografia; ?>";
 
         var form = $("#payment_form");
 
-        //form.submit(function (event) { // quando o form for enviado...
-        // inicializa um objeto de cartão de crédito e completa
-        // com os dados do form
         var creditCard = new PagarMe.creditCard();
         creditCard.cardHolderName = $("#payment_form #card_holder_name").val();
         creditCard.cardExpirationMonth = $("#payment_form #card_expiration_month").val();
@@ -151,29 +158,26 @@
         creditCard.cardNumber = $("#payment_form #card_number").val();
         creditCard.cardCVV = $("#payment_form #card_cvv").val();
 
-        // pega os erros de validação nos campos do form
         var fieldErrors = creditCard.fieldErrors();
 
-        //Verifica se há erros
+        $(".dados_cartao .pagar_me_error_message").remove();
         var hasErrors = false;
         for (var field in fieldErrors) {
+            errorFields(fieldErrors[field]);
             hasErrors = true;
-            break;
         }
 
         if (hasErrors) {
-            // realiza o tratamento de errors
-            alert("Verifique se os dados informados estão corretos. Qualquer problema entre em contato com a loja.");
             $('#button-confirm').button('reset');
+
             return false;
         } else {
             $('#button-confirm').button('loading');
-            //console.log("oi")
-            // se não há erros, gera o card_hash...
+
             creditCard.generateHash(function (cardHash) {
-                // ...coloca-o no form...
+
                 form.append($('<input type="hidden" id="card_hash" name="card_hash">').val(cardHash));
-                // e envia o form
+
                 $.ajax({
                     type: 'POST',
                     url: 'index.php?route=payment/pagar_me_cartao/payment',
@@ -186,12 +190,11 @@
                         cpf_customer: $("#cpf_customer").val()
                     },
                     success: function (response) {
-                        if (response['error']) {
-                            alert('Ocorreu um erro inesperado. Por favor contate a loja.')
+                        if (response.hasOwnProperty('error')) {
+                            errorFields(response.error);
+
+                            return false;
                         } else if (response['success']) {
-                            // alert(response['success']);
-                            //$.colorbox({href: response['success']});
-                            //window.open(response['success']);
                             location = '<?php echo $url; ?>';
                         } else {
                             location = '<?php echo $url2; ?>';
