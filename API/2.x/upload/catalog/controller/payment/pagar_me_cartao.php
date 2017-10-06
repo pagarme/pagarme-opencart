@@ -203,7 +203,6 @@ class ControllerPaymentPagarMeCartao extends Controller
 
         $customer = $this->model_account_customer->getCustomer($order_info['customer_id']);
 
-
         $numero = 'Sem Número';
         $complemento = '';
         $customer_name = trim($order_info['payment_firstname']).' '.trim($order_info['payment_lastname']);
@@ -239,10 +238,13 @@ class ControllerPaymentPagarMeCartao extends Controller
                 "email" => $order_info['email'],
                 "address" => array(
                     "street" => $order_info['payment_address_1'],
-                    "neighborhood" => $order_info['payment_address_2'],
-                    "zipcode" => $this->removeSeparadores($order_info['payment_postcode']),
                     "street_number" => $numero,
-                    "complementary" => $complemento
+                    "neighborhood" => $order_info['payment_address_2'],
+                    "complementary" => $complemento,
+                    "city" => $order_info['payment_city'],
+                    "state" => $order_info['payment_zone_code'],
+                    "country" => $order_info['payment_country'],
+                    "zipcode" => $this->removeSeparadores($order_info['payment_postcode']),
                 ),
                 "phone" => array(
                     "ddd" => substr(preg_replace('/[^0-9]/', '', $order_info['telephone']), 0, 2),

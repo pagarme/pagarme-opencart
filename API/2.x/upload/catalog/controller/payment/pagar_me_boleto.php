@@ -130,9 +130,13 @@ class ControllerPaymentPagarMeBoleto extends Controller
                 "email" => $order_info['email'],
                 "address" => array(
                     "street" => $order_info['payment_address_1'],
-                    "neighborhood" => $order_info['payment_address_2'],
-                    "zipcode" => $this->removeSeparadores($order_info['payment_postcode']),
                     "street_number" => $numero,
+                    "neighborhood" => $order_info['payment_address_2'],
+                    "complementary" => $complemento,
+                    "city" => $order_info['payment_city'],
+                    "state" => $order_info['payment_zone_code'],
+                    "country" => $order_info['payment_country'],
+                    "zipcode" => $this->removeSeparadores($order_info['payment_postcode']),
                     "complementary" => $complemento
                 ),
                 "phone" => array(
