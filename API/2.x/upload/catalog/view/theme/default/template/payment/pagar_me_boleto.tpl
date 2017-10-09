@@ -17,14 +17,32 @@
             async: false,
             data: {amount: '<?php echo $total; ?>'},
             dataType: 'json',
-            beforeSend: function () {
-                $('#button-confirm').button('loading');
-            },
+
             success: function (response) {
+                $(".pagar_me_error_message").remove();
+
                 if (response.hasOwnProperty('error')) {
-                    alert('ERROR: ' + response.error);
+                  $('#button-confirm').button('reset');
+
+                  let errorBox = document.createElement("p");
+                  errorBox.innerHTML = response.error;
+                  errorBox.className = 'pagar_me_error_message';
+
+                  $(".buttons").prepend(errorBox);
+                  $(errorBox).css("background-color", "#E82C0C");
+                  $(errorBox).css("padding", "5px");
+                  $(errorBox).css("color", "#ffffff");
+                  $(errorBox).css("width", "50%");
+                  $(errorBox).css("border-radius", "2px");
+                  $(errorBox).css("text-align", "center");
+                  $(errorBox).css("border-left", "2px solid #991D08");
+                  $(errorBox).css("margin-left", "auto");
+                  $(errorBox).css("margin-right", "auto");
+
+                  return false;
                 } else {
-                    window.location = '<?php echo $url; ?>';
+                  $('#button-confirm').button('loading');
+                  window.location = '<?php echo $url; ?>';
                 }
             }
         });
