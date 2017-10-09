@@ -41,10 +41,16 @@ class ControllerPaymentPagarMeBoleto extends Controller
     public function confirm()
     {
         $this->load->model('checkout/order');
+        $this->load->model('payment/pagar_me_boleto');
 
         $order = $this->model_checkout_order->getOrder($this->session->data['order_id']);
 
-        $this->model_checkout_order->addOrderHistory($this->session->data['order_id'], $this->config->get('pagar_me_boleto_order_waiting_payment'), "<a href='".htmlspecialchars($order['pagar_me_boleto_url'])."'>Imprima seu boleto aqui</a>", true);
+        $pagar_me_transaction = $this->model_payment_pagar_me_boleto->getPagarMeTransactionId($order['order_id']);
+
+        $comment = "<a href='".htmlspecialchars($order['pagar_me_boleto_url'])."'>Imprima seu boleto aqui</a><br>";
+        $comment .= 'Pagar.me Transaction: '.$pagar_me_transaction['transaction_id'];
+
+        $this->model_checkout_order->addOrderHistory($order['order_id'], $this->config->get('pagar_me_boleto_order_waiting_payment'), $comment, true);
 
         $this->session->data['pagar_me_boleto_url'] = $order['pagar_me_boleto_url'];
 
