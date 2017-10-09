@@ -47,6 +47,16 @@ class ModelPaymentPagarMeBoleto extends Model {
         }
     }
 
+    public function getPagarMeTransactionId($order_id) {
+        $order_query = $this->db->query("SELECT * FROM `" . DB_PREFIX . "pagar_me_transaction` WHERE order_id = '" . $this->db->escape($order_id) . "'");
+        if ($order_query->num_rows) {
+            return $order_query->row;
+        } else {
+            return false;
+        }
+    }
+
 }
 
 ?>
+
