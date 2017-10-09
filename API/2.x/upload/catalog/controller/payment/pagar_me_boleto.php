@@ -71,17 +71,20 @@ class ControllerPaymentPagarMeBoleto extends Controller
         $requestBody = file_get_contents("php://input");
         $headers = getallheaders();
         if(PagarMe::validateRequestSignature($requestBody, $headers['X-Hub-Signature'])){
-            $event = $this->request->post['event'];
-            $this->load->model('checkout/order');
-            $order_id = $this->request->post['transaction']['metadata']['id_pedido'];
+            if(isset($this->request->post['transaction']['metadata']['id_pedido'])){
+                $this->load->model('checkout/order');
+                $order_id = $this->request->post['transaction']['metadata']['id_pedido'];
 
-            if ($event == 'transaction_status_changed') {
-                $current_status = 'pagar_me_boleto_order_' . $this->request->post['current_status'];
+                if ($this->request->post['event'] == 'transaction_status_changed') {
+                    $current_status = 'pagar_me_boleto_order_' . $this->request->post['current_status'];
 
-                $this->model_checkout_order->addOrderHistory($order_id, $this->config->get($current_status), '', true);
+                    $this->model_checkout_order->addOrderHistory($order_id, $this->config->get($current_status), '', true);
 
-                $this->log->write('Pedido '.$order_id.' atualizado via Pagar.me Postback');
+                    $this->log->write('Pedido '.$order_id.' atualizado para '. $this->request->post['current_status'] . ' via Pagar.me Postback');
+                }
             }
+        }else{
+            $this->log->write('Pagar.Me Postback: Falha ao validar o POSTback');
         }
     }
 
