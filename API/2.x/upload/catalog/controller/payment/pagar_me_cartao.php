@@ -180,12 +180,14 @@ class ControllerPaymentPagarMeCartao extends Controller
                     $this->model_checkout_order->addOrderHistory($order_id, $this->config->get($current_status), '', true);
 
                     $this->log->write('Pagar.me Postback: Pedido '.$order_id.' atualizado para '.$this->request->post['current_status']);
+
+                    return http_response_code(200);
                 }
-            }else{
-                $this->log->write('Pagar.me Postback: Pedido não encontrado');
             }
         }else{
             $this->log->write('Pagar.me Postback: Falha ao validar o POSTback');
+
+            return http_response_code(403);
         }
     }
 
