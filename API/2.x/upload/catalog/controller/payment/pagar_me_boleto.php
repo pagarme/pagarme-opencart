@@ -25,11 +25,7 @@ class ControllerPaymentPagarMeBoleto extends Controller
         $data['url2'] = $this->url->link('payment/pagar_me_boleto/error', '', 'SSL');
 
          //incluindo css
-        if (file_exists('catalog/view/theme/' . $this->config->get('config_template') . '/stylesheet/pagar_me_boleto.css')) {
-            $data['stylesheet'] = 'catalog/view/theme/' . $this->config->get('config_template') . '/stylesheet/pagar_me_cartao.css';
-        } else {
-            $data['stylesheet'] = 'catalog/view/theme/default/stylesheet/pagar_me_cartao.css';
-        }
+        $data['stylesheet'] = 'catalog/view/theme/default/stylesheet/pagar_me.css';
 
         if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/payment/pagar_me_boleto.tpl')) {
             return $this->load->view($this->config->get('config_template') . '/template/payment/pagar_me_boleto.tpl', $data);
