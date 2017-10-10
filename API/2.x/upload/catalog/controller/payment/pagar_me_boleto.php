@@ -77,10 +77,13 @@ class ControllerPaymentPagarMeBoleto extends Controller
                     $this->model_checkout_order->addOrderHistory($order_id, $this->config->get($current_status), '', true);
 
                     $this->log->write('Pedido '.$order_id.' atualizado para '. $this->request->post['current_status'] . ' via Pagar.me Postback');
+
+                    return http_response_code(200);
                 }
             }
         }else{
             $this->log->write('Pagar.Me Postback: Falha ao validar o POSTback');
+            return http_response_code(403);
         }
     }
 
