@@ -59,4 +59,3 @@ class ModelPaymentPagarMeBoleto extends Model {
 }
 
 ?>
-
