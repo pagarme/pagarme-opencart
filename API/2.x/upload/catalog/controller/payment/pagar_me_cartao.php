@@ -197,30 +197,95 @@ class ControllerPaymentPagarMeCartao extends Controller
         $this->load->model('checkout/order');
         $this->load->model('account/customer');
 
+        $cart_info = $this->cart->getProducts();
+
         $order_info = $this->model_checkout_order->getOrder($this->session->data['order_id']);
+
+        $items = array();
+
+        //Generate items array
+        foreach($cart_info as $item){
+            //Format to correct unit price
+            $unit_price = $item['price'];
+            if(strpos($item['price'], ".") !== false || strpos($item['price'], ",") !== false){
+                $unit_price = $this->removeSeparadores($item['price']);
+            }else{
+                $unit_price = $item['price'] * 100;
+            }
+
+            //Verify if it's tangible or not
+            $tangible = true;
+            if(!empty($item['download'])){
+                $tangible = false;
+            }
+
+            array_push(
+                $items,
+                array(
+                    'id' => $item['product_id'],
+                    'title' => $item['name'],
+                    'quantity' => $item['quantity'],
+                    'unit_price' => $unit_price,
+                    'tangible'=> $tangible
+                )
+            );
+        }
 
         $customer = $this->model_account_customer->getCustomer($order_info['customer_id']);
 
-        $numero = 'Sem Número';
-        $complemento = '';
+        $payment_number = $shipping_number = 'Sem Número';
+
+        $payment_complementary = $shipping_complementary = null;
+
         $customer_name = trim($order_info['payment_firstname']).' '.trim($order_info['payment_lastname']);
-        /* Pega os custom fields de CPF/CNPJ, número e complemento */
+
+        /* Get CPF/CNPJ, Number and Complementary Data */
         $this->load->model('account/custom_field');
 
         $default_group = $this->config->get('config_customer_group_id');
         if(isset($customer['customer_group_id'])){
             $default_group = $customer['customer_group_id'];
         }
-
+        
+        $documents = array();
+        $type = '';
         $custom_fields = $this->model_account_custom_field->getCustomFields($default_group);
+
         foreach($custom_fields as $custom_field){
-            if($custom_field['location'] == 'address'){
-                if(strtolower($custom_field['name']) == 'numero' || strtolower($custom_field['name']) == 'número'){
-                    $numero = $order_info['payment_custom_field'][$custom_field['custom_field_id']];
-                }elseif(strtolower($custom_field['name']) == 'complemento'){
-                    $complemento = $order_info['payment_custom_field'][$custom_field['custom_field_id']];
+            if($custom_field['location'] == 'account'){
+                if(strtolower($custom_field['name']) == 'cpf'){
+                    array_push($documents, array(
+                        'type' => 'cpf',
+                        'number' => $this->removeSeparadores($order_info['custom_field'][$custom_field['custom_field_id']])
+                    ));
+                    $type = 'individual';
+                } else if(strtolower($custom_field['name']) == 'cnpj'){
+                    array_push($documents, array(
+                        'type' => 'cnpj',
+                        'number' => $this->removeSeparadores($order_info['custom_field'][$custom_field['custom_field_id']])
+                    ));
+                    $type = 'corporation';
                 }
+            }elseif($custom_field['location'] == 'address'){
+                if(strtolower($custom_field['name']) == 'numero' || strtolower($custom_field['name']) == 'número'){
+                    $shipping_number = $order_info['shipping_custom_field'][$custom_field['custom_field_id']];
+                    $payment_number = $order_info['payment_custom_field'][$custom_field['custom_field_id']];
+                }elseif(strtolower($custom_field['name']) == 'complemento'){
+                    $shipping_complementary = $order_info['shipping_custom_field'][$custom_field['custom_field_id']];
+                    $payment_complementary = $order_info['payment_custom_field'][$custom_field['custom_field_id']];
+                }
+                            
             }
+        }
+
+        // Get phone_numbers data
+        $phone_numbers = array();
+        if(!empty($order_info['telephone'])){
+            array_push($phone_numbers, "+55".$this->removeSeparadores($order_info['telephone']));
+        }
+
+        if(!empty($order_info['fax'])){
+            array_push($phone_numbers, "+55".$this->removeSeparadores($order_info['fax']));
         }
 
         Pagarme::setApiKey($this->config->get('pagar_me_cartao_api'));
@@ -231,30 +296,50 @@ class ControllerPaymentPagarMeCartao extends Controller
             'installments' => $this->request->post['installments'],
             'postback_url' => HTTP_SERVER . 'index.php?route=payment/pagar_me_cartao/callback',
             "customer" => array(
+                "external_id" => $order_info['customer_id'],
                 "name" => $customer_name,
-                "document_number" => $this->request->post['cpf_customer'],
+                "type" => $type,
+                "country" => strtolower($order_info['payment_iso_code_2']),
                 "email" => $order_info['email'],
+                "documents" => $documents,
+                "phone_numbers" => $phone_numbers
+            ),
+            "shipping" => array(
+                "name" => $order_info['shipping_firstname'] . ' ' . $order_info['shipping_lastname'],
+                "fee" => $this->removeSeparadores($this->session->data['shipping_method']['cost']), 
                 "address" => array(
-                    "street" => $order_info['payment_address_1'],
-                    "street_number" => $numero,
-                    "neighborhood" => $order_info['payment_address_2'],
-                    "complementary" => $complemento,
+                    "country" => strtolower($order_info['shipping_iso_code_2']),
+                    "state" => strtolower($order_info['shipping_zone_code']),
+                    "city" => $order_info['shipping_city'],
+                    "neighborhood" => $order_info['shipping_address_2'],
+                    "street" => $order_info['shipping_address_1'],
+                    "street_number" => (string)$shipping_number,
+                    "complementary" => $shipping_complementary,
+                    "zipcode" => $this->removeSeparadores($order_info['shipping_postcode']),
+                )
+            ),
+            "billing" => array(
+                "name" => $order_info['payment_firstname'] . ' ' . $order_info['payment_lastname'],
+                "address" => array(
+                    "country" => strtolower($order_info['payment_iso_code_2']),
+                    "state" => strtolower($order_info['payment_zone_code']),
                     "city" => $order_info['payment_city'],
-                    "state" => $order_info['payment_zone_code'],
-                    "country" => $order_info['payment_country'],
+                    "neighborhood" => $order_info['payment_address_2'],
+                    "street" => $order_info['payment_address_1'],
+                    "street_number" => (string)$payment_number,
+                    "complementary" => $payment_complementary,
                     "zipcode" => $this->removeSeparadores($order_info['payment_postcode']),
-                ),
-                "phone" => array(
-                    "ddd" => substr(preg_replace('/[^0-9]/', '', $order_info['telephone']), 0, 2),
-                    "number" => substr(preg_replace('/[^0-9]/', '', $order_info['telephone']), 2, 9),
                 )
             ),
             'metadata' => array(
                 'id_pedido' => $order_info['order_id'],
                 'loja' => $this->config->get('config_name'),
-            )));
+            ),
+            'items' => $items
+        ));
 
         $json = array();
+
         try{
             $transaction->charge();
 
