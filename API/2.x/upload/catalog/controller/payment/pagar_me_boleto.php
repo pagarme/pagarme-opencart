@@ -24,14 +24,14 @@ class ControllerPaymentPagarMeBoleto extends Controller
         $data['url'] = $this->url->link('payment/pagar_me_boleto/confirm', '', 'SSL');
         $data['url2'] = $this->url->link('payment/pagar_me_boleto/error', '', 'SSL');
 
-         //incluindo css
         $data['stylesheet'] = 'catalog/view/theme/default/stylesheet/pagar_me.css';
 
-        if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/payment/pagar_me_boleto.tpl')) {
-            return $this->load->view($this->config->get('config_template') . '/template/payment/pagar_me_boleto.tpl', $data);
-        } else {
+        //Check if Opencart Version is equal to 2.2
+        preg_match("/^2.2.*/", VERSION, $version);
+        if (!empty($version)) {
             return $this->load->view('payment/pagar_me_boleto.tpl', $data);
         }
+        return $this->load->view('default/template/payment/pagar_me_boleto.tpl', $data); 
     }
 
     public function confirm()

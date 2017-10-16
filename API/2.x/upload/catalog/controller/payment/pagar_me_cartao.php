@@ -49,16 +49,15 @@ class ControllerPaymentPagarMeCartao extends Controller
             $this->error = $e->getTraceAsString();
         }
 
-
-        // incluindo css
         $data['stylesheet'] = 'catalog/view/theme/default/stylesheet/pagar_me.css';
 
-        if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/payment/pagar_me_cartao.tpl')) {
-            return $this->load->view($this->config->get('config_template') . '/template/payment/pagar_me_cartao.tpl', $data);
-        } else {
+        //Check if Opencart Version is equal to 2.2
+        preg_match("/^2.2.*/", VERSION, $version);
+        if (!empty($version)) {
             return $this->load->view('payment/pagar_me_cartao.tpl', $data);
         }
-    }
+        return $this->load->view('default/template/payment/pagar_me_cartao.tpl', $data);
+   }
 
     public function confirm()
     {
