@@ -266,7 +266,7 @@ class ControllerPaymentPagarMeCartao extends Controller
             $json['success'] = true;
 
         }catch(Exception $e){
-            $this->log->write('Erro Pagar.me cartão ' . $e->getMessage());
+            $this->log->write('Erro Pagar.me cartão: ' . $e->getMessage());
             $json['error'] = $e->getMessage();
         }
 
