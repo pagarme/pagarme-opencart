@@ -238,31 +238,22 @@ class ControllerPaymentPagarMeCartao extends Controller
             'metadata' => array(
                 'id_pedido' => $order_info['order_id'],
                 'loja' => $this->config->get('config_title'),
-            )));
-
-        $transaction->charge();
-
-        $status = $transaction->status; // status da transação
-
-        $id_transacao = $transaction->id;
+            )
+        ));
 
         $json = array();
 
-        $this->log->write($status);
+        try{
+            $transaction->charge();
 
-        $this->load->model('payment/pagar_me_cartao');
+            $this->load->model('payment/pagar_me_cartao');
 
-        if ($status == 'paid' || $status == 'processing') {
-            $this->model_payment_pagar_me_cartao->addTransactionId($this->session->data['order_id'], $id_transacao, $this->request->post['installments'], $this->request->post['bandeira']);
+            $this->model_payment_pagar_me_cartao->addTransactionId($order_info['order_id'], $transaction->id, $this->request->post['installments'], $this->request->post['bandeira']);
 
             $json['success'] = true;
-        } else {
-            $this->model_payment_pagar_me_cartao->addTransactionId($this->session->data['order_id'], $id_transacao);
-            $json['success'] = false;
-        }
-
-        if ($this->error) {
-            $json['error'] = $this->error;
+        }catch(Exception $e){
+            $this->log->write('Erro Pagar.me cartão: '.$e->getMessage());
+            $json['error'] = $e->getMessage();
         }
 
         $this->response->setOutput(json_encode($json));
