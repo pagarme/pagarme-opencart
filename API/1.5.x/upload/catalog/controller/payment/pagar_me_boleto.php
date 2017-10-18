@@ -111,33 +111,29 @@ class ControllerPaymentPagarMeBoleto extends Controller
             'metadata' => array(
                 'id_pedido' => $order_info['order_id'],
                 'loja' => $this->config->get('config_title'),
-            )));
+            ))
+        );
 
-        $errorMessage = '';
+        $json = array();
 
         try {
             $transaction->charge();
-        } catch (Exception $e) {
-            $this->log->write("Erro Pagar.Me boleto: " . $e->getMessage());
-            $errorMessage = $e->getMessage();
-        }
 
-        $status = $transaction->status; // status da transação
-        $boleto_url = $transaction->boleto_url; // URL do boleto bancário
-        $id_transacao = $transaction->id;
-        $json = array();
-        if ($status == 'waiting_payment') {
             $this->load->model('payment/pagar_me_boleto');
-            $this->model_payment_pagar_me_boleto->addTransactionId($this->session->data['order_id'], $id_transacao, $boleto_url);
+
+            $this->model_payment_pagar_me_boleto->addTransactionId($this->session->data['order_id'], $transaction->id, $transaction->boleto_url);
+            $this->log->write('Pagar.me Transaction: '. $transaction->id.' | Pedido: '.$order_info["order_id"].' | Status: '.$transaction->status);
+
             $json['transaction'] = $transaction->id;
             $json['success'] = true;
-            $json['boleto_url'] = $boleto_url;
-        } else {
-            $json['success'] = false;
-            $json['error'] = $errorMessage;
+            $json['pagar_me_boleto_url'] = $transaction->boleto_url;
+        } catch (Exception $e) {
+            $this->log->write("Erro Pagar.me boleto: " . $e->getMessage());
+            $json['error'] = $e->getMessage();
         }
         $this->response->setOutput(json_encode($json));
     }
+
     private function removeSeparadores($string)
     {
         $nova_string = str_replace(array('.', '-', '/', '(', ')', ' '), array('', '', '', '', '', ''), $string);

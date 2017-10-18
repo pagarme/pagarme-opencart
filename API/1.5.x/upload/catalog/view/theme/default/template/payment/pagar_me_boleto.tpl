@@ -8,27 +8,26 @@
 <script type="text/javascript"><!--
 $('#button-confirm').bind('click', function (e) {
         e.preventDefault();
-        var w = window.open('', 'janelaBoleto', 'height=600,width=800,channelmode=0,dependent=0,directories=0,fullscreen=0,location=0,menubar=0,resizable=1,scrollbars=1,status=0,toolbar=0')
-        w.document.body.innerHTML = "<h1>Por favor aguarde...</h1>";
-        $('#button-confirm').hide();
-        $('#aguardando').show();
         $.ajax({
             type: 'POST',
             url: 'index.php?route=payment/pagar_me_boleto/payment',
             async: false,
             data: { amount: '<?php echo $total; ?>' },
             dataType: 'json',
-            beforeSend: function () {
-                $('#button-confirm').attr('disabled', true);
-
-                $('#payment').before('<div class="attention"><img src="catalog/view/theme/default/image/loading.gif" alt="" /> <?php echo $text_wait; ?></div>');
-            },
             success: function (response) {
+                $(".pagar_me_error_message").remove();
                 if (response.hasOwnProperty('error')) {
-                    alert('ERROR: '+ response.error);
-                    w.close()
+                  $('#button-confirm').button('reset');
+
+                  let errorBox = document.createElement("p");
+                  errorBox.innerHTML = response.error;
+                  errorBox.className = 'pagar_me_error_message boleto_error';
+
+                  $(".buttons").prepend(errorBox);
+
+                  return false;
                 } else {
-                    w.location.href = '<?php echo HTTPS_SERVER ?>index.php?route=payment/pagar_me_boleto/gera&boleto=' + response['boleto_url'], 'janelaBoleto';
+                    $('#button-confirm').button('loading');
                     location = '<?php echo $url; ?>';
                 }
             }

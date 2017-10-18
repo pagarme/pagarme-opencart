@@ -24,6 +24,9 @@
 .dados_cartao label{display:block;position:relative;cursor:pointer;margin-top:10px;}
 .dados_cartao input,.dados_cartao select{-webkit-border-radius:5px;-moz-border-radius:5px;padding:10px;display:inline-block;border-radius:5px;background:#fff;outline:none;cursor:pointer;}
 .dados_cartao #card_number.valid{background:url('../image/bancos/is-valid.png') center right no-repeat;padding-right:5px;}
+.pagar_me_error_message{background-color: #E82C0C;padding: 5px;color:#ffffff;width:100%;border-radius:2px;text-align:center;border-left:2px solid #991D08;}
+.boleto_error{margin-left: auto; margin-right:auto; width:50%}
+
 #tool-tip-cvv{position:relative;}
 #label-cvv:hover #tool-tip-content{display:block;}
 #tool-tip-cvv i{}
