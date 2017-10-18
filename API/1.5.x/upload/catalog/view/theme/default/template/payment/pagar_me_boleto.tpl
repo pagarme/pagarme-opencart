@@ -24,15 +24,13 @@ $('#button-confirm').bind('click', function (e) {
                 $('#payment').before('<div class="attention"><img src="catalog/view/theme/default/image/loading.gif" alt="" /> <?php echo $text_wait; ?></div>');
             },
             success: function (response) {
-                if (response['error']) {
-                    alert('Ocorreu um erro inesperado. Por favor contate a loja.');
+                if (response.hasOwnProperty('error')) {
+                    alert('ERROR: '+ response.error);
+                    w.close()
                 } else {
-
                     w.location.href = '<?php echo HTTPS_SERVER ?>index.php?route=payment/pagar_me_boleto/gera&boleto=' + response['boleto_url'], 'janelaBoleto';
+                    location = '<?php echo $url; ?>';
                 }
-            },
-            complete: function () {
-                location = '<?php echo $url; ?>';
             }
         });
     });
