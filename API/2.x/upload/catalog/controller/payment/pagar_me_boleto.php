@@ -76,13 +76,13 @@ class ControllerPaymentPagarMeBoleto extends Controller
 
                     $this->model_checkout_order->addOrderHistory($order_id, $this->config->get($current_status), '', true);
 
-                    $this->log->write('Pedido '.$order_id.' atualizado para '. $this->request->post['current_status'] . ' via Pagar.me Postback');
+                    $this->log->write('Pagar.me Postback: Pedido '.$order_id.' atualizado para '. $this->request->post['current_status']);
 
                     return http_response_code(200);
                 }
             }
         }else{
-            $this->log->write('Pagar.Me Postback: Falha ao validar o POSTback');
+            $this->log->write('Pagar.me Postback: Falha ao validar o POSTback');
             return http_response_code(403);
         }
     }
@@ -166,11 +166,13 @@ class ControllerPaymentPagarMeBoleto extends Controller
 
             $this->model_payment_pagar_me_boleto->addTransactionId($this->session->data['order_id'], $transaction->id, $transaction->boleto_url);
 
+            $this->log->write('Pagar.me Transaction: '.$transaction->id.' | Status: '.$transaction->status.' | Pedido: '.$order_info['order_id']);
+
             $json['pagar_me_boleto_url'] = $transaction->boleto_url;
             $json['success'] = true;
 
         } catch (Exception $e) {
-            $this->log->write("Erro Pagar.Me boleto: " . $e->getMessage());
+            $this->log->write("Erro Pagar.me boleto: " . $e->getMessage());
             $json['error'] = $e->getMessage();
         }
 
