@@ -29,6 +29,12 @@
                   errorBox.className = 'pagar_me_error_message boleto_error';
 
                   $(".buttons").prepend(errorBox);
+
+                  //Scroll to error messages
+                  $('html, body').animate({
+                    scrollTop: $(".pagar_me_error_message").first().offset().top
+                  }, 500);
+
                   return false;
                 } else {
                   $('#button-confirm').button('loading');
