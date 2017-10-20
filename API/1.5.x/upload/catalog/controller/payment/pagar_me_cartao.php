@@ -30,6 +30,8 @@ class ControllerPaymentPagarMeCartao extends Controller
         $this->data['url2'] = $this->url->link('payment/pagar_me_cartao/error', '', 'SSL');
 
         /* Parcelas */
+        $json = array();
+
         Pagarme::setApiKey($this->config->get('pagar_me_cartao_api'));
 
         try {
@@ -42,12 +44,12 @@ class ControllerPaymentPagarMeCartao extends Controller
                 $max_parcelas = $this->config->get('pagar_me_cartao_max_parcelas');
             }
 
-            $this->data['parcelas'] = PagarMe_Transaction::calculateInstallmentsAmount($this->data['total'], $this->config->get('pagar_me_cartao_taxa_juros'), $max_parcelas, $this->config->get('pagar_me_cartao_parcelas_sem_juros'));
-        } catch (Exception $e) {
-            $this->log->write("Erro Pagar.me: " . $e->getTraceAsString());
-            $this->error = $e->getTraceAsString();
-        }
+            $this->session->data['calculated_installments'] = $this->data['parcelas'] = PagarMe_Transaction::calculateInstallmentsAmount($this->data['total'], $this->config->get('pagar_me_cartao_taxa_juros'), $max_parcelas, $this->config->get('pagar_me_cartao_parcelas_sem_juros'));
 
+        } catch (Exception $e) {
+            $this->log->write("Erro Pagar.me: " . $e->getMessage());
+            $json['error'] = $e->getMessage();
+        }
 
         if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/payment/pagar_me_cartao.tpl')) {
             $this->template = $this->config->get('config_template') . '/template/payment/pagar_me_cartao.tpl';
@@ -192,7 +194,6 @@ class ControllerPaymentPagarMeCartao extends Controller
 
         $this->load->model('checkout/order');
         $this->load->model('account/customer');
-
         $order_info = $this->model_checkout_order->getOrder($this->session->data['order_id']);
 
         $customer = $this->model_account_customer->getCustomer($order_info['customer_id']);
@@ -211,13 +212,16 @@ class ControllerPaymentPagarMeCartao extends Controller
             $numero = 'Sem número';
             $complemento = '';
         }
-
         Pagarme::setApiKey($this->config->get('pagar_me_cartao_api'));
 
+        $chosen_installments = $this->request->post['installments'];
+        $amount = $this->session->data['calculated_installments']['installments'][$chosen_installments]['amount'];
+        $interest_amount = $amount - ($order_info['total'] * 100);
+
         $transaction = new PagarMe_Transaction(array(
-            'amount' => $this->request->post['amount'],
+            'amount' => $amount,
             'card_hash' => $this->request->post['card_hash'],
-            'installments' => $this->request->post['installments'],
+            'installments' => $chosen_installments,
             'postback_url' => HTTP_SERVER . 'index.php?route=payment/pagar_me_cartao/callback',
             "customer" => array(
                 "name" => $customer_name,
@@ -248,8 +252,9 @@ class ControllerPaymentPagarMeCartao extends Controller
 
             $this->load->model('payment/pagar_me_cartao');
 
-            $this->model_payment_pagar_me_cartao->addTransactionId($order_info['order_id'], $transaction->id, $this->request->post['installments'], $this->request->post['bandeira']);
-
+            $this->model_payment_pagar_me_cartao->insertInterestRate($order_info['order_id'], $interest_amount);
+            $this->model_payment_pagar_me_cartao->updateOrderAmount($order_info['order_id'], $amount);
+            $this->model_payment_pagar_me_cartao->addTransactionId($order_info['order_id'], $transaction->id, $chosen_installments, $this->request->post['bandeira']);
             $json['success'] = true;
         }catch(Exception $e){
             $this->log->write('Erro Pagar.me cartão: '.$e->getMessage());
