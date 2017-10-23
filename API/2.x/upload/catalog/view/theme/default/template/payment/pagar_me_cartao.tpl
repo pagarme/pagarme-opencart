@@ -134,6 +134,7 @@
 
     });
 
+    //Show error messages
     function errorFields(errorMessage){
         let errorBox = document.createElement("p");
         errorBox.innerHTML = errorMessage;
@@ -143,6 +144,13 @@
 
         $('#button-confirm').button('reset');
         $("#payment_form #card_hash").remove();
+    }
+
+    //Scroll to error messages
+    function scrollToError(){
+      $('html, body').animate({
+        scrollTop: $(".pagar_me_error_message").first().offset().top
+      }, 500);
     }
 
     $('#button-confirm').bind('click', function () {
@@ -169,6 +177,7 @@
 
         if (hasErrors) {
             $('#button-confirm').button('reset');
+            scrollToError();
 
             return false;
         } else {
@@ -192,6 +201,7 @@
                     success: function (response) {
                         if (response.hasOwnProperty('error')) {
                             errorFields(response.error);
+                            scrollToError();
 
                             return false;
                         } else if (response['success']) {
