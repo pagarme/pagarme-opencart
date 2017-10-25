@@ -52,6 +52,39 @@ class ModelPaymentPagarMeCartao extends Model {
         }
     }
 
+    public function updateOrderAmount($order_id, $taxedAmount){
+        $taxedAmount = $this->formatAmount($taxedAmount);
+
+        $this->db->query(
+            "UPDATE " . DB_PREFIX . "order_total
+            SET value = '" . $taxedAmount['four_decimal_places'] .  "', text = '$". $taxedAmount['two_decimal_places']  ."'
+            WHERE order_id = " . (int)$order_id . "
+            AND code = 'total'"
+        );
+
+        $this->db->query(
+            "UPDATE " . DB_PREFIX . "order
+            SET total = '" . $taxedAmount['two_decimal_places'] . "'
+            WHERE order_id = " . (int)$order_id .""
+        );
+    }
+
+    public function insertInterestRate($order_id, $interestAmount){
+        $interestAmount = $this->formatAmount($interestAmount);
+        $this->db->query(
+            "INSERT INTO " . DB_PREFIX . "order_total (order_id, code, title, text, value, sort_order)
+            VALUES ($order_id, 'tax', 'Interest amount', '$". $interestAmount['two_decimal_places']."', '".$interestAmount['four_decimal_places']."', " . $this->config->get('config_tax') . " )"
+        );
+    }
+
+    private function formatAmount($amountInCents){
+
+        return  array(
+            'two_decimal_places' => number_format((float)($amountInCents / 100), 2, '.', ''),
+            'four_decimal_places' => number_format($amountInCents, 4, '.', '')
+        );
+    }
+
 }
 
 ?>
