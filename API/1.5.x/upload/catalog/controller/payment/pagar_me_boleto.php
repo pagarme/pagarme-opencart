@@ -44,20 +44,26 @@ class ControllerPaymentPagarMeBoleto extends Controller
     }
     public function callback()
     {
-        $event = $this->request->post['event'];
-        $this->load->model('checkout/order');
-        $this->load->model('payment/pagar_me_boleto');
-        if ($event == 'transaction_status_changed') {
-            $this->log->write('pagar_me_boleto_order_' . $this->request->post['current_status']);
-            $order_id = $this->model_payment_pagar_me_boleto->getPagarMeOrder($this->request->post['id']);
-            $current_status = $this->config->get('pagar_me_boleto_order_' . $this->request->post['current_status']);
-            if(!$this->model_payment_pagar_me_boleto->getTotalOrderHistoriesByOrderStatusId($current_status, $order_id)) {
-                $this->model_checkout_order->update($order_id, $current_status, '', true);
+        Pagarme::setApiKey($this->config->get('pagar_me_boleto_api'));
+        $requestBody = file_get_contents("php://input");
+        $headers = getallheaders();
+        if(PagarMe::validateRequestSignature($requestBody, $headers['X-Hub-Signature'])){
+            if(isset($this->request->post['transaction']['metadata']['id_pedido'])){
+                $this->load->model('checkout/order');
+                $this->load->model('payment/pagar_me_boleto');
+                $order_id = $this->request->post['transaction']['metadata']['id_pedido'];
+
+                if ($this->request->post['event'] == 'transaction_status_changed') {
+                    $current_status = $this->config->get('pagar_me_boleto_order_' . $this->request->post['current_status']);
+                    if(!$this->model_payment_pagar_me_boleto->getTotalOrderHistoriesByOrderStatusId($current_status, $order_id)) {
+                        $this->model_checkout_order->update($order_id, $current_status, '', true);
+                        $this->log->write('Pagar.me Postback: Pedido '.$order_id.' atualizado para '. $this->request->post['current_status']);
+                    }
+                }
             }
-        } else {
-            $this->log->write("Pagar.Me boleto: Notificação inválida");
+        }else{
+            $this->log->write('Pagar.me Postback: Falha ao validar o POSTback')
         }
-        echo "OK";
     }
 
     public function payment()
