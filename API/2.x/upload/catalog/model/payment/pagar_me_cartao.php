@@ -52,7 +52,36 @@ class ModelPaymentPagarMeCartao extends Model {
             return false;
         }
     }
+    public function updateOrderAmount($order_id, $taxedAmount){
+        $taxedAmount = $this->formatAmount($taxedAmount);
 
+        $this->db->query(
+            "UPDATE " . DB_PREFIX . "order_total
+            SET value = '" . $this->db->escape($taxedAmount) .  "'
+            WHERE order_id = " . $this->db->escape((int)$order_id) . "
+            AND code = 'total'"
+        );
+
+        $this->db->query(
+            "UPDATE " . DB_PREFIX . "order
+            SET total = '" . $this->db->escape($taxedAmount) . "'
+            WHERE order_id = " . $this->db->escape((int)$order_id) .""
+        );
+    }
+
+    public function insertInterestRate($order_id, $interestAmount){
+        $interestAmount = $this->formatAmount($interestAmount);
+        $this->db->query(
+            "INSERT INTO " . DB_PREFIX . "order_total (order_id, code, title, value, sort_order)
+            VALUES ($order_id, 'tax', 'Interest amount', '" . $this->db->escape($interestAmount) . "', " . $this->config->get('config_tax') . " )"
+        );
+    }
+
+    private function formatAmount($amountInCents){
+
+        return number_format($amountInCents, 4, '.', '');
+
+    }
 }
 
 ?>
