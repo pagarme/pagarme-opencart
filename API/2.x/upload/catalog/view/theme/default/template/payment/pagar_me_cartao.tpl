@@ -8,7 +8,6 @@
 
 <div class="dados_cartao">
     <form id="payment_form" method="POST" class="form-horizontal">
-        <input type="hidden" name="totalValue" id="totalValue" value="<?php echo $total; ?>">
         <ul class="bandeiras">
             <li class="bandeira amex">
                 <img src="catalog/view/theme/default/image/bancos/americanexpress.png" alt="">
@@ -192,7 +191,7 @@
                     url: 'index.php?route=payment/pagar_me_cartao/payment',
                     dataType: 'json',
                     data: {
-                        amount: $("#totalValue").val(),
+                        amount: "<?php echo $total; ?>",
                         card_hash: $("#card_hash").val(),
                         installments: $("#installments").val(),
                         bandeira: $("#bandeira").val(),
