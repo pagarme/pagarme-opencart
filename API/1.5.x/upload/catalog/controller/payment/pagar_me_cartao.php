@@ -167,26 +167,27 @@ class ControllerPaymentPagarMeCartao extends Controller
 
         $this->response->setOutput($this->render());
     }
-
     public function callback()
     {
-
-        $event = $this->request->post['event'];
+        Pagarme::setApiKey($this->config->get('pagar_me_cartao_api'));
         $this->load->model('checkout/order');
         $this->load->model('payment/pagar_me_cartao');
+        $requestBody = file_get_contents("php://input");
+        $headers = getallheaders();
+        if(Pagarme::validateRequestSignature($requestBody, $headers['X-Hub-Signature'])){
+            if(isset($this->request->post['transaction']['metadata']['id_pedido'])){
+                $order_id = $this->request->post['transaction']['metadata']['id_pedido'];
+                if ($this->request->post['event'] == 'transaction_status_changed') {
+                    $current_status = $this->config->get('pagar_me_cartao_order_' . $this->request->post['current_status']);
+                    $this->model_checkout_order->update($order_id, $current_status, '', true);
 
-        if ($event == 'transaction_status_changed') {
-
-            $order_id = $this->model_payment_pagar_me_cartao->getPagarMeOrder($this->request->post['id']);
-
-            $current_status = 'pagar_me_cartao_order_' . $this->request->post['current_status'];
-
-            $this->model_checkout_order->update($order_id, $this->config->get($current_status), '', true);
-        } else {
-            $this->log->write("Pagar.Me cartão de crédito: Notificação inválida");
+                    $this->log->write('Pagar.me Postback: Pedido '.$order_id.' atualizado para '. $this->request->post['current_status']);
+                }
+            }
+        }else{
+            $this->log->write('Pagar.me Postback: Falha ao validar o POSTback');
+            header("HTTP/1.0 403 POSTback validation error");
         }
-
-        echo "OK";
     }
 
     public function payment()
