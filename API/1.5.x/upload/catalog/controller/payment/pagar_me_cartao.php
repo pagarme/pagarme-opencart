@@ -256,6 +256,8 @@ class ControllerPaymentPagarMeCartao extends Controller
             $this->model_payment_pagar_me_cartao->insertInterestRate($order_info['order_id'], $interest_amount);
             $this->model_payment_pagar_me_cartao->updateOrderAmount($order_info['order_id'], $amount);
             $this->model_payment_pagar_me_cartao->addTransactionId($order_info['order_id'], $transaction->id, $chosen_installments, $this->request->post['bandeira']);
+
+            $this->log->write('Pagar.me Transaction: '.$transaction->id.' | Status: '.$transaction->status.' | Pedido: '.$order_info['order_id']);
             $json['success'] = true;
         }catch(Exception $e){
             $this->log->write('Erro Pagar.me cartão: '.$e->getMessage());
