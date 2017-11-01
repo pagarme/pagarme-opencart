@@ -88,6 +88,10 @@
                                    value="<?php echo $pagar_me_cartao_max_parcelas; ?>"
                                    placeholder="<?php echo $entry_max_parcelas; ?>" id="input-max_parcelas"
                                    class="form-control"/>
+                            <?php if ($error_max_parcelas) { ?>
+                                <div class="text-danger"><?php echo $error_max_parcelas; ?></div>
+                            <?php } ?>
+
                         </div>
                     </div>
 
@@ -100,6 +104,9 @@
                                    value="<?php echo $pagar_me_cartao_taxa_juros; ?>"
                                    placeholder="<?php echo $entry_taxa_juros; ?>" id="input-taxa_juros"
                                    class="form-control"/>
+                            <?php if ($error_taxa_juros) { ?>
+                                <div class="text-danger"><?php echo $error_taxa_juros; ?></div>
+                            <?php } ?>
                         </div>
                     </div>
 
@@ -112,6 +119,9 @@
                                    value="<?php echo $pagar_me_cartao_parcelas_sem_juros; ?>"
                                    placeholder="<?php echo $entry_parcelas_sem_juros; ?>" id="input-parcelas_sem_juros"
                                    class="form-control"/>
+                            <?php if ($error_parcelas_sem_juros) { ?>
+                                <div class="text-danger"><?php echo $error_parcelas_sem_juros; ?></div>
+                            <?php } ?>
                         </div>
                     </div>
 
@@ -124,6 +134,9 @@
                                    value="<?php echo $pagar_me_cartao_valor_parcela; ?>"
                                    placeholder="<?php echo $entry_valor_parcela; ?>" id="input-valor_parcela"
                                    class="form-control"/>
+                            <?php if ($error_valor_parcela) { ?>
+                                <div class="text-danger"><?php echo $error_valor_parcela; ?></div>
+                            <?php } ?>
                         </div>
                     </div>
 
@@ -205,6 +218,28 @@
                     </div>
 
                     <div class="form-group">
+                        <label class="col-sm-2 control-label"
+                               for="input-pagar_me_cartao_async">
+                                <span data-toggle="tootip" title="<?php echo $help_async; ?>">
+                                <?php echo $entry_async; ?>
+                                </span>
+                        </label>
+                        <div class="col-sm-10">
+                            <select name="pagar_me_cartao_async" id="input-pagar_me_cartao_async"
+                                    class="form-control">
+                                <?php if($pagar_me_cartao_async=='true'){ ?>
+                                        <option value="true" selected>Habilitado</option>
+                                        <option value="false">Desabilitado</option>
+                                <?php }else{ ?>
+                                        <option value="true">Habilitado</option>
+                                        <option value="false" selected>Desabilitado</option>
+                                <?php } ?>
+                            </select>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
                         <label class="col-sm-2 control-label" for="input-geo-zone"><?php echo $entry_geo_zone; ?></label>
                         <div class="col-sm-10">
                             <select name="pagar_me_cartao_geo_zone_id" id="input-geo-zone" class="form-control">
@@ -246,4 +281,4 @@
         </div>
     </div>
 </div>
-<?php echo $footer; ?> 
+<?php echo $footer; ?>
