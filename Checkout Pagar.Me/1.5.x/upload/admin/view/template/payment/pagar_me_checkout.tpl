@@ -5,7 +5,7 @@
 				<?php echo $breadcrumb['separator']; ?><a href="<?php echo $breadcrumb['href']; ?>"><?php echo $breadcrumb['text']; ?></a>
 			<?php } ?>
 		</div>
-		<?php if ($error_warning) { ?>
+		<?php if (isset($error_warning)) { ?>
 			<div class="warning"><?php echo $error_warning; ?></div>
 		<?php } ?>
 		<div class="box">
@@ -19,40 +19,42 @@
 						<tr>
 							<td><span class="required">*</span> <?php echo $entry_nome; ?></td>
 							<td><input type="text" name="pagar_me_checkout_nome" value="<?php echo $pagar_me_checkout_nome; ?>" size="50%" />
-								<?php if ($error_nome) { ?>
+								<?php if (isset($error_nome)) { ?>
 									<span class="error"><?php echo $error_nome; ?></span>
-								<?php } ?></td>
-						</tr>
-						<tr>
-							<td><span class="required">*</span> <?php echo $entry_criptografia; ?></td>
-							<td><input type="text" name="pagar_me_checkout_criptografia" value="<?php echo $pagar_me_checkout_criptografia; ?>" size="50%" />
-								<?php if ($error_criptografia) { ?>
-									<span class="error"><?php echo $error_criptografia; ?></span>
 								<?php } ?></td>
 						</tr>
 						<tr>
 							<td><span class="required">*</span> <?php echo $entry_api; ?></td>
 							<td><input type="text" name="pagar_me_checkout_api" value="<?php echo $pagar_me_checkout_api; ?>" size="50%" />
-								<?php if ($error_api) { ?>
+								<?php if (isset($error_api)) { ?>
 									<span class="error"><?php echo $error_api; ?></span>
 								<?php } ?></td>
 						</tr>
-
+						<tr>
+							<td><span class="required">*</span> <?php echo $entry_criptografia; ?></td>
+							<td><input type="text" name="pagar_me_checkout_criptografia" value="<?php echo $pagar_me_checkout_criptografia; ?>" size="50%" />
+								<?php if (isset($error_criptografia)) { ?>
+									<span class="error"><?php echo $error_criptografia; ?></span>
+								<?php } ?></td>
+						</tr>
 						<tr>
 							<td><?php echo $entry_text_information; ?></td>
 							<td><textarea name="pagar_me_checkout_text_information" cols="40" rows="5"><?php echo $pagar_me_checkout_text_information; ?></textarea></td>
 						</tr>
 
 						<tr>
-							<td><?php echo $entry_texto_botao; ?></td>
+							<td><span class="required">*</span> <?php echo $entry_texto_botao; ?></td>
 							<td><input type="text" name="pagar_me_checkout_texto_botao" value="<?php echo $pagar_me_checkout_texto_botao; ?>" size="50%" />
+								<?php if (isset($error_texto_botao)) { ?>
+									<span class="error"><?php echo $error_texto_botao; ?></span>
+								<?php } ?></td>
 						</tr>
 
 						<tr>
 							<td><span class="required">*</span> <?php echo $entry_payment_methods; ?></td>
 							<td><input type="checkbox" name="pagar_me_checkout_payment_methods[]" value="boleto"<?php echo in_array('boleto', $pagar_me_checkout_payment_methods) ? ' checked="checked"' : ''; ?> /> Boleto <br>
 								<input type="checkbox" name="pagar_me_checkout_payment_methods[]" value="credit_card"<?php echo in_array('credit_card', $pagar_me_checkout_payment_methods) ? ' checked="checked"' : ''; ?> /> Cartão de crédito
-								<?php if ($error_payment_methods) { ?>
+								<?php if (isset($error_payment_methods)) { ?>
 									<span class="error"><?php echo $error_payment_methods; ?></span>
 								<?php } ?></td>
 						</tr>
@@ -66,34 +68,49 @@
 								<input type="checkbox" name="pagar_me_checkout_card_brands[]" value="jcb"<?php echo in_array('jcb', $pagar_me_checkout_card_brands) ? ' checked="checked"' : ''; ?> /> JCB <br>
 								<input type="checkbox" name="pagar_me_checkout_card_brands[]" value="diners"<?php echo in_array('diners', $pagar_me_checkout_card_brands) ? ' checked="checked"' : ''; ?> /> Diners <br>
 								<input type="checkbox" name="pagar_me_checkout_card_brands[]" value="elo"<?php echo in_array('elo', $pagar_me_checkout_card_brands) ? ' checked="checked"' : ''; ?> /> Elo
-								<?php if ($error_card_brands) { ?>
+								<?php if (isset($error_card_brands)) { ?>
 									<span class="error"><?php echo $error_card_brands; ?></span>
 								<?php } ?></td>
 						</tr>
 
 						<tr>
-							<td><?php echo $entry_max_installments; ?></td>
+							<td><span class="required">*</span> <?php echo $entry_max_installments; ?></td>
 							<td><input type="text" name="pagar_me_checkout_max_installments" value="<?php echo $pagar_me_checkout_max_installments; ?>" size="50%" />
+								<?php if (isset($error_max_installments)) { ?>
+									<span class="error"><?php echo $error_max_installments; ?></span>
+								<?php } ?></td>							
 						</tr>
 
 						<tr>
-							<td><?php echo $entry_free_installments; ?></td>
+							<td><span class="required">*</span> <?php echo $entry_free_installments; ?></td>
 							<td><input type="text" name="pagar_me_checkout_free_installments" value="<?php echo $pagar_me_checkout_free_installments; ?>" size="50%" />
+								<?php if (isset($error_free_installments)) { ?>
+									<span class="error"><?php echo $error_free_installments; ?></span>
+								<?php } ?></td>								
 						</tr>
 
 						<tr>
-							<td><?php echo $entry_max_installment_value; ?></td>
+							<td><span class="required">*</span> <?php echo $entry_max_installment_value; ?></td>
 							<td><input type="text" name="pagar_me_checkout_max_installment_value" value="<?php echo $pagar_me_checkout_max_installment_value; ?>" size="50%" />
+								<?php if (isset($error_max_installment_value)) { ?>
+									<span class="error"><?php echo $error_max_installment_value; ?></span>
+								<?php } ?></td>								
 						</tr>
 
 						<tr>
-							<td><?php echo $entry_interest_rate; ?></td>
+							<td><span class="required">*</span> <?php echo $entry_interest_rate; ?></td>
 							<td><input type="text" name="pagar_me_checkout_interest_rate" value="<?php echo $pagar_me_checkout_interest_rate; ?>" size="50%" />
+								<?php if (isset($error_interest_rate)) { ?>
+									<span class="error"><?php echo $error_interest_rate; ?></span>
+								<?php } ?></td>								
 						</tr>
 
 						<tr>
-							<td><?php echo $entry_boleto_discount_percentage; ?></td>
+							<td><span class="required">*</span> <?php echo $entry_boleto_discount_percentage; ?></td>
 							<td><input type="text" name="pagar_me_checkout_boleto_discount_percentage" value="<?php echo $pagar_me_checkout_boleto_discount_percentage; ?>" size="50%" />
+								<?php if (isset($error_boleto_discount_percentage)) { ?>
+									<span class="error"><?php echo $error_boleto_discount_percentage; ?></span>
+								<?php } ?></td>		
 						</tr>
 
 						<tr>

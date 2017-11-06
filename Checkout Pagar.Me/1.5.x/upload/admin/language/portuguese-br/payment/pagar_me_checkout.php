@@ -34,11 +34,19 @@ $_['entry_sort_order']    			= 'Ordenação:';
 
 
 // Error
-$_['error_permission']    		= 'Atenção: Você não possui permissão para modificar o Checkout Pagar.me!';
+$_['error_permission']    		        = 'Atenção: Você não possui permissão para modificar o Checkout Pagar.me!';
+
+$_['error_nome']                        = 'Digite um texto para exibição na loja';
+$_['error_api']                         = 'Digite a chave de API';
 $_['error_criptografia']         		= 'Digite a chave de criptografia';
-$_['error_dias_vencimento']         		= 'Digite o número de dias de vencimento';
-$_['error_api']         		= 'Digite a chave de API';
-$_['error_nome']         		= 'Digite um texto para exibição na loja';
-$_['error_payment_methods']         		= 'Ao menos um método de pagamento deve ser selecionado';
+$_['error_texto_botao']                 = 'Digite o texto para o botão de pagamento';
+$_['error_payment_methods']             = 'Ao menos um método de pagamento deve ser selecionado';
 $_['error_card_brands']         		= 'Ao menos uma bandeira deve ser selecionada (mesmo que você não vá utililizar o meio de pagamento cartão de crédito)';
+$_['error_max_installments']            = 'Digite o número máximo de parcelas';
+$_['error_free_installments']           = 'Digite o número de parcelas sem juros';
+$_['error_max_installment_value']       = 'Digite o valor mínimo por parcela';
+$_['error_interest_rate']               = 'Digite a taxa de juros a ser cobrada';
+$_['error_boleto_discount_percentage']  = 'Digite a porcentagem de desconto para boleto';
+
+
 ?>

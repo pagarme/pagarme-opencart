@@ -37,4 +37,3 @@ $_['error_parcelas_sem_juros']         		= 'Digite o número de parcelas sem jur
 $_['error_valor_parcela']         		= 'Digite o valor mínimo das parcelas';
 $_['error_api']         		= 'Digite a chave de API';
 $_['error_nome']         		= 'Digite um texto para exibição na loja';
-?>

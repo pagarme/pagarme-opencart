@@ -18,7 +18,11 @@
  
  Configuração de parcelamento de cartão
 
+### Requisitos
 
+- Vqmod necessário. Baixe a última versão em http://www.vqmod.com
+- Sua loja deve estar configurada para receber o CPF/CNPJ do seu cliente nas versões 1.5.x do OpenCart
+- Para as versões 2.x o cadastro é personalizável, basta criar os campos
 
 ### Instalação e configuração
 ## Versão 1.5.x
@@ -36,11 +40,3 @@
 5. Acesse extensões pagamentos
 6. Instale e configure
 7. Pronto! O módulo está funcionando
-
-### Requisitos
-
-- Vqmod necessário. Baixe a última versão em http://www.vqmod.com
-
-- Sua loja deve estar configurada para receber o CPF/CNPJ do seu cliente nas versões 1.5.x do OpenCart
-
-- Para as versões 2.x o cadastro é personalizável, basta criar os campos
