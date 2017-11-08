@@ -49,6 +49,8 @@ class ControllerPaymentPagarMeCheckout extends Controller
         $this->data['entry_order_status'] = $this->language->get('entry_order_status');
         $this->data['entry_order_waiting_payment'] = $this->language->get('entry_order_waiting_payment');
         $this->data['entry_order_paid'] = $this->language->get('entry_order_paid');
+        $this->data['entry_order_refunded'] = $this->language->get('entry_order_refunded');
+
         $this->data['entry_geo_zone'] = $this->language->get('entry_geo_zone');
         $this->data['entry_status'] = $this->language->get('entry_status');
         $this->data['entry_sort_order'] = $this->language->get('entry_sort_order');
@@ -225,6 +227,12 @@ class ControllerPaymentPagarMeCheckout extends Controller
             $this->data['pagar_me_checkout_order_paid'] = $this->config->get('pagar_me_checkout_order_paid');
         }
 
+        if (isset($this->request->post['pagar_me_checkout_order_refunded'])) {
+            $this->data['pagar_me_checkout_order_refunded'] = $this->request->post['pagar_me_checkout_order_refunded'];
+        } else {
+            $this->data['pagar_me_checkout_order_refunded'] = $this->config->get('pagar_me_checkout_order_refunded');
+        }
+
         if (isset($this->request->post['pagar_me_checkout_boleto_discount_percentage'])) {
             $this->data['pagar_me_checkout_boleto_discount_percentage'] = $this->request->post['pagar_me_checkout_boleto_discount_percentage'];
         } else {
@@ -301,7 +309,7 @@ class ControllerPaymentPagarMeCheckout extends Controller
             $this->error['nome'] = $this->language->get('error_nome');
         }
 
-//        var_dump($this->error); exit;
+        //        var_dump($this->error); exit;
 
         if (!$this->error) {
             return TRUE;
@@ -313,11 +321,11 @@ class ControllerPaymentPagarMeCheckout extends Controller
     public function install()
     {
         $this->db->query("CREATE TABLE IF NOT EXISTS `" . DB_PREFIX . "pagar_me_checkout_transaction` (
-  `pagar_me_transaction_id` int(11) NOT NULL AUTO_INCREMENT,
-  `order_id` int(11) NOT NULL,
-  `transaction_id` varchar(512) DEFAULT NULL,
-  PRIMARY KEY (`pagar_me_transaction_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1");
+            `pagar_me_transaction_id` int(11) NOT NULL AUTO_INCREMENT,
+            `order_id` int(11) NOT NULL,
+            `transaction_id` varchar(512) DEFAULT NULL,
+            PRIMARY KEY (`pagar_me_transaction_id`)
+        ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1");
 
         $this->db->query("ALTER TABLE  `" . DB_PREFIX . "order` ADD `pagar_me_checkout_url` VARCHAR( 512 ) NULL DEFAULT NULL AFTER  `order_id`");
     }

@@ -133,6 +133,19 @@
 							</td>
 						</tr>
 						<tr>
+							<td><?php echo $entry_order_refunded; ?></td>
+							<td><select name="pagar_me_checkout_order_refunded" id="pagar_me_checkout_order_refunded">
+									<?php foreach ($order_statuses as $order_status) { ?>
+										<?php if ($order_status['order_status_id'] == $pagar_me_checkout_order_refunded) { ?>
+											<option value="<?php echo $order_status['order_status_id']; ?>" selected="selected"><?php echo $order_status['name']; ?></option>
+										<?php } else { ?>
+											<option value="<?php echo $order_status['order_status_id']; ?>"><?php echo $order_status['name']; ?></option>
+										<?php } ?>
+									<?php } ?>
+								</select>
+							</td>
+						</tr>
+						<tr>
 							<td><?php echo $entry_geo_zone; ?></td>
 							<td>
 								<select name="pagar_me_checkout_geo_zone_id">
