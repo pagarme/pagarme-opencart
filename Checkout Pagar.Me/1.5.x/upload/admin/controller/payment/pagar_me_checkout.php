@@ -309,7 +309,6 @@ class ControllerPaymentPagarMeCheckout extends Controller
             $this->error['nome'] = $this->language->get('error_nome');
         }
 
-        //        var_dump($this->error); exit;
 
         if (!$this->error) {
             return TRUE;
