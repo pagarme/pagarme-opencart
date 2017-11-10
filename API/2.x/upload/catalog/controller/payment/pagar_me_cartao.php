@@ -41,8 +41,9 @@ class ControllerPaymentPagarMeCartao extends Controller
             if ($max_parcelas > $this->config->get('pagar_me_cartao_max_parcelas')) {
                 $max_parcelas = $this->config->get('pagar_me_cartao_max_parcelas');
             }
-
-            $this->session->data['calculated_installments'] =  $data['parcelas'] = PagarMe_Transaction::calculateInstallmentsAmount($data['total'], $this->config->get('pagar_me_cartao_taxa_juros'), $max_parcelas, $this->config->get('pagar_me_cartao_parcelas_sem_juros'));
+            $data['interest_rate'] = $interest_rate = $this->config->get('pagar_me_cartao_taxa_juros');
+            $data['free_installments'] = $free_installments = $this->config->get('pagar_me_cartao_parcelas_sem_juros');
+            $this->session->data['calculated_installments'] =  $data['parcelas'] = PagarMe_Transaction::calculateInstallmentsAmount($data['total'], $interest_rate, $max_parcelas, $free_installments);
         } catch (Exception $e) {
             $this->log->write("Erro Pagar.me: " . $e->getMessage());
             $json['error'] = $e->getMessage();
