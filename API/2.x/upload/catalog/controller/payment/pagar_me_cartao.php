@@ -63,16 +63,18 @@ class ControllerPaymentPagarMeCartao extends Controller
         $this->load->model('checkout/order');
         $this->load->model('payment/pagar_me_cartao');
 
+        $status = $this->session->data['transaction_status'];
+
         $order = $this->model_checkout_order->getOrder($this->session->data['order_id']);
 
         $pagar_me_transaction = $this->model_payment_pagar_me_cartao->getPagarMeOrderByOrderId($order['order_id']);
 
         $comment = " Cartão: " . strtoupper($pagar_me_transaction['bandeira']) . "<br />";
         $comment .= " Parcelado em: " . $pagar_me_transaction['n_parcela'] . "x";
-        $this->model_checkout_order->addOrderHistory($this->session->data['order_id'], $this->config->get('pagar_me_cartao_order_processing'), $comment, true);
+        $this->model_checkout_order->addOrderHistory($this->session->data['order_id'], $this->config->get('pagar_me_cartao_order_'.$status), $comment, true);
 
         $admin_comment = "Pagar.me Transaction: " . $pagar_me_transaction['transaction_id'] . "<br />";
-        $this->model_checkout_order->addOrderHistory($this->session->data['order_id'], $this->config->get('pagar_me_cartao_order_processing'), $admin_comment);
+        $this->model_checkout_order->addOrderHistory($this->session->data['order_id'], $this->config->get('pagar_me_cartao_order_'.$status), $admin_comment);
 
         $this->response->redirect($this->url->link('checkout/success'));
     }
@@ -231,6 +233,7 @@ class ControllerPaymentPagarMeCartao extends Controller
             'card_hash' => $this->request->post['card_hash'],
             'installments' => $chosen_installments,
             'postback_url' => HTTP_SERVER . 'index.php?route=payment/pagar_me_cartao/callback',
+            'async' => $this->config->get('pagar_me_cartao_async'),
             "customer" => array(
                 "name" => $customer_name,
                 "document_number" => $this->request->post['cpf_customer'],
@@ -259,16 +262,23 @@ class ControllerPaymentPagarMeCartao extends Controller
         try{
             $transaction->charge();
 
-            $this->load->model('payment/pagar_me_cartao');
-            $this->model_payment_pagar_me_cartao->insertInterestRate($order_info['order_id'], $interest_amount);
-            $this->model_payment_pagar_me_cartao->updateOrderAmount($order_info['order_id'], ($amount/100));
+            if($transaction->status == 'processing' || $transaction->status == 'paid') {
 
-            $this->model_payment_pagar_me_cartao->addTransactionId($this->session->data['order_id'], $transaction->id, $chosen_installments, $this->request->post['bandeira']);
+                $this->session->data['transaction_status'] = $transaction->status;
 
-            $this->log->write('Pagar.me Transaction: '.$transaction->id. ' | Status: '.$transaction->status.' | Pedido: '.$order_info['order_id']);
+                $this->load->model('payment/pagar_me_cartao');
+                $this->model_payment_pagar_me_cartao->insertInterestRate($order_info['order_id'], $interest_amount);
+                $this->model_payment_pagar_me_cartao->updateOrderAmount($order_info['order_id'], ($amount/100));
 
-            $json['success'] = true;
+                $this->model_payment_pagar_me_cartao->addTransactionId($this->session->data['order_id'], $transaction->id, $chosen_installments, $this->request->post['bandeira']);
 
+                $this->log->write('Pagar.me Transaction: '.$transaction->id. ' | Status: '.$transaction->status.' | Pedido: '.$order_info['order_id']);
+
+                $json['success'] = true;
+
+            } else {
+                $json['error'] = "Ocorreu um erro ao realizar a transação. Que tal verificar os dados e tentar novamente?";
+            }
         }catch(Exception $e){
             $this->log->write('Erro Pagar.me cartão: ' . $e->getMessage());
             $json['error'] = $e->getMessage();
