@@ -82,7 +82,9 @@
                         <?php foreach ($parcelas['installments'] as $parcela): ?>
                             <option value="<?php echo $parcela['installment'] ?>"><?php echo $parcela['installment'] ?>x
                                 de
-                                R$ <?php echo substr_replace((string)$parcela['installment_amount'], ',', -2, 0); ?></option>
+                                R$ <?php echo number_format(($parcela['installment_amount'] / 100), 2, ',', '.') ?>
+                                <?php echo $parcela['installment'] <= $free_installments ? " sem juros" : 'com juros de ' . $interest_rate . '% ao mês' ?>
+                           </option>
                         <?php endforeach; ?>
                     </select>
                 </div>
