@@ -30,6 +30,9 @@ $_['entry_order_paid'] 	= 'Status Pago';
 $_['entry_order_refused'] 				= 'Status Recusado';
 $_['entry_order_refunded'] 					= 'Status Reembolso';
 
+$_['entry_async'] 					= 'Transação assíncrona';
+$_['help_async']         		    = 'Desabilite para receber o status da transação na hora, habilite para receber o status após a transação ser processada';
+
 $_['entry_geo_zone']      			= 'Região geográfica';
 $_['entry_status']        			= 'Situação';
 $_['entry_sort_order']    			= 'Ordenação';

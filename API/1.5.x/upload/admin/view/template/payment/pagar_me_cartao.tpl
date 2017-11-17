@@ -128,9 +128,22 @@
 	         </td>
 	      </tr>
 	      <tr>
+	        <td><?php echo $entry_async; ?></td>
+	        <td><select name="pagar_me_cartao_async" id="pagar_me_cartao_async">
+	          <?php if($pagar_me_cartao_async=='true'){ ?>
+                      <option value="true" selected>Habilitado</option>
+                      <option value="false">Desabilitado</option>
+                  <?php  }else{ ?>
+                      <option value="true">Habilitado</option>
+                      <option value="false" selected>Desabilitado</option>
+                  <?php  } ?>
+	        </select>
+	         </td>
+	      </tr>
+	      <tr>
 	        <td><?php echo $entry_geo_zone; ?></td>
 	        <td>
-			  <select name="pagar_me_cartao_geo_zone_id">
+                 <select name="pagar_me_cartao_geo_zone_id">
 	            <option value="0"><?php echo $text_all_zones; ?></option>
 	            <?php foreach ($geo_zones as $geo_zone) { ?>
 	            <?php if ($geo_zone['geo_zone_id'] == $pagar_me_cartao_geo_zone_id) { ?>

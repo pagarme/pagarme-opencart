@@ -22,6 +22,7 @@ $_['entry_order_processing'] 	= 'Status Processando:<br /><span class="help">a l
 $_['entry_order_paid'] 	= 'Status Pago:<br /><span class="help">status para transação aprovada.</span>';
 $_['entry_order_refused'] 				= 'Status Recusado:<br /><span class="help">status para transação recusada.</span>';
 $_['entry_order_refunded'] 					= 'Status Reembolso:<br /><span class="help">status para transação estornada.</span>';
+$_['entry_async'] 					= 'Transação assíncrona:<br /><span class="help">Desabilite para receber o status da transação na hora, habilite para receber o status após a transação ser processada.</span>';
 
 $_['entry_geo_zone']      			= 'Região geográfica:';
 $_['entry_status']        			= 'Situação:';

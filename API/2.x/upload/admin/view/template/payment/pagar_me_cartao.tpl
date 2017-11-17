@@ -205,6 +205,27 @@
                     </div>
 
                     <div class="form-group">
+                        <label class="col-sm-2 control-label"
+                               for="input-pagar_me_cartao_async">
+                                <span data-toggle="tootip" title="<?php echo $help_async; ?>">
+                                <?php echo $entry_async; ?>
+                                </span>
+                        </label>
+                        <div class="col-sm-10">
+                            <select name="pagar_me_cartao_async" id="input-pagar_me_cartao_async"
+                                    class="form-control">
+                                <?php if($pagar_me_cartao_async=='true'){ ?>
+                                        <option value="true" selected>Habilitado</option>
+                                        <option value="false">Desabilitado</option>
+                                <?php  }else{ ?>
+                                        <option value="true">Habilitado</option>
+                                        <option value="false" selected>Desabilitado</option>
+                                <?php  } ?>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
                         <label class="col-sm-2 control-label" for="input-geo-zone"><?php echo $entry_geo_zone; ?></label>
                         <div class="col-sm-10">
                             <select name="pagar_me_cartao_geo_zone_id" id="input-geo-zone" class="form-control">
@@ -246,4 +267,5 @@
         </div>
     </div>
 </div>
-<?php echo $footer; ?> 
+<?php echo $footer; ?>
+

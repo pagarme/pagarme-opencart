@@ -38,6 +38,7 @@ class ControllerPaymentPagarMeCartao extends Controller {
         $data['help_nome'] = $this->language->get('help_nome');
         $data['help_max_parcelas'] = $this->language->get('help_max_parcelas');
         $data['help_parcelas_sem_juros'] = $this->language->get('help_parcelas_sem_juros');
+        $data['help_async'] = $this->language->get('help_async');
         $data['entry_valor_parcela'] = $this->language->get('entry_valor_parcela');
         $data['entry_taxa_juros'] = $this->language->get('entry_taxa_juros');
         $data['help_taxa_juros'] = $this->language->get('help_taxa_juros');
@@ -47,6 +48,7 @@ class ControllerPaymentPagarMeCartao extends Controller {
         $data['entry_order_paid'] = $this->language->get('entry_order_paid');
         $data['entry_order_refused'] = $this->language->get('entry_order_refused');
         $data['entry_order_refunded'] = $this->language->get('entry_order_refunded');
+        $data['entry_async'] = $this->language->get('entry_async');
         $data['entry_geo_zone'] = $this->language->get('entry_geo_zone');
         $data['entry_status'] = $this->language->get('entry_status');
         $data['entry_sort_order'] = $this->language->get('entry_sort_order');
@@ -230,6 +232,12 @@ class ControllerPaymentPagarMeCartao extends Controller {
             $data['pagar_me_cartao_order_refunded'] = $this->request->post['pagar_me_cartao_order_refunded'];
         } else {
             $data['pagar_me_cartao_order_refunded'] = $this->config->get('pagar_me_cartao_order_refunded');
+        }
+
+        if (isset($this->request->post['pagar_me_cartao_async'])) {
+            $data['pagar_me_cartao_async'] = $this->request->post['pagar_me_cartao_async'];
+        } else {
+            $data['pagar_me_cartao_async'] = $this->config->get('pagar_me_cartao_async');
         }
 
         $this->load->model('localisation/order_status');
