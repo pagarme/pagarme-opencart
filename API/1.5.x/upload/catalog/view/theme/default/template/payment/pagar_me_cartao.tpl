@@ -188,10 +188,8 @@
                           scrollToError();
 
                           return false;
-                        } else if (response['success']) {
-                           location = '<?php echo $url; ?>';
                         } else {
-                            location = '<?php echo $url2; ?>';
+                           location = '<?php echo $url; ?>';
                         }
                     }
                 });
