@@ -33,6 +33,10 @@
                 <img src="catalog/view/theme/default/image/bancos/elo.png" alt="">
                 <i class="fa fa-check"></i>
             </li>
+             <li class="bandeira hipercard">
+                <img src="catalog/view/theme/default/image/bancos/hipercard.png" alt="">
+                <i class="fa fa-check"></i>
+            </li>
         </ul>
         <div class="row">
             <div class="col-xs-12 col-md-7">
