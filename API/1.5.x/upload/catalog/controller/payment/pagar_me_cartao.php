@@ -27,7 +27,6 @@ class ControllerPaymentPagarMeCartao extends Controller
         $this->data['text_wait'] = $this->language->get('text_wait');
         $this->data['text_information'] = $this->config->get('pagar_me_cartao_text_information');
         $this->data['url'] = $this->url->link('payment/pagar_me_cartao/confirm', '', 'SSL');
-        $this->data['url2'] = $this->url->link('payment/pagar_me_cartao/error', '', 'SSL');
 
         /* Parcelas */
         $json = array();
@@ -87,93 +86,10 @@ class ControllerPaymentPagarMeCartao extends Controller
         $this->model_checkout_order->update($this->session->data['order_id'], $this->config->get('pagar_me_cartao_order_'.$status), $admin_comment);
 
         $this->redirect($this->url->link('checkout/success'));
-    }
+   }
 
-    public function error()
-    {
-
-
-        $this->load->model('checkout/order');
-
-        $this->model_checkout_order->confirm($this->session->data['order_id'], $this->config->get('pagar_me_cartao_order_refused'));
-
-        if (isset($this->session->data['order_id'])) {
-            $this->cart->clear();
-
-            unset($this->session->data['shipping_method']);
-            unset($this->session->data['shipping_methods']);
-            unset($this->session->data['payment_method']);
-            unset($this->session->data['payment_methods']);
-            unset($this->session->data['guest']);
-            unset($this->session->data['comment']);
-            unset($this->session->data['order_id']);
-            unset($this->session->data['coupon']);
-            unset($this->session->data['reward']);
-            unset($this->session->data['voucher']);
-            unset($this->session->data['vouchers']);
-        }
-
-        $this->language->load('payment/pagar_me_cartao');
-
-        $this->document->setTitle($this->language->get('heading_title'));
-
-        $this->data['breadcrumbs'] = array();
-
-        $this->data['breadcrumbs'][] = array(
-            'href' => $this->url->link('common/home'),
-            'text' => $this->language->get('text_home'),
-            'separator' => false
-        );
-
-        $this->data['breadcrumbs'][] = array(
-            'href' => $this->url->link('checkout/cart'),
-            'text' => $this->language->get('text_basket'),
-            'separator' => $this->language->get('text_separator')
-        );
-
-        $this->data['breadcrumbs'][] = array(
-            'href' => $this->url->link('checkout/checkout', '', 'SSL'),
-            'text' => $this->language->get('text_checkout'),
-            'separator' => $this->language->get('text_separator')
-        );
-
-        $this->data['breadcrumbs'][] = array(
-            'href' => $this->url->link('payment/cielo_message'),
-            'text' => $this->language->get('text_no_success'),
-            'separator' => $this->language->get('text_separator')
-        );
-
-        $this->data['heading_title'] = $this->language->get('heading_title');
-
-        if ($this->customer->isLogged()) {
-            $this->data['text_message'] = sprintf($this->language->get('text_customer'), $this->url->link('account/order', '', 'SSL'), $this->url->link('information/contact'));
-        } else {
-            $this->data['text_message'] = sprintf($this->language->get('text_guest'), $this->url->link('information/contact'));
-        }
-
-        $this->data['button_continue'] = $this->language->get('button_continue');
-
-        $this->data['continue'] = $this->url->link('common/home');
-
-        if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/payment/pagar_me_cartao_message.tpl')) {
-            $this->template = $this->config->get('config_template') . '/template/payment/pagar_me_cartao_message.tpl';
-        } else {
-            $this->template = 'default/template/payment/pagar_me_cartao_message.tpl';
-        }
-
-        $this->children = array(
-            'common/column_left',
-            'common/column_right',
-            'common/content_top',
-            'common/content_bottom',
-            'common/footer',
-            'common/header'
-        );
-
-        $this->response->setOutput($this->render());
-    }
-    public function callback()
-    {
+   public function callback()
+   {
         Pagarme::setApiKey($this->config->get('pagar_me_cartao_api'));
         $this->load->model('checkout/order');
         $this->load->model('payment/pagar_me_cartao');
