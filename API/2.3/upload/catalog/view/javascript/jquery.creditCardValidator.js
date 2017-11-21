@@ -70,12 +70,11 @@ Mountain View, California, 94041, USA.
         name: 'elo',
         pattern: /^((((636368)|(438935)|(504175)|(451416)|(636297))\d{0,10})|((5067)|(4576)|(4011))\d{0,12})/,
         valid_length: [16]
+      }, {
+        name: 'hipercard',
+        pattern: /^(38)|(60)/,
+        valid_length: [13, 16 ,19]
       }
-//      , {
-//        name: 'hipercard',
-//        pattern: /^(3841\d{10}(\d{3})?)|(3841\d{15})/,
-//        valid_length: [13, 16 ,19]
-//      }
     ];
     if (options == null) {
       options = {};
