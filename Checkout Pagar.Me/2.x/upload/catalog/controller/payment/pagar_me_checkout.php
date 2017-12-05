@@ -89,8 +89,9 @@ class ControllerPaymentPagarMeCheckout extends Controller
         $this->load->model('account/custom_field');
         $custom_fields = $this->model_account_custom_field->getCustomFields($customer['customer_group_id']);
         foreach($custom_fields as $custom_field){
+            $this->log->write($custom_field['name']);
             if($custom_field['location'] == 'account'){
-                if(strpos(strtolower($custom_field['name']), 'cpf') !== false){
+                if((strpos(strtolower($custom_field['name']), 'cpf') !== false) || (strpos(strtolower($custom_field['name']), 'cnpj') !== false)){
                     $json['customer_document_number'] = $order_info['custom_field'][$custom_field['custom_field_id']];
                 }
             }elseif($custom_field['location'] == 'address'){
