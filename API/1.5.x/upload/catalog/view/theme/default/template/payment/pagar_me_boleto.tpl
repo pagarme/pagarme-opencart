@@ -8,6 +8,11 @@
 <script type="text/javascript"><!--
 $('#button-confirm').bind('click', function (e) {
         e.preventDefault();
+
+        var boletoPage = window.open('', 'boletoPage');
+        boletoPage.document.body.innerHTML = "<h1>Seu boleto está sendo gerado, por favor aguarde.</h1>";
+
+        $('#button-confirm').attr('disabled', true);
         $.ajax({
             type: 'POST',
             url: 'index.php?route=payment/pagar_me_boleto/payment',
@@ -17,7 +22,7 @@ $('#button-confirm').bind('click', function (e) {
             success: function (response) {
                 $(".pagar_me_error_message").remove();
                 if (response.hasOwnProperty('error')) {
-                  $('#button-confirm').button('reset');
+                  $('#button-confirm').removeAttr('disabled');
 
                   let errorBox = document.createElement("p");
                   errorBox.innerHTML = response.error;
@@ -25,9 +30,12 @@ $('#button-confirm').bind('click', function (e) {
 
                   $(".buttons").prepend(errorBox);
 
+                  boletoPage.close();
+
                   return false;
+
                 } else {
-                    $('#button-confirm').button('loading');
+                    boletoPage.location.href = response['pagar_me_boleto_url'];
                     location = '<?php echo $url; ?>';
                 }
             }
@@ -41,6 +49,5 @@ $('#button-confirm').bind('click', function (e) {
     function notConfirmExit() {
         null;
     }
-//--></script>
 </script>
 
