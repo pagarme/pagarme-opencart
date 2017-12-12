@@ -85,9 +85,14 @@ class ControllerPaymentPagarMeBoleto extends Controller
         $order_info = $this->model_checkout_order->getOrder($this->session->data['order_id']);
         $customer = $this->model_account_customer->getCustomer($order_info['customer_id']);
 
-        $document_number = $this->removeSeparadores($order_info['payment_tax_id']);
-        if(isset($order_info['document_number'])){
-            $document_number = $this->removeSeparadores($order_info['document_number']);
+        $possibleDocumentFields = array(
+            'cpf', 'cnpj', 'document_number', 'payment_tax_id'
+        );
+
+        foreach($possibleDocumentFields as $document){
+            if(isset($order_info[$document])){
+                $document_number = $this->removeSeparadores($order_info[$document]);
+            }
         }
         $documentNumberLenght = strlen($document_number);
 
@@ -98,9 +103,6 @@ class ControllerPaymentPagarMeBoleto extends Controller
             $customer_name = $order_info['payment_firstname'] . " " . $order_info['payment_lastname'];
         } elseif ($isCnpj) {
             $customer_name = $customer['razao_social'];
-        } else {
-            $document_number = $this->removeSeparadores($order_info['payment_tax_id']);
-            $customer_name = $order_info['payment_firstname'] . " " . $order_info['payment_lastname'];
         }
 
         $numero = isset($order_info['payment_numero']) ? $order_info['payment_numero'] : 'Sem número';
