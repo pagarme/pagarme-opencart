@@ -27,10 +27,9 @@ class ControllerPaymentPagarMeBoleto extends Controller
         $data['stylesheet'] = 'catalog/view/theme/default/stylesheet/pagar_me.css';
 
         //Check if Opencart Version is equal to 2.2
-        preg_match("/^2.2.*/", VERSION, $version);
-        if (!empty($version)) {
+        if(preg_match("/^2.2.*/", VERSION))
             return $this->load->view('payment/pagar_me_boleto.tpl', $data);
-        }
+
         return $this->load->view('default/template/payment/pagar_me_boleto.tpl', $data); 
     }
 
