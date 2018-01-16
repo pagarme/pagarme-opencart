@@ -17,13 +17,11 @@ class ControllerPaymentPagarMeCheckout extends Controller
         $data['texto_botao'] = $this->config->get('pagar_me_checkout_texto_botao');
         $data['button_css_class'] = $this->config->get('pagar_me_checkout_button_css_class');
 
-        if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/payment/pagar_me_checkout.tpl')) {
-            return $this->load->view($this->config->get('config_template') . '/template/payment/pagar_me_checkout.tpl', $data);
-        } else {
+        //Check if Opencart Version is equal to 2.2
+        if(preg_match("/^2.2.*/", VERSION))
             return $this->load->view('payment/pagar_me_checkout.tpl', $data);
-        }
 
-
+        return $this->load->view('default/template/payment/pagar_me_checkout.tpl', $data);
     }
 
     public function submit()
