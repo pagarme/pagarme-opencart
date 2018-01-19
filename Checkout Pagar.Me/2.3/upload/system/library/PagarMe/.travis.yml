@@ -1,0 +1,15 @@
+language: php
+matrix:
+  include:
+    - php: 5.3
+      dist: precise
+    - php: 5.4
+      dist: trusty
+    - php: 5.5
+      dist: trusty
+    - php: 5.6
+      dist: trusty
+
+install: composer install
+
+script: php tests/Pagarme.php
