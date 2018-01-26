@@ -5,17 +5,6 @@
     <vqmver>2.1.5</vqmver>
     <author>Santive Tecnologia contato@santive.com</author>
 
-    <file name="catalog/view/theme/*/template/common/header.tpl">
-        <operation error="log">
-            <search position="before">
-                <![CDATA[</head>]]>
-            </search>
-            <add>
-                <![CDATA[<script src="https://assets.pagar.me/js/pagarme.min.js"></script>]]>
-            </add>
-        </operation>
-    </file>
-
     <file name="catalog/controller/account/order.php">
         <operation error="log">
             <search position="after">

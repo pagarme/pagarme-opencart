@@ -1,6 +1,7 @@
 <link rel="stylesheet" href="<?php echo $stylesheet; ?>">
 <script src="catalog/view/javascript/jquery.mask.min.js" />
 <script src="catalog/view/javascript/jquery.creditCardValidator.js"/>
+<script src="https://assets.pagar.me/js/pagarme.min.js"></script>
 
 <?php if ($text_information) { ?>
     <div class="payment-information"><?php echo $text_information; ?></div>

@@ -6,17 +6,6 @@
     <author>Santive</author>
     <link>http://www.santive.com</link>
 
-    <file path="catalog/view/theme/*/template/common/header.tpl">
-        <operation error="log">
-            <search>
-                <![CDATA[</head>]]>
-            </search>
-            <add position="before">
-                <![CDATA[<script src="https://assets.pagar.me/js/pagarme.min.js"></script>]]>
-            </add>
-        </operation>
-    </file>
-
     <file path="catalog/controller/account/order.php">
         <operation>
             <search>
