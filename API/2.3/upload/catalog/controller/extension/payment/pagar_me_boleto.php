@@ -59,9 +59,11 @@ class ControllerExtensionPaymentPagarMeBoleto extends Controller
         Pagarme::setApiKey($this->config->get('pagar_me_boleto_api'));
 
         $requestBody = file_get_contents("php://input");
-        $headers = getallheaders();
-        if(PagarMe::validateRequestSignature($requestBody, $headers['X-Hub-Signature'])){
-            if(isset($this->request->post['transaction']['metadata']['id_pedido'])){
+
+        $xHubSignature = $_SERVER['HTTP_X_HUB_SIGNATURE'];
+
+        if(PagarMe::validateRequestSignature($requestBody, $xHubSignature)) {
+            if(isset($this->request->post['transaction']['metadata']['id_pedido'])) {
                 $this->load->model('checkout/order');
                 $order_id = $this->request->post['transaction']['metadata']['id_pedido'];
 
@@ -75,7 +77,7 @@ class ControllerExtensionPaymentPagarMeBoleto extends Controller
                     return http_response_code(200);
                 }
             }
-        }else{
+        } else {
             $this->log->write('Pagar.me Postback: Falha ao validar o POSTback');
             return http_response_code(403);
         }
