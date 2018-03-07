@@ -67,7 +67,7 @@
             <add position="replace">
                 <![CDATA[<b><?php echo $text_payment_method; ?></b> <?php echo $payment_method; ?>
                 <?php
-                if($pagar_me_boleto_status):
+                  if(isset($pagar_me_boleto_status) && ($pagar_me_boleto_status)):
                     if($payment_code == 'pagar_me_boleto' && $order_status_id == $pagar_me_boleto_order_waiting_payment): ?>
                         <a style="cursor: pointer;" onclick="javascript:window.open('<?php echo $pagar_me_boleto_url; ?>', 'jstest', 'height=600,width=800,channelmode=0,dependent=0,directories=0,fullscreen=0,location=0,menubar=0,resizable=1,scrollbars=1,status=0,toolbar=0');" target="_blank">Emitir 2&ordf; via do boleto</a>
                     <?php
