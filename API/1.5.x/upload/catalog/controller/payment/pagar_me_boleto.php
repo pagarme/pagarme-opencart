@@ -1,6 +1,7 @@
 <?php
-require_once DIR_SYSTEM . 'library/PagarMe/Pagarme.php';
-class ControllerPaymentPagarMeBoleto extends Controller
+
+require ('pagar_me.php');
+class ControllerPaymentPagarMeBoleto extends ControllerPaymentPagarMe
 {
     protected function index()
     {
@@ -52,30 +53,6 @@ class ControllerPaymentPagarMeBoleto extends Controller
     {
         $boleto_url = $this->request->get['boleto'];
         $this->redirect($boleto_url);
-    }
-
-    public function callback()
-    {
-        Pagarme::setApiKey($this->config->get('pagar_me_boleto_api'));
-        $this->load->model('checkout/order');
-        $this->load->model('payment/pagar_me_boleto');
-
-        $requestBody = file_get_contents("php://input");
-        $headers = getallheaders();
-        if(Pagarme::validateRequestSignature($requestBody, $headers['X-Hub-Signature'])){
-            if(isset($this->request->post['transaction']['metadata']['id_pedido'])){
-                $order_id = $this->request->post['transaction']['metadata']['id_pedido'];
-                if ($this->request->post['event'] == 'transaction_status_changed') {
-                    $current_status = $this->config->get('pagar_me_boleto_order_' . $this->request->post['current_status']);
-                    $this->model_checkout_order->update($order_id, $current_status, '', true);
-
-                    $this->log->write('Pagar.me Postback: Pedido '.$order_id.' atualizado para '. $this->request->post['current_status']);
-                }
-            }
-        }else{
-            $this->log->write('Pagar.me Postback: Falha ao validar o POSTback');
-            header("HTTP/1.0 403 POSTback validation error");
-        }
     }
 
     public function payment()

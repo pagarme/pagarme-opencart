@@ -1,12 +1,7 @@
 <?php
-
-require_once DIR_SYSTEM . 'library/PagarMe/Pagarme.php';
-
-class ControllerPaymentPagarMeCartao extends Controller
+require_once('pagar_me.php');
+class ControllerPaymentPagarMeCartao extends ControllerPaymentPagarMe
 {
-
-    private $error;
-
     public function index()
     {
 
@@ -76,35 +71,6 @@ class ControllerPaymentPagarMeCartao extends Controller
         $this->model_checkout_order->addOrderHistory($this->session->data['order_id'], $this->config->get('pagar_me_cartao_order_'.$status), $admin_comment);
 
         $this->response->redirect($this->url->link('checkout/success'));
-    }
-
-    public function callback()
-    {
-        Pagarme::setApiKey($this->config->get('pagar_me_cartao_api'));
-
-        $requestBody = file_get_contents("php://input");
-        $headers = getallheaders();
-        if(PagarMe::validateRequestSignature($requestBody, $headers['X-Hub-Signature'])){
-            if(isset($this->request->post['transaction']['metadata']['id_pedido'])){
-                $event = $this->request->post['event'];
-                $this->load->model('checkout/order');
-                $order_id = $this->request->post['transaction']['metadata']['id_pedido'];
-
-                if ($event == 'transaction_status_changed') {
-                    $current_status = 'pagar_me_cartao_order_' . $this->request->post['current_status'];
-
-                    $this->model_checkout_order->addOrderHistory($order_id, $this->config->get($current_status), '', true);
-
-                    $this->log->write('Pagar.me Postback: Pedido '.$order_id.' atualizado para '.$this->request->post['current_status']);
-
-                    return http_response_code(200);
-                }
-            }
-        }else{
-            $this->log->write('Pagar.me Postback: Falha ao validar o POSTback');
-
-            return http_response_code(403);
-        }
     }
 
     public function payment()
