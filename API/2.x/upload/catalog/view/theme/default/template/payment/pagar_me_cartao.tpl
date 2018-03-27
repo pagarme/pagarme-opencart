@@ -111,8 +111,8 @@
 <script type="text/javascript"><!--
     $(document).ready(function () {
         /* Máscaras dos inputs do cartão */
-        $("#card_number").mask("0000000000000000999999", {clearIfNotMatch: true});
-
+        $("#card_number").mask("0000000000000099999999", {clearIfNotMatch: true});
+        
         $("#card_cvv").mask("0009", {clearIfNotMatch: true});
 
         $("#card_expiration_month").mask("00", {clearIfNotMatch: true});
