@@ -23,7 +23,9 @@ class ControllerPaymentPagarMeCartao extends ControllerPaymentPagarMe
         $this->data['text_information'] = $this->language->get('text_information');
         $this->data['text_wait'] = $this->language->get('text_wait');
         $this->data['text_information'] = $this->config->get('pagar_me_cartao_text_information');
+        $this->data['customer_document_number'] = $this->getCustomerDocumentNumber();
         $this->data['url'] = $this->url->link('payment/pagar_me_cartao/confirm', '', 'SSL');
+        $this->data['stylesheet'] = 'catalog/view/theme/default/stylesheet/pagar_me.css';
 
         /* Parcelas */
         $json = array();
@@ -50,17 +52,7 @@ class ControllerPaymentPagarMeCartao extends ControllerPaymentPagarMe
             $json['error'] = $e->getMessage();
         }
 
-        if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/payment/pagar_me_cartao.tpl')) {
-            $this->template = $this->config->get('config_template') . '/template/payment/pagar_me_cartao.tpl';
-        } else {
-            $this->template = 'default/template/payment/pagar_me_cartao.tpl';
-        }
-        // incluindo css
-        if (file_exists('catalog/view/theme/' . $this->config->get('config_template') . '/stylesheet/pagar_me_cartao.css')) {
-            $this->data['stylesheet'] = 'catalog/view/theme/' . $this->config->get('config_template') . '/stylesheet/pagar_me_cartao.css';
-        } else {
-            $this->data['stylesheet'] = 'catalog/view/theme/default/stylesheet/pagar_me_cartao.css';
-        }
+        $this->template = 'default/template/payment/pagar_me_cartao.tpl';
 
         $this->render();
     }
@@ -94,25 +86,28 @@ class ControllerPaymentPagarMeCartao extends ControllerPaymentPagarMe
 
         $customer = $this->model_account_customer->getCustomer($order_info['customer_id']);
 
-        if ($this->config->get('dados_status')) {
-            if ($customer['cpf'] != '') {
-                $customer_name = $order_info['payment_firstname'] . " " . $order_info['payment_lastname'];
-            } else {
-                $customer_name = $customer['razao_social'];
+        $document_number = $this->getCustomerDocumentNumber() ? $this->getCustomerDocumentNumber() : $this->request->post['document_number'];
+        $document_number = preg_replace('/\D/', '', $document_number);
 
-            }
-            $numero = $order_info['payment_numero'];
-            $complemento = $order_info['payment_company'];
-        } else {
-            $customer_name = $order_info['payment_firstname'] . " " . $order_info['payment_lastname'];
-            $numero = 'Sem número';
-            $complemento = '';
+        $documentNumberLenght = strlen($document_number);
+
+        $isCpf = $documentNumberLenght == 11;
+        $isCnpj = $documentNumberLenght == 14;
+
+        $customer_name = $order_info['payment_firstname'] . " " . $order_info['payment_lastname'];
+        if (!$isCpf && isset($customer_name['razao_social'])) {
+            $customer_name = $customer['razao_social'];
         }
-        Pagarme::setApiKey($this->config->get('pagar_me_cartao_api'));
+
+        $numero = isset($order_info['payment_numero']) ? $order_info['payment_numero'] : 'Sem número';
+        $complemento = isset($order_info['payment_company']) ? $order_info['payment_company'] : '';
+
 
         $chosen_installments = $this->request->post['installments'];
         $amount = $this->session->data['calculated_installments']['installments'][$chosen_installments]['amount'];
         $interest_amount = $amount - ($order_info['total'] * 100);
+
+        Pagarme::setApiKey($this->config->get('pagar_me_cartao_api'));
 
         $transaction = new PagarMe_Transaction(array(
             'amount' => $amount,
@@ -122,7 +117,7 @@ class ControllerPaymentPagarMeCartao extends ControllerPaymentPagarMe
             'async' => $this->config->get('pagar_me_cartao_async'),
             "customer" => array(
                 "name" => $customer_name,
-                "document_number" => $this->request->post['cpf_customer'],
+                "document_number" => $document_number,
                 "email" => $order_info['email'],
                 "address" => array(
                     "street" => $order_info['payment_address_1'],
