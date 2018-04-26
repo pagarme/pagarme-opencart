@@ -6,7 +6,7 @@
     <div class="payment-information"><?php echo $text_information; ?></div>
 <?php } ?>
 
-<div class="dados_cartao">
+<div class="payment_data">
     <form id="payment_form" method="POST">
         <ul class="bandeiras">
             <li class="bandeira amex">
@@ -58,10 +58,12 @@
             <input type="text" id="card_holder_name" value=""/>
         </div>
 
+        <?php if(empty($customer_document_number)) { ?>
         <div class="input-block">
-            <label for="cpf_customer">CPF/CNPJ (somente números)</label>
-            <input type="text" id="cpf_customer" value=""/>
+            <label for="customer_document_number">CPF/CNPJ (somente números)</label>
+            <input type="text" id="customer_document_number" value=""/>
         </div>
+        <?php } ?>
         
         <div id="installmentsWrapper">
             <div class="input-block">
@@ -101,6 +103,16 @@
 
     });
 
+    $("#customer_document_number").keydown(function() {
+
+       if($("#customer_document_number").val().length > 14) {
+         $("#customer_document_number").unmask();
+         $("#customer_document_number").mask("99.999.999/9999-99");
+       } else{
+         $("#customer_document_number").mask("999.999.999-990000");
+       }
+
+    })
     /*Validação Cartão de crédito*/
     $('#card_number').validateCreditCard(function (result) {
         console.log(result);
@@ -126,7 +138,7 @@
       errorBox.innerHTML = errorMessage;
       errorBox.className = 'pagar_me_error_message';
 
-      $(".dados_cartao").prepend(errorBox);
+      $(".payment_data").prepend(errorBox);
 
       $('#button-confirm').button('reset');
       $("#payment_form #card_hash").remove();
@@ -156,7 +168,7 @@
         //Validate credit card fields
         var fieldErrors = creditCard.fieldErrors();
 
-        $(".dados_cartao .pagar_me_error_message").remove();
+        $(".payment_data .pagar_me_error_message").remove();
         var hasErrors = false;
         for (var field in fieldErrors) {
           errorFields(fieldErrors[field]);
@@ -175,17 +187,21 @@
 
                 form.append($('<input type="hidden" id="card_hash" name="card_hash">').val(cardHash));
 
+                transactionData = {};
+
+                transactionData.amount = '<?php echo $total; ?>';
+                transactionData.card_hash = $("#card_hash").val();
+                transactionData.installments = $("#installments").val();
+                transactionData.bandeira = $("#bandeira").val();
+                if($("#customer_document_number")) {
+                    transactionData.document_number = $("#customer_document_number").val();
+                }
+
                 $.ajax({
                     type: 'POST',
                     url: 'index.php?route=payment/pagar_me_cartao/payment',
                     dataType: 'json',
-                    data: {
-                        amount: '<?php echo $total; ?>',
-                        card_hash: $("#card_hash").val(),
-                        installments: $("#installments").val(),
-                        bandeira: $("#bandeira").val(),
-                        cpf_customer: $("#cpf_customer").val()
-                    },
+                    data: transactionData,
                     success: function (response) {
                         if (response.hasOwnProperty('error')){
                           errorFields(response.error);
@@ -200,6 +216,8 @@
             });
         }
     });
+
+
     </script>
 </script>
 

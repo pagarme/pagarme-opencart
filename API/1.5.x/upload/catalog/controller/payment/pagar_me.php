@@ -29,6 +29,30 @@ abstract class ControllerPaymentPagarMe extends Controller
 
     }
 
+    public function getCustomerDocumentNumber()
+    {
+        $this->load->model('checkout/order');
+        $this->load->model('account/customer');
+
+        $order_info = $this->model_checkout_order->getOrder($this->session->data['order_id']);
+        $customer = $this->model_account_customer->getCustomer($order_info['customer_id']);
+
+        $possibleDocumentFields = array(
+            'cpf', 'cnpj', 'document_number', 'payment_tax_id'
+        );
+
+        foreach($possibleDocumentFields as $document){
+            if(isset($order_info[$document]) && !empty($order_info[$document])){
+                return $order_info[$document];
+            }
+            if(isset($customer[$document]) && !empty($customer[$document])){
+                return $customer[$document];
+            }
+        }
+
+        return '';
+    }
+
     private function getPaymentMethod()
     {
         if($this->request->post['transaction']['payment_method'] != 'boleto') {

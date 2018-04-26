@@ -15,19 +15,13 @@ class ControllerPaymentPagarMeBoleto extends ControllerPaymentPagarMe
         $this->data['text_information'] = $this->language->get('text_information');
         $this->data['text_wait'] = $this->language->get('text_wait');
         $this->data['text_information'] = $this->config->get('pagar_me_boleto_text_information');
+        $this->data['customer_document_number'] = $this->getCustomerDocumentNumber();
         $this->data['url'] = $this->url->link('payment/pagar_me_boleto/confirm', '', 'SSL');
         $this->data['url2'] = $this->url->link('payment/pagar_me_boleto/error', '', 'SSL');
-        if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/payment/pagar_me_boleto.tpl')) {
-            $this->template = $this->config->get('config_template') . '/template/payment/pagar_me_boleto.tpl';
-        } else {
-            $this->template = 'default/template/payment/pagar_me_boleto.tpl';
-        }
-        // incluindo css
-        if (file_exists('catalog/view/theme/' . $this->config->get('config_template') . '/stylesheet/pagar_me_boleto.css')) {
-            $this->data['stylesheet'] = 'catalog/view/theme/' . $this->config->get('config_template') . '/stylesheet/pagar_me_cartao.css';
-        } else {
-            $this->data['stylesheet'] = 'catalog/view/theme/default/stylesheet/pagar_me_cartao.css';
-        }
+        $this->data['stylesheet'] = 'catalog/view/theme/default/stylesheet/pagar_me.css';
+
+        $this->template = 'default/template/payment/pagar_me_boleto.tpl';
+
         $this->render();
     }
 
@@ -62,23 +56,16 @@ class ControllerPaymentPagarMeBoleto extends ControllerPaymentPagarMe
         $order_info = $this->model_checkout_order->getOrder($this->session->data['order_id']);
         $customer = $this->model_account_customer->getCustomer($order_info['customer_id']);
 
-        $possibleDocumentFields = array(
-            'cpf', 'cnpj', 'document_number', 'payment_tax_id'
-        );
+        $document_number = $this->getCustomerDocumentNumber() ? $this->getCustomerDocumentNumber() : $this->request->post['document_number'];
+        $document_number = preg_replace('/\D/', '', $document_number);
 
-        foreach($possibleDocumentFields as $document){
-            if(isset($order_info[$document])){
-                $document_number = $this->removeSeparadores($order_info[$document]);
-            }
-        }
         $documentNumberLenght = strlen($document_number);
 
         $isCpf = $documentNumberLenght == 11;
         $isCnpj = $documentNumberLenght == 14;
 
-        if ($isCpf) {
-            $customer_name = $order_info['payment_firstname'] . " " . $order_info['payment_lastname'];
-        } elseif ($isCnpj) {
+        $customer_name = $order_info['payment_firstname'] . " " . $order_info['payment_lastname'];
+        if (!$isCpf && isset($customer_name['razao_social'])) {
             $customer_name = $customer['razao_social'];
         }
 
@@ -104,8 +91,8 @@ class ControllerPaymentPagarMeBoleto extends ControllerPaymentPagarMe
                     "complementary" => $complemento
                 ),
                 "phone" => array(
-                    "ddd" => substr(preg_replace('/[^0-9]/', '', $order_info['telephone']), 0, 2),
-                    "number" => substr(preg_replace('/[^0-9]/', '', $order_info['telephone']), 2),
+                    "ddd" => substr(preg_replace('/\D/', '', $order_info['telephone']), 0, 2),
+                    "number" => substr(preg_replace('/\D/', '', $order_info['telephone']), 2),
                 )
             ),
             'metadata' => array(
