@@ -11,6 +11,11 @@
 <script type="text/javascript"><!--
     $('#button-confirm').bind('click', function (e) {
         e.preventDefault();
+
+        var boletoPage = window.open('', 'boletoPage');
+        boletoPage.document.body.innerHTML = "<h1>Seu boleto está sendo gerado, por favor aguarde.</h1>";
+
+        $('#button-confirm').attr('disabled', true);
         $.ajax({
             type: 'POST',
             url: 'index.php?route=extension/payment/pagar_me_boleto/payment',
@@ -22,7 +27,7 @@
                 $(".pagar_me_error_message").remove();
 
                 if (response.hasOwnProperty('error')) {
-                  $('#button-confirm').button('reset');
+                  $('#button-confirm').removeAttr('disabled');
 
                   let errorBox = document.createElement("p");
                   errorBox.innerHTML = response.error;
@@ -35,9 +40,12 @@
                     scrollTop: $(".pagar_me_error_message").first().offset().top
                   }, 500);
 
+                  boletoPage.close();
+
                   return false;
+
                 } else {
-                  $('#button-confirm').button('loading');
+                  boletoPage.location.href = response['pagar_me_boleto_url'];
                   window.location = '<?php echo $url; ?>';
                 }
             }
