@@ -86,13 +86,13 @@ class ControllerPaymentPagarMeCartao extends ControllerPaymentPagarMe
 
         $customer = $this->model_account_customer->getCustomer($order_info['customer_id']);
 
-        $document_number = $this->getCustomerDocumentNumber() ? $this->getCustomerDocumentNumber() : $this->request->post['document_number'];
-        $document_number = preg_replace('/\D/', '', $document_number);
+        $document_number = preg_replace('/\D/', '', $this->getCustomerDocumentNumber());
 
-        $documentNumberLenght = strlen($document_number);
+        if(empty($document_number)) {
+            $document_number = $this->request->post['document_number'];
+        }
 
-        $isCpf = $documentNumberLenght == 11;
-        $isCnpj = $documentNumberLenght == 14;
+        $isCpf = strlen($document_number) == 11;
 
         $customer_name = $order_info['payment_firstname'] . " " . $order_info['payment_lastname'];
         if (!$isCpf && isset($customer_name['razao_social'])) {
