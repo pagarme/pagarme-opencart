@@ -37,6 +37,46 @@ abstract class ControllerPaymentPagarMe extends Controller
         return 'boleto';
     }
 
+    public function getCustomerDocumentNumber($customer, $order_info)
+    {
+        $custom_fields = $this->getCustomFields($customer);
+        foreach($custom_fields as $custom_field){
+            if((strpos(strtolower($custom_field['name']), 'cpf') !== false) || (strpos(strtolower($custom_field['name']), 'cnpj') !== false)){
+                return $order_info['custom_field'][$custom_field['custom_field_id']];
+            }
+        }
+        return '';
+    }
+
+    public function getCustomerAdditionalAddressData($customer, $order_info)
+    {
+        $custom_fields = $this->getCustomFields($customer);
+        $address_data = array(
+            'street_number' => 'S/N',
+            'complementary' => 'Sem complemento'
+        );
+        foreach($custom_fields as $custom_field) {
+            if($custom_field['location'] == 'address') {
+                if((strpos(strtolower($custom_field['name']), 'numero') !== false) || (strpos(strtolower($custom_field['name']), 'número') !== false)) {
+                    $address_data['street_number'] = $order_info['payment_custom_field'][$custom_field['custom_field_id']];
+                } elseif(strtolower($custom_field['name']) == 'complemento'){
+                    $address_data['complementary'] = $order_info['payment_custom_field'][$custom_field['custom_field_id']];
+                }
+            }
+        }
+        return $address_data;
+    }
+
+    private function getCustomFields($customer)
+    {
+        $this->load->model('account/custom_field');
+        $default_group = $this->config->get('config_customer_group_id');
+        if(isset($customer['customer_group_id'])) {
+            $default_group = $customer['customer_group_id'];
+        }
+        return $this->model_account_custom_field->getCustomFields($default_group);
+    }
+
     private function updateOrderStatus($order_id) {
         $this->load->model('checkout/order');
 
