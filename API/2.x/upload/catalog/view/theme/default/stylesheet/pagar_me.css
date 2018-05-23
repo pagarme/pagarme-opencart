@@ -17,12 +17,14 @@
 .bandeiras .bandeira img{max-width:100%;height:auto;display:inline-block;margin:0;}
 
 /*cartão*/
-.dados_cartao{margin-bottom:10px;margin:20px auto;-moz-border-radius:5px;border-radius:5px;width:426px;background:#fff;-webkit-border-radius:5px;box-shadow:0 0 1px #666;padding:13px 20px 20px 20px;}
-.dados_cartao .input-block-float{float:left;position:relative;margin-right:4px;}
-.dados_cartao #cardBrand{display:inline-block;position:absolute;top:10px;left:107px;width:32px;}
-.dados_cartao #cardBrand img{width:100%;}
-.dados_cartao label{display:block;position:relative;cursor:pointer;margin-top:10px;}
-.dados_cartao #card_number.valid{background:url('../image/bancos/is-valid.png') center right no-repeat;padding-right:5px;}
+.payment_data{margin-bottom:10px;margin:20px auto;-moz-border-radius:5px;border-radius:5px;width:426px;background:#fff;-webkit-border-radius:5px;box-shadow:0 0 1px #666;padding:13px 20px 20px 20px;}
+.payment_data .input-block-float{float:left;position:relative;margin-right:4px;}
+.payment_data #cardBrand{display:inline-block;position:absolute;top:10px;left:107px;width:32px;}
+.payment_data #cardBrand img{width:100%;}
+.payment_data label{display:block;position:relative;cursor:pointer;margin-top:10px;}
+.payment_data #card_number.valid{background:url('../image/bancos/is-valid.png') center right no-repeat;padding-right:5px;}
+.payment_data input,.payment_data select{-webkit-border-radius:5px;-moz-border-radius:5px;display:inline-block;border-radius:5px;background:#fff;outline:none;cursor:pointer;}
+.payment_data .logo {float:left; margin-right: 20px; width: 150px; height: 50px;}
 .pagar_me_error_message{background-color: #E82C0C;padding: 5px;color:#ffffff;width:100%;border-radius:2px;text-align:center;border-left:2px solid #991D08;}
 .boleto_error{margin-left: auto; margin-right:auto; width:50%}
 
@@ -33,7 +35,7 @@
 #tool-tip-cvv #tool-tip-content:before{content:'';width:0;height:0;border-style:solid;border-width:5px 5px 5px 0;border-color:transparent #989898 transparent transparent;position:absolute;left:-5px;margin-top:12px;}
 #tool-tip-cvv #tool-tip-content img{width:100%;}
 @media (max-width:600px){
-	.dados_cartao{width:100%;}
+	.payment_data{width:100%;}
 	.tool-tip-cvv{display:absolute;}
 }
 

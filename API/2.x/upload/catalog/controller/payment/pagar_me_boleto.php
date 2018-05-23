@@ -8,6 +8,7 @@ class ControllerPaymentPagarMeBoleto extends ControllerPaymentPagarMe
         $this->language->load('payment/pagar_me_boleto');
         $this->load->model('checkout/order');
         $this->load->model('account/customer');
+
         $order_info = $this->model_checkout_order->getOrder($this->session->data['order_id']);
         $customer = $this->model_account_customer->getCustomer($order_info['customer_id']);
 
@@ -19,6 +20,7 @@ class ControllerPaymentPagarMeBoleto extends ControllerPaymentPagarMe
         $data['text_information'] = $this->config->get('pagar_me_boleto_text_information');
         $data['url'] = $this->url->link('payment/pagar_me_boleto/confirm', '', 'SSL');
         $data['url2'] = $this->url->link('payment/pagar_me_boleto/error', '', 'SSL');
+        $data['customer_document_number'] = $this->getCustomerDocumentNumber($customer, $order_info);
 
         $data['stylesheet'] = 'catalog/view/theme/default/stylesheet/pagar_me.css';
 
@@ -66,6 +68,10 @@ class ControllerPaymentPagarMeBoleto extends ControllerPaymentPagarMe
         $customer = $this->model_account_customer->getCustomer($order_info['customer_id']);
 
         $document_number = $this->getCustomerDocumentNumber($customer, $order_info);
+        if(empty($document_number)) {
+            $document_number = $this->request->post["document_number"];
+        }
+
         $customer_address = $this->getCustomerAdditionalAddressData($customer, $order_info);
 
         $customer_name = trim($order_info['payment_firstname']).' '.trim($order_info['payment_lastname']);
@@ -80,7 +86,7 @@ class ControllerPaymentPagarMeBoleto extends ControllerPaymentPagarMe
             'async' => 'false',
             "customer" => array(
                 "name" => $customer_name,
-                "document_number" => $document_number,
+                "document_number" => preg_replace('/\D/', '', $document_number),
                 "email" => $order_info['email'],
                 "address" => array(
                     "street" => $order_info['payment_address_1'],
