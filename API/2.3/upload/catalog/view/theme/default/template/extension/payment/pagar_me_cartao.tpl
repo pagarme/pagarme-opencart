@@ -6,7 +6,7 @@
     <div class="payment-information"><?php echo $text_information; ?></div>
 <?php } ?>
 
-<div class="dados_cartao">
+<div class="payment_data">
     <form id="payment_form" method="POST" class="form-horizontal">
         <ul class="bandeiras">
             <li class="bandeira amex">
@@ -72,12 +72,14 @@
                 <input type="text" id="card_holder_name" value="" class="form-control"/>
             </div>
         </div>
+        <?php if(empty($customer_document_number)) { ?>
         <div class="row">
             <div class="col-xs-12">
-                <label for="cpf_customer">CPF/CNPJ (somente números)</label>
-                <input type="text" id="cpf_customer" value="" class="form-control"/>
+                <label for="customer_document_number">CPF/CNPJ</label>
+                <input type="text" id="customer_document_number" value="" class="form-control"/>
             </div>
         </div>
+        <?php } ?>
         <div class="row">
             <div id="installmentsWrapper">
                 <div class="col-xs-12">
@@ -108,7 +110,8 @@
     }
 </style>
 
-<script type="text/javascript"><!--
+<script type="text/javascript">
+    var documentNumberField = $("#customer_document_number");
     $(document).ready(function () {
         /* Máscaras dos inputs do cartão */
         $("#card_number").mask("0000000000000009999999", {clearIfNotMatch: true});
@@ -192,17 +195,22 @@
 
                 form.append($('<input type="hidden" id="card_hash" name="card_hash">').val(cardHash));
 
+                var transactionData = {
+                    amount: "<?php echo $total; ?>",
+                    card_hash: $("#card_hash").val(),
+                    installments: $("#installments").val(),
+                    bandeira: $("#bandeira").val(),
+                };
+
+                if(documentNumberField) {
+                   transactionData.document_number = $("#customer_document_number").val();
+                }
+
                 $.ajax({
                     type: 'POST',
                     url: 'index.php?route=extension/payment/pagar_me_cartao/payment',
                     dataType: 'json',
-                    data: {
-                        amount: "<?php echo $total; ?>",
-                        card_hash: $("#card_hash").val(),
-                        installments: $("#installments").val(),
-                        bandeira: $("#bandeira").val(),
-                        cpf_customer: $("#cpf_customer").val()
-                    },
+                    data: transactionData,
                     success: function (response) {
                         if (response.hasOwnProperty('error')) {
                             errorFields(response.error);
@@ -217,6 +225,15 @@
             });
         }
     });
-    //--></script>
-</script>
 
+    var documentNumberMask = function (val) {
+        return val.replace(/\D/g, '').length > 11 ? '00.000.000/0000-00' : '000.000.000-009';
+    },
+    cpfOptions = {
+        onKeyPress: function(val, e, field, options) {
+            field.mask(documentNumberMask.apply({}, arguments), options);
+        }
+    };
+    documentNumberField.mask(documentNumberMask, cpfOptions);
+
+</script>

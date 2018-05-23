@@ -22,6 +22,7 @@ class ControllerExtensionPaymentPagarMeCartao extends ControllerExtensionPayment
         $data['text_wait'] = $this->language->get('text_wait');
         $data['text_information'] = $this->config->get('pagar_me_cartao_text_information');
         $data['url'] = $this->url->link('extension/payment/pagar_me_cartao/confirm', '', 'SSL');
+        $data['customer_document_number'] = $this->getCustomerDocumentNumber($customer, $order_info);
 
         /* Parcelas */
         Pagarme::setApiKey($this->config->get('pagar_me_cartao_api'));
@@ -78,6 +79,9 @@ class ControllerExtensionPaymentPagarMeCartao extends ControllerExtensionPayment
         $customer = $this->model_account_customer->getCustomer($order_info['customer_id']);
 
         $document_number = $this->getCustomerDocumentNumber($customer, $order_info);
+        if(empty($document_number)) {
+            $document_number = $this->request->post['document_number'];
+        }
 
         $customer_address = $this->getCustomerAdditionalAddressData($customer, $order_info);
 
@@ -97,7 +101,7 @@ class ControllerExtensionPaymentPagarMeCartao extends ControllerExtensionPayment
             'async' => $this->config->get('pagar_me_cartao_async'),
             "customer" => array(
                 "name" => $customer_name,
-                "document_number" => $this->request->post['cpf_customer'],
+                "document_number" => preg_replace('/\D/', '', $document_number),
                 "email" => $order_info['email'],
                 "address" => array(
                     "street" => $order_info['payment_address_1'],
