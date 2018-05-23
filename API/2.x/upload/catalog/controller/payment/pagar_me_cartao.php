@@ -75,34 +75,16 @@ class ControllerPaymentPagarMeCartao extends ControllerPaymentPagarMe
 
     public function payment()
     {
-
         $this->load->model('checkout/order');
         $this->load->model('account/customer');
 
         $order_info = $this->model_checkout_order->getOrder($this->session->data['order_id']);
         $customer = $this->model_account_customer->getCustomer($order_info['customer_id']);
 
-        $numero = 'Sem Número';
-        $complemento = '';
+        $document_number = $this->getCustomerDocumentNumber($customer, $order_info);
+        $customer_address = $this->getCustomerAdditionalAddressData($customer, $order_info);
+
         $customer_name = trim($order_info['payment_firstname']).' '.trim($order_info['payment_lastname']);
-        /* Pega os custom fields de CPF/CNPJ, número e complemento */
-        $this->load->model('account/custom_field');
-
-        $default_group = $this->config->get('config_customer_group_id');
-        if(isset($customer['customer_group_id'])){
-            $default_group = $customer['customer_group_id'];
-        }
-
-        $custom_fields = $this->model_account_custom_field->getCustomFields($default_group);
-        foreach($custom_fields as $custom_field){
-            if($custom_field['location'] == 'address'){
-                if(strtolower($custom_field['name']) == 'numero' || strtolower($custom_field['name']) == 'número'){
-                    $numero = $order_info['payment_custom_field'][$custom_field['custom_field_id']];
-                }elseif(strtolower($custom_field['name']) == 'complemento'){
-                    $complemento = $order_info['payment_custom_field'][$custom_field['custom_field_id']];
-                }
-            }
-        }
 
         $chosen_installments = $this->request->post['installments'];
         $amount = $this->session->data['calculated_installments']['installments'][$chosen_installments]['amount'];
@@ -117,21 +99,21 @@ class ControllerPaymentPagarMeCartao extends ControllerPaymentPagarMe
             'async' => $this->config->get('pagar_me_cartao_async'),
             "customer" => array(
                 "name" => $customer_name,
-                "document_number" => $this->request->post['cpf_customer'],
+                "document_number" => $document_number,
                 "email" => $order_info['email'],
                 "address" => array(
                     "street" => $order_info['payment_address_1'],
-                    "street_number" => $numero,
+                    "street_number" => $customer_address['street_number'],
                     "neighborhood" => $order_info['payment_address_2'],
-                    "complementary" => $complemento,
+                    "complementary" => $customer_address['complementary'],
                     "city" => $order_info['payment_city'],
                     "state" => $order_info['payment_zone_code'],
                     "country" => $order_info['payment_country'],
                     "zipcode" => $this->removeSeparadores($order_info['payment_postcode']),
                 ),
                 "phone" => array(
-                    "ddd" => substr(preg_replace('/[^0-9]/', '', $order_info['telephone']), 0, 2),
-                    "number" => substr(preg_replace('/[^0-9]/', '', $order_info['telephone']), 2, 9),
+                    "ddd" => substr(preg_replace('/\D/', '', $order_info['telephone']), 0, 2),
+                    "number" => substr(preg_replace('/\D/', '', $order_info['telephone']), 2, 9),
                 )
             ),
             'metadata' => array(
