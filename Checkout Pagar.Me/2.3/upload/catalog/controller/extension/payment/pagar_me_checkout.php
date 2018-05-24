@@ -170,46 +170,28 @@ class ControllerExtensionPaymentPagarMeCheckout extends Controller
     {
         Pagarme::setApiKey($this->config->get('pagar_me_checkout_api'));
 
-        //if (!function_exists('getallheaders')) 
-        //{ 
-            function getallheaders() 
-            { 
-               $headers = []; 
-               foreach ($_SERVER as $name => $value) 
-               { 
-                   if (substr($name, 0, 5) == 'HTTP_') 
-                   { 
-                       $headers[str_replace(' ', '-', ucwords(strtolower(str_replace('_', ' ', substr($name, 5)))))] = $value; 
-                   } 
-               } 
-               return $headers; 
-            } 
-        //}
-
         $requestBody = file_get_contents("php://input");
-        $headers = getallheaders();
+        $xHubSignature = $_SERVER['HTTP_X_HUB_SIGNATURE'];
 
-        if(PagarMe::validateRequestSignature($requestBody, $headers['X-Hub-Signature'])){
-            $this->load->model('checkout/order');
-            $this->load->model('extension/payment/pagar_me_checkout');
-
-            if ($this->request->post['event'] == 'transaction_status_changed') {
-
-                $order_id = $this->model_extension_payment_pagar_me_checkout->getPagarMeOrder($this->request->post['id']);
-
-                $current_status = 'pagar_me_checkout_order_' . $this->request->post['current_status'];
-
-                $this->model_checkout_order->addOrderHistory($order_id, $this->config->get($current_status), '', true);
-
-                $this->log->write('Pagar.me Postback: Pedido ' . $order_id . ' atualizado para ' . $this->request->post['current_status']);
-
-                return http_response_code(200);
-            }
-        } else {
+        if(!PagarMe::validateRequestSignature($requestBody, $xHubSignature)){
             $this->log->write("Pagar.me Postback: Falha ao validar o POSTback");
 
             return http_response_code(403);
         }
+
+        $this->load->model('checkout/order');
+        $this->load->model('extension/payment/pagar_me_checkout');
+
+        $order_id = $this->model_extension_payment_pagar_me_checkout->getPagarMeOrder($this->request->post['id']);
+
+        $current_status = 'pagar_me_checkout_order_' . $this->request->post['current_status'];
+
+        $this->model_checkout_order->addOrderHistory($order_id, $this->config->get($current_status), '', true);
+
+        $this->log->write('Pagar.me Postback: Pedido ' . $order_id . ' atualizado para ' . $this->request->post['current_status']);
+
+        echo "Ok";
+
     }
 
     private function removeSeparadores($string)
