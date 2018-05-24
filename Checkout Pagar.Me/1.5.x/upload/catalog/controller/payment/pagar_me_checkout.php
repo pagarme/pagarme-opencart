@@ -166,23 +166,29 @@ class ControllerPaymentPagarMeCheckout extends Controller
     public function callback()
     {
 
-        $event = $this->request->post['event'];
+        Pagarme::setApiKey($this->config->get('pagar_me_checkout_api'));
+
+        $requestBody = file_get_contents("php://input");
+        $xHubSignature = $_SERVER['HTTP_X_HUB_SIGNATURE'];
+
+        if(!PagarMe::validateRequestSignature($requestBody, $xHubSignature)){
+            $this->log->write("Pagar.me Postback: Falha ao validar o POSTback");
+
+            return http_response_code(403);
+        }
+
         $this->load->model('checkout/order');
         $this->load->model('payment/pagar_me_checkout');
 
-        if ($event == 'transaction_status_changed') {
+        $order_id = $this->model_payment_pagar_me_checkout->getPagarMeOrder($this->request->post['id']);
 
-            $order_id = $this->model_payment_pagar_me_checkout->getPagarMeOrder($this->request->post['id']);
+        $current_status = 'pagar_me_checkout_order_' . $this->request->post['current_status'];
 
-            $current_status = 'pagar_me_checkout_order_' . $this->request->post['current_status'];
-
-            if(!$this->model_payment_pagar_me_checkout->getTotalOrderHistoriesByOrderStatusId($current_status, $order_id)) {
-                $this->model_checkout_order->update($order_id, $this->config->get($current_status), '', true);
-            }
-
-        } else {
-            $this->log->write("Pagar.Me boleto: Notificação inválida");
+        if(!$this->model_payment_pagar_me_checkout->getTotalOrderHistoriesByOrderStatusId($current_status, $order_id)) {
+            $this->model_checkout_order->update($order_id, $this->config->get($current_status), '', true);
         }
+
+        $this->log->write("Pagar.me Postback: Pedido ".$order_id." atualizado para ".$this->request->post['current_status']);
 
         echo "OK";
 

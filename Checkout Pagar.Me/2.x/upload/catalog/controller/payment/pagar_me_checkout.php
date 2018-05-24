@@ -168,35 +168,32 @@ class ControllerPaymentPagarMeCheckout extends Controller
     public function callback()
     {
 
-        try {
-            $this->log->write($this->request->post['event']);
+        Pagarme::setApiKey($this->config->get('pagar_me_checkout_api'));
 
-            $event = $this->request->post['event'];
-            $this->load->model('checkout/order');
-            $this->load->model('payment/pagar_me_checkout');
+        $requestBody = file_get_contents("php://input");
+        $xHubSignature = $_SERVER['HTTP_X_HUB_SIGNATURE'];
 
-            if ($event == 'transaction_status_changed') {
+        if(!PagarMe::validateRequestSignature($requestBody, $xHubSignature)){
+            $this->log->write("Pagar.me Postback: Falha ao validar o POSTback");
 
-                $order_id = $this->model_payment_pagar_me_checkout->getPagarMeOrder($this->request->post['id']);
-
-                $current_status = 'pagar_me_checkout_order_' . $this->request->post['current_status'];
-
-
-                if(!$this->model_payment_pagar_me_checkout->getTotalOrderHistoriesByOrderStatusId($current_status, $order_id)) {
-                    $this->model_checkout_order->addOrderHistory($order_id, $this->config->get($current_status), '', true);
-                }
-
-
-            } else {
-                $this->log->write("Pagar.Me boleto: Notificação inválida");
-            }
-            echo "OK";
-        }catch (Exception $e){
-            $this->log->write($e->getMessage());
+            return http_response_code(403);
         }
 
+        $this->load->model('checkout/order');
+        $this->load->model('payment/pagar_me_checkout');
+
+        $order_id = $this->model_payment_pagar_me_checkout->getPagarMeOrder($this->request->post['id']);
+
+        $current_status = 'pagar_me_checkout_order_' . $this->request->post['current_status'];
 
 
+        if(!$this->model_payment_pagar_me_checkout->getTotalOrderHistoriesByOrderStatusId($current_status, $order_id)) {
+            $this->model_checkout_order->addOrderHistory($order_id, $this->config->get($current_status), '', true);
+        }
+
+        $this->log->write("Pagar.me Postback: Pedido ".$order_id." atualizado para ".$this->request->post['current_status']);
+
+        echo "Ok";
     }
 
     private function removeSeparadores($string)
