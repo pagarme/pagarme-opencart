@@ -66,6 +66,7 @@ class RestClient {
 		curl_setopt($this->curl, CURLOPT_URL, $this->url);
 		curl_setopt($this->curl, CURLOPT_HTTPHEADER, $this->headers);
 		curl_setopt($this->curl, CURLOPT_CAINFO, dirname(__FILE__) . '/ca-certificates.crt');
+		curl_setopt($this->curl, CURLOPT_SSLVERSION, 6);
 	}
 
 	public function run()
