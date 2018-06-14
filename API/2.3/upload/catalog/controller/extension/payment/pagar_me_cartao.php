@@ -91,33 +91,32 @@ class ControllerExtensionPaymentPagarMeCartao extends ControllerExtensionPayment
         $amount = $this->session->data['calculated_installments']['installments'][$chosen_installments]['amount'];
         $interest_amount = (($amount / 100) - $order_info['total']);
 
-        Pagarme::setApiKey($this->config->get('pagar_me_cartao_api'));
+        $items = $this->generateItemsArray();
+        $this->log->write($items);
+        $customer2018 = $this->generateCustomerInfo();
+        $this->log->write($customer2018); 
+        $address = $this->generateAddressData();
+        $this->log->write($address); 
+        $this->log->write($this->removeSeparadores($this->session->data['shipping_method']['cost']));
 
+        Pagarme::setApiKey($this->config->get('pagar_me_cartao_api'));
         $transaction = new PagarMe_Transaction(array(
             'amount' => $amount,
             'card_hash' => $this->request->post['card_hash'],
             'installments' => $chosen_installments,
             'postback_url' => HTTP_SERVER . 'index.php?route=extension/payment/pagar_me_cartao/callback',
             'async' => $this->config->get('pagar_me_cartao_async'),
-            "customer" => array(
-                "name" => $customer_name,
-                "document_number" => preg_replace('/\D/', '', $document_number),
-                "email" => $order_info['email'],
-                "address" => array(
-                    "street" => $order_info['payment_address_1'],
-                    "street_number" => $customer_address['street_number'],
-                    "neighborhood" => $order_info['payment_address_2'],
-                    "complementary" => $customer_address['complementary'],
-                    "city" => $order_info['payment_city'],
-                    "state" => $order_info['payment_zone_code'],
-                    "country" => $order_info['payment_country'],
-                    "zipcode" => $this->removeSeparadores($order_info['payment_postcode']),
-                ),
-                "phone" => array(
-                    "ddd" => substr(preg_replace('/\D/', '', $order_info['telephone']), 0, 2),
-                    "number" => substr(preg_replace('/\D/', '', $order_info['telephone']), 2, 9),
-                )
+            'customer' => $customer2018,
+            'billing' => array(
+                'address' => $address,
+                'name' => $customer2018['name']
             ),
+            'shipping' => array(
+                'fee' => $this->removeSeparadores($this->session->data['shipping_method']['cost']),
+                'address' => $address,
+                'name' =>  $customer2018['name']
+            ),
+            'items' => $items,
             'metadata' => array(
                 'id_pedido' => $order_info['order_id'],
                 'loja' => $this->config->get('config_name'),
@@ -157,6 +156,82 @@ class ControllerExtensionPaymentPagarMeCartao extends ControllerExtensionPayment
         $nova_string = str_replace(array('.', '-', '/', '(', ')', ' '), array('', '', '', '', '', ''), $string);
 
         return $nova_string;
+    }
+
+    private function generateItemsArray()
+    {
+        $items = array(); 
+        $cart_info = $this->cart->getProducts(); 
+        foreach($cart_info as $item){
+            $unit_price =  $item['price'];
+            if(strpos($item['price'], ".") !== false || strpos($item['price'], ",") !== false){
+                $unit_price = $this->removeSeparadores($item['price']);
+            } else {
+                $unit_price = $item['price'] * 100;
+            }
+            $tangible = empty($item['download']) ? true : false;
+            array_push(
+                $items,
+                array(
+                    'id' => $item['product_id'],
+                    'title' => $item['name'],
+                    'quantity' => $item['quantity'],
+                    'unit_price' => $unit_price,
+                    'tangible'=> $tangible
+                )
+            );
+        }
+        return $items; 
+    }
+
+    private function generateCustomerInfo()
+    {
+        $this->load->model('checkout/order');
+        $this->load->model('account/customer');
+        $order_info = $this->model_checkout_order->getOrder($this->session->data['order_id']);
+        $customerModel = $this->model_account_customer->getCustomer($order_info['customer_id']);
+        $documents = array();
+        $document_number =  preg_replace('/\D/', '', $this->getCustomerDocumentNumber($customerModel, $order_info));
+        $document_type =  (strlen($document_number) == 11) ? 'cpf' : 'cnpj';
+        $customer_type = ($document_type == 'cpf') ? 'individual' : 'corporation';
+        array_push($documents, array('number'=> $document_number,'type'=> $document_type));
+        $customer_address = $this->getCustomerAdditionalAddressData($customerModel, $order_info);
+        $customer_name = trim($order_info['payment_firstname']).' '.trim($order_info['payment_lastname']);
+        $phone_numbers = array();
+        array_push($phone_numbers, '+55'.$order_info['telephone']);
+        $customer = array(
+            "name"=> $customer_name,
+            "external_id"=> $order_info['customer_id'],
+            "type"=> $customer_type,
+            "country"=> strtolower($order_info['payment_iso_code_2']),
+            "documents" => $documents, 
+            "email"=> $order_info['email'],
+            "phone_numbers"=> $phone_numbers
+        );
+        return $customer;
+
+
+    }
+    private function generateAddressData()
+    {
+        
+        $this->load->model('checkout/order');
+        $this->load->model('account/customer');
+        $order_info = $this->model_checkout_order->getOrder($this->session->data['order_id']);
+        $customerModel = $this->model_account_customer->getCustomer($order_info['customer_id']);
+        $customer_address = $this->getCustomerAdditionalAddressData($customerModel, $order_info);
+        $address = array(
+                "street" => $order_info['payment_address_1'],
+                "street_number" => $customer_address['street_number'],
+                "neighborhood" => $order_info['payment_address_2'],
+                "complementary" => $customer_address['complementary'],
+                "city" => $order_info['payment_city'],
+                "state" => $order_info['payment_zone_code'],
+                "country" => strtolower($order_info['payment_iso_code_2']),
+                "zipcode" => $this->removeSeparadores($order_info['payment_postcode']),
+                );
+        return $address;
+
     }
 
 }
