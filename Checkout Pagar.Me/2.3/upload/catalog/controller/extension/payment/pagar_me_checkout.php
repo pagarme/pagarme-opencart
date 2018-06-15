@@ -78,6 +78,7 @@ class ControllerExtensionPaymentPagarMeCheckout extends Controller
 
         $json['customer_address_street_number'] = 'Sem número';
         $json['customer_address_complementary'] = '';
+        $json['customer_external_id'] = $order_info['customer_id'];
 
         /* Pega os custom fields de CPF/CNPJ, número e complemento */
         $this->load->model('account/custom_field');
@@ -102,6 +103,9 @@ class ControllerExtensionPaymentPagarMeCheckout extends Controller
             }
         }
 
+        $json['customer_type'] = (strlen($json['customer_document_number']) == 11 ? 'individual' : 'corporation'); 
+        $json['document_type'] = ($json['customer_document_number'] == 'individual' ? 'cpf' : 'cnpj');
+        $json['customer_country'] = strtolower($order_info['payment_iso_code_2']);
         $json['customer_email'] = $order_info['email'];
         $json['customer_address_street'] = $order_info['payment_address_1'];
         $json['customer_address_neighborhood'] = $order_info['payment_address_2'];
@@ -115,8 +119,6 @@ class ControllerExtensionPaymentPagarMeCheckout extends Controller
         $json['customer_phone_ddd'] = substr(preg_replace('/[^0-9]/', '', $order_info['telephone']), 0, 2);
         $json['customer_phone_number'] = substr(preg_replace('/[^0-9]/', '', $order_info['telephone']), 2);
         $json['interest_rate'] = $this->config->get('pagar_me_checkout_interest_rate');
-
-
         $this->response->setOutput(json_encode($json));
     }
 
