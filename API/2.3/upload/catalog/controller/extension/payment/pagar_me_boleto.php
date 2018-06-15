@@ -77,25 +77,10 @@ class ControllerExtensionPaymentPagarMeBoleto extends ControllerExtensionPayment
             'boleto_expiration_date' => date('Y-m-d', strtotime('+' . $this->config->get('pagar_me_boleto_dias_vencimento') + 1 . ' days')),
             'postback_url' => HTTP_SERVER . 'index.php?route=extension/payment/pagar_me_boleto/callback',
             'async' => 'false',
-            "customer" => array(
-                "name" => $customer_name,
-                "document_number" => preg_replace('/\D/', '', $document_number),
-                "email" => $order_info['email'],
-                "address" => array(
-                    "street" => $order_info['payment_address_1'],
-                    "street_number" => $customer_address['street_number'],
-                    "neighborhood" => $order_info['payment_address_2'],
-                    "complementary" => $customer_address['complementary'],
-                    "city" => $order_info['payment_city'],
-                    "state" => $order_info['payment_zone_code'],
-                    "country" => $order_info['payment_country'],
-                    "zipcode" => $this->removeSeparadores($order_info['payment_postcode'])
-                ),
-                "phone" => array(
-                    "ddd" => substr(preg_replace('/\D/', '', $order_info['telephone']), 0, 2),
-                    "number" => substr(preg_replace('/\D/', '', $order_info['telephone']), 2, 9),
-                )
-            ),
+            'customer' => $this->generateCustomerInfo(),
+            'billing' => $this->generateBillingData(),
+            'shipping' => $this->generateShippingData(),
+            'items' => $this->generateItemsArray(),
             'metadata' => array(
                 'id_pedido' => $order_info['order_id'],
                 'loja' => $this->config->get('config_name'),

@@ -91,14 +91,6 @@ class ControllerExtensionPaymentPagarMeCartao extends ControllerExtensionPayment
         $amount = $this->session->data['calculated_installments']['installments'][$chosen_installments]['amount'];
         $interest_amount = (($amount / 100) - $order_info['total']);
 
-        $items = $this->generateItemsArray();
-        $this->log->write($items);
-        $customer2018 = $this->generateCustomerInfo();
-        $this->log->write($customer2018); 
-        $address = $this->generateAddressData();
-        $this->log->write($address); 
-        $this->log->write($this->removeSeparadores($this->session->data['shipping_method']['cost']));
-
         Pagarme::setApiKey($this->config->get('pagar_me_cartao_api'));
         $transaction = new PagarMe_Transaction(array(
             'amount' => $amount,
@@ -106,17 +98,10 @@ class ControllerExtensionPaymentPagarMeCartao extends ControllerExtensionPayment
             'installments' => $chosen_installments,
             'postback_url' => HTTP_SERVER . 'index.php?route=extension/payment/pagar_me_cartao/callback',
             'async' => $this->config->get('pagar_me_cartao_async'),
-            'customer' => $customer2018,
-            'billing' => array(
-                'address' => $address,
-                'name' => $customer2018['name']
-            ),
-            'shipping' => array(
-                'fee' => $this->removeSeparadores($this->session->data['shipping_method']['cost']),
-                'address' => $address,
-                'name' =>  $customer2018['name']
-            ),
-            'items' => $items,
+            'customer' => $this->generateCustomerInfo(),
+            'billing' => $this->generateBillingData(),
+            'shipping' => $this->generateShippingData(),
+            'items' => $this->generateItemsArray(),
             'metadata' => array(
                 'id_pedido' => $order_info['order_id'],
                 'loja' => $this->config->get('config_name'),

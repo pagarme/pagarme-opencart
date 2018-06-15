@@ -151,7 +151,7 @@ abstract class ControllerExtensionPaymentPagarMe extends Controller
 
 
     }
-    public function generateAddressData()
+    public function generateBillingData()
     {
         
         $this->load->model('checkout/order');
@@ -159,17 +159,43 @@ abstract class ControllerExtensionPaymentPagarMe extends Controller
         $order_info = $this->model_checkout_order->getOrder($this->session->data['order_id']);
         $customerModel = $this->model_account_customer->getCustomer($order_info['customer_id']);
         $customer_address = $this->getCustomerAdditionalAddressData($customerModel, $order_info);
-        $address = array(
-                "street" => $order_info['payment_address_1'],
-                "street_number" => $customer_address['street_number'],
-                "neighborhood" => $order_info['payment_address_2'],
-                "complementary" => $customer_address['complementary'],
-                "city" => $order_info['payment_city'],
-                "state" => $order_info['payment_zone_code'],
-                "country" => strtolower($order_info['payment_iso_code_2']),
-                "zipcode" => preg_replace('/\D/', '', $order_info['payment_postcode'])
+        $billing = array(
+                "name" => trim($order_info['payment_firstname']).' '.trim($order_info['payment_lastname']),
+                "address"=> array(
+                    "street" => $order_info['payment_address_1'],
+                    "street_number" => $customer_address['street_number'],
+                    "neighborhood" => $order_info['payment_address_2'],
+                    "complementary" => $customer_address['complementary'],
+                    "city" => $order_info['payment_city'],
+                    "state" => $order_info['payment_zone_code'],
+                    "country" => strtolower($order_info['payment_iso_code_2']),
+                    "zipcode" => preg_replace('/\D/', '', $order_info['payment_postcode']))
                 );
-        return $address;
+        return $billing;
 
+    }
+
+    public function generateShippingData()
+    {
+        $this->load->model('checkout/order');
+        $this->load->model('account/customer');
+        $order_info = $this->model_checkout_order->getOrder($this->session->data['order_id']);
+        $customerModel = $this->model_account_customer->getCustomer($order_info['customer_id']);
+        $customer_address = $this->getCustomerAdditionalAddressData($customerModel, $order_info);
+        $shipping = array(
+                "fee" => preg_replace('/\D/', '', $this->session->data['shipping_method']['cost']),
+                "name" => trim($order_info['payment_firstname']).' '.trim($order_info['payment_lastname']),
+                "address" => array(
+                    "street" => $order_info['shipping_address_1'],
+                    "street_number" => $customer_address['street_number'],
+                    "neighborhood" => $order_info['shipping_address_2'],
+                    "complementary" => $customer_address['complementary'],
+                    "city" => $order_info['shipping_city'],
+                    "state" => $order_info['shipping_zone_code'],
+                    "country" => strtolower($order_info['shipping_iso_code_2']),
+                    "zipcode" => preg_replace('/\D/', '', $order_info['shipping_postcode']))
+                );
+
+        return $shipping;
     }
 }
