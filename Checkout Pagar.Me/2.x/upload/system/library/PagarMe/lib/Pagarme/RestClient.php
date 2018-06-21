@@ -14,7 +14,7 @@ class RestClient {
 		$this->headers = array(
 			'Accept: application/json',
 			'Content-Type: application/json',
-			'User-Agent: Opencart '.Version.' Checkout Pagar.me'
+			'User-Agent: Opencart '.VERSION.' Checkout Pagar.me'
 		);
 
 		if(!$params["url"]) {
