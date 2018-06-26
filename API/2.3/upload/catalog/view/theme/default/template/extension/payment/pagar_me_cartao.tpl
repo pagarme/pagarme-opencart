@@ -148,7 +148,7 @@
         errorBox.innerHTML = errorMessage;
         errorBox.className = 'pagar_me_error_message';
 
-        $(".dados_cartao").prepend(errorBox);
+        $(".payment_data").prepend(errorBox);
 
         $('#button-confirm').button('reset');
         $("#payment_form #card_hash").remove();
@@ -176,7 +176,7 @@
 
         var fieldErrors = creditCard.fieldErrors();
 
-        $(".dados_cartao .pagar_me_error_message").remove();
+        $(".payment_data .pagar_me_error_message").remove();
         var hasErrors = false;
         for (var field in fieldErrors) {
             errorFields(fieldErrors[field]);

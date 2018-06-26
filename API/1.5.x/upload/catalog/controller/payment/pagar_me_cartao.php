@@ -141,7 +141,7 @@ class ControllerPaymentPagarMeCartao extends ControllerPaymentPagarMe
 
         try{
             $transaction->charge();
-            if($transaction->status == 'processing' || $transaction->status == 'paid'){
+            if($transaction->status != 'refused'){
 
                 $this->session->data['transaction_status'] = $transaction->status;
 

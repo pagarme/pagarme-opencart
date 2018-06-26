@@ -149,7 +149,7 @@
 
                     <div class="form-group">
                         <label class="col-sm-2 control-label"
-                               for="input-pagar_me_cartao_order_waiting_payment"><?php echo $entry_order_paid; ?></label>
+                               for="input-pagar_me_cartao_order_paid"><?php echo $entry_order_paid; ?></label>
                         <div class="col-sm-10">
                             <select name="pagar_me_cartao_order_paid" id="input-pagar_me_cartao_order_paid"
                                     class="form-control">
@@ -168,7 +168,7 @@
 
                     <div class="form-group">
                         <label class="col-sm-2 control-label"
-                               for="input-pagar_me_cartao_order_waiting_payment"><?php echo $entry_order_refused; ?></label>
+                               for="input-pagar_me_cartao_order_refused"><?php echo $entry_order_refused; ?></label>
                         <div class="col-sm-10">
                             <select name="pagar_me_cartao_order_refused" id="input-pagar_me_cartao_order_refused"
                                     class="form-control">
@@ -187,12 +187,31 @@
 
                     <div class="form-group">
                         <label class="col-sm-2 control-label"
-                               for="input-pagar_me_cartao_order_waiting_payment"><?php echo $entry_order_refunded; ?></label>
+                               for="input-pagar_me_cartao_order_refunded"><?php echo $entry_order_refunded; ?></label>
                         <div class="col-sm-10">
                             <select name="pagar_me_cartao_order_refunded" id="input-pagar_me_cartao_order_refunded"
                                     class="form-control">
                                 <?php foreach ($order_statuses as $order_status) { ?>
                                     <?php if ($order_status['order_status_id'] == $pagar_me_cartao_order_refunded) { ?>
+                                        <option value="<?php echo $order_status['order_status_id']; ?>"
+                                                selected="selected"><?php echo $order_status['name']; ?></option>
+                                    <?php } else { ?>
+                                        <option
+                                            value="<?php echo $order_status['order_status_id']; ?>"><?php echo $order_status['name']; ?></option>
+                                    <?php } ?>
+                                <?php } ?>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label"
+                               for="input-pagar_me_cartao_order_pending_review"><?php echo $entry_order_pending_review; ?></label>
+                        <div class="col-sm-10">
+                            <select name="pagar_me_cartao_order_pending_review" id="input-pagar_me_cartao_order_pending_review"
+                                    class="form-control">
+                                <?php foreach ($order_statuses as $order_status) { ?>
+                                    <?php if ($order_status['order_status_id'] == $pagar_me_cartao_order_pending_review) { ?>
                                         <option value="<?php echo $order_status['order_status_id']; ?>"
                                                 selected="selected"><?php echo $order_status['name']; ?></option>
                                     <?php } else { ?>
