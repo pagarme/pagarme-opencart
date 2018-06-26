@@ -42,6 +42,7 @@ class ControllerPaymentPagarMeCartao extends Controller
         $this->data['entry_order_paid'] = $this->language->get('entry_order_paid');
         $this->data['entry_order_refused'] = $this->language->get('entry_order_refused');
         $this->data['entry_order_refunded'] = $this->language->get('entry_order_refunded');
+        $this->data['entry_order_pending_review'] = $this->language->get('entry_order_pending_review');
         $this->data['entry_async'] = $this->language->get('entry_async');
         $this->data['entry_geo_zone'] = $this->language->get('entry_geo_zone');
         $this->data['entry_status'] = $this->language->get('entry_status');
@@ -226,6 +227,12 @@ class ControllerPaymentPagarMeCartao extends Controller
             $this->data['pagar_me_cartao_order_refunded'] = $this->request->post['pagar_me_cartao_order_refunded'];
         } else {
             $this->data['pagar_me_cartao_order_refunded'] = $this->config->get('pagar_me_cartao_order_refunded');
+        }
+
+        if (isset($this->request->post['pagar_me_cartao_pending_review'])) {
+            $this->data['pagar_me_cartao_order_pending_review'] = $this->request->post['pagar_me_cartao_order_pending_review'];
+        } else {
+            $this->data['pagar_me_cartao_order_pending_review'] = $this->config->get('pagar_me_cartao_order_pending_review');
         }
 
         if (isset($this->request->post['pagar_me_cartao_async'])) {
