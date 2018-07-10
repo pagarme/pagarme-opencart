@@ -1,3 +1,4 @@
+<script src="https://assets.pagar.me/checkout/1.1.0/checkout.js"></script>
 <style>
     .payment-information{text-align:center;font-size:18px;font-weight:800;letter-spacing:-0.55pt;margin-bottom:10px;}
 </style>
@@ -22,6 +23,10 @@
             success: function (response) {
                 // INICIAR A INSTÂNCIA DO CHECKOUT
                 // declarando um callback de sucesso
+                console.log(response['items'])
+                console.log(response['phone_numbers'])
+                console.log(response['customer_type'])
+                console.log(response['document_type'])
                 var checkout = new PagarMeCheckout.Checkout({
                     'customer_data': false,
                     'encryption_key': '<?php echo $encryption_key; ?>', success: function (data) {
@@ -54,21 +59,52 @@
                     'freeInstallments': response['free_installments'],
                     'uiColor': response['ui_color'],
                     'postbackUrl': response['postback_url'],
-                    'customerName': response['customer_name'],
-                    'customerDocumentNumber': response['customer_document_number'],
-                    'customerEmail': response['customer_email'],
-                    'customerAddressStreet': response['customer_address_street'],
-                    'customerAddressStreetNumber': response['customer_address_street_number'],
-                    'customerAddressComplementary': response['customer_address_complementary'],
-                    'customerAddressNeighborhood': response['customer_address_neighborhood'],
-                    'customerAddressCity': response['customer_address_city'],
-                    'customerAddressState': response['customer_address_state'],
-                    'customerAddressZipcode': response['customer_address_zipcode'],
-                    'customerPhoneDdd': response['customer_phone_ddd'],
-                    'customerPhoneNumber': response['customer_phone_number'],
+                    customer: {
+                        external_id: response['customer_external_id'],
+                        name: response['customer_name'],
+                        type: response['customer_type'],
+                        country:response['customer_country'],
+                        email: response['customer_email'],
+                        documents: [
+                            {
+                                type: response['document_type'],
+                                number: response['customer_document_number']
+                            }
+                        ],
+                        phone_numbers: response['phone_numbers']
+                    },
+                    items : response['items'],
+                    shipping: {
+                        name: response['customer_name'],
+                        fee: response['fee'],
+                        address:{
+                            country: response['customer_country'],
+                            city: response['customer_address_city'],
+                            neighborhood: response['customer_address_neighborhood'],
+                            street: response['customer_address_street'],
+                            street_number: response['customer_address_street_number'],
+                            zipcode: response['customer_address_zipcode'],
+                            state: response['customer_address_state']
+                            
+                        }
+                    },
+                    billing:{
+                        name: response['customer_name'],
+                        address:{
+                            country: response['customer_country'],
+                            city: response['customer_address_city'],
+                            neighborhood: response['customer_address_neighborhood'], 
+                            street: response['customer_address_street'],
+                            street_number: response['customer_address_street_number'],
+                            zipcode: response['customer_address_zipcode'],
+                            state: response['customer_address_state']        
+                        }
+
+                    },
                     'interestRate': response['interest_rate'],
                     'boletoDiscountAmount': response['boleto_discount_amount']
                 };
+                console.log(params);
                 checkout.open(params);
             },
             error: function (xhr, error) {

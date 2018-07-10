@@ -102,11 +102,13 @@ class ControllerExtensionPaymentPagarMeCheckout extends Controller
                 }
             }
         }
-
-        $json['customer_type'] = (strlen($json['customer_document_number']) == 11 ? 'individual' : 'corporation'); 
-        $json['document_type'] = ($json['customer_document_number'] == 'individual' ? 'cpf' : 'cnpj');
+        
+        $json['customer_type'] = (strlen(preg_replace('/\D/','',$json['customer_document_number']))) == 11 ? 'individual' : 'corporation'; 
+        $json['document_type'] = ($json['customer_type'] == 'individual' ? 'cpf' : 'cnpj');
         $json['customer_country'] = strtolower($order_info['payment_iso_code_2']);
         $json['customer_email'] = $order_info['email'];
+
+        //Billing
         $json['customer_address_street'] = $order_info['payment_address_1'];
         $json['customer_address_neighborhood'] = $order_info['payment_address_2'];
         $json['customer_address_city'] = $order_info['payment_city'];
@@ -114,11 +116,39 @@ class ControllerExtensionPaymentPagarMeCheckout extends Controller
         $this->load->model('localisation/zone');
         $uf = $this->model_localisation_zone->getZone($order_info['payment_zone_id']);
 
-        $json['customer_address_state'] = $uf['code'];
-        $json['customer_address_zipcode'] = $this->removeSeparadores($order_info['payment_postcode']);
-        $json['customer_phone_ddd'] = substr(preg_replace('/[^0-9]/', '', $order_info['telephone']), 0, 2);
-        $json['customer_phone_number'] = substr(preg_replace('/[^0-9]/', '', $order_info['telephone']), 2);
+        $json['customer_address_state'] = $uf['name'];
+        $json['customer_address_zipcode'] = preg_replace('/\D/','',$order_info['payment_postcode']);
         $json['interest_rate'] = $this->config->get('pagar_me_checkout_interest_rate');
+        $phone_numbers = array();
+        array_push($phone_numbers,'+55' . $order_info['telephone']);
+        $json['phone_numbers'] = $phone_numbers;
+        //Shipping 
+
+        $json['fee'] = preg_replace('/\D/','',$this->session->data['shipping_method']['cost']);
+
+        //Items
+        $items = array();
+        $cart_info = $this->cart->getProducts();
+        foreach($cart_info as $item){
+            $unit_price = $item['price'];
+             if(strpos($item['price'], ".") !== false || strpos($item['price'], ",") !== false){
+                $unit_price = preg_replace('/\D/','',$unit_price);
+            } else {
+                $unit_price = $item['price'] * 100;
+            }
+            $tangible = empty($item['download']) ? true : false;
+            array_push(
+                $items,
+                array(
+                    'id' => $item['product_id'],
+                    'title' => $item['name'],
+                    'quantity' => $item['quantity'],
+                    'unit_price' => $unit_price,
+                    'tangible' => $tangible
+                )
+            );
+        }
+        $json['items'] = $items;
         $this->response->setOutput(json_encode($json));
     }
 
