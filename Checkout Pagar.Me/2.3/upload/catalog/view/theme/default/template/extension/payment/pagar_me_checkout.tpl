@@ -23,10 +23,6 @@
             success: function (response) {
                 // INICIAR A INSTÂNCIA DO CHECKOUT
                 // declarando um callback de sucesso
-                console.log(response['items'])
-                console.log(response['phone_numbers'])
-                console.log(response['customer_type'])
-                console.log(response['document_type'])
                 var checkout = new PagarMeCheckout.Checkout({
                     'customer_data': false,
                     'encryption_key': '<?php echo $encryption_key; ?>', success: function (data) {
@@ -58,21 +54,7 @@
                     'maxInstallments': response['max_installments'],
                     'freeInstallments': response['free_installments'],
                     'uiColor': response['ui_color'],
-                    'postbackUrl': response['postback_url'],
-                    customer: {
-                        external_id: response['customer_external_id'],
-                        name: response['customer_name'],
-                        type: response['customer_type'],
-                        country:response['customer_country'],
-                        email: response['customer_email'],
-                        documents: [
-                            {
-                                type: response['document_type'],
-                                number: response['customer_document_number']
-                            }
-                        ],
-                        phone_numbers: response['phone_numbers']
-                    },
+                    customer: response['customer'],
                     items : response['items'],
                     shipping: {
                         name: response['customer_name'],

@@ -74,27 +74,16 @@ class ControllerExtensionPaymentPagarMeCheckout extends Controller
         $json['free_installments'] = $this->config->get('pagar_me_checkout_free_installments');
         $json['ui_color'] = $this->config->get('pagar_me_checkout_ui_color');
         $json['postback_url'] = HTTP_SERVER . 'index.php?route=extension/payment/pagar_me_checkout/callback';
-        $json['customer_name'] = trim($order_info['payment_firstname']) . ' ' . trim($order_info['payment_lastname']);
 
         $json['customer_address_street_number'] = 'Sem número';
         $json['customer_address_complementary'] = '';
-        $json['customer_external_id'] = $order_info['customer_id'];
-
         /* Pega os custom fields de CPF/CNPJ, número e complemento */
         $this->load->model('account/custom_field');
 
         $default_group = $this->config->get('config_customer_group_id');
-        if(isset($customer['customer_group_id'])){
-            $default_group = $customer['customer_group_id'];
-        }
-
         $custom_fields = $this->model_account_custom_field->getCustomFields($default_group);
         foreach($custom_fields as $custom_field){
-            if($custom_field['location'] == 'account'){
-                if((strpos(strtolower($custom_field['name']), 'cpf') !== false) || (strpos(strtolower($custom_field['name']), 'cnpj') !== false)){
-                    $json['customer_document_number'] = $order_info['custom_field'][$custom_field['custom_field_id']];
-                }
-            }elseif($custom_field['location'] == 'address'){
+            if($custom_field['location'] == 'address'){
                 if(strpos(strtolower($custom_field['name']), 'numero') !== false || strpos(strtolower($custom_field['name']), 'número') !== false){
                     $json['customer_address_street_number'] = $order_info['payment_custom_field'][$custom_field['custom_field_id']];
                 }elseif(strpos(strtolower($custom_field['name']), 'complemento')){
@@ -102,12 +91,6 @@ class ControllerExtensionPaymentPagarMeCheckout extends Controller
                 }
             }
         }
-        
-        $json['customer_type'] = (strlen(preg_replace('/\D/','',$json['customer_document_number']))) == 11 ? 'individual' : 'corporation'; 
-        $json['document_type'] = ($json['customer_type'] == 'individual' ? 'cpf' : 'cnpj');
-        $json['customer_country'] = strtolower($order_info['payment_iso_code_2']);
-        $json['customer_email'] = $order_info['email'];
-
         //Billing
         $json['customer_address_street'] = $order_info['payment_address_1'];
         $json['customer_address_neighborhood'] = $order_info['payment_address_2'];
@@ -119,14 +102,77 @@ class ControllerExtensionPaymentPagarMeCheckout extends Controller
         $json['customer_address_state'] = $uf['name'];
         $json['customer_address_zipcode'] = preg_replace('/\D/','',$order_info['payment_postcode']);
         $json['interest_rate'] = $this->config->get('pagar_me_checkout_interest_rate');
+        $response['customer_name'] = trim($order_info['payment_firstname']) . ' ' . trim($order_info['payment_lastname']);
+        $response['customer'] = $this->generateCustomerData();
+        //Shipping 
+        $json['fee'] = preg_replace('/\D/','',$this->session->data['shipping_method']['cost']);
+        $json['customer_coutry'] =   strtolower($order_info['payment_iso_code_2']);
+        //Items
+       
+        $json['items'] = $this->generateItemsArray();
+        $this->response->setOutput(json_encode($json));
+    }
+
+    public function getCustomerDocumentNumber(){
+        $order_info = $this->model_checkout_order->getOrder($this->session->data['order_id']);
+        $this->load->model('account/custom_field');
+        $default_group = $this->config->get('config_customer_group_id');
+        $custom_fields = $this->model_account_custom_field->getCustomFields($default_group);
+
+        if(isset($customer['customer_group_id'])){
+            $default_group = $customer['customer_group_id'];
+        }
+        foreach($custom_fields as $custom_field){
+            if((strpos(strtolower($custom_field['name']), 'cpf') !== false) || (strpos(strtolower($custom_field['name']), 'cnpj') !== false)){
+                $document_number =  $order_info['custom_field'][$custom_field['custom_field_id']];
+            }
+        }
+        return  preg_replace('/\D/','',$document_number);
+    }
+
+    public function getCustomerDocumentType(){
+        $document_number = $this->getCustomerDocumentNumber();
+        return (strlen($document_number) == 11) ? 'cpf' : 'cnpj'; 
+    }
+
+    public function generateDocumentsArray(){
+        $document_number = $this->getCustomerDocumentNumber();
+        $document_type = $this->getCustomerDocumentType();
+        $documents = array(
+            array(
+            'number' => $document_number,
+            'type' => $document_type
+            )
+        );
+        return $documents;
+    }
+
+    public function generateCustomerData(){
+        $order_info = $this->model_checkout_order->getOrder($this->session->data['order_id']);
         $phone_numbers = array();
         array_push($phone_numbers,'+55' . $order_info['telephone']);
-        $json['phone_numbers'] = $phone_numbers;
-        //Shipping 
+        $documents = $this->generateDocumentsArray(); 
+        $customer = array();
+        array_push($customer,
+            array(
+                'name' => trim($order_info['payment_firstname']) . ' ' . trim($order_info['payment_lastname']),
+                'email' => $order_info['email'],
+                'external_id' => $order_info['customer_id'],
+                'phone_numbers' => $phone_numbers,
+                'country' =>  strtolower($order_info['payment_iso_code_2']),
+                'type' => $this->getCustomerDocumentType() == 'cpf' ? 'individual' : 'corporation',
+                'documents' => $documents
+            )
+        );
+        return $customer;
 
-        $json['fee'] = preg_replace('/\D/','',$this->session->data['shipping_method']['cost']);
+    }
 
-        //Items
+    public function generateAddressData(){
+
+    }
+
+    public function generateItemsArray(){
         $items = array();
         $cart_info = $this->cart->getProducts();
         foreach($cart_info as $item){
@@ -148,8 +194,7 @@ class ControllerExtensionPaymentPagarMeCheckout extends Controller
                 )
             );
         }
-        $json['items'] = $items;
-        $this->response->setOutput(json_encode($json));
+        return $items;
     }
 
     public function confirm()
