@@ -70,19 +70,7 @@
                             
                         }
                     },
-                    billing:{
-                        name: response['customer_name'],
-                        address:{
-                            country: response['customer_country'],
-                            city: response['customer_address_city'],
-                            neighborhood: response['customer_address_neighborhood'], 
-                            street: response['customer_address_street'],
-                            street_number: response['customer_address_street_number'],
-                            zipcode: response['customer_address_zipcode'],
-                            state: response['customer_address_state']        
-                        }
-
-                    },
+                    billing: response['billing'],
                     'interestRate': response['interest_rate'],
                     'boletoDiscountAmount': response['boleto_discount_amount']
                 };
