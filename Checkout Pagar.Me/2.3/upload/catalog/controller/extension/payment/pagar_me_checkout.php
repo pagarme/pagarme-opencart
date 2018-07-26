@@ -74,21 +74,6 @@ class ControllerExtensionPaymentPagarMeCheckout extends Controller
         $json['free_installments'] = $this->config->get('pagar_me_checkout_free_installments');
         $json['ui_color'] = $this->config->get('pagar_me_checkout_ui_color');
         $json['postback_url'] = HTTP_SERVER . 'index.php?route=extension/payment/pagar_me_checkout/callback';
-
-        $json['customer_address_street_number'] = 'Sem número';
-        $json['customer_address_complementary'] = '';
-      
-        $this->log->write($order_info);
-        //Billing
-        $json['customer_address_street'] = $order_info['payment_address_1'];
-        $json['customer_address_neighborhood'] = $order_info['payment_address_2'];
-        $json['customer_address_city'] = $order_info['payment_city'];
-
-        $this->load->model('localisation/zone');
-        $uf = $this->model_localisation_zone->getZone($order_info['payment_zone_id']);
-
-        $this->log->write($this->getAddressCustomFields('shipping'));
-
         $json['customer_address_state'] = $uf['name'];
         $json['customer_address_zipcode'] = preg_replace('/\D/','',$order_info['payment_postcode']);
         $json['interest_rate'] = $this->config->get('pagar_me_checkout_interest_rate');
@@ -159,11 +144,13 @@ class ControllerExtensionPaymentPagarMeCheckout extends Controller
     public function generateBilling(){
         $order_info = $this->model_checkout_order->getOrder($this->session->data['order_id']);
         $this->load->model('localisation/zone');
+        $customFields = $this->getAddressCustomFields('payment');
+
         $address = array(
             'street' => $order_info['payment_address_1'],
-            'street_number' => 'Sem Número',
+            'street_number' =>  $customFields['number'],
             'neighborhood' => $order_info['payment_address_2'],
-            'complementary' => 'Sem Complemento',
+            'complementary' => $customFields['complementary'],
             'city' => $order_info['payment_city'],
             'state' => $this->model_localisation_zone->getZone($order_info['payment_zone_id'])['name'],
             'zipcode' => preg_replace('/\D/','',$order_info['payment_postcode'] ),
@@ -202,22 +189,25 @@ class ControllerExtensionPaymentPagarMeCheckout extends Controller
     }
 
     public function getAddressCustomFields($field){
+        $order_info = $this->model_checkout_order->getOrder($this->session->data['order_id']);
         $this->load->model('account/custom_field');
         $default_group = $this->config->get('config_customer_group_id');
         $custom_fields = $this->model_account_custom_field->getCustomFields($default_group);
+        $number = 'Sem número';
+        $complementary = '';
         
         foreach($custom_fields as $custom_field){
             if($custom_field['location'] == 'address'){
                 if(strpos(strtolower($custom_field['name']), 'numero') !== false || strpos(strtolower($custom_field['name']), 'número') !== false){
-                    $numero = $order_info[$field.'_custom_field'][$custom_field['custom_field_id']];
-                }elseif(strpos(strtolower($custom_field['name']), 'complemento')){
-                    $complemento = $order_info[$field.'_custom_field'][$custom_field['custom_field_id']];
+                    $number = $order_info[$field.'_custom_field'][$custom_field['custom_field_id']];
+                }elseif(strpos(strtolower($custom_field['name']), 'complemento') !== false){
+                    $complementary = $order_info[$field.'_custom_field'][$custom_field['custom_field_id']];
                 }
             }
         }
         $addrressCustomFields = array(
-            'numero' => $numero,
-            'complemento' => $complemento
+            'number' => $number,
+            'complementary' => $complementary
         );
 
         return $addrressCustomFields; 
