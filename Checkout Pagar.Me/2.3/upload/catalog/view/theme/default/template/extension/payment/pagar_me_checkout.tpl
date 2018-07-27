@@ -23,6 +23,7 @@
             success: function (response) {
                 // INICIAR A INSTÂNCIA DO CHECKOUT
                 // declarando um callback de sucesso
+                console.log(response['checkoutProperties']['postback_url'])
                 var checkout = new PagarMeCheckout.Checkout({
                     'customer_data': false,
                     'encryption_key': '<?php echo $encryption_key; ?>', success: function (data) {
@@ -46,35 +47,23 @@
                 // DEFINIR AS OPÇÕES
                 // e abrir o modal
                 var params = {
-                    'buttonText': response['button_text'],
-                    'amount': response['amount'],
-                    'buttonClass': response['button_class'],
-                    'paymentMethods': response['payment_methods'],
-                    'cardBrands': response['card_brands'],
-                    'maxInstallments': response['max_installments'],
-                    'freeInstallments': response['free_installments'],
-                    'uiColor': response['ui_color'],
+                    'buttonText': response['checkoutProperties']['button_text'],
+                    'amount': response['checkoutProperties']['amount'],
+                    'buttonClass': response['checkoutProperties']['button_class'],
+                    'paymentMethods': response['checkoutProperties']['payment_methods'],
+                    'cardBrands': response['checkoutProperties']['card_brands'],
+                    'maxInstallments': response['checkoutProperties']['max_installments'],
+                    'freeInstallments': response['checkoutProperties']['free_installments'],
+                    'uiColor': response['checkoutProperties']['ui_color'],
                     customer: response['customer'],
                     items : response['items'],
-                    shipping: {
-                        name: response['customer_name'],
-                        fee: response['fee'],
-                        address:{
-                            country: response['customer_country'],
-                            city: response['customer_address_city'],
-                            neighborhood: response['customer_address_neighborhood'],
-                            street: response['customer_address_street'],
-                            street_number: response['customer_address_street_number'],
-                            zipcode: response['customer_address_zipcode'],
-                            state: response['customer_address_state']
-                            
-                        }
-                    },
+                    shipping: response['shipping'],
                     billing: response['billing'],
-                    'interestRate': response['interest_rate'],
-                    'boletoDiscountAmount': response['boleto_discount_amount']
+                    'interestRate': response['checkoutProperties']['interest_rate'],
+                    'boletoDiscountAmount': response['checkoutProperties']['boleto_discount_amount']
                 };
                 console.log(params);
+                
                 checkout.open(params);
             },
             error: function (xhr, error) {
