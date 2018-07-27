@@ -23,7 +23,6 @@
             success: function (response) {
                 // INICIAR A INSTÂNCIA DO CHECKOUT
                 // declarando um callback de sucesso
-                console.log(response['checkoutProperties']['postback_url'])
                 var checkout = new PagarMeCheckout.Checkout({
                     'customer_data': false,
                     'encryption_key': '<?php echo $encryption_key; ?>', success: function (data) {
@@ -62,7 +61,6 @@
                     'interestRate': response['checkoutProperties']['interest_rate'],
                     'boletoDiscountAmount': response['checkoutProperties']['boleto_discount_amount']
                 };
-                console.log(params);
                 
                 checkout.open(params);
             },
