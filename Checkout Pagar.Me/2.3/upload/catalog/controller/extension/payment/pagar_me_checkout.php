@@ -23,7 +23,7 @@ class ControllerExtensionPaymentPagarMeCheckout extends Controller
     public function submit()
     {
         $json['checkoutProperties'] = $this->getCheckoutProperties();
-        $json['customer'] = $this->generateCustomerData();
+        $json['customer'] = $this->generateCustomerInfo();
         $json['billing'] = $this->generateBilling();
         $json['shipping'] = $this->generateShipping();
         $json['items'] = $this->generateItemsArray();
@@ -108,19 +108,17 @@ class ControllerExtensionPaymentPagarMeCheckout extends Controller
     public function generateDocumentsArray(){
         $document_number = $this->getCustomerDocumentNumber();
         $document_type = $this->getCustomerDocumentType();
-        $documents = array(
+        return array(
             array(
             'number' => $document_number,
             'type' => $document_type
             )
         );
-        return $documents;
     }
 
-    public function generateCustomerData(){
+    public function generateCustomerInfo(){
         $order_info = $this->model_checkout_order->getOrder($this->session->data['order_id']);
-        $phone_numbers = array();
-        array_push($phone_numbers,'+55' . $order_info['telephone']);
+        $phone_numbers = array('+55' . $order_info['telephone']);
         $documents = $this->generateDocumentsArray(); 
         $customer = array(
             'name' => trim($order_info['payment_firstname']) . ' ' . trim($order_info['payment_lastname']),
