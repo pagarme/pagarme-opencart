@@ -134,11 +134,10 @@ abstract class ControllerExtensionPaymentPagarMe extends Controller
         $document_type =  (strlen($document_number) == 11) ? 'cpf' : 'cnpj';
         $customer_type = ($document_type == 'cpf') ? 'individual' : 'corporation';
         array_push($documents, array('number'=> $document_number,'type'=> $document_type));
-        $customer_address = $this->getCustomerAdditionalAddressData($customerModel, $order_info);
         $customer_name = trim($order_info['payment_firstname']).' '.trim($order_info['payment_lastname']);
         $phone_numbers = array();
         array_push($phone_numbers, '+55'.$order_info['telephone']);
-        $customer = array(
+        return array(
             "name"=> $customer_name,
             "external_id"=> $order_info['customer_id'],
             "type"=> $customer_type,
@@ -147,9 +146,6 @@ abstract class ControllerExtensionPaymentPagarMe extends Controller
             "email"=> $order_info['email'],
             "phone_numbers"=> $phone_numbers
         );
-        return $customer;
-
-
     }
     public function generateBillingData()
     {
@@ -169,8 +165,9 @@ abstract class ControllerExtensionPaymentPagarMe extends Controller
                     "city" => $order_info['payment_city'],
                     "state" => $order_info['payment_zone_code'],
                     "country" => strtolower($order_info['payment_iso_code_2']),
-                    "zipcode" => preg_replace('/\D/', '', $order_info['payment_postcode']))
-                );
+                    "zipcode" => preg_replace('/\D/', '', $order_info['payment_postcode'])
+                )
+        );
         return $billing;
 
     }
