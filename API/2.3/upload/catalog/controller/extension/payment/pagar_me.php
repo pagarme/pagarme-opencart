@@ -127,47 +127,51 @@ abstract class ControllerExtensionPaymentPagarMe extends Controller
         $this->load->model('account/customer');
         $order_info = $this->model_checkout_order->getOrder($this->session->data['order_id']);
         $customerModel = $this->model_account_customer->getCustomer($order_info['customer_id']);
-        $documents = array();
         $document_number =  preg_replace('/\D/', '', $this->getCustomerDocumentNumber($customerModel, $order_info));
-        $document_type =  (strlen($document_number) == 11) ? 'cpf' : 'cnpj';
-        $customer_type = ($document_type == 'cpf') ? 'individual' : 'corporation';
-        array_push($documents, array('number'=> $document_number,'type'=> $document_type));
+        $document_type = 'cpf';
+        $customer_type = 'individual';
+        if (11 < strlen($document_number)) {
+            $document_type = 'cnpj';
+            $customer_type = 'corporation';
+        }
+        $documents = array(
+            'number' => $document_number,
+            'type' => $document_type
+        );
         $customer_name = trim($order_info['payment_firstname']).' '.trim($order_info['payment_lastname']);
-        $phone_numbers = array();
-        array_push($phone_numbers, '+55'.$order_info['telephone']);
+        $phone_numbers = array('+55' . $order_info['telephone']);
         return array(
-            "name"=> $customer_name,
-            "external_id"=> $order_info['customer_id'],
-            "type"=> $customer_type,
-            "country"=> strtolower($order_info['payment_iso_code_2']),
-            "documents" => $documents, 
-            "email"=> $order_info['email'],
-            "phone_numbers"=> $phone_numbers
+            'name'=> $customer_name,
+            'external_id'=> $order_info['customer_id'],
+            'type'=> $customer_type,
+            'country'=> strtolower($order_info['payment_iso_code_2']),
+            'documents' => $documents, 
+            'email'=> $order_info['email'],
+            'phone_numbers'=> $phone_numbers
         );
     }
 
     public function generateBillingData()
-    {
-        
+    {        
         $this->load->model('checkout/order');
         $this->load->model('account/customer');
         $order_info = $this->model_checkout_order->getOrder($this->session->data['order_id']);
         $customerModel = $this->model_account_customer->getCustomer($order_info['customer_id']);
         $customer_address = $this->getCustomerAdditionalAddressData($customerModel, $order_info);
         $billing = array(
-                "name" => trim($order_info['payment_firstname']).' '.trim($order_info['payment_lastname']),
-                "address"=> array(
-                    "street" => $order_info['payment_address_1'],
-                    "street_number" => $customer_address['street_number'],
-                    "neighborhood" => $order_info['payment_address_2'],
-                    "complementary" => $customer_address['complementary'],
-                    "city" => $order_info['payment_city'],
-                    "state" => $order_info['payment_zone_code'],
-                    "country" => strtolower($order_info['payment_iso_code_2']),
-                    "zipcode" => preg_replace('/\D/', '', $order_info['payment_postcode'])
+                'name' => trim($order_info['payment_firstname']).' '.trim($order_info['payment_lastname']),
+                'address'=> array(
+                    'street' => $order_info['payment_address_1'],
+                    'street_number' => $customer_address['street_number'],
+                    'neighborhood' => $order_info['payment_address_2'],
+                    'complementary' => $customer_address['complementary'],
+                    'city' => $order_info['payment_city'],
+                    'state' => $order_info['payment_zone_code'],
+                    'country' => strtolower($order_info['payment_iso_code_2']),
+                    'zipcode' => preg_replace('/\D/', '', $order_info['payment_postcode'])
                 )
         );
-        
+
         return $billing;
     }
 
@@ -179,17 +183,17 @@ abstract class ControllerExtensionPaymentPagarMe extends Controller
         $customerModel = $this->model_account_customer->getCustomer($order_info['customer_id']);
         $customer_address = $this->getCustomerAdditionalAddressData($customerModel, $order_info);
         $shipping = array(
-                "fee" => preg_replace('/\D/', '', $this->session->data['shipping_method']['cost']),
-                "name" => trim($order_info['payment_firstname']).' '.trim($order_info['payment_lastname']),
-                "address" => array(
-                    "street" => $order_info['shipping_address_1'],
-                    "street_number" => $customer_address['street_number'],
-                    "neighborhood" => $order_info['shipping_address_2'],
-                    "complementary" => $customer_address['complementary'],
-                    "city" => $order_info['shipping_city'],
-                    "state" => $order_info['shipping_zone_code'],
-                    "country" => strtolower($order_info['shipping_iso_code_2']),
-                    "zipcode" => preg_replace('/\D/', '', $order_info['shipping_postcode']))
+                'fee' => preg_replace('/\D/', '', $this->session->data['shipping_method']['cost']),
+                'name' => trim($order_info['payment_firstname']).' '.trim($order_info['payment_lastname']),
+                'address' => array(
+                    'street' => $order_info['shipping_address_1'],
+                    'street_number' => $customer_address['street_number'],
+                    'neighborhood' => $order_info['shipping_address_2'],
+                    'complementary' => $customer_address['complementary'],
+                    'city' => $order_info['shipping_city'],
+                    'state' => $order_info['shipping_zone_code'],
+                    'country' => strtolower($order_info['shipping_iso_code_2']),
+                    'zipcode' => preg_replace('/\D/', '', $order_info['shipping_postcode']))
                 );
 
         return $shipping;
