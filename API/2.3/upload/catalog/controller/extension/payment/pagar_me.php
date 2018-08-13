@@ -121,8 +121,6 @@ abstract class ControllerExtensionPaymentPagarMe extends Controller
         return $items; 
     }
 
-
-
     public function generateCustomerInfo()
     {
         $this->load->model('checkout/order');
@@ -147,6 +145,7 @@ abstract class ControllerExtensionPaymentPagarMe extends Controller
             "phone_numbers"=> $phone_numbers
         );
     }
+
     public function generateBillingData()
     {
         
@@ -168,8 +167,8 @@ abstract class ControllerExtensionPaymentPagarMe extends Controller
                     "zipcode" => preg_replace('/\D/', '', $order_info['payment_postcode'])
                 )
         );
+        
         return $billing;
-
     }
 
     public function generateShippingData()
