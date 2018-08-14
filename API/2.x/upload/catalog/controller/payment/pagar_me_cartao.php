@@ -67,7 +67,7 @@ class ControllerPaymentPagarMeCartao extends ControllerPaymentPagarMe
 
         $comment = " Cartão: " . strtoupper($pagar_me_transaction['bandeira']) . "<br />";
         $comment .= " Parcelado em: " . $pagar_me_transaction['n_parcela'] . "x" . "<br />";
-        $comment .= "Pagar.me Transaction: " . $pagar_me_transaction['transaction_id'] . "<br />";
+        $comment .= " Transação Pagar.me: " . $pagar_me_transaction['transaction_id'] . "<br />";
         $this->model_checkout_order->addOrderHistory($this->session->data['order_id'], $this->config->get('pagar_me_cartao_order_'.$status), $comment, true);
 
         $this->response->redirect($this->url->link('checkout/success'));
