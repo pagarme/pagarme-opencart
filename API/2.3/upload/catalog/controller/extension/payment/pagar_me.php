@@ -27,16 +27,21 @@ abstract class ControllerExtensionPaymentPagarMe extends Controller
 
     }
 
+    function containValue($value, $required) {
+        return strpos(strtolower($value['name']), $required) !== false
+            ? true
+            : false;
+    }
+
     public function getCustomerDocumentNumber($customer, $order_info)
     {
         $custom_fields = $this->getCustomFields($customer);
 
         foreach($custom_fields as $custom_field){
-            if((strpos(strtolower($custom_field['name']), 'cpf') !== false) || (strpos(strtolower($custom_field['name']), 'cnpj') !== false)){
+            if ($this->containValue($custom_field, 'cpf') || $this->containValue($custom_field, 'cnpj')) {
                 return $order_info['custom_field'][$custom_field['custom_field_id']];
             }
         }
-
         return '';
     }
 
@@ -44,22 +49,25 @@ abstract class ControllerExtensionPaymentPagarMe extends Controller
     {
         $custom_fields = $this->getCustomFields($customer);
 
-        $address_data = array(
+        $addrressCustomFields = array(
             'street_number' => 'S/N',
             'complementary' => 'Sem complemento'
         );
 
         foreach($custom_fields as $custom_field) {
-            if($custom_field['location'] == 'address') {
-                if((strpos(strtolower($custom_field['name']), 'numero') !== false) || (strpos(strtolower($custom_field['name']), 'número') !== false)) {
-                    $address_data['street_number'] = $order_info['payment_custom_field'][$custom_field['custom_field_id']];
-                } elseif(strtolower($custom_field['name']) == 'complemento'){
-                    $address_data['complementary'] = $order_info['payment_custom_field'][$custom_field['custom_field_id']];
-                }
+            if (strtolower($custom_field['location']) !== 'address') continue;
+
+            $custom_field_id = $order_info[$field.'_custom_field'][$custom_field['custom_field_id']];
+
+            if ($this->containValue($custom_field, 'numero') || $this->containValue($custom_field, 'número')) {
+                $addrressCustomFields['street_number'] =  $order_info['payment_custom_field'][$custom_field['custom_field_id']];
+            }
+        
+            if ($this->containValue($custom_field, 'complemento')) {
+                $addrressCustomFields['complementary'] =  $order_info['payment_custom_field'][$custom_field['custom_field_id']];
             }
         }
-
-        return $address_data;
+        return $addrressCustomFields;
     }
 
     private function getCustomFields($customer)
