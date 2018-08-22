@@ -187,12 +187,10 @@ class ControllerPaymentPagarMeCheckout extends Controller
         $current_status = 'pagar_me_checkout_order_' . $this->request->post['current_status'];
 
 
-        if(!$this->model_payment_pagar_me_checkout->getTotalOrderHistoriesByOrderStatusId($current_status, $order_id)) {
+        if($this->model_checkout_order->getOrder($order_id)['order_status_id'] != $this->config->get($current_status)){
             $this->model_checkout_order->addOrderHistory($order_id, $this->config->get($current_status), '', true);
+            $this->log->write("Pagar.me Postback: Pedido ".$order_id." atualizado para ".$this->request->post['current_status']);
         }
-
-        $this->log->write("Pagar.me Postback: Pedido ".$order_id." atualizado para ".$this->request->post['current_status']);
-
         echo "Ok";
     }
 
