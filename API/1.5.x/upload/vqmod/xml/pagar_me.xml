@@ -24,7 +24,7 @@
                 ]]>
             </search>
             <add>
-                <![CDATA[if($this->config->get('pagar_me_boleto_status') || $this->config->get('pagar_me_cartao_status')){
+                <![CDATA[if($order_info['payment_code'] == 'pagar_me_boleto' || $order_info['payment_code'] == 'pagar_me_cartao'){
                     $this->data['order_status_id'] = $order_info['order_status_id'];
                     $this->data['pagar_me_boleto_url'] = $order_info['pagar_me_boleto_url'];
                     $this->data['payment_code'] = $order_info['payment_code'];
