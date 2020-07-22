@@ -116,6 +116,3 @@ Crie o campo de CPF caso venda para pessoas físicas e o de CNPJ caso venda para
 | Sort Order          | 3                                           | Opcional          |
 
 
-## Ajuda
-
-Crie uma issue neste repositório ou entre em contato com suporte@pagar.me caso precise de ajuda em algo. =)
