@@ -24,7 +24,7 @@
                 ]]>
             </search>
             <add>
-                <![CDATA[if($this->config->get('pagar_me_checkout_status')){
+                <![CDATA[if($order_info['payment_code'] == 'pagar_me_checkout'){
                     $this->data['order_status_id'] = $order_info['order_status_id'];
                     $this->data['pagar_me_checkout_url'] = $order_info['pagar_me_checkout_url'];
                     $this->data['payment_code'] = $order_info['payment_code'];
