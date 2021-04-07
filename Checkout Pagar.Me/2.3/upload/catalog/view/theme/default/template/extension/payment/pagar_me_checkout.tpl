@@ -1,3 +1,4 @@
+<script src="https://assets.pagar.me/checkout/1.1.0/checkout.js"></script>
 <style>
     .payment-information{text-align:center;font-size:18px;font-weight:800;letter-spacing:-0.55pt;margin-bottom:10px;}
 </style>
@@ -45,30 +46,22 @@
                 // DEFINIR AS OPÇÕES
                 // e abrir o modal
                 var params = {
-                    'buttonText': response['button_text'],
-                    'amount': response['amount'],
-                    'buttonClass': response['button_class'],
-                    'paymentMethods': response['payment_methods'],
-                    'cardBrands': response['card_brands'],
-                    'maxInstallments': response['max_installments'],
-                    'freeInstallments': response['free_installments'],
-                    'uiColor': response['ui_color'],
-                    'postbackUrl': response['postback_url'],
-                    'customerName': response['customer_name'],
-                    'customerDocumentNumber': response['customer_document_number'],
-                    'customerEmail': response['customer_email'],
-                    'customerAddressStreet': response['customer_address_street'],
-                    'customerAddressStreetNumber': response['customer_address_street_number'],
-                    'customerAddressComplementary': response['customer_address_complementary'],
-                    'customerAddressNeighborhood': response['customer_address_neighborhood'],
-                    'customerAddressCity': response['customer_address_city'],
-                    'customerAddressState': response['customer_address_state'],
-                    'customerAddressZipcode': response['customer_address_zipcode'],
-                    'customerPhoneDdd': response['customer_phone_ddd'],
-                    'customerPhoneNumber': response['customer_phone_number'],
-                    'interestRate': response['interest_rate'],
-                    'boletoDiscountAmount': response['boleto_discount_amount']
+                    'buttonText': response['checkoutProperties']['button_text'],
+                    'amount': response['checkoutProperties']['amount'],
+                    'buttonClass': response['checkoutProperties']['button_class'],
+                    'paymentMethods': response['checkoutProperties']['payment_methods'],
+                    'cardBrands': response['checkoutProperties']['card_brands'],
+                    'maxInstallments': response['checkoutProperties']['max_installments'],
+                    'freeInstallments': response['checkoutProperties']['free_installments'],
+                    'uiColor': response['checkoutProperties']['ui_color'],
+                    customer: response['customer'],
+                    items : response['items'],
+                    shipping: response['shipping'],
+                    billing: response['billing'],
+                    'interestRate': response['checkoutProperties']['interest_rate'],
+                    'boletoDiscountAmount': response['checkoutProperties']['boleto_discount_amount']
                 };
+                
                 checkout.open(params);
             },
             error: function (xhr, error) {

@@ -22,26 +22,34 @@ class ControllerExtensionPaymentPagarMeCheckout extends Controller
 
     public function submit()
     {
+        $json['checkoutProperties'] = $this->getCheckoutProperties();
+        $json['customer'] = $this->generateCustomerInfo();
+        $json['billing'] = $this->generateBilling();
+        $json['shipping'] = $this->generateShipping();
+        $json['items'] = $this->generateItemsArray();
+        $json['checkoutProperties']  = $this->getCheckoutProperties();
+        $this->response->setOutput(json_encode($json));
+    }
+
+    public function getCheckoutProperties(){
         $this->language->load('extension/payment/pagar_me_checkout');
         $this->load->model('checkout/order');
         $this->load->model('account/customer');
         $order_info = $this->model_checkout_order->getOrder($this->session->data['order_id']);
         $customer = $this->model_account_customer->getCustomer($order_info['customer_id']);
-
         $discountPercentage = $this->config->get('pagar_me_checkout_boleto_discount_percentage');
         $discountAmount = ($this->cart->getSubtotal() * $discountPercentage) / 100;
-
         //Dados para o checkout
-        $json=array();
-        $json['amount'] = str_replace(array(".", ","), array("", ""), number_format($order_info['total'], 2, '', ''));
-        $json['button_text'] = $this->config->get('pagar_me_checkout_texto_botao') ? $this->config->get('pagar_me_checkout_texto_botao') : "Pagar";
-        $json['boleto_discount_amount'] = number_format($discountAmount, 2, '', '');
-        $json['button_class'] = $this->config->get('pagar_me_checkout_button_css_class');
+        $checkoutProperties=array();
+        $checkoutProperties['amount'] = str_replace(array(".", ","), array("", ""), number_format($order_info['total'], 2, '', ''));
+        $checkoutProperties['button_text'] = $this->config->get('pagar_me_checkout_texto_botao') ? $this->config->get('pagar_me_checkout_texto_botao') : "Pagar";
+        $checkoutProperties['boleto_discount_amount'] = number_format($discountAmount, 2, '', '');
+        $checkoutProperties['button_class'] = $this->config->get('pagar_me_checkout_button_css_class');
         $payment_methods = $this->config->get('pagar_me_checkout_payment_methods');
         if (count($payment_methods) == 1) {
-            $json['payment_methods'] = $payment_methods[0];
+            $checkoutProperties['payment_methods'] = $payment_methods[0];
         } else {
-            $json['payment_methods'] = $payment_methods[0] . ',' . $payment_methods[1];
+            $checkoutProperties['payment_methods'] = $payment_methods[0] . ',' . $payment_methods[1];
         }
         $card_brands = '';
         $card_brands_array = $this->config->get('pagar_me_checkout_card_brands');
@@ -52,9 +60,7 @@ class ControllerExtensionPaymentPagarMeCheckout extends Controller
                 $card_brands .= ',' . $card_brand;
             }
         }
-
-        $json['card_brands'] = $card_brands;
-
+        $checkoutProperties['card_brands'] = $card_brands;
         /* Máximo de parcelas */
         $max_installment = $this->config->get('pagar_me_checkout_max_installments');
         $order_total = $order_info['total'];
@@ -65,59 +71,161 @@ class ControllerExtensionPaymentPagarMeCheckout extends Controller
         }else{
             $installments = 0;
         }
-
         if($installments <= $max_installment) {
-            $json['max_installments'] = $installments;
+            $checkoutProperties['max_installments'] = $installments;
         }else{
-            $json['max_installments'] = $max_installment;
+            $checkoutProperties['max_installments'] = $max_installment;
         }
-        $json['free_installments'] = $this->config->get('pagar_me_checkout_free_installments');
-        $json['ui_color'] = $this->config->get('pagar_me_checkout_ui_color');
-        $json['postback_url'] = HTTP_SERVER . 'index.php?route=extension/payment/pagar_me_checkout/callback';
-        $json['customer_name'] = trim($order_info['payment_firstname']) . ' ' . trim($order_info['payment_lastname']);
+        $checkoutProperties['free_installments'] = $this->config->get('pagar_me_checkout_free_installments');
+        $checkoutProperties['ui_color'] = $this->config->get('pagar_me_checkout_ui_color');
+        $checkoutProperties['postback_url'] = HTTP_SERVER . 'index.php?route=extension/payment/pagar_me_checkout/callback';
+        $checkoutProperties['interest_rate'] = $this->config->get('pagar_me_checkout_interest_rate');
+        return $checkoutProperties;
+    }
 
-        $json['customer_address_street_number'] = 'Sem número';
-        $json['customer_address_complementary'] = '';
-
-        /* Pega os custom fields de CPF/CNPJ, número e complemento */
+    public function getCustomerDocumentNumber(){
+        $order_info = $this->model_checkout_order->getOrder($this->session->data['order_id']);
         $this->load->model('account/custom_field');
-
         $default_group = $this->config->get('config_customer_group_id');
+        $custom_fields = $this->model_account_custom_field->getCustomFields($default_group);
+
         if(isset($customer['customer_group_id'])){
             $default_group = $customer['customer_group_id'];
         }
-
-        $custom_fields = $this->model_account_custom_field->getCustomFields($default_group);
         foreach($custom_fields as $custom_field){
-            if($custom_field['location'] == 'account'){
-                if((strpos(strtolower($custom_field['name']), 'cpf') !== false) || (strpos(strtolower($custom_field['name']), 'cnpj') !== false)){
-                    $json['customer_document_number'] = $order_info['custom_field'][$custom_field['custom_field_id']];
-                }
-            }elseif($custom_field['location'] == 'address'){
+            if((strpos(strtolower($custom_field['name']), 'cpf') !== false) || (strpos(strtolower($custom_field['name']), 'cnpj') !== false)){
+                $document_number =  $order_info['custom_field'][$custom_field['custom_field_id']];
+            }
+        }
+        return  preg_replace('/\D/','',$document_number);
+    }
+
+    public function getCustomerDocumentType(){
+        $document_number = $this->getCustomerDocumentNumber();
+        return (strlen($document_number) == 11) ? 'cpf' : 'cnpj'; 
+    }
+
+    public function generateDocumentsArray(){
+        $document_number = $this->getCustomerDocumentNumber();
+        $document_type = $this->getCustomerDocumentType();
+        return array(
+            array(
+            'number' => $document_number,
+            'type' => $document_type
+            )
+        );
+    }
+
+    public function generateCustomerInfo(){
+        $order_info = $this->model_checkout_order->getOrder($this->session->data['order_id']);
+        $phone_numbers = array('+55' . $order_info['telephone']);
+        $documents = $this->generateDocumentsArray(); 
+        $customer = array(
+            'name' => trim($order_info['payment_firstname']) . ' ' . trim($order_info['payment_lastname']),
+            'email' => $order_info['email'],
+            'external_id' => $order_info['customer_id'],
+            'phone_numbers' => $phone_numbers,               
+            'country' =>  strtolower($order_info['payment_iso_code_2']),
+            'type' => $this->getCustomerDocumentType() == 'cpf' ? 'individual' : 'corporation',
+            'documents' => $documents
+        );
+        return $customer;
+
+    }
+
+    public function generateBilling(){
+        $order_info = $this->model_checkout_order->getOrder($this->session->data['order_id']);
+        $this->load->model('localisation/zone');
+        $customFields = $this->getAddressCustomFields('payment');
+
+        $address = array(
+            'street' => $order_info['payment_address_1'],
+            'street_number' =>  $customFields['number'],
+            'neighborhood' => $order_info['payment_address_2'],
+            'complementary' => $customFields['complementary'],
+            'city' => $order_info['payment_city'],
+            'state' => $this->model_localisation_zone->getZone($order_info['payment_zone_id'])['name'],
+            'zipcode' => preg_replace('/\D/','',$order_info['payment_postcode'] ),
+            'country' =>  strtolower($order_info['payment_iso_code_2'])       
+        );
+        $billing = array(
+            'address' => $address,
+            'name' =>  trim($order_info['payment_firstname']) . ' ' . trim($order_info['payment_lastname']) 
+        );
+        return $billing; 
+    }
+
+    public function generateShipping(){
+        $order_info = $this->model_checkout_order->getOrder($this->session->data['order_id']);
+        $this->load->model('localisation/zone');
+        $customFields = $this->getAddressCustomFields('shipping');
+        $address = array(
+            'street' => $order_info['shipping_address_1'],
+            'street_number' =>  $customFields['number'],
+            'neighborhood' => $order_info['shipping_address_2'],
+            'complementary' => $customFields['complementary'],
+            'city' => $order_info['shipping_city'],
+            'state' => $this->model_localisation_zone->getZone($order_info['shipping_zone_id'])['name'],
+            'zipcode' => preg_replace('/\D/','',$order_info['shipping_postcode'] ),
+            'country' =>  strtolower($order_info['shipping_iso_code_2'])       
+        );
+        $shipping = array(
+            'address' => $address,
+            'name' =>  trim($order_info['shipping_firstname']) . ' ' . trim($order_info['shipping_lastname']),
+            'fee' => preg_replace('/\D/','',$this->session->data['shipping_method']['cost']) 
+        );
+
+        return $shipping;
+    }
+
+    public function generateItemsArray(){
+        $items = array();
+        $cart_info = $this->cart->getProducts();
+        foreach($cart_info as $item){
+            $unit_price = $item['price'];
+             if(strpos($item['price'], ".") !== false || strpos($item['price'], ",") !== false){
+                $unit_price = preg_replace('/\D/','',$unit_price);
+            } else {
+                $unit_price = $item['price'] * 100;
+            }
+            $tangible = empty($item['download']) ? true : false;
+            array_push(
+                $items,
+                array(
+                    'id' => $item['product_id'],
+                    'title' => $item['name'],
+                    'quantity' => $item['quantity'],
+                    'unit_price' => $unit_price,
+                    'tangible' => $tangible
+                )
+            );
+        }
+        return $items;
+    }
+
+    public function getAddressCustomFields($field){
+        $order_info = $this->model_checkout_order->getOrder($this->session->data['order_id']);
+        $this->load->model('account/custom_field');
+        $default_group = $this->config->get('config_customer_group_id');
+        $custom_fields = $this->model_account_custom_field->getCustomFields($default_group);
+        $number = 'Sem número';
+        $complementary = '';
+        
+        foreach($custom_fields as $custom_field){
+            if($custom_field['location'] == 'address'){
                 if(strpos(strtolower($custom_field['name']), 'numero') !== false || strpos(strtolower($custom_field['name']), 'número') !== false){
-                    $json['customer_address_street_number'] = $order_info['payment_custom_field'][$custom_field['custom_field_id']];
-                }elseif(strpos(strtolower($custom_field['name']), 'complemento')){
-                    $json['customer_address_complementary'] = $order_info['payment_custom_field'][$custom_field['custom_field_id']];
+                    $number = $order_info[$field.'_custom_field'][$custom_field['custom_field_id']];
+                }elseif(strpos(strtolower($custom_field['name']), 'complemento') !== false){
+                    $complementary = $order_info[$field.'_custom_field'][$custom_field['custom_field_id']];
                 }
             }
         }
+        $addrressCustomFields = array(
+            'number' => $number,
+            'complementary' => $complementary
+        );
 
-        $json['customer_email'] = $order_info['email'];
-        $json['customer_address_street'] = $order_info['payment_address_1'];
-        $json['customer_address_neighborhood'] = $order_info['payment_address_2'];
-        $json['customer_address_city'] = $order_info['payment_city'];
-
-        $this->load->model('localisation/zone');
-        $uf = $this->model_localisation_zone->getZone($order_info['payment_zone_id']);
-
-        $json['customer_address_state'] = $uf['code'];
-        $json['customer_address_zipcode'] = $this->removeSeparadores($order_info['payment_postcode']);
-        $json['customer_phone_ddd'] = substr(preg_replace('/[^0-9]/', '', $order_info['telephone']), 0, 2);
-        $json['customer_phone_number'] = substr(preg_replace('/[^0-9]/', '', $order_info['telephone']), 2);
-        $json['interest_rate'] = $this->config->get('pagar_me_checkout_interest_rate');
-
-
-        $this->response->setOutput(json_encode($json));
+        return $addrressCustomFields; 
     }
 
     public function confirm()
